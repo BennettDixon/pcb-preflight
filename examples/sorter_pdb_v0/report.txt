@@ -1,0 +1,51 @@
+sorter_pdb_v0  -  KiCad 10.0.7  -  4 copper layers, 130 footprints  -  bom.csv: ./examples/sorter_pdb_v0/bom.csv
+
+CHECKED AND LEFT ALONE
+  ERC (§12): 0 errors, 0 warnings on 1 sheet
+  Unrouted connections (§11 §12): 0 connections still to route
+  Schematic / PCB parity (§5): 0 mismatches, 0 warnings across 130 footprints
+  Fiducials (§4): 3 on the front (FID2, FID1, FID3)
+  Placement origin (§4): aux axis origin at 20, 95 mm
+  Copper layers (§9): 4 copper layers
+  Board name and revision on silk (§10): name "sorter_pdb_v0 v0.6", revision "sorter_pdb_v0 v0.6"
+  Connector names on silk (§8): 17 connectors each have a name on silk
+  DNP parts (§12): 6 DNP parts flagged on both schematic and board (D11, D12, D13, D14, D15, D16)
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 110 purchasable references, every one on exactly one BOM line
+  BOM package matches the footprint (§1): 85 references with a comparable package name agree with their footprint
+  Catalogue and stock (§1 §2 §13): 2 codes found, 0 blocking, 0 low-stock/mismatch, 0 not reachable; 0 Extended part types (one loading fee each)
+
+FINDINGS
+  WARN  DRC (§12): 0 errors, 2 warnings (silk_edge_clearance x2)
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (17.22, 32.87)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (31.76, 86.09)]
+  FAIL  LCSC code on every BOM line (§1 §12): 65 of 67 lines have no LCSC code (a value and a package is not a part)
+        row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric)
+        row 3 C2: 470uF 35V (CP_Elec_10x12.5)
+        row 4 C3: 100uF 35V (CP_Elec_10x10)
+        row 5 C4: 100uF 25V (CP_Elec_6.3x7.7)
+        row 6 C5: 100uF 16V (CP_Elec_6.3x7.7)
+        row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric)
+        ... 59 more (--max-details)
+  WARN  BOM lines complete (§1 §2): 65 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C2: 470uF 35V (CP_Elec_10x12.5): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C3: 100uF 35V (CP_Elec_10x10): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C4: 100uF 25V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C5: 100uF 16V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        ... 59 more (--max-details)
+
+NOT CHECKED
+  nothing: every gate ran
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 45 polarized or asymmetric parts (D5, D2, J5, C2, J16, L1, J2, D9, J15, J13, J11, U2, +33 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  1 blocking, 2 warnings, 0 not checked
