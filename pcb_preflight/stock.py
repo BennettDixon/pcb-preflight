@@ -5,10 +5,14 @@ Endpoints found in Oct 2026 that answer a bare LCSC code without a key (see DESI
 1. JLCPCB's own cart service (undocumented, used by the jlcpcb.com parts pages):
    GET https://cart.jlcpcb.com/shoppingCart/smtGood/getComponentDetail?componentCode=C14663
    -> data.stockCount, componentLibraryType ("base"/"expand"), componentModelEn (MPN),
-      componentSpecificationEn (package), dataManualUrl, leastNumber, lossNumber (attrition).
+      componentSpecificationEn (package), dataManualUrl, leastNumber, lossNumber (attrition),
+      describe (the description: "100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS"),
+      firstSortName / secondSortName (the category: "Capacitors" / "Multilayer Ceramic Capacitors MLCC - SMD/SMT").
+      componentDesignator is not used: JLCPCB files inductors, connectors, fuses and MOSFETs under "U".
 2. tscircuit's jlcsearch (community mirror of the JLCPCB catalogue, documented at docs.tscircuit.com):
    GET https://jlcsearch.tscircuit.com/api/search?q=C14663&limit=5
-   -> components[].{lcsc, mfr, package, is_basic, is_preferred, stock, price}
+   -> components[].{lcsc, mfr, package, is_basic, is_preferred, stock, price, description}; no category field,
+      so the record's 'category' is empty and the gates that need one say they could not check.
 
 Both may change without notice; a failure of one falls through to the other, and a failure of both is
 reported as "not checked", never as a pass. There is no official JLCPCB parts API without a login.
@@ -45,12 +49,13 @@ def _from_jlcpcb(code, timeout):
     lib = {'base': 'Basic', 'expand': 'Extended'}.get(data.get('componentLibraryType'), data.get('componentLibraryType'))
     if data.get('preferredComponentFlag'):
         lib = 'Preferred'
+    category = ' / '.join(x for x in (data.get('firstSortName', ''), data.get('secondSortName', '')) if x)
     return {
         'source': 'jlcpcb', 'lcsc': data.get('componentCode', code), 'mpn': data.get('componentModelEn', ''),
         'manufacturer': data.get('componentBrandEn', ''), 'package': data.get('componentSpecificationEn', ''),
         'library': lib, 'stock': data.get('stockCount'), 'datasheet': data.get('dataManualUrl', ''),
         'min_qty': data.get('leastNumber'), 'attrition': data.get('lossNumber'),
-        'description': data.get('describe', ''),
+        'description': data.get('describe', ''), 'category': category,
     }
 
 
@@ -67,7 +72,7 @@ def _from_jlcsearch(code, timeout):
                 'package': c.get('package', ''),
                 'library': 'Preferred' if c.get('is_preferred') else ('Basic' if c.get('is_basic') else 'Extended'),
                 'stock': c.get('stock'), 'datasheet': '', 'min_qty': None, 'attrition': None,
-                'description': c.get('description', ''),
+                'description': c.get('description', ''), 'category': '',
             }
     return None
 

@@ -1,5 +1,5 @@
 sorter_pdb_v0  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 130 footprints  -  bom.csv: bom.csv
-RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 2 not checked  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -17,9 +17,14 @@ CHECKED AND LEFT ALONE
   bom.csv columns (§1): all 8 columns present
   bom.csv matches the schematic (§1 §5 §12): 110 bought references, every one on exactly one BOM line
         note: not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)
-  BOM package matches the footprint (§1): 110 agree with their footprint
+  BOM value matches the schematic (§1): 110 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  BOM package matches the footprint (§1): 100 agree with their footprint, 9 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names), 2 repeat the footprint name (not compared)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; 23 Extended part types (one loading fee each)
-  Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (no readable package name; sign each under NOT CHECKED with a "Package verified" note on its bom.csv line)
+  Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  Catalogue category matches the reference prefix (§1 §2): 66 lines filed under the category their reference prefix means
+  Catalogue description matches the BOM value (§1 §2): 35 lines agree on every figure their value states (F, H, Ω, V), 31 state no figure
 
 FINDINGS
   WARN  DRC (§12): 0 errors, 2 warnings (silk_edge_clearance x2)
@@ -32,6 +37,16 @@ FINDINGS
         row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet
 
 NOT CHECKED
+  BOM package matches the footprint (§1): 9 not compared
+        2 references (L3, Q2; bom.csv rows 47, 49): the Package column repeats the footprint name, so nothing was compared; write the package as the catalogue record prints it ("0805", "SOT-23-5", "SMD,D6.3xL7.7mm"), or run with --online, where the catalogue's own string is compared
+        F1 (bom.csv row 26): Plugin on Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        F2 (bom.csv row 27): SMD,7.3x5.4mm on Fuse_2920_7451Metric: "SMD,7.3x5.4mm" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J1 (bom.csv row 29): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J2 (bom.csv row 30): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J3 (bom.csv row 31): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J4 (bom.csv row 32): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J5 (bom.csv row 33): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        J17 (bom.csv row 45): Push-Pull on DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue package fits the footprint (§1): 5 not compared
         C151074 01000056Z (F1; bom.csv row 26): Plugin on Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C3761525 MF-SM100/33-2 (F2; bom.csv row 27): SMD,7.3x5.4mm on Fuse_2920_7451Metric: "SMD,7.3x5.4mm" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
@@ -48,5 +63,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 2 not checked  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

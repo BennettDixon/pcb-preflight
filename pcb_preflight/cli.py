@@ -21,7 +21,7 @@ import sys
 import tempfile
 import traceback
 
-from . import __version__, board as boardlib, bom as bomlib, checks, kicad, preset, report, schematic
+from . import __version__, board as boardlib, bom as bomlib, checks, footprints, kicad, packages, preset, report, schematic
 
 SCHEMA = 1     # of the JSON report; bumped when a field changes meaning or goes away
 
@@ -43,6 +43,7 @@ def run_check(a):
         raise ValueError(f'{project_dir} is not a directory')
     name = boardlib.project_name(project_dir, a.project)
     cli = kicad.find_cli(a.kicad_cli)
+    library = packages.load_library(footprints.find_root(a.footprints, cli))
     bom_path = os.path.abspath(a.bom) if a.bom else os.path.join(project_dir, 'bom.csv')
     skip_prefixes = tuple(p.strip().upper() for p in a.skip_prefix.split(',') if p.strip())
     for p in (name + '.kicad_pcb', name + '.kicad_sch', name + '.kicad_pro'):
@@ -63,7 +64,8 @@ def run_check(a):
 
         kver = kicad.version(cli)
         if not a.quiet:
-            print(f'preflight {__version__}: {name} with kicad-cli {kver} ({cli}), {preset.PRESET}, on a snapshot copy', file=sys.stderr)
+            print(f'preflight {__version__}: {name} with kicad-cli {kver} ({cli}), {preset.PRESET}, on a snapshot copy; '
+                  f'footprints: {library.root if library else "none found (package names only)"}', file=sys.stderr)
         results = []
         try:
             erc_report, _ = kicad.erc(cli, sch, os.path.join(work, 'erc.json'))
@@ -121,11 +123,14 @@ def run_check(a):
             results.append(checks.bom_fields_check(lines))
             if sch_rows is not None:
                 results.append(checks.bom_refs_check(lines, sch_rows, skip_prefixes, board))
-                results.append(checks.bom_package_check(lines, sch_rows))
+                results.append(checks.bom_value_check(lines, sch_rows))
+                results.append(checks.bom_package_check(lines, sch_rows, library))
             if a.online:
                 records = {}
                 results.append(checks.stock_check(lines, multiple=a.stock_multiple, records=records))
-                results.append(checks.catalogue_package_check(lines, records, sch_rows))
+                results.append(checks.catalogue_package_check(lines, records, sch_rows, library))
+                results.append(checks.catalogue_category_check(lines, records))
+                results.append(checks.catalogue_value_check(lines, records))
             else:
                 results.append(checks.Check('stock', 'Catalogue and stock', '§1 §2 §13', 'skip',
                                             'not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)'))
@@ -134,7 +139,8 @@ def run_check(a):
             'schema': SCHEMA, 'version': __version__, 'project': name, 'project_dir': project_dir,
             'kicad_version': kver, 'kicad_cli': cli, 'preset': preset.PRESET,
             'options': {'online': a.online, 'strict': a.strict, 'skip_prefixes': list(skip_prefixes),
-                        'stock_multiple': a.stock_multiple, 'custom_rules_present': bool(custom_rules)},
+                        'stock_multiple': a.stock_multiple, 'custom_rules_present': bool(custom_rules),
+                        'footprints': library.root if library else None},
             'owned': {k: ({kk: list(vv) if isinstance(vv, tuple) else vv for kk, vv in v.items()} if isinstance(v, dict) else v) for k, v in owned.items()},
             'copper_layers': board.copper_layers, 'footprints': len(board.footprints),
             'bom_path': bom_path if os.path.exists(bom_path) else None,
@@ -198,6 +204,8 @@ def build_parser():
     c = sub.add_parser('check', help='run every gate and print the report (exit 0 PASS, 1 FAIL, 2 ERROR, 3 NOT VERIFIED)')
     common(c)
     c.add_argument('--bom', help='bom.csv path (default: <project dir>/bom.csv)')
+    c.add_argument('--footprints', metavar='DIR', help='KiCad footprint library directory for pad geometry (default: $KICAD_FOOTPRINT_DIR, '
+                   'then the kicad-cli install); without one, package names alone are compared')
     c.add_argument('--online', action='store_true', help='look every LCSC code up at JLCPCB: stock, MPN, package, Basic/Extended (without it the result is at best NOT VERIFIED)')
     c.add_argument('--stock-multiple', type=_positive, default=10, help='stock must be at least this many times the quantity needed (default: %(default)s)')
     c.add_argument('--strict', action='store_true', help='warnings block too')

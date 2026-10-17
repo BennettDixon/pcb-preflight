@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 
 from . import bom as bomlib
 from . import board as boardlib
-from . import kicad, packages, preset, stock
+from . import kicad, packages, preset, stock, values
 
 SIGN_OFF = 'to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line'
 
@@ -368,22 +368,31 @@ def bom_refs_check(lines, sch_rows, skip_prefixes, board=None):
                  f'{len(wanted)} bought references, every one on exactly one BOM line', notes=notes)
 
 
-def _fit_gate(cid, title, pairs):
+def _library_note(library):
+    if library is None:
+        return ('pad geometry: no KiCad footprint library found, so package names alone were compared '
+                '(pass --footprints DIR or set KICAD_FOOTPRINT_DIR)')
+    return (f'pad geometry: KiCad footprint library at {library.root}; where both sides are library footprints the pads '
+            f'decide and the names only pick the candidates')
+
+
+def _fit_gate(cid, title, pairs, library=None, extra_unchecked=(), extra_summary=''):
     """One package gate over (label, footprint, package, mpn, verified note) tuples: packages.fits() on each.
 
     different -> blocks, and a "Package verified" note never changes that (a known mismatch is fixed, not
     signed off); unknown -> listed as not compared with the way to clear it, or as verified by hand when the
-    line carries a note. A gate where nothing could be compared is a skip, not a pass.
+    line carries a note. A gate where nothing could be compared is a skip, not a pass. ``library`` is the
+    KiCad footprint library for pad geometry (packages.Library) or None for names only; the gate says which.
     """
-    det, unknown, by_hand, notes = [], [], [], []
+    det, unknown, by_hand, evidence = [], [], [], []
     same = 0
     for label, footprint, package, mpn, note in pairs:
-        f = packages.fits(footprint, package, mpn)
-        what = f'{label}: {package or "(no package)"} on {footprint.split(":", 1)[-1]}: {f.reason}'
+        f = packages.fits(footprint, package, mpn, library)
+        what = f'{label}: {package or "(no package)"} on {packages.bare(footprint)}: {f.reason}'
         if f.verdict == packages.SAME:
             same += 1
-            if f.via or f.reason.startswith('the footprint is drawn'):
-                notes.append(what)
+            if f.via or f.rule == packages.DRAWN_FOR or (f.rule == packages.PADS and f.by_names != packages.SAME):
+                evidence.append(what)             # how a line passed by table or by pads: a detail (JSON), printed when the gate is a finding
         elif f.verdict == packages.DIFFERENT:
             det.append(what + (f'; the "Package verified" note ("{note}") does not apply: a known mismatch is fixed in '
                                f'bom.csv or on the board, not signed off' if note else ''))
@@ -391,27 +400,63 @@ def _fit_gate(cid, title, pairs):
             by_hand.append(f'{what}; verified by hand: {note}')
         else:
             unknown.append(f'{what}; {SIGN_OFF}')
+    unknown = list(extra_unchecked) + unknown
     parts = [f'{same} agree with their footprint']
     if by_hand:
         parts.append(f'{len(by_hand)} verified by hand')
     if unknown:
-        parts.append(f'{len(unknown)} not compared (no readable package name; sign each under NOT CHECKED with a "Package verified" note on its bom.csv line)')
+        parts.append(f'{len(unknown)} not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, '
+                     f'or fix the string it names)')
+    if extra_summary:
+        parts.append(extra_summary)
+    notes = [_library_note(library)]
     if det:
-        return Check(cid, title, '§1', 'fail', f'{len(det)} do not fit the footprint; ' + ', '.join(parts), det + notes, unknown, by_hand)
+        return Check(cid, title, '§1', 'fail', f'{len(det)} do not fit the footprint; ' + ', '.join(parts), det + evidence, unknown, by_hand, notes)
     if not same and not by_hand:
-        return Check(cid, title, '§1', 'skip', ', '.join(parts), notes, unknown, by_hand)
-    return Check(cid, title, '§1', 'pass', ', '.join(parts), notes, unknown, by_hand)
+        return Check(cid, title, '§1', 'skip', ', '.join(parts), evidence, unknown, by_hand, notes)
+    return Check(cid, title, '§1', 'pass', ', '.join(parts), evidence, unknown, by_hand, notes)
 
 
-def bom_package_check(lines, sch_rows):
-    """G10: the bom.csv Package column against the footprint each reference has in the schematic."""
+def bom_package_check(lines, sch_rows, library=None):
+    """G10: the bom.csv Package column against the footprint each reference has in the schematic.
+
+    A Package that repeats the footprint name (the placeholder bom-template writes) compares nothing: those
+    references are listed once under NOT CHECKED and never counted as agreeing; the catalogue's own string
+    is compared under --online. Only a Package holding the catalogue's string is compared here.
+    """
     fp_of = {r['Ref']: r['Footprint'] for r in sch_rows}
-    pairs = [(f'{ref} (bom.csv row {ln.row})', fp_of[ref], ln.package, ln.mpn, ln.package_verified)
-             for ln in lines for ref in ln.refs if fp_of.get(ref)]
-    return _fit_gate('bom-package', 'BOM package matches the footprint', pairs)
+    pairs, repeats, rows = [], [], set()
+    for ln in lines:
+        for ref in ln.refs:
+            fp = fp_of.get(ref)
+            if not fp:
+                continue
+            if ln.package and packages.bare(fp).upper() == packages.bare(ln.package).upper():
+                repeats.append(ref)
+                rows.add(ln.row)
+            else:
+                pairs.append((f'{ref} (bom.csv row {ln.row})', fp, ln.package, ln.mpn, ln.package_verified))
+    extra = []
+    if repeats:
+        extra.append(f'{len(repeats)} references ({_refs(repeats, 12)}; bom.csv rows {_refs([str(r) for r in sorted(rows)], 8)}): the Package '
+                     f'column repeats the footprint name, so nothing was compared; write the package as the catalogue record prints it '
+                     f'("0805", "SOT-23-5", "SMD,D6.3xL7.7mm"), or run with --online, where the catalogue\'s own string is compared')
+    c = _fit_gate('bom-package', 'BOM package matches the footprint', pairs, library, extra,
+                  f'{len(repeats)} repeat the footprint name (not compared)' if repeats else '')
+    if repeats and not pairs:
+        c.summary = f'nothing compared: every Package repeats its footprint name ({len(repeats)} references)'
+    return c
 
 
-def catalogue_package_check(lines, records, sch_rows=None):
+def _with_records(lines, records):
+    """(lines whose code has a catalogue record, note for the codes no catalogue could be asked about)."""
+    unreachable = sorted({ln.lcsc for ln in lines if ln.lcsc in records and records[ln.lcsc] is None})
+    note = ([f'{len(unreachable)} codes not looked up, so their records were not compared '
+             f'(catalogue not reachable; the codes are listed under Catalogue and stock)'] if unreachable else [])
+    return [ln for ln in lines if records.get(ln.lcsc) is not None], note
+
+
+def catalogue_package_check(lines, records, sch_rows=None, library=None):
     """G11b: the catalogue's package for each LCSC code against the footprint on the board (online).
 
     ``records`` maps code -> catalogue record as stock_check() filled it, or None for a code the catalogue
@@ -420,13 +465,8 @@ def catalogue_package_check(lines, records, sch_rows=None):
     """
     fp_of = {r['Ref']: r['Footprint'] for r in sch_rows} if sch_rows else {}
     groups = {}                                  # (code, footprint) -> [refs, rows, verified note]
-    unreachable = sorted({ln.lcsc for ln in lines if ln.lcsc in records and records[ln.lcsc] is None})
-    if unreachable:
-        unreachable = [f'{len(unreachable)} codes not looked up, so their packages were not compared '
-                       f'(catalogue not reachable; the codes are listed under Catalogue and stock)']
-    for ln in lines:
-        if records.get(ln.lcsc) is None:
-            continue
+    with_rec, unreachable = _with_records(lines, records)
+    for ln in with_rec:
         for ref in ln.refs:
             g = groups.setdefault((ln.lcsc, fp_of.get(ref) or ln.package), [[], set(), ''])
             g[0].append(ref)
@@ -440,11 +480,96 @@ def catalogue_package_check(lines, records, sch_rows=None):
     title = 'Catalogue package fits the footprint'
     if not pairs:
         return Check('catalogue-package', title, '§1', 'skip', 'no catalogue record to compare', unchecked=unreachable)
-    c = _fit_gate('catalogue-package', title, pairs)
+    c = _fit_gate('catalogue-package', title, pairs, library)
     c.unchecked = unreachable + c.unchecked
     if unreachable:
         c.summary += f', {len(unreachable)} not reachable'
     return c
+
+
+# ---------------------------------------------------------------- values
+
+def bom_value_check(lines, sch_rows):
+    """G9b: every bom.csv Value equals the schematic Value of its references, spelling aside (§1).
+
+    values.normalize() folds µ/u, Ω/ohm/R, RKM figures (4k7), spaces and case; nothing else (100nF and 0.1uF
+    are two spellings: the schematic and bom.csv use one). References bom.csv has that the schematic lacks
+    are the bom-refs gate's finding, not this one's.
+    """
+    value_of = {r['Ref']: r['Value'] for r in sch_rows}
+    det, n = [], 0
+    for ln in lines:
+        for ref in ln.refs:
+            if ref not in value_of:
+                continue
+            n += 1
+            if values.normalize(ln.value) != values.normalize(value_of[ref]):
+                det.append(f'{ref} (bom.csv row {ln.row}): "{ln.value}" in bom.csv, "{value_of[ref]}" in the schematic')
+    title = 'BOM value matches the schematic'
+    if det:
+        return Check('bom-value', title, '§1', 'fail', f'{len(det)} of {n} references carry a different value in bom.csv and the schematic', det)
+    return Check('bom-value', title, '§1', 'pass', f'{n} references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)')
+
+
+def catalogue_category_check(lines, records):
+    """G11c (online): the reference prefix agrees with the catalogue's category for its part (§1 §2).
+
+    C is a capacitor, R a resistor, D a diode or LED, L an inductor or ferrite, Q a transistor, J a connector,
+    U anything that is none of those (values.PREFIXES, values.CLASSES, each keyword with the record it was seen
+    in). A capacitor's code on an LED line blocks. A prefix without a rule, or a record without a category
+    where one is needed, is not checked and says so.
+    """
+    with_rec, unreachable = _with_records(lines, records)
+    det, unchecked = [], list(unreachable)
+    ok = 0
+    for ln in with_rec:
+        rec = records[ln.lcsc]
+        for prefix in sorted({values.prefix_of(r) for r in ln.refs}):
+            refs = [r for r in ln.refs if values.prefix_of(r) == prefix]
+            label = f'{ln.lcsc} {rec.get("mpn", "")} ({", ".join(refs)}; bom.csv row {ln.row})'
+            status, why = values.category_fits(prefix, rec.get('category', ''), rec.get('description', ''))
+            if status == 'ok':
+                ok += 1
+            elif status == 'mismatch':
+                det.append(f'{label}: {why}')
+            else:
+                unchecked.append(f'{label}: {why}')
+    title = 'Catalogue category matches the reference prefix'
+    if not with_rec:
+        return Check('catalogue-category', title, '§1 §2', 'skip', 'no catalogue record to compare', unchecked=unchecked)
+    summary = f'{ok} lines filed under the category their reference prefix means'
+    summary += (f', {len(det)} under another' if det else '') + (f', {len(unchecked)} not checked' if unchecked else '')
+    return Check('catalogue-category', title, '§1 §2', 'fail' if det else ('pass' if ok else 'skip'), summary, det, unchecked)
+
+
+def catalogue_value_check(lines, records):
+    """G11d (online): the figures in the bom.csv Value (F, H, Ω, V) agree with the catalogue description's (§1 §2).
+
+    values.compare(): capacitance, inductance and resistance within 1 %; the part's voltage rating at least
+    the value's. A figure the description does not state is not checked and says so; a value without
+    figures (a part number) has nothing to compare and is counted as such, not as unchecked.
+    """
+    with_rec, unreachable = _with_records(lines, records)
+    det, unchecked = [], list(unreachable)
+    agreed = no_figure = 0
+    for ln in with_rec:
+        rec = records[ln.lcsc]
+        label = f'{ln.lcsc} {rec.get("mpn", "")} ({", ".join(ln.refs)}; bom.csv row {ln.row})'
+        desc = rec.get('description', '') or ''
+        mism, unch, agree = values.compare(ln.value, desc, any(values.prefix_of(r) == 'R' for r in ln.refs))
+        if mism:
+            det.append(f'{label}: {"; ".join(mism)} (bom.csv value "{ln.value}", description "{desc[:90]}")')
+        unchecked += [f'{label}: {u} (bom.csv value "{ln.value}")' for u in unch]
+        if agree and not mism:
+            agreed += 1
+        elif not mism and not unch:
+            no_figure += 1
+    title = 'Catalogue description matches the BOM value'
+    if not with_rec:
+        return Check('catalogue-value', title, '§1 §2', 'skip', 'no catalogue record to compare', unchecked=unchecked)
+    summary = (f'{agreed} lines agree on every figure their value states (F, H, Ω, V), {no_figure} state no figure'
+               + (f', {len(det)} disagree' if det else '') + (f', {len(unchecked)} not checked' if unchecked else ''))
+    return Check('catalogue-value', title, '§1 §2', 'fail' if det else 'pass', summary, det, unchecked)
 
 
 # ---------------------------------------------------------------- the catalogue (online)

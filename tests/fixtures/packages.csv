@@ -1,77 +1,102 @@
-footprint,part,verdict,seen_in,mpn
-# Every part string is copied from a catalogue record or datasheet (seen_in); footprints are KiCad 10 library names.
-# A row pairs them as a board would; "different" rows pair a real string with a footprint it must not pass on.
-# mpn, when given, is the catalogue MPN passed to fits() (a footprint named for the part).
+footprint,part,verdict,rule,names_verdict,names_rule,seen_in,mpn
+# Every part string is copied from a catalogue record or datasheet (seen_in); footprints are KiCad 10 library names. A row pairs them
+# as a board would; "different" rows pair a real string with a footprint it must not pass on. Rows that pair two KiCad footprint names
+# are the probe cases from the 2026-10-16 review and cite the .kicad_mod files. verdict/rule: with KiCad's footprint library (pads decide);
+# names_verdict/names_rule: names alone, as on a machine without KiCad. mpn, when given, is the catalogue MPN passed to fits().
 # chip sizes
-Capacitor_SMD:C_0805_2012Metric,0805,same,C28323 CL21B105KBFNNNE
-Capacitor_SMD:C_1210_3225Metric,1210,same,C337485 UMK325AB7106KM-P
-Resistor_SMD:R_0603_1608Metric,0603,same,C25804 0603WAF1002T5E
-LED_SMD:LED_0805_2012Metric,0805,same,C2297 KT-0805G
-Inductor_SMD:L_1806_4516Metric,1806,same,C85844 BLM41PG600SN1L
-Capacitor_SMD:C_1210_3225Metric,0805,different,C49678 CC0805KRX7R9BB104 (the 10 uF 1210 story)
-Fuse:Fuse_2920_7451Metric,"SMD,7.3x5.4mm",unknown,C3761525 MF-SM100/33-2 (body size; no standard name)
+Capacitor_SMD:C_0805_2012Metric,0805,same,pads,same,names,C28323 CL21B105KBFNNNE,
+Capacitor_SMD:C_1210_3225Metric,1210,same,pads,same,names,C337485 UMK325AB7106KM-P,
+Resistor_SMD:R_0603_1608Metric,0603,same,pads,same,names,C25804 0603WAF1002T5E,
+LED_SMD:LED_0805_2012Metric,0805,same,pads,same,names,C2297 KT-0805G,
+Inductor_SMD:L_1806_4516Metric,1806,same,pads,same,names,C85844 BLM41PG600SN1L,
+Capacitor_SMD:C_1210_3225Metric,0805,different,pads-differ,different,names,C49678 CC0805KRX7R9BB104 (the 10 uF 1210 story),
+Fuse:Fuse_2920_7451Metric,"SMD,7.3x5.4mm",unknown,unreadable,unknown,unreadable,C3761525 MF-SM100/33-2 (body size; no standard name),
+Package_TO_SOT_SMD:SOT-23,,unknown,blank,unknown,blank,no record: an empty Package cell in bom.csv,
 # diode outlines
-Diode_SMD:D_SMA,SMA(DO-214AC),same,C8678 SS34
-Diode_SMD:D_SMB,DO-214AA,same,C315992 Littelfuse SMBJ26A
-Diode_SMD:D_SMB,DO-214AA(SMB),same,C123820 MDD SMBJ26A
-Diode_SMD:D_SMB,SMB,same,C353371 Jingdao SMBJ26A
-Diode_SMD:D_SMA,DO-214AA,different,C315992 Littelfuse SMBJ26A
-Diode_SMD:D_SMC,DO-214AB,same,C224045 Littelfuse SMCJ24A
-Diode_SMD:D_SMB,SMC(DO-214AB),different,C16103 MDD SS54C
-Diode_SMD:D_SOD-123,SOD-123,same,C81598 1N4148W
-Diode_SMD:D_SOD-123,SOD-123F,different,C59206 Nexperia BZT52H-C3V3 (KiCad keeps D_SOD-123F apart)
-Diode_SMD:D_SOD-123F,SOD-123F,same,C59206 Nexperia BZT52H-C3V3
-Diode_SMD:D_SOD-123,SOD-123FL,different,C283866 DOWO SMF3.3A
-# SOT
-Package_TO_SOT_SMD:SOT-23,SOT-23,same,C8512 MMBT2222A
-Package_TO_SOT_SMD:SOT-23-5,SOT-25-5,same,C51118 Diodes AP2112K-3.3TRG1
-Package_TO_SOT_SMD:SOT-23-5,SOT25,same,Diodes AP2112 datasheet (package name)
-Package_TO_SOT_SMD:SOT-23-5,SOT-23-5,same,C22365427 MSKSEMI AP2112K-3.3TRG1(MS)
-Package_TO_SOT_SMD:SOT-23-5,SC-74A,same,C5513 Nexperia 74AHC1G14GV
-Package_TO_SOT_SMD:SOT-23,SOT-25-5,different,C51118 Diodes AP2112K-3.3TRG1
-Package_TO_SOT_SMD:SOT-23-6,SOT-23-6L,same,C6650 ST ESDA6V1-5SC6
-Package_TO_SOT_SMD:SOT-23-6,TSOT-23-6,different,C8953 MPS MP3202DJ (KiCad keeps TSOT-23 apart)
-Package_TO_SOT_SMD:SOT-323_SC-70,SC-70(SOT-323),same,C28273 onsemi MMBT2222AWT1G
-Package_TO_SOT_SMD:SOT-23,SC-70(SOT-323),different,C28273 onsemi MMBT2222AWT1G
+Diode_SMD:D_SMA,SMA(DO-214AC),same,pads,same,names,C8678 SS34,
+Diode_SMD:D_SMB,DO-214AA,same,pads,same,names,C315992 Littelfuse SMBJ26A,
+Diode_SMD:D_SMB,DO-214AA(SMB),same,pads,same,names,C123820 MDD SMBJ26A,
+Diode_SMD:D_SMB,SMB,same,pads,same,names,C353371 Jingdao SMBJ26A,
+Diode_SMD:D_SMA,DO-214AA,different,pads-differ,different,names,C315992 Littelfuse SMBJ26A,
+Diode_SMD:D_SMC,DO-214AB,same,pads,same,names,C224045 Littelfuse SMCJ24A,
+Diode_SMD:D_SMB,SMC(DO-214AB),different,pads-differ,different,names,C16103 MDD SS54C,
+Diode_SMD:D_SOD-123,SOD-123,same,pads,same,names,C81598 1N4148W,
+Diode_SMD:D_SOD-123,SOD-123F,different,pads-differ,different,names,C59206 Nexperia BZT52H-C3V3 (KiCad keeps D_SOD-123F apart),
+Diode_SMD:D_SOD-123F,SOD-123F,same,pads,same,names,C59206 Nexperia BZT52H-C3V3,
+Diode_SMD:D_SOD-123,SOD-123FL,different,names,different,names,C283866 DOWO SMF3.3A (no SOD-123FL footprint in KiCad: names alone decide),
+# SOT; TSOT is SOT (JEDEC MO-193 keeps the MO-178 land pattern) and the pads confirm it
+Package_TO_SOT_SMD:SOT-23,SOT-23,same,pads,same,names,C8512 MMBT2222A,
+Package_TO_SOT_SMD:SOT-23-5,SOT-25-5,same,pads,same,names,C51118 Diodes AP2112K-3.3TRG1,
+Package_TO_SOT_SMD:SOT-23-5,SOT25,same,pads,same,names,Diodes AP2112 datasheet (package name),
+Package_TO_SOT_SMD:SOT-23-5,SOT-23-5,same,pads,same,names,C22365427 MSKSEMI AP2112K-3.3TRG1(MS),
+Package_TO_SOT_SMD:SOT-23-5,SC-74A,same,pads,same,names,C5513 Nexperia 74AHC1G14GV,
+Package_TO_SOT_SMD:SOT-23,SOT-25-5,different,pads-differ,different,names,C51118 Diodes AP2112K-3.3TRG1,
+Package_TO_SOT_SMD:SOT-23-6,SOT-23-6L,same,pads,same,names,C6650 ST ESDA6V1-5SC6,
+Package_TO_SOT_SMD:SOT-23-6,TSOT-23-6,same,pads,same,names,C8953 MPS MP3202DJ lists TSOT-23-6; KiCad 10.0.7 SOT-23-6.kicad_mod and TSOT-23-6.kicad_mod (Package_TO_SOT_SMD) have identical pads,
+Package_TO_SOT_SMD:TSOT-23-6,SOT-23-6,same,pads,same,names,C6650 ST ESDA6V1-5SC6 (SOT-23-6) on KiCad TSOT-23-6.kicad_mod: identical pads,
+Package_TO_SOT_SMD:SOT-23-5,TSOT-23-5,same,pads,same,names,KiCad 10.0.7 SOT-23-5.kicad_mod (JEDEC MO-178 AA) and TSOT-23-5.kicad_mod (MO-193 AB): identical pads,
+Package_TO_SOT_SMD:SOT-323_SC-70,SC-70(SOT-323),same,pads,same,names,C28273 onsemi MMBT2222AWT1G,
+Package_TO_SOT_SMD:SOT-23,SC-70(SOT-323),different,pads-differ,different,names,C28273 onsemi MMBT2222AWT1G,
 # TO
-Package_TO_SOT_SMD:TO-263-2,D2PAK,same,C2620 Infineon IRF4905STRLPBF
-Package_TO_SOT_SMD:TO-263-2,TO-263,same,C5337969 IRF4905S
-Package_TO_SOT_SMD:TO-263-2,TO-252,different,C7471852 UMW IRF4905STRL
-Package_TO_SOT_SMD:TO-252-2,DPAK,same,C10663 onsemi NTD2955T4G
-Package_TO_SOT_SMD:TO-252-2,DPAK(TO-252AA),same,C2583 Infineon IRFR024NTRPBF
-Package_TO_SOT_SMD:TO-252-2,TO-252-2L,same,C5261060 HXY IRFR024NT
-# SOIC and the exposed pad
-Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,ESOP-8,same,C841384 TI LMR33630ADDAR
-Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8-EP,same,C9864 TI TPS5430DDAR
-Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8,different,C9865 TI TPS54331DR (no pad)
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,ESOP-8,different,C841384 TI LMR33630ADDAR
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOP-8,same,C695838 UMW NE555DR
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SO-8,same,Diodes AP2112 datasheet (package name)
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8,same,C7593 TI NE555DR
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-208mil,different,C5450 Microchip 24FC512T-I/SM
-Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,SOIC-8-208mil,same,C5450 Microchip 24FC512T-I/SM
-Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,HTSSOP-20-EP,same,C7096 TI TPS60110PWPR
-Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,TSSOP-20-EP,same,C9379 TI TPS54310PWPR
-# no-lead packages: the body size is in both names
-Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16-EP(3x3),same,C43590 TI TPS62130RGTR
-Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm,QFN-16-EP(3x3),different,C43590 TI TPS62130RGTR
-Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16,unknown,C631817 Microchip SY56017RMG (no body size)
-Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm,WSON-8-EP(2x2),same,C324077 TI TPS62160DSGR
-Package_SON:WSON-8-1EP_3x3mm_P0.5mm_EP1.2x2mm,WSON-8-EP(2x2),different,C324077 TI TPS62160DSGR
-# electrolytic cans
-Capacitor_SMD:CP_Elec_10x12.5,"SMD,D10xL12.5mm",same,C134838 Lelon VZH471M1VTR-1013
-Capacitor_SMD:CP_Elec_10x12.5,"Plugin,D10xL12.5mm",different,C127917 Rubycon 35PX470MEFC10X12.5 (through-hole)
-Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10mm",same,C249591 Lelon VEJ101M1VTR-1010
-Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10.2mm",different,C401855 Panasonic EEEHD1V101AP (KiCad has CP_Elec_10x10.5 for it)
-Capacitor_SMD:CP_Elec_6.3x7.7,"SMD,D6.3xL7.7mm",same,C72477 ROQANG RVT1E101M0607
-# no standard name: a human compares the drawing
-Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",unknown,C2042471 Bourns SRP1245A-100M
-Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",same,C2042471 Bourns SRP1245A-100M,SRP1245A-100M
-Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.6mm",unknown,C2847573 MDA1350-100M (another maker: not drawn for it),MDA1350-100M
-"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal","Plugin,P=5mm",unknown,C3819953 Phoenix 1935161
-Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,C144397 JST B6B-XH-A(LF)(SN)
-Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",same,C144397 JST B6B-XH-A(LF)(SN),B6B-XH-A(LF)(SN)
-Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,C144395 JST B4B-XH-A(LF)(SN) (4 pins on a 6-pin footprint),B4B-XH-A(LF)(SN)
-Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-EP,different,C9864 TI TPS5430DDAR (a name match never overrides different),SOIC-8-EP
-Connector_Dsub:DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm,Push-Pull,unknown,C190083 Ckmtw D-DMR025PF-D002
-Fuse:Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal,Plugin,unknown,C151074 Littelfuse 01000056Z
+Package_TO_SOT_SMD:TO-263-2,D2PAK,same,pads,same,names,C2620 Infineon IRF4905STRLPBF,
+Package_TO_SOT_SMD:TO-263-2,TO-263,same,pads,same,names,C5337969 IRF4905S,
+Package_TO_SOT_SMD:TO-263-2,TO-252,different,pads-differ,different,names,C7471852 UMW IRF4905STRL,
+Package_TO_SOT_SMD:TO-252-2,DPAK,same,pads,same,names,C10663 onsemi NTD2955T4G,
+Package_TO_SOT_SMD:TO-252-2,DPAK(TO-252AA),same,pads,same,names,C2583 Infineon IRFR024NTRPBF,
+Package_TO_SOT_SMD:TO-252-2,TO-252-2L,same,pads,same,names,C5261060 HXY IRFR024NT,
+# SOIC and the exposed pad; pitch and body width read from the names (SOIC without a stated pitch is 1.27 mm, JEDEC MS-012)
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,ESOP-8,same,pads,same,names,C841384 TI LMR33630ADDAR,
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8-EP,same,pads,same,names,C9864 TI TPS5430DDAR,
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8,different,pads-differ,different,names,C9865 TI TPS54331DR (no pad),
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,ESOP-8,different,pads-differ,different,names,C841384 TI LMR33630ADDAR,
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOP-8,same,pads,same,names,C695838 UMW NE555DR,
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SO-8,same,pads,same,names,Diodes AP2112 datasheet (package name),
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8,same,pads,same,names,C7593 TI NE555DR,
+Package_SO:JEITA_SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8,same,pads,same,names,"C7593 TI NE555DR on KiCad JEITA_SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod (pads 0.175 mm further out than SOIC-8_3.9x4.9mm_P1.27mm: a variant of one land pattern, the footprint is its own candidate)",
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-208mil,different,pads-differ,different,names,C5450 Microchip 24FC512T-I/SM,
+Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,SOIC-8-208mil,same,pads,same,names,C5450 Microchip 24FC512T-I/SM,
+Package_SO:SOP-8_6.62x9.15mm_P2.54mm,SOIC-8,different,pads-differ,different,dims,"C7593 TI NE555DR (SOIC-8, 1.27 mm) on KiCad SOP-8_6.62x9.15mm_P2.54mm.kicad_mod (TI ISO1050, 2.54 mm pitch): the stated pitch against SOIC's standard pitch",
+Package_SO:SOP-8_6.62x9.15mm_P2.54mm,SOIC-8_3.9x4.9mm_P1.27mm,different,pads-differ,different,dims,"KiCad 10.0.7 SOP-8_6.62x9.15mm_P2.54mm.kicad_mod against SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod: both read SOIC-8, pitch 2.54 vs 1.27 mm",
+Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,HTSSOP-20-EP,same,pads,same,names,C7096 TI TPS60110PWPR,
+Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,TSSOP-20-EP,same,pads,same,names,C9379 TI TPS54310PWPR,
+# small-outline families the names confuse and the pads settle, or the names fold and the library keeps apart
+Package_SO:VSSOP-8_3x3mm_P0.65mm,MSOP-8,same,pads,different,names,C7985 TI LMV393MMX/NOPB lists MSOP-8; KiCad 10.0.7 MSOP-8_3x3mm_P0.65mm.kicad_mod (JEDEC MO-187 AA) and VSSOP-8_3x3mm_P0.65mm.kicad_mod (MO-187) differ in pad width 0.4 vs 0.5 mm only,
+Package_SO:MSOP-8_3x3mm_P0.65mm,VSSOP-8_3x3mm_P0.65mm,same,pads,different,names,KiCad 10.0.7 MSOP-8_3x3mm_P0.65mm.kicad_mod against VSSOP-8_3x3mm_P0.65mm.kicad_mod: pad width 0.4 vs 0.5 mm only,
+Package_SO:MSOP-8_3x3mm_P0.65mm,VSSOP-8,unknown,ambiguous,different,names,"C7851 TI SN74LVC2G74DCUR lists VSSOP-8; KiCad has VSSOP-8_2.3x2mm_P0.5mm and VSSOP-8_3x3mm_P0.65mm (both MO-187), so the pads match one of two and the string does not say which",
+Package_SO:VSSOP-8_3x3mm_P0.65mm,VSSOP-8,unknown,ambiguous,same,names,C7851 TI SN74LVC2G74DCUR lists VSSOP-8; two VSSOP-8 land patterns in KiCad (pitch 0.5 and 0.65 mm),
+Package_SO:VSSOP-8_2.3x2mm_P0.5mm,VSSOP-8_3x3mm_P0.65mm,different,pads-differ,different,dims,"KiCad 10.0.7 VSSOP-8_2.3x2mm_P0.5mm.kicad_mod against VSSOP-8_3x3mm_P0.65mm.kicad_mod: pitch 0.5 vs 0.65 mm, body 2.3 vs 3 mm",
+Package_SO:SSOP-8_3.9x5.05mm_P1.27mm,SSOP-8_2.95x2.8mm_P0.65mm,different,pads-differ,different,dims,KiCad 10.0.7 SSOP-8_3.9x5.05mm_P1.27mm.kicad_mod (Fujitsu MB85RS16) against SSOP-8_2.95x2.8mm_P0.65mm.kicad_mod: pitch 1.27 vs 0.65 mm,
+Package_SO:TSSOP-14_4.4x5mm_P0.65mm,TSSOP-14_4.4x3.6mm_P0.4mm,different,pads-differ,different,dims,KiCad 10.0.7 TSSOP-14_4.4x5mm_P0.65mm.kicad_mod (JEDEC MO-153 AB-1) against TSSOP-14_4.4x3.6mm_P0.4mm.kicad_mod (MO-194 AA): pitch 0.65 vs 0.4 mm,
+Package_SO:TSSOP-14_4.4x5mm_P0.65mm,TSSOP-14,unknown,ambiguous,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14; KiCad has TSSOP-14 at 0.65 mm (MO-153) and 0.4 mm (MO-194) pitch, so the string does not say which",
+Package_SO:TSSOP-14_4.4x3.6mm_P0.4mm,TSSOP-14,unknown,ambiguous,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14 (the 0.65 mm part on the 0.4 mm footprint would pass by name alone)",
+# no-lead packages: the body size is in both names; V/W/T/UQFN are QFN thicknesses (JEDEC MO-220) and the pads confirm it
+Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16-EP(3x3),same,pads,same,names,C43590 TI TPS62130RGTR,
+Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm,QFN-16-EP(3x3),different,pads-differ,different,names,C43590 TI TPS62130RGTR,
+Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16,unknown,half,unknown,half,C631817 Microchip SY56017RMG (no body size),
+Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,QFN-20,unknown,half,unknown,half,C3975094 WCH CH224D (no body size),
+Package_DFN_QFN:VQFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16-EP(3x3),same,pads,same,names,C43590 TI TPS62130RGTR (TI RGT is a VQFN) on KiCad VQFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm.kicad_mod (JEDEC MO-220 VEED-6): the pads of QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm.kicad_mod,
+Package_DFN_QFN:WQFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm,QFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm,same,pads,same,names,KiCad 10.0.7 WQFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm.kicad_mod (onsemi FUSB307B) against QFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm.kicad_mod: pads within 0.03 mm,
+Package_DFN_QFN:UQFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm,QFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm,same,pads,same,names,KiCad 10.0.7 UQFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm.kicad_mod (Microchip 00000049BS) against QFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm.kicad_mod,
+Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,TQFN-20-1EP_4x4mm_P0.5mm_EP2.1x2.1mm,unknown,pads-unknown,same,names,"KiCad 10.0.7 QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm.kicad_mod (Microchip doc2535) against TQFN-20-1EP_4x4mm_P0.5mm_EP2.1x2.1mm.kicad_mod (Maxim 21-0139 T2044-2): same outline, exposed pad 2.6 vs 2.1 mm and lead pads 0.85 vs 1.02 mm; not same, not provably different",
+Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm,WSON-8-EP(2x2),same,pads,same,names,C324077 TI TPS62160DSGR,
+Package_SON:WSON-8-1EP_3x3mm_P0.5mm_EP1.2x2mm,WSON-8-EP(2x2),different,pads-differ,different,names,C324077 TI TPS62160DSGR,
+# electrolytic cans: diameter and mount by name; height is in the name but the pads decide (KiCad draws CP_Elec_6.3x5.8 and CP_Elec_6.3x7.7 alike, CP_Elec_10x10 and CP_Elec_10x12.5 not)
+Capacitor_SMD:CP_Elec_10x12.5,"SMD,D10xL12.5mm",same,pads,same,names,C134838 Lelon VZH471M1VTR-1013,
+Capacitor_SMD:CP_Elec_10x12.5,"Plugin,D10xL12.5mm",different,names,different,names,C127917 Rubycon 35PX470MEFC10X12.5 (through-hole),
+Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10mm",same,pads,same,names,C249591 Lelon VEJ101M1VTR-1010,
+Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10.2mm",different,pads-differ,different,names,"C401855 Panasonic EEEHD1V101AP (KiCad has CP_Elec_10x10.5 and C_Elec_10x10.2 for it, with pads 0.2 mm further out)",
+Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL12.5mm",different,pads-differ,different,names,C134838 Lelon VZH471M1VTR-1013 on CP_Elec_10x10: KiCad 10.0.7 CP_Elec_10x12.5.kicad_mod pads are 0.2 mm further out and 0.4 mm wider,
+Capacitor_SMD:CP_Elec_6.3x7.7,"SMD,D6.3xL7.7mm",same,pads,same,names,C72477 ROQANG RVT1E101M0607,
+Capacitor_SMD:CP_Elec_6.3x5.8,"SMD,D6.3xL7.7mm",same,pads,different,names,"C72477 ROQANG RVT1E101M0607 (6.3x7.7) on KiCad CP_Elec_6.3x5.8.kicad_mod: identical pads to CP_Elec_6.3x7.7.kicad_mod; the height is §10 (enclosure), not §1",
+Capacitor_SMD:CP_Elec_6.3x7.7,"SMD,D6.3xL5.4mm",same,pads,different,names,C3344 Honor RVT1V470M0605 (6.3x5.4) on CP_Elec_6.3x7.7: KiCad 10.0.7 CP_Elec_6.3x5.4.kicad_mod pads within 0.1 mm (x 2.8 vs 2.7),
+# no standard name: a human compares the drawing, or the footprint is named for the part
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",unknown,unreadable,unknown,unreadable,C2042471 Bourns SRP1245A-100M,
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",same,drawn-for,same,drawn-for,C2042471 Bourns SRP1245A-100M,SRP1245A-100M
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.6mm",unknown,unreadable,unknown,unreadable,C2847573 MDA1350-100M (another maker: not drawn for it),MDA1350-100M
+"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal","Plugin,P=5mm",unknown,unreadable,unknown,unreadable,C3819953 Phoenix 1935161,
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,unreadable,unknown,unreadable,C144397 JST B6B-XH-A(LF)(SN),
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",same,drawn-for,same,drawn-for,C144397 JST B6B-XH-A(LF)(SN),B6B-XH-A(LF)(SN)
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,unreadable,unknown,unreadable,C144395 JST B4B-XH-A(LF)(SN) (4 pins on a 6-pin footprint),B4B-XH-A(LF)(SN)
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-EP,different,pads-differ,different,names,C9864 TI TPS5430DDAR (a name match never overrides different),SOIC-8-EP
+Connector_Dsub:DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm,Push-Pull,unknown,unreadable,unknown,unreadable,C190083 Ckmtw D-DMR025PF-D002,
+Fuse:Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal,Plugin,unknown,unreadable,unknown,unreadable,C151074 Littelfuse 01000056Z,
