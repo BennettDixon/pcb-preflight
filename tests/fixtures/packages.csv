@@ -1,0 +1,77 @@
+footprint,part,verdict,seen_in,mpn
+# Every part string is copied from a catalogue record or datasheet (seen_in); footprints are KiCad 10 library names.
+# A row pairs them as a board would; "different" rows pair a real string with a footprint it must not pass on.
+# mpn, when given, is the catalogue MPN passed to fits() (a footprint named for the part).
+# chip sizes
+Capacitor_SMD:C_0805_2012Metric,0805,same,C28323 CL21B105KBFNNNE
+Capacitor_SMD:C_1210_3225Metric,1210,same,C337485 UMK325AB7106KM-P
+Resistor_SMD:R_0603_1608Metric,0603,same,C25804 0603WAF1002T5E
+LED_SMD:LED_0805_2012Metric,0805,same,C2297 KT-0805G
+Inductor_SMD:L_1806_4516Metric,1806,same,C85844 BLM41PG600SN1L
+Capacitor_SMD:C_1210_3225Metric,0805,different,C49678 CC0805KRX7R9BB104 (the 10 uF 1210 story)
+Fuse:Fuse_2920_7451Metric,"SMD,7.3x5.4mm",unknown,C3761525 MF-SM100/33-2 (body size; no standard name)
+# diode outlines
+Diode_SMD:D_SMA,SMA(DO-214AC),same,C8678 SS34
+Diode_SMD:D_SMB,DO-214AA,same,C315992 Littelfuse SMBJ26A
+Diode_SMD:D_SMB,DO-214AA(SMB),same,C123820 MDD SMBJ26A
+Diode_SMD:D_SMB,SMB,same,C353371 Jingdao SMBJ26A
+Diode_SMD:D_SMA,DO-214AA,different,C315992 Littelfuse SMBJ26A
+Diode_SMD:D_SMC,DO-214AB,same,C224045 Littelfuse SMCJ24A
+Diode_SMD:D_SMB,SMC(DO-214AB),different,C16103 MDD SS54C
+Diode_SMD:D_SOD-123,SOD-123,same,C81598 1N4148W
+Diode_SMD:D_SOD-123,SOD-123F,different,C59206 Nexperia BZT52H-C3V3 (KiCad keeps D_SOD-123F apart)
+Diode_SMD:D_SOD-123F,SOD-123F,same,C59206 Nexperia BZT52H-C3V3
+Diode_SMD:D_SOD-123,SOD-123FL,different,C283866 DOWO SMF3.3A
+# SOT
+Package_TO_SOT_SMD:SOT-23,SOT-23,same,C8512 MMBT2222A
+Package_TO_SOT_SMD:SOT-23-5,SOT-25-5,same,C51118 Diodes AP2112K-3.3TRG1
+Package_TO_SOT_SMD:SOT-23-5,SOT25,same,Diodes AP2112 datasheet (package name)
+Package_TO_SOT_SMD:SOT-23-5,SOT-23-5,same,C22365427 MSKSEMI AP2112K-3.3TRG1(MS)
+Package_TO_SOT_SMD:SOT-23-5,SC-74A,same,C5513 Nexperia 74AHC1G14GV
+Package_TO_SOT_SMD:SOT-23,SOT-25-5,different,C51118 Diodes AP2112K-3.3TRG1
+Package_TO_SOT_SMD:SOT-23-6,SOT-23-6L,same,C6650 ST ESDA6V1-5SC6
+Package_TO_SOT_SMD:SOT-23-6,TSOT-23-6,different,C8953 MPS MP3202DJ (KiCad keeps TSOT-23 apart)
+Package_TO_SOT_SMD:SOT-323_SC-70,SC-70(SOT-323),same,C28273 onsemi MMBT2222AWT1G
+Package_TO_SOT_SMD:SOT-23,SC-70(SOT-323),different,C28273 onsemi MMBT2222AWT1G
+# TO
+Package_TO_SOT_SMD:TO-263-2,D2PAK,same,C2620 Infineon IRF4905STRLPBF
+Package_TO_SOT_SMD:TO-263-2,TO-263,same,C5337969 IRF4905S
+Package_TO_SOT_SMD:TO-263-2,TO-252,different,C7471852 UMW IRF4905STRL
+Package_TO_SOT_SMD:TO-252-2,DPAK,same,C10663 onsemi NTD2955T4G
+Package_TO_SOT_SMD:TO-252-2,DPAK(TO-252AA),same,C2583 Infineon IRFR024NTRPBF
+Package_TO_SOT_SMD:TO-252-2,TO-252-2L,same,C5261060 HXY IRFR024NT
+# SOIC and the exposed pad
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,ESOP-8,same,C841384 TI LMR33630ADDAR
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8-EP,same,C9864 TI TPS5430DDAR
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm,SOIC-8,different,C9865 TI TPS54331DR (no pad)
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,ESOP-8,different,C841384 TI LMR33630ADDAR
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOP-8,same,C695838 UMW NE555DR
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SO-8,same,Diodes AP2112 datasheet (package name)
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8,same,C7593 TI NE555DR
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-208mil,different,C5450 Microchip 24FC512T-I/SM
+Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,SOIC-8-208mil,same,C5450 Microchip 24FC512T-I/SM
+Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,HTSSOP-20-EP,same,C7096 TI TPS60110PWPR
+Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,TSSOP-20-EP,same,C9379 TI TPS54310PWPR
+# no-lead packages: the body size is in both names
+Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16-EP(3x3),same,C43590 TI TPS62130RGTR
+Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm,QFN-16-EP(3x3),different,C43590 TI TPS62130RGTR
+Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16,unknown,C631817 Microchip SY56017RMG (no body size)
+Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm,WSON-8-EP(2x2),same,C324077 TI TPS62160DSGR
+Package_SON:WSON-8-1EP_3x3mm_P0.5mm_EP1.2x2mm,WSON-8-EP(2x2),different,C324077 TI TPS62160DSGR
+# electrolytic cans
+Capacitor_SMD:CP_Elec_10x12.5,"SMD,D10xL12.5mm",same,C134838 Lelon VZH471M1VTR-1013
+Capacitor_SMD:CP_Elec_10x12.5,"Plugin,D10xL12.5mm",different,C127917 Rubycon 35PX470MEFC10X12.5 (through-hole)
+Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10mm",same,C249591 Lelon VEJ101M1VTR-1010
+Capacitor_SMD:CP_Elec_10x10,"SMD,D10xL10.2mm",different,C401855 Panasonic EEEHD1V101AP (KiCad has CP_Elec_10x10.5 for it)
+Capacitor_SMD:CP_Elec_6.3x7.7,"SMD,D6.3xL7.7mm",same,C72477 ROQANG RVT1E101M0607
+# no standard name: a human compares the drawing
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",unknown,C2042471 Bourns SRP1245A-100M
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.5mm",same,C2042471 Bourns SRP1245A-100M,SRP1245A-100M
+Inductor_SMD:L_Bourns_SRP1245A,"SMD,13.5x12.6mm",unknown,C2847573 MDA1350-100M (another maker: not drawn for it),MDA1350-100M
+"TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal","Plugin,P=5mm",unknown,C3819953 Phoenix 1935161
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,C144397 JST B6B-XH-A(LF)(SN)
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",same,C144397 JST B6B-XH-A(LF)(SN),B6B-XH-A(LF)(SN)
+Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,C144395 JST B4B-XH-A(LF)(SN) (4 pins on a 6-pin footprint),B4B-XH-A(LF)(SN)
+Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-EP,different,C9864 TI TPS5430DDAR (a name match never overrides different),SOIC-8-EP
+Connector_Dsub:DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm,Push-Pull,unknown,C190083 Ckmtw D-DMR025PF-D002
+Fuse:Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal,Plugin,unknown,C151074 Littelfuse 01000056Z

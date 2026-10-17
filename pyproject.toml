@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pcb-preflight"
-version = "0.1.0"
+version = "0.2.0"
 description = "Pre-flight gate for KiCad boards drafted with AI help: refuses a board that is not ready to order."
 readme = "README.md"
 requires-python = ">=3.9"

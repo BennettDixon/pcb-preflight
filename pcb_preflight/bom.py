@@ -2,6 +2,8 @@
 
 Columns (header names are matched loosely, case-insensitively):
   Ref, Value, Package, MPN, LCSC, Basic/Extended, Stock, Datasheet
+and, optionally, Package verified: a note that a human compared the part's drawing with the footprint
+("2026-10-16 BD: SRP1245A land pattern vs datasheet p.2"), which packages.fits() cannot.
 ``Ref`` may hold one reference or several ("C1,C7,C8" or "C1 C7 C8").
 """
 import csv
@@ -9,6 +11,7 @@ import re
 from dataclasses import dataclass, field
 
 REQUIRED = ['Ref', 'Value', 'Package', 'MPN', 'LCSC', 'Basic/Extended', 'Stock', 'Datasheet']
+OPTIONAL = ['Package verified']
 
 ALIASES = {
     'ref': 'Ref', 'refs': 'Ref', 'reference': 'Ref', 'references': 'Ref', 'designator': 'Ref',
@@ -19,6 +22,7 @@ ALIASES = {
     'basic/extended': 'Basic/Extended', 'type': 'Basic/Extended', 'library': 'Basic/Extended', 'library type': 'Basic/Extended',
     'stock': 'Stock', 'stock-at-selection': 'Stock', 'stock at selection': 'Stock',
     'datasheet': 'Datasheet', 'datasheet url': 'Datasheet',
+    'package verified': 'Package verified', 'package checked': 'Package verified', 'footprint verified': 'Package verified',
 }
 
 LCSC_RE = re.compile(r'^C\d{1,9}$')
@@ -36,6 +40,7 @@ class Line:
     library: str = ''
     stock: str = ''
     datasheet: str = ''
+    package_verified: str = ''
     extra: dict = field(default_factory=dict)
 
     @property
@@ -75,47 +80,10 @@ def load(path):
         extra = {h: r[i] for i, h in enumerate(header) if i < len(r) and _canon(h) is None}
         lines.append(Line(row=n, refs=refs, value=get('Value'), package=get('Package'), mpn=get('MPN'),
                           lcsc=get('LCSC').upper().replace(' ', ''), library=get('Basic/Extended'),
-                          stock=get('Stock'), datasheet=get('Datasheet'), extra=extra))
+                          stock=get('Stock'), datasheet=get('Datasheet'),
+                          package_verified=get('Package verified'), extra=extra))
     return lines, missing
 
 
 def library_type(s):
     return LIBRARY_TYPES.get(s.strip().lower())
-
-
-# --- package normalisation: so "C_0805_2012Metric", "0805" and JLCPCB's "0805" compare equal ---
-
-CHIP = re.compile(r'(?<!\d)(01005|0201|0402|0603|0805|1206|1210|1806|1812|2010|2512|2920)(?!\d)')
-ALIAS_PKG = {'DO-214AC': 'SMA', 'DO-214AA': 'SMB', 'DO-214AB': 'SMC', 'D2PAK': 'TO-263', 'DPAK': 'TO-252', 'SOP': 'SOIC'}
-FAMILY = re.compile(r'(?i)\b(SOIC|SOP|SSOP|TSSOP|MSOP|VSSOP|HTSSOP|QFN|DFN|WSON|LQFN|LQFP|TQFP|QFP|UQFN|VQFN|SC-70|SOT|SOD|TO|LGA|BGA)-?(\d+)')
-PLAIN = re.compile(r'(?i)\b(SMA|SMB|SMC|SMAF|SMBF|DO-214A[ABC]|D2PAK|DPAK|PowerPAK)\b')
-
-
-def package_token(text):
-    """A comparable package token, or None when the package has no standard short name.
-
-    Compares only what is safe to compare: chip sizes (0603, 1210, ...), SOT/SOD/SOIC/QFN-style families
-    with their pin count, and the SMA/SMB/SMC diode packages. Connectors, electrolytics and inductors
-    return None, so they are never compared.
-    """
-    if not text:
-        return None
-    t = text.split(':', 1)[-1].replace('_', ' ')
-    m = CHIP.search(t)
-    if m:
-        return m.group(1)
-    m = FAMILY.search(t)
-    if m:
-        fam = ALIAS_PKG.get(m.group(1).upper(), m.group(1).upper())
-        n = m.group(2)
-        if fam == 'TO':
-            return f'TO-{n}' if n in ('263', '252', '220', '247', '92', '126') else None
-        if fam == 'SOT' and n == '23':
-            k = re.search(r'(?i)SOT-?23-?(\d)', t)
-            return 'SOT-23' if not k or k.group(1) == '3' else f'SOT-23-{k.group(1)}'
-        return f'{fam}-{n}'
-    m = PLAIN.search(t)
-    if m:
-        p = m.group(1).upper()
-        return ALIAS_PKG.get(p, p)
-    return None

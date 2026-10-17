@@ -21,6 +21,10 @@ class Footprint:
     value_layer: str = ''
     value_hidden: bool = False
     pads: int = 0
+    path: str = ''        # "/<root sheet uuid>/.../<symbol uuid>": the schematic symbol this footprint was made from
+    nets: tuple = ()      # net names on its pads
+    paste: bool = False   # a pad on a paste layer: the fab solders a part here
+    net_tie: bool = False
 
     @property
     def dnp(self):
@@ -29,6 +33,10 @@ class Footprint:
     @property
     def excluded_from_bom(self):
         return 'exclude_from_bom' in self.attrs
+
+    @property
+    def board_only(self):
+        return 'board_only' in self.attrs
 
     @property
     def is_fiducial(self):
@@ -83,11 +91,22 @@ def load(path):
         attrs = set()
         for a in sexpr.children(fp, 'attr'):
             attrs.update(sexpr.atoms(a))
+        path_node = sexpr.child(fp, 'path')
+        nets, paste = set(), False
+        pads = sexpr.children(fp, 'pad')
+        for pad in pads:
+            net = sexpr.child(pad, 'net')                  # (net 12 "GND") in KiCad 8/9, (net "GND") possible later
+            if net and len(net) > 1 and not isinstance(net[-1], list) and net[-1] not in ('', '0'):
+                nets.add(net[-1])
+            layers = sexpr.child(pad, 'layers')
+            if layers and any(isinstance(a, str) and a.endswith('.Paste') for a in layers[1:]):
+                paste = True
         fps.append(Footprint(
             ref=ref, value=val_node[2], lib_id=fp[1], layer=(sexpr.child(fp, 'layer') or ['', ''])[1],
             x=sexpr.number(at[1]), y=sexpr.number(at[2]), rot=sexpr.number(at[3]) if len(at) > 3 else 0.0,
             attrs=attrs, value_layer=val_layer, value_hidden=bool(hide and len(hide) > 1 and hide[1] == 'yes'),
-            pads=len(sexpr.children(fp, 'pad'))))
+            pads=len(pads), path=path_node[1] if path_node and len(path_node) > 1 else '',
+            nets=tuple(sorted(nets)), paste=paste, net_tie=bool(sexpr.child(fp, 'net_tie_pad_groups'))))
 
     texts = []
     for t in sexpr.children(root, 'gr_text'):

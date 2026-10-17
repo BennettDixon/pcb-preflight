@@ -14,29 +14,6 @@ def write(text):
     return f.name
 
 
-class PackageToken(unittest.TestCase):
-    def test_chip_sizes(self):
-        self.assertEqual(bom.package_token('Capacitor_SMD:C_0805_2012Metric'), '0805')
-        self.assertEqual(bom.package_token('Capacitor_SMD:C_1210_3225Metric'), '1210')
-        self.assertEqual(bom.package_token('0603'), '0603')
-        self.assertEqual(bom.package_token('Fuse:Fuse_2920_7451Metric'), '2920')
-
-    def test_families(self):
-        self.assertEqual(bom.package_token('Diode_SMD:D_SMA'), 'SMA')
-        self.assertEqual(bom.package_token('SMA(DO-214AC)'), 'SMA')
-        self.assertEqual(bom.package_token('Package_TO_SOT_SMD:SOT-23'), 'SOT-23')
-        self.assertEqual(bom.package_token('SOT-23-3'), 'SOT-23')
-        self.assertEqual(bom.package_token('SOT-23-5'), 'SOT-23-5')
-        self.assertEqual(bom.package_token('Package_TO_SOT_SMD:TO-263-2'), 'TO-263')
-        self.assertEqual(bom.package_token('SOP-8'), 'SOIC-8')
-        self.assertEqual(bom.package_token('SOIC-8_3.9x4.9mm_P1.27mm'), 'SOIC-8')
-        self.assertEqual(bom.package_token('LQFN-56(7x7)'), 'LQFN-56')
-
-    def test_not_comparable(self):
-        for s in ('Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical', 'Capacitor_SMD:CP_Elec_10x12.5', 'Inductor_SMD:L_Bourns_SRP1245A', ''):
-            self.assertIsNone(bom.package_token(s), s)
-
-
 class LoadBom(unittest.TestCase):
     def test_loose_headers_and_refs(self):
         p = write('Reference,Value,Footprint,Part Number,LCSC Part #,Type,Stock,Datasheet URL\n'
@@ -49,6 +26,15 @@ class LoadBom(unittest.TestCase):
         self.assertEqual(lines[0].lcsc, 'C14663')
         self.assertEqual(lines[0].stock_number, 49455161)
         self.assertEqual(bom.library_type(lines[0].library), 'Basic')
+        self.assertEqual(lines[0].package_verified, '')
+
+    def test_package_verified_column(self):
+        p = write('Ref,Value,Package,MPN,LCSC,Basic/Extended,Stock,Datasheet,Package Checked\n'
+                  'L1,10uH,L_Bourns_SRP1245A,SRP1245A-100M,C2042471,Extended,20,u,2026-10-16 BD: land pattern p.2\n')
+        lines, missing = bom.load(p)
+        self.assertEqual(missing, [])
+        self.assertEqual(lines[0].package_verified, '2026-10-16 BD: land pattern p.2')
+        self.assertEqual(lines[0].extra, {})
 
     def test_missing_columns(self):
         p = write('Ref,Value\nC1,100nF\n')
@@ -115,7 +101,9 @@ class Gates(unittest.TestCase):
         self.assertIn('bom.csv says MPN "GRM32ER71H106KA12L"', joined)
         self.assertIn('says Basic but the catalogue says Extended', joined)
         self.assertIn('C3 (R1): not in the JLCPCB catalogue', joined)
-        self.assertIn('not checked: C4 (R2): lookup failed', joined)
+        self.assertNotIn('C4 (R2)', joined, 'a failed lookup is not a detail of the gate: it goes under NOT CHECKED')
+        self.assertEqual(len(c.unchecked), 1)
+        self.assertIn('C4 (R2): lookup failed (offline)', c.unchecked[0])
         self.assertIn('1 Extended part types', c.summary)
 
 
