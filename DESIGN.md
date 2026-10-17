@@ -49,7 +49,7 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 | G8 | Every BOM line is "done": MPN, package, Basic/Extended, stock-at-selection, datasheet | §1 (the done/not-done table), §2 | `bom.csv` | warns |
 | G9 | bom.csv references equal the schematic's bought references: none missing, none unknown, none twice, no DNP. What is not bought (DNP, excluded from the BOM, FID/TP/H/MH by prefix) is printed every run, and an excluded or prefix-skipped reference whose footprint has paste pads blocks: the fab would solder a part there, so it is bought or DNP, not a name that starts with TP | §1 §5 §12 | `bom.csv` + the schematic BOM export + the board's pads | yes |
 | G9b | bom.csv `Value` equals the schematic `Value` of every reference, spelling aside (µ/u, Ω/ohm/R, 4k7/4.7k, spaces, case; `values.normalize()`). Nothing else is inferred: 100nF and 0.1uF are two spellings and the files use one | §1 | `bom.csv` + schematic BOM export | yes |
-| G10 | Package fits the footprint, twice: the bom.csv `Package` against the footprint each reference has in the schematic (`bom-package`), and with `--online` the catalogue's package for each code against that footprint (`catalogue-package`). Verdicts same / different / unknown, see "Package names" below: names pick the candidates and, where both sides are footprints in KiCad's library, the pads decide; *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand". A `Package` that repeats the footprint name compares nothing and is listed as such | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library; `packages.fits()` | yes |
+| G10 | Package fits the footprint (`--online`): the catalogue's package for each code against the footprint each reference has in the schematic (`catalogue-package`). The bom.csv `Package` column is not compared: offline it is a copy of the footprint name or of the catalogue string, and comparing a column with its own source proved nothing (the first cut printed "110 of 110 same name"; the offline gate was removed on 2026-10-17). Verdicts same / different / unknown, see "Package names" below: names pick the candidates and, where both sides are footprints in KiCad's library, the pads decide; *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand". | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library; `packages.fits()` | yes |
 | G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); count of Extended part types (fee) | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked* and makes the result NOT VERIFIED, never a pass | yes / warns |
 | G11c | Catalogue category matches the reference prefix (`--online`): C a capacitor, R a resistor, D a diode, TVS or LED, L an inductor or ferrite, FB a ferrite, Q a transistor, J a connector, F a fuse, Y a crystal, SW a switch, U none of those (`values.PREFIXES`, `values.CLASSES`, each keyword with the record it was seen in). A capacitor's code on an LED line blocks; a prefix without a rule, or a jlcsearch record (no category) under a U, is *not checked* | §1 §2 | the record's `firstSortName / secondSortName`, else its description | yes |
 | G11d | Catalogue description matches the BOM value (`--online`): every F, H and Ω figure the bom.csv `Value` states is within 1 % of one in the record's description, and the part's voltage rating reaches the value's (a 25 V part on a `100uF 16V` line fits, a 16 V part on a `100uF 25V` line does not). A figure the description lacks is *not checked*; a value without figures (a part number) has nothing to compare | §1 §2 | the record's description; `values.compare()` | yes |
@@ -172,12 +172,12 @@ with `pcb_preflight/footprints.py`:
    MPN starts with such a name token, the verdict is *same*, with that reason. It never overrides
    *different*, and a token must hold letters and digits and be five characters or more.
 7. **A copied name is not a comparison.** `bom-template` writes the footprint name into the `Package`
-   column as a placeholder. The offline gate treats a `Package` that repeats its footprint name (case and
-   library prefix aside) as nothing compared: those references are listed once under NOT CHECKED with
-   what to write instead (the package as the catalogue record prints it), never counted as agreeing, and
-   the gate is a skip when no line holds anything else. The first cut printed "110 of 110 same name" on
-   the example board, a comparison of a column with its own source. With `--online` the catalogue's own
-   string is compared for every code, which is the comparison that matters.
+   column as a placeholder, and the first cut compared that column with the footprint it came from
+   ("110 of 110 same name"). An offline gate on the column cannot tell a copied name from a catalogue
+   string that happens to equal it (Q2's `SOT-23`), and teaching it to guess would be exactly the kind of
+   mapping that does not hold, so the gate was removed (2026-10-17) rather than refined: the column stays
+   as the record of the chosen part, and the comparison that matters is the catalogue's own string under
+   `--online`.
 8. **A human's word, labelled as such.** An optional bom.csv column, `Package verified`, holds a note
    ("2026-10-16 BD: 1935161 drawing against the PT 1,5/2 footprint"). A line with a note turns *unknown*
    into "verified by hand: <note>", printed under the gate, never counted as the tool's own pass. It never
@@ -217,7 +217,10 @@ capacitor on an 0805 LED footprint), the MPN matches the code, stock is fine. Th
    description, and the description's highest voltage to reach the value's: the rating is a floor, so the
    example board's C5 (`100uF 16V` on the 25 V part C4 uses) passes and a 16 V part on a 25 V line blocks.
    A figure the description lacks is *not checked*; a value without figures (a part number) has nothing
-   to compare and is counted as such. Tolerance, current and power are not compared.
+   to compare and is counted as such. Tolerance, current and power are not compared. The voltage floor
+   accepts a higher-rated part silently, and a higher rating often means a larger body, which is the
+   package gate's question, not this one's: this line means "the figures agree", not "the parts are
+   interchangeable".
 
 `tests/fixtures/catalogue.csv` holds the records these rules were read from (20 JLCPCB records fetched on
 2026-10-16/17, description and category verbatim) paired with bom.csv lines and the verdict each gate must
@@ -258,14 +261,8 @@ schematic uuid regenerated fails it with 130 orphaned, while kicad-cli's parity 
 mismatches), G5b finds every bought reference placed, the preset raises the project's `min_clearance 0`
 to 0.09 mm and says so in a note, G9b finds every bom.csv Value equal to the schematic's, G11 finds all 45
 codes in stock at 10× or more, G11c files all 66 lines under the category their prefix means, G11d finds
-the 35 lines that state a figure agreeing with their description and 31 stating none. G10 offline compares
-the `Package` column, filled with the string each JLCPCB record prints, against the footprint of each of
-the 110 references: 100 agree (by the same table and pad rules as online), the 8 references behind the
-five unreadable catalogue strings below are listed as not compared, and one more NOT CHECKED entry names
-the 2 whose `Package` repeats the footprint name and so compares nothing: L3, whose line has no part and
-still carries the `bom-template` placeholder, and Q2, whose catalogue string `SOT-23` is also its
-footprint's name, which the repeat rule cannot tell from a copied placeholder. Online it compares 45
-code/footprint pairs: 40 fit (U4's `SOT-25-5` through its table entry, the LMR33630's `ESOP-8` as the
+the 35 lines that state a figure agreeing with their description and 31 stating none. G10 compares 45
+code/footprint pairs online (the offline comparison of the `Package` column was removed, see "Package names" 7): 40 fit (U4's `SOT-25-5` through its table entry, the LMR33630's `ESOP-8` as the
 exposed-pad SOIC-8, the JST and Bourns parts because their footprints are named for them, the rest by pads
 against KiCad's library), and 5 are listed as not compared: the fuse clip, the 2920 polyfuse, the two
 Phoenix terminal blocks and the D-sub, whose catalogue strings ("Plugin,P=5mm", "Push-Pull") name no

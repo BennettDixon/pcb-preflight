@@ -74,7 +74,7 @@ class Gates(unittest.TestCase):
         self.assertEqual(c.status, 'pass', c.details)
 
     def test_package_mismatch(self):
-        c = checks.bom_package_check(self.lines('C2,10uF 50V X7R,0805,M,C1,Basic,1,u\n'), SCH)
+        c = checks.catalogue_package_check(self.lines('C2,10uF 50V X7R,0805,M,C1,Basic,1,u\n'), {'C1': {'mpn': 'M', 'package': '0805'}}, SCH)
         self.assertEqual(c.status, 'fail')
         self.assertIn('1210', c.details[0])
 

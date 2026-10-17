@@ -465,22 +465,22 @@ SCH_ROWS = [{'Ref': 'C1', 'Value': '10uF', 'Footprint': 'Capacitor_SMD:C_0805_20
 class SignOff(unittest.TestCase):
     def test_a_note_never_overrides_a_known_mismatch(self):
         lines = [Line(row=2, refs=['C1'], package='1210', lcsc='C49678', package_verified='ok')]
-        c = checks.bom_package_check(lines, SCH_ROWS)
+        c = checks.catalogue_package_check(lines, {'C49678': {'mpn': 'X', 'package': '1210'}}, SCH_ROWS)      # placeholder record
         self.assertEqual(c.status, 'fail')
         self.assertEqual(c.verified, [])
-        self.assertIn('C1 (bom.csv row 2): 1210 on C_0805_2012Metric: footprint is 0805, part is 1210', c.details[0])
+        self.assertIn('(C1; bom.csv row 2): 1210 on C_0805_2012Metric: footprint is 0805, part is 1210', c.details[0])
         self.assertIn('the "Package verified" note ("ok") does not apply', c.details[0])
 
     def test_a_note_still_covers_what_the_tool_cannot_read(self):
         lines = [Line(row=2, refs=['J1'], package='Plugin,P=5mm', lcsc='C3819953', package_verified='2026-10-16 BD: 1935161 drawing')]
-        c = checks.bom_package_check(lines, SCH_ROWS)
+        c = checks.catalogue_package_check(lines, {'C3819953': {'mpn': '1935161', 'package': 'Plugin,P=5mm'}}, SCH_ROWS)
         self.assertEqual(c.status, 'pass')
         self.assertEqual(len(c.verified), 1)
         self.assertEqual(c.unchecked, [])
 
     def test_an_unknown_item_says_how_to_clear_it(self):
         lines = [Line(row=3, refs=['J1'], package='Plugin,P=5mm', lcsc='C3819953')]
-        c = checks.bom_package_check(lines, SCH_ROWS)
+        c = checks.catalogue_package_check(lines, {'C3819953': {'mpn': '1935161', 'package': 'Plugin,P=5mm'}}, SCH_ROWS)
         self.assertEqual(c.status, 'skip')
         self.assertIn('bom.csv row 3', c.unchecked[0])
         self.assertIn('"Package verified" note (date, initials, what was compared)', c.unchecked[0])

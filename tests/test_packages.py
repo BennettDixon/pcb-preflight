@@ -266,35 +266,14 @@ class Gates(unittest.TestCase):
         self.assertIn('footprint is SOIC-8-EP, part is SOIC-8', c.details[0])
 
     def test_nothing_comparable_is_a_skip(self):
-        c = checks.bom_package_check([line(['L1'], 'SRP1245A')], SCH)
+        c = checks.catalogue_package_check([line(['L1'], 'L_Bourns_SRP1245A', 'C2847573')],
+                                           {'C2847573': {'mpn': 'MDA1350-100M', 'package': 'SMD,13.5x12.6mm'}}, SCH)
         self.assertEqual(c.status, 'skip')
         self.assertEqual(len(c.unchecked), 1)
-
-    def test_a_package_that_repeats_the_footprint_name_compares_nothing(self):
-        lines = [line(['U4'], 'SOT-23-5', 'C51118'), line(['U1'], 'SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm', 'C841384')]
-        c = checks.bom_package_check(lines, SCH)
-        self.assertEqual(c.status, 'skip')
-        self.assertIn('nothing compared: every Package repeats its footprint name (2 references)', c.summary)
-        self.assertEqual(len(c.unchecked), 1)
-        self.assertIn('U4, U1', c.unchecked[0])
-        self.assertIn('repeats the footprint name, so nothing was compared', c.unchecked[0])
-        self.assertIn('--online', c.unchecked[0])
-        self.assertEqual(report.verdict([c]), 'NOT VERIFIED')
-        # a line holding the catalogue's string is compared; the repeating one is still listed, never counted
-        c = checks.bom_package_check([line(['U4'], 'SOT-25-5', 'C51118'), line(['U1'], 'SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm', 'C841384')], SCH)
-        self.assertEqual(c.status, 'pass')
-        self.assertIn('1 agree with their footprint', c.summary)
-        self.assertIn('1 repeat the footprint name (not compared)', c.summary)
-        self.assertEqual(len(c.unchecked), 1)
-        self.assertEqual(report.verdict([c]), 'NOT VERIFIED')
-        # case and library prefix do not make a copy a comparison
-        c = checks.bom_package_check([line(['U4'], 'Package_TO_SOT_SMD:sot-23-5', 'C51118')], SCH)
-        self.assertEqual(c.status, 'skip')
-        self.assertIn('repeats', c.summary)
 
     @needs_library
     def test_pads_decide_in_the_gates(self):
-        c = checks.bom_package_check([line(['U5'], 'TSOT-23-6', 'C8953')], SCH, LIBRARY)
+        c = checks.catalogue_package_check([line(['U5'], 'TSOT-23-6', 'C8953')], {'C8953': {'mpn': 'MP3202DJ', 'package': 'TSOT-23-6'}}, SCH, LIBRARY)
         self.assertEqual(c.status, 'pass', c.details)
         self.assertIn(ROOT, c.notes[0])
         self.assertTrue(any('pads match: SOT-23-6 and TSOT-23-6' in d for d in c.details), c.details)

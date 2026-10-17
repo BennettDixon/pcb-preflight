@@ -417,37 +417,6 @@ def _fit_gate(cid, title, pairs, library=None, extra_unchecked=(), extra_summary
     return Check(cid, title, '§1', 'pass', ', '.join(parts), evidence, unknown, by_hand, notes)
 
 
-def bom_package_check(lines, sch_rows, library=None):
-    """G10: the bom.csv Package column against the footprint each reference has in the schematic.
-
-    A Package that repeats the footprint name (the placeholder bom-template writes) compares nothing: those
-    references are listed once under NOT CHECKED and never counted as agreeing; the catalogue's own string
-    is compared under --online. Only a Package holding the catalogue's string is compared here.
-    """
-    fp_of = {r['Ref']: r['Footprint'] for r in sch_rows}
-    pairs, repeats, rows = [], [], set()
-    for ln in lines:
-        for ref in ln.refs:
-            fp = fp_of.get(ref)
-            if not fp:
-                continue
-            if ln.package and packages.bare(fp).upper() == packages.bare(ln.package).upper():
-                repeats.append(ref)
-                rows.add(ln.row)
-            else:
-                pairs.append((f'{ref} (bom.csv row {ln.row})', fp, ln.package, ln.mpn, ln.package_verified))
-    extra = []
-    if repeats:
-        extra.append(f'{len(repeats)} references ({_refs(repeats, 12)}; bom.csv rows {_refs([str(r) for r in sorted(rows)], 8)}): the Package '
-                     f'column repeats the footprint name, so nothing was compared; write the package as the catalogue record prints it '
-                     f'("0805", "SOT-23-5", "SMD,D6.3xL7.7mm"), or run with --online, where the catalogue\'s own string is compared')
-    c = _fit_gate('bom-package', 'BOM package matches the footprint', pairs, library, extra,
-                  f'{len(repeats)} repeat the footprint name (not compared)' if repeats else '')
-    if repeats and not pairs:
-        c.summary = f'nothing compared: every Package repeats its footprint name ({len(repeats)} references)'
-    return c
-
-
 def _with_records(lines, records):
     """(lines whose code has a catalogue record, note for the codes no catalogue could be asked about)."""
     unreachable = sorted({ln.lcsc for ln in lines if ln.lcsc in records and records[ln.lcsc] is None})
