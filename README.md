@@ -70,7 +70,7 @@ The RESULT line is on the second line of the report and again at the end, and th
 
 What the gate owns, it sets in its copy of the `.kicad_pro` before `kicad-cli` runs, because the project is
 the thing under review: the protected checks run as errors whatever the project says (an agent told to
-"make DRC pass" cannot do it by setting `unconnected_items` to `ignore`); the ERC pin-conflict matrix is
+"make DRC pass" cannot do it by setting `unconnected_items` to `ignore`); KiCad's electrical-intent ERC errors (an unconnected pin, an undriven power pin, two outputs tied, a dangling label) and the courtyard-overlap and solder-mask-bridge DRC checks run as warnings, since none decides whether the fab can build the board (`--strict` promotes them); the ERC pin-conflict matrix is
 no weaker than KiCad's default; the board's minimum constraints are no lower than JLCPCB's published
 capability for 1 oz copper (`min_track_width 0` does not pass a 0.05 mm track); custom design rules
 (`<name>.kicad_dru`) are left out of the copy, since a rule can relax or mute a constraint; a protected
@@ -155,7 +155,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 
 | Gate | Blocks? | Reads |
 |:--|:--|:--|
-| ERC errors; a protected check the project excludes; the pin-conflict matrix no weaker than KiCad's | yes | `kicad-cli sch erc --format json --severity-all`, run under the preset's severities |
+| ERC errors (KiCad's electrical-intent errors, such as an undriven power pin, are reported as warnings); a protected check the project excludes; the pin-conflict matrix no weaker than KiCad's | yes | `kicad-cli sch erc --format json --severity-all`, run under the preset's severities |
 | DRC errors (warnings reported); a protected check the project excludes; the fab's minimums; a footprint without a courtyard is not checked | yes | `kicad-cli pcb drc --format json --severity-all --all-track-errors`, same |
 | Unrouted connections | yes | same report, `unconnected_items` |
 | Schematic / PCB parity: missing, extra or duplicate footprints, net conflicts, attribute and value mismatches, whatever severity KiCad gives them; a nickname-only footprint difference, a sheet-path-only net difference and a no-net pad on an unconnected pin are warnings, a missing skipped-prefix footprint keeps KiCad's severity, a padless extra footprint (logo, text) is a note; field-text and footprint-filter notes keep the project's severity | yes | same run with `--schematic-parity` |
@@ -207,7 +207,10 @@ second, of the contract itself, found the fab's limits still the project's to se
 removable with `on_board no`, and false failures on field-text parity notes and library-lookup warnings;
 all are closed and tested. The three gaps that review left open in the package and value gates (names
 deciding what only the pads can, a copied `Package` column passing as a comparison, values never compared
-with the schematic or the catalogue) are closed as of 2026-10-17 and tested. Run so far on one of the author's own single-sheet boards. Hierarchical
-schematics are read by kicad-cli for ERC, parity and the BOM export and by the identity gate; variants are
-not handled. See DESIGN.md for the roadmap, including what the reviews left open and the question of an
+with the schematic or the catalogue) are closed as of 2026-10-17 and tested. Run on the author's own board and on a regression corpus of 21 public KiCad boards (`corpus/RESULTS.md`): the
+corpus found three gate bugs (fixed) and showed that KiCad's electrical-intent ERC errors and the courtyard and
+solder-mask checks blocked most of the boards that had actually been built, so the preset now runs those as
+warnings; what still blocks fab-ready boards offline is DRC under the project's own stricter constraints,
+which is the next open decision. Hierarchical schematics are read by kicad-cli for ERC, parity and the BOM
+export and by the identity gate; variants are not handled. See DESIGN.md for the roadmap, including what the reviews left open and the question of an
 MCP server wrapper.

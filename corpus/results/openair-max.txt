@@ -1,6 +1,6 @@
 One-Air-Max  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 210 footprints  -  bom.csv: openair-max.csv
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -15,49 +15,50 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 184 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 49 errors, 794 warnings on 3 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR06 Pin 1 [Power input, Line] @ (62.23, 30.48)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R1 Pin 2 [2, Input, Line] @ (66.04, 52.07)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R2 Pin 2 [2, Input, Line] @ (74.93, 52.07)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (74.93, 64.77)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR0104 Pin 1 [Power input, Line] @ (82.55, 30.48)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Pin 1 [Power input, Line] @ (95.25, 118.11)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R45 Pin 1 [1, Input, Line] @ (165.1, 85.09)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R4 Pin 1 [1, Input, Line] @ (200.66, 44.45)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C71 Pin 2 [2, Input, Line] @ (208.28, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C72 Pin 2 [2, Input, Line] @ (215.9, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R62 Pin 2 [2, Input, Line] @ (227.33, 60.96)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R63 Pin 2 [2, Input, Line] @ (227.33, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R8 Pin 1 [1, Input, Line] @ (236.22, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R74 Pin 1 [1, Input, Line] @ (243.84, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R75 Pin 1 [1, Input, Line] @ (251.46, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R76 Pin 1 [1, Input, Line] @ (259.08, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R77 Pin 1 [1, Input, Line] @ (266.7, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R78 Pin 1 [1, Input, Line] @ (274.32, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R41 Pin 1 [1, Input, Line] @ (303.53, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R7 Pin 2 [2, Input, Line] @ (308.61, 134.62)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R25 Pin 1 [1, Input, Line] @ (312.42, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C54 Pin 2 [2, Input, Line] @ (325.12, 31.75)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C55 Pin 2 [2, Input, Line] @ (325.12, 44.45)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C56 Pin 2 [2, Input, Line] @ (342.9, 66.04)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R5 Pin 1 [1, Input, Line] @ (375.92, 130.81)]
-        wire_dangling: Wires not connected to anything [Vertical Wire, length 1.27 mm @ (506.73, 177.8)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR049 Pin 1 [Power input, Line] @ (91.44, 124.46)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R17 Pin 2 [2, Input, Line] @ (137.16, 115.57)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R19 Pin 2 [2, Input, Line] @ (173.99, 100.33)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R22 Pin 2 [2, Input, Line] @ (194.31, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R22 Pin 1 [1, Input, Line] @ (194.31, 77.47)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R24 Pin 2 [2, Input, Line] @ (201.93, 114.3)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R23 Pin 1 [1, Input, Line] @ (203.2, 53.34)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R23 Pin 2 [2, Input, Line] @ (213.36, 53.34)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R26 Pin 1 [1, Input, Line] @ (226.06, 49.53)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R27 Pin 2 [2, Input, Line] @ (234.95, 49.53)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R72 Pin 2 [2, Input, Line] @ (83.82, 96.52)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol LED3 Pin 2 [A, Input, Line] @ (160.02, 40.64)]
+  WARN  ERC (§12): 0 errors, 843 warnings on 3 sheets
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C12 Pin 2 [2, Unspecified, Line] @ (22.86, 204.47); Symbol CO2 Pin 1 [1, Unspecified, Line] @ (41.91, 204.47)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C12 [CC0402KRX7R6BB104] @ (22.86, 209.55)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C12 [CC0402KRX7R6BB104] @ (22.86, 209.55)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C12 Pin 1 [1, Unspecified, Line] @ (22.86, 214.63); Symbol #PWR036 Pin 1 [Power input, Line] @ (22.86, 215.9)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C63 Pin 2 [2, Unspecified, Line] @ (24.13, 133.35); Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C63 [CL05B104KO5NNNC] @ (24.13, 138.43)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C63 [CL05B104KO5NNNC] @ (24.13, 138.43)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C63 Pin 1 [1, Unspecified, Line] @ (24.13, 143.51); Symbol #PWR0130 Pin 1 [Power input, Line] @ (24.13, 146.05)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol R52 Pin 2 [2, Unspecified, Line] @ (25.4, 90.17); Symbol #PWR0135 Pin 1 [Power input, Line] @ (25.4, 86.36)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R52 [RC0402FR-07113KL] @ (25.4, 95.25)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R52 [RC0402FR-07113KL] @ (25.4, 95.25)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol R52 Pin 1 [1, Unspecified, Line] @ (25.4, 100.33); Symbol R56 Pin 2 [2, Unspecified, Line] @ (25.4, 102.87)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol R56 Pin 2 [2, Unspecified, Line] @ (25.4, 102.87); Symbol U2 Pin 9 [FB/VSET, Unspecified, Line] @ (87.63, 121.92)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R56 [AC0402FR-0724K9L] @ (25.4, 107.95)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R56 [AC0402FR-0724K9L] @ (25.4, 107.95)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol R56 Pin 1 [1, Unspecified, Line] @ (25.4, 113.03); Symbol #PWR067 Pin 1 [Power input, Line] @ (25.4, 114.3)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C1 Pin 2 [2, Unspecified, Line] @ (26.67, 60.96); Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C1 [CC0402KRX7R6BB104] @ (26.67, 66.04)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C1 [CC0402KRX7R6BB104] @ (26.67, 66.04)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C1 Pin 1 [1, Unspecified, Line] @ (26.67, 71.12); Symbol #PWR04 Pin 1 [Power input, Line] @ (26.67, 73.66)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C10 Pin 2 [2, Unspecified, Line] @ (26.67, 177.8); Symbol #PWR028 Pin 1 [Power input, Line] @ (38.1, 176.53)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C10 [CC0402KRX7R6BB104] @ (26.67, 182.88)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C10 [CC0402KRX7R6BB104] @ (26.67, 182.88)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C10 Pin 1 [1, Unspecified, Line] @ (26.67, 187.96); Symbol #PWR030 Pin 1 [Power input, Line] @ (26.67, 189.23)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 1 [SHELL, Unspecified, Line] @ (27.94, 29.21); Symbol USB1 Pin 2 [SHELL, Unspecified, Line] @ (27.94, 31.75)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 2 [SHELL, Unspecified, Line] @ (27.94, 31.75); Symbol USB1 Pin 3 [SHELL, Unspecified, Line] @ (27.94, 54.61)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 3 [SHELL, Unspecified, Line] @ (27.94, 54.61); Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15)]
+        warning: pin_to_pin: Pins of type Unspecified and Input are connected [Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15); Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C3 Pin 2 [2, Unspecified, Line] @ (33.02, 133.35); Symbol L3 Pin 1 [1, Unspecified, Line] @ (36.83, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C3 Pin 1 [1, Unspecified, Line] @ (33.02, 143.51); Symbol #PWR012 Pin 1 [Power input, Line] @ (33.02, 146.05)]
+        warning: pin_not_driven: Input pin not driven by any Output pins [Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R3 [RC0402FR-07100KL] @ (35.56, 67.31)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R3 [RC0402FR-07100KL] @ (35.56, 67.31)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol L3 Pin 1 [1, Unspecified, Line] @ (36.83, 127.0); Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol USB1 [GT-USB-7010ASV] @ (38.1, 41.91)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol USB1 [GT-USB-7010ASV] @ (38.1, 41.91)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol L3 [YSMC0420V-1R0M] @ (41.91, 127.0)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol L3 [YSMC0420V-1R0M] @ (41.91, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol I2C1 Pin 1 [1, Unspecified, Line] @ (41.91, 177.8); Symbol #PWR028 Pin 1 [Power input, Line] @ (38.1, 176.53)]
         ... 803 more (--max-details)
-  FAIL  DRC (§12): 234 errors, 249 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
+        note: 439 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x390, pin_not_driven x41, power_pin_not_driven x7, wire_dangling x1
+  FAIL  DRC (§12): 223 errors, 260 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of BAT1 @ (109.81, 59.97)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (131.43, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
@@ -101,6 +102,7 @@ FINDINGS
         ... 443 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered duplicate_footprints to ignore (KiCad default warning), extra_footprint to ignore (KiCad default warning), missing_footprint to ignore (KiCad default warning)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): via_dangling, track_dangling, lib_footprint_mismatch
+        note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x11
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_hole_to_hole 0.0 -> 0.2 mm, min_track_width 0.0 -> 0.09 mm, min_via_annular_width 0.0 -> 0.05 mm
   FAIL  Schematic / PCB parity (§5): 3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted
         net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -215,5 +217,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "SMPS 12V-5V",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/jlcpcb-example",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/jlcpcb-example",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -23,6 +23,21 @@
   "owned": {
     "drc": {},
     "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
+    },
     "pin_map": 0,
     "minimums": {
       "min_track_width": [
@@ -38,18 +53,15 @@
   },
   "copper_layers": 2,
   "footprints": 19,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jlcpcb-example.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/jlcpcb-example.csv",
   "checks": [
     {
       "id": "erc",
       "title": "ERC",
       "pitfall": "\u00a712",
-      "status": "fail",
-      "summary": "3 errors, 50 warnings on 1 sheet",
+      "status": "warn",
+      "summary": "0 errors, 53 warnings on 1 sheet",
       "details": [
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]",
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]",
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Pin 1 [Power input, Line] @ (238.76, 52.07)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]",
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN1 Pin 1 [1, Unspecified, Line] @ (52.07, 54.61); Symbol #PWR05 Pin 1 [Power input, Line] @ (52.07, 54.61)]",
@@ -62,6 +74,7 @@
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H3 [Mounting Hole, 3mm, Via Stiched] @ (71.12, 119.38)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C2 [0805,22uF] @ (129.54, 71.12)]",
@@ -92,18 +105,22 @@
         "warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol R4 Pin 1 [1, Unspecified, Line] @ (199.39, 62.23); Symbol R3 Pin 1 [Passive, Line] @ (199.39, 64.77)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol R3 [0603,100k\u03a9] @ (199.39, 68.58)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Resistors' [Symbol R3 [0603,100k\u03a9] @ (199.39, 68.58)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol R2 [0603,100k\u03a9] @ (212.09, 55.88)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Resistors' [Symbol R2 [0603,100k\u03a9] @ (212.09, 55.88)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C4 [0603,10uF,(2)] @ (220.98, 64.77)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C4 [0603,10uF,(2)] @ (220.98, 64.77)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C5 [0805,10uF,(2)] @ (229.87, 64.77)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C5 [0805,10uF,(2)] @ (229.87, 64.77)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Pin 1 [Power input, Line] @ (238.76, 52.07)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C6 [0805,47uF] @ (238.76, 64.77)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C6 [0805,47uF] @ (238.76, 64.77)]"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "24 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x21, power_pin_not_driven x3"
+      ]
     },
     {
       "id": "drc",
@@ -386,6 +403,6 @@
     "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
   ],
   "work_dir": null,
-  "result": "FAIL",
-  "exit_code": 1
+  "result": "NOT VERIFIED",
+  "exit_code": 3
 }

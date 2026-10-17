@@ -1,6 +1,6 @@
 metering  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 4 footprints  -  bom.csv: none
-RESULT: FAIL  -  5 blocking, 2 warnings, 1 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 3 warnings, 1 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   DRC (§12): 0 errors, 0 warnings
@@ -11,22 +11,7 @@ CHECKED AND LEFT ALONE
   Connector names on silk (§8): 0 connectors each have a name on silk
 
 FINDINGS
-  FAIL  ERC (§12): 15 errors, 20 warnings on 12 sheets
-        pin_not_connected: Pin not connected [Symbol U3 Pin 27 [GPIO2/ADC1_CH2, Bidirectional, Line] @ (41.91, 121.92)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 26 [GPIO3/ADC1_CH3, Bidirectional, Line] @ (41.91, 124.46)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 4 [MTMS/GPIO4/ADC1_CH4, Bidirectional, Line] @ (41.91, 132.08)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 5 [MTDI/GPIO5/ADC1_CH5, Bidirectional, Line] @ (41.91, 134.62)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 6 [MTCK/GPIO6/ADC1_CH6, Bidirectional, Line] @ (41.91, 137.16)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 7 [MTDO/GPIO7, Bidirectional, Line] @ (41.91, 139.7)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 23 [GPIO15, Bidirectional, Line] @ (97.79, 142.24)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 16 [GPIO18, Bidirectional, Line] @ (97.79, 144.78)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 17 [GPIO19, Bidirectional, Line] @ (97.79, 147.32)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 18 [GPIO20, Bidirectional, Line] @ (97.79, 149.86)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 19 [GPIO21, Bidirectional, Line] @ (97.79, 152.4)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 20 [GPIO22, Bidirectional, Line] @ (97.79, 154.94)]
-        pin_not_connected: Pin not connected [Symbol U3 Pin 21 [GPIO23, Bidirectional, Line] @ (97.79, 157.48)]
-        pin_not_connected: Pin not connected [Symbol R3 Pin 1 [Passive, Line] @ (119.38, 177.8)]
-        pin_not_connected: Pin not connected [Symbol R6 Pin 2 [Passive, Line] @ (132.08, 165.1)]
+  WARN  ERC (§12): 0 errors, 35 warnings on 12 sheets
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_Espressif' [Symbol U3 [ESP32-C6-WROOM-1] @ (69.85, 139.7)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_Espressif' [Symbol U3 [ESP32-C6-WROOM-1] @ (69.85, 139.7)]
         warning: isolated_pin_label: Label connected to only one pin [Label 'UART_RX' @ (76.2, 45.72)]
@@ -46,8 +31,23 @@ FINDINGS
         warning: isolated_pin_label: Label connected to only one pin [Label 'SCLK' @ (237.49, 139.7)]
         warning: isolated_pin_label: Label connected to only one pin [Label 'MOSI' @ (237.49, 142.24)]
         warning: isolated_pin_label: Label connected to only one pin [Label 'DP_RES' @ (237.49, 144.78)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 27 [GPIO2/ADC1_CH2, Bidirectional, Line] @ (41.91, 121.92)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 26 [GPIO3/ADC1_CH3, Bidirectional, Line] @ (41.91, 124.46)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 4 [MTMS/GPIO4/ADC1_CH4, Bidirectional, Line] @ (41.91, 132.08)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 5 [MTDI/GPIO5/ADC1_CH5, Bidirectional, Line] @ (41.91, 134.62)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 6 [MTCK/GPIO6/ADC1_CH6, Bidirectional, Line] @ (41.91, 137.16)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 7 [MTDO/GPIO7, Bidirectional, Line] @ (41.91, 139.7)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 23 [GPIO15, Bidirectional, Line] @ (97.79, 142.24)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 16 [GPIO18, Bidirectional, Line] @ (97.79, 144.78)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 17 [GPIO19, Bidirectional, Line] @ (97.79, 147.32)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 18 [GPIO20, Bidirectional, Line] @ (97.79, 149.86)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 19 [GPIO21, Bidirectional, Line] @ (97.79, 152.4)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 20 [GPIO22, Bidirectional, Line] @ (97.79, 154.94)]
+        warning: pin_not_connected: Pin not connected [Symbol U3 Pin 21 [GPIO23, Bidirectional, Line] @ (97.79, 157.48)]
+        warning: pin_not_connected: Pin not connected [Symbol R3 Pin 1 [Passive, Line] @ (119.38, 177.8)]
+        warning: pin_not_connected: Pin not connected [Symbol R6 Pin 2 [Passive, Line] @ (132.08, 165.1)]
         warning: multiple_net_names: Both +3.3V and DP_VDD are attached to the same items; +3.3V will be used in the netlist [Symbol #PWR019 Pin 1 [Power input, Line] @ (69.85, 105.41); Label 'DP_VDD' @ (237.49, 127.0)]
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+        note: 15 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_not_connected x15
   FAIL  Schematic / PCB parity (§5): 94 mismatches across 4 footprints
         missing_footprint: Missing footprint C1 (2.2u/50V) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         missing_footprint: Missing footprint C2 (100n) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -96,7 +96,7 @@ FINDINGS
         DNP in the schematic but no footprint on the board: C6, C7, R17
   FAIL  Bought parts placed on the board (§5 §12): 117 of 119 bought references have no footprint on the board
         bought in the schematic but no footprint on the board: C1, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C2, C20, C3, C4, C5, C8, C9, D1, D10, +97 more
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv
@@ -110,5 +110,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 2 warnings, 1 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 3 warnings, 1 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

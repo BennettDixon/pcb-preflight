@@ -1,6 +1,6 @@
 CM5_MINIMA_3  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  6 copper layers, 112 footprints  -  bom.csv: cm5-minima.csv
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -15,19 +15,17 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 72 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 4 errors, 54 warnings on 8 sheets
-        pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (78.74, 71.12)]
-        pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (113.03, 71.12)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (69.85, 172.72)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol Module301 Pin 93 [nRPIBOOT, Input, Line] @ (147.32, 195.58)]
+  WARN  ERC (§12): 0 errors, 58 warnings on 8 sheets
         warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol J101 [USB_C_Receptacle_USB2.0_16P] @ (35.56, 74.93)]
         warning: lib_symbol_mismatch: Symbol 'USB_C_Receptacle_USB2.0_16P' doesn't match copy in library 'Connector' [Symbol J101 [USB_C_Receptacle_USB2.0_16P] @ (35.56, 74.93)]
+        warning: pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (78.74, 71.12)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol SW101 [MK-11C04-G013] @ (87.63, 162.56)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'EasyEDA' [Symbol SW101 [MK-11C04-G013] @ (87.63, 162.56)]
         warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW101 Pin 4 [4, Unspecified, Line] @ (92.71, 157.48); Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64)]
         warning: pin_to_pin: Pins of type Unspecified and Input are connected [Symbol SW101 Pin C [C, Unspecified, Line] @ (92.71, 162.56); Symbol Module301 Pin 93 [nRPIBOOT, Input, Line] @ (147.32, 195.58)]
         warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW101 Pin 1 [1, Unspecified, Line] @ (92.71, 165.1); Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64); Symbol #PWR0106 Pin 1 [Power input, Line] @ (93.98, 171.45)]
+        warning: pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (113.03, 71.12)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM4IO' [Symbol U401 [TPD4EUSB30] @ (59.69, 81.28)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM4IO' [Symbol U402 [TPD4EUSB30] @ (100.33, 81.28)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Samacsys' [Symbol J1 [GLPLX-SMT-188S7-QQ-Y_G] @ (146.05, 43.18)]
@@ -56,9 +54,11 @@ FINDINGS
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol U703 [ASEK-32.768KHZ-L-R-T] @ (209.55, 129.54)]
         warning: footprint_link_issues: The current configuration does not include the footprint library '_pico' [Symbol M701 [SolderNut] @ (251.46, 87.63)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol M701 [SolderNut] @ (251.46, 87.63)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library '_pico' [Symbol M702 [SolderNut] @ (251.46, 104.14)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol M702 [SolderNut] @ (251.46, 104.14)]
         ... 18 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
-  FAIL  DRC (§12): 65 errors, 198 warnings (solder_mask_bridge x54, lib_footprint_mismatch x51, silk_overlap x33, text_thickness x27, text_height x27, silk_edge_clearance x17, silk_over_copper x17, lib_footprint_issues x14, annular_width x6, padstack x6, via_dangling x3, courtyards_overlap x2, copper_edge_clearance x2, holes_co_located x2, zones_intersect x1, isolated_copper x1); 38 footprints without a courtyard
+        note: 15 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x11, pin_not_connected x2, power_pin_not_driven x1, pin_not_driven x1
+  FAIL  DRC (§12): 9 errors, 254 warnings (solder_mask_bridge x54, lib_footprint_mismatch x51, silk_overlap x33, text_thickness x27, text_height x27, silk_edge_clearance x17, silk_over_copper x17, lib_footprint_issues x14, annular_width x6, padstack x6, via_dangling x3, copper_edge_clearance x2, courtyards_overlap x2, holes_co_located x2, zones_intersect x1, isolated_copper x1); 38 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (89.73, 50.7)]
         annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (82.57, 50.7)]
         annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB701 @ (89.73, 62.25)]
@@ -66,41 +66,41 @@ FINDINGS
         annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 71.38)]
         annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 74.38)]
         zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [M2_3V3] on F.Cu and In3.Cu, priority 10 @ (117.35, 51.35); Zone [M2_3V3] on In3.Cu, priority 10 @ (117.35, 50.05)]
-        courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint J601 @ (99.65, 49.85)]
-        courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint H102 @ (78.15, 23.35)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.2164 mm) [Segment on Edge.Cuts @ (78.37, 44.033579); Pad 15 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 45.3)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.1914 mm) [Segment on Edge.Cuts @ (89.283579, 28.241421); Pad 16 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 27.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 3 [GND] of J701 on F.Cu @ (104.85, 25.45); Pad 5 [unconnected-(J701-PETn3-Pad5)] of J701 on F.Cu @ (105.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 4 [M2_3V3] of J701 on F.Cu @ (105.1, 33.0); Pad 6 [unconnected-(J701-NC-Pad6)] of J701 on F.Cu @ (105.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 5 [unconnected-(J701-PETn3-Pad5)] of J701 on F.Cu @ (105.35, 25.45); Pad 7 [unconnected-(J701-PETp3-Pad7)] of J701 on F.Cu @ (105.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 6 [unconnected-(J701-NC-Pad6)] of J701 on F.Cu @ (105.6, 33.0); Pad 8 [unconnected-(J701-NC-Pad8)] of J701 on F.Cu @ (106.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 7 [unconnected-(J701-PETp3-Pad7)] of J701 on F.Cu @ (105.85, 25.45); Pad 9 [GND] of J701 on F.Cu @ (106.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 8 [unconnected-(J701-NC-Pad8)] of J701 on F.Cu @ (106.1, 33.0); Pad 10 [Net-(J701-DAS/~{DSS}/~{LED1})] of J701 on F.Cu @ (106.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 9 [GND] of J701 on F.Cu @ (106.35, 25.45); Pad 11 [unconnected-(J701-PERn3-Pad11)] of J701 on F.Cu @ (106.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 10 [Net-(J701-DAS/~{DSS}/~{LED1})] of J701 on F.Cu @ (106.6, 33.0); Pad 12 [M2_3V3] of J701 on F.Cu @ (107.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 11 [unconnected-(J701-PERn3-Pad11)] of J701 on F.Cu @ (106.85, 25.45); Pad 13 [unconnected-(J701-PERp3-Pad13)] of J701 on F.Cu @ (107.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 13 [unconnected-(J701-PERp3-Pad13)] of J701 on F.Cu @ (107.35, 25.45); Pad 15 [GND] of J701 on F.Cu @ (107.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 15 [GND] of J701 on F.Cu @ (107.85, 25.45); Pad 17 [unconnected-(J701-PETn2-Pad17)] of J701 on F.Cu @ (108.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 17 [unconnected-(J701-PETn2-Pad17)] of J701 on F.Cu @ (108.35, 25.45); Pad 19 [unconnected-(J701-PETp2-Pad19)] of J701 on F.Cu @ (108.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 18 [M2_3V3] of J701 on F.Cu @ (108.6, 33.0); Pad 20 [unconnected-(J701-NC-Pad20)] of J701 on F.Cu @ (109.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 19 [unconnected-(J701-PETp2-Pad19)] of J701 on F.Cu @ (108.85, 25.45); Pad 21 [GND] of J701 on F.Cu @ (109.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 20 [unconnected-(J701-NC-Pad20)] of J701 on F.Cu @ (109.1, 33.0); Pad 22 [unconnected-(J701-NC-Pad22)] of J701 on F.Cu @ (109.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 21 [GND] of J701 on F.Cu @ (109.35, 25.45); Pad 23 [unconnected-(J701-PERn2-Pad23)] of J701 on F.Cu @ (109.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 22 [unconnected-(J701-NC-Pad22)] of J701 on F.Cu @ (109.6, 33.0); Pad 24 [unconnected-(J701-NC-Pad24)] of J701 on F.Cu @ (110.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 23 [unconnected-(J701-PERn2-Pad23)] of J701 on F.Cu @ (109.85, 25.45); Pad 25 [unconnected-(J701-PERp2-Pad25)] of J701 on F.Cu @ (110.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 24 [unconnected-(J701-NC-Pad24)] of J701 on F.Cu @ (110.1, 33.0); Pad 26 [unconnected-(J701-NC-Pad26)] of J701 on F.Cu @ (110.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 25 [unconnected-(J701-PERp2-Pad25)] of J701 on F.Cu @ (110.35, 25.45); Pad 27 [GND] of J701 on F.Cu @ (110.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 26 [unconnected-(J701-NC-Pad26)] of J701 on F.Cu @ (110.6, 33.0); Pad 28 [unconnected-(J701-NC-Pad28)] of J701 on F.Cu @ (111.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 27 [GND] of J701 on F.Cu @ (110.85, 25.45); Pad 29 [unconnected-(J701-PETn1-Pad29)] of J701 on F.Cu @ (111.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 28 [unconnected-(J701-NC-Pad28)] of J701 on F.Cu @ (111.1, 33.0); Pad 30 [unconnected-(J701-NC-Pad30)] of J701 on F.Cu @ (111.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 29 [unconnected-(J701-PETn1-Pad29)] of J701 on F.Cu @ (111.35, 25.45); Pad 31 [unconnected-(J701-PETp1-Pad31)] of J701 on F.Cu @ (111.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 30 [unconnected-(J701-NC-Pad30)] of J701 on F.Cu @ (111.6, 33.0); Pad 32 [unconnected-(J701-NC-Pad32)] of J701 on F.Cu @ (112.1, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 31 [unconnected-(J701-PETp1-Pad31)] of J701 on F.Cu @ (111.85, 25.45); Pad 33 [GND] of J701 on F.Cu @ (112.35, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 32 [unconnected-(J701-NC-Pad32)] of J701 on F.Cu @ (112.1, 33.0); Pad 34 [unconnected-(J701-NC-Pad34)] of J701 on F.Cu @ (112.6, 33.0)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 33 [GND] of J701 on F.Cu @ (112.35, 25.45); Pad 35 [unconnected-(J701-PERn1-Pad35)] of J701 on F.Cu @ (112.85, 25.45)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 34 [unconnected-(J701-NC-Pad34)] of J701 on F.Cu @ (112.6, 33.0); Pad 36 [unconnected-(J701-NC-Pad36)] of J701 on F.Cu @ (113.1, 33.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [/CM5/PWR_BUT] on F.Cu - B.Cu @ (130.959409, 65.559501)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [/USB_C.D_P] on F.Cu - B.Cu @ (85.848, 48.520413)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+BATT] on F.Cu - B.Cu @ (81.45, 72.5)]
+        warning: isolated_copper: Isolated copper fill [Zone [GND] on F.Cu, B.Cu and 3 more, priority 0 @ (74.99, 20.22)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint J601 @ (99.65, 49.85)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint H102 @ (78.15, 23.35)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (89.483579, 28.441421); Segment of J1 on F.Silkscreen @ (86.156, 28.4)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (89.483579, 28.441421); Segment of J1 on F.Silkscreen @ (97.497, 43.9)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (78.360637, 74.706167); Segment of J101 on F.Silkscreen @ (76.1, 49.1)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (78.360637, 74.706167); Segment of J101 on F.Silkscreen @ (76.1, 52.3)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.141566, 23.93); Circle of J701 on F.Silkscreen @ (104.35, 23.929)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Segment of J501 on F.Silkscreen @ (90.99, 81.62)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Segment of J501 on F.Silkscreen @ (107.19, 79.17)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (78.360637, 74.706167); Segment of USB701 on F.Silkscreen @ (76.1, 60.65)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (78.360637, 74.706167); Segment of USB701 on F.Silkscreen @ (76.1, 63.85)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (132.901934, 30.038716); Segment of SW501 on F.Silkscreen @ (133.27, 65.27)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (132.901934, 30.038716); Segment of SW501 on F.Silkscreen @ (133.27, 67.27)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Segment of Module301 on B.Silkscreen @ (94.25, 81.1)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Arc of Module301 on B.Silkscreen @ (94.25, 77.6)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (132.901934, 30.038716); Segment of SW101 on B.Silkscreen @ (132.06, 74.13)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (132.901934, 30.038716); Segment of SW101 on B.Silkscreen @ (133.36, 72.93)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Segment of Module302 on B.Silkscreen @ (94.25, 81.1)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (126.424817, 81.07); Arc of Module302 on B.Silkscreen @ (94.25, 77.6)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of J101 @ (89.73, 50.7)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of J101 @ (82.57, 50.7)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB701 @ (89.73, 62.25)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB701 @ (82.57, 62.25)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of SW101 @ (130.74, 71.38)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of SW101 @ (130.74, 74.38)]
+        warning: holes_co_located: Drilled holes co-located [NPTH pad of Module301 @ (127.25, 77.6); NPTH pad of Module302 @ (127.25, 77.6)]
+        warning: holes_co_located: Drilled holes co-located [NPTH pad of Module301 @ (127.25, 29.6); NPTH pad of Module302 @ (127.25, 29.6)]
         ... 223 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered solder_mask_bridge to warning (KiCad default error)
+        note: 56 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x54, courtyards_overlap x2
         note: minimums: JLCPCB 1 oz copper, 6 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0 -> 0.09 mm
   FAIL  Schematic / PCB parity (§5): 4 mismatches across 112 footprints; 1 padless footprint items not counted
         net_conflict: No pad found for pin M1 (GND) in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -253,5 +253,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

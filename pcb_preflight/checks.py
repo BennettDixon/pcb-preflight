@@ -51,7 +51,7 @@ def _refs(refs, limit=20):
 
 # ---------------------------------------------------------------- KiCad's own checks
 
-def _owned_notes(report, kind, owned, excluded):
+def _owned_notes(report, kind, owned, excluded, warnings=()):
     """What the project did to the checks the gate owns (preset.py): blocking lines and notes.
 
     ``owned`` is preset.apply()'s return value. A protected check kicad-cli still lists as ignored, or a
@@ -72,6 +72,12 @@ def _owned_notes(report, kind, owned, excluded):
     beyond = [k for k in ignored if k not in protected and preset.KICAD_DEFAULT[kind].get(k, 'error') != 'ignore']
     if beyond:
         notes.append(f"ignored by the project beyond KiCad's defaults (not required by {preset.PRESET}): {', '.join(beyond)}")
+    demoted = preset.DRC_DEMOTED if kind == 'drc' else preset.ERC_DEMOTED
+    kinds = Counter(v.get('type') for v in warnings if v.get('type') in demoted)
+    if kinds:
+        what = 'about whether the circuit is what you meant' if kind == 'erc' else 'about assembly fit, not whether the fab can build it'
+        notes.append(f"{sum(kinds.values())} warnings are checks {preset.PRESET} runs as warnings instead of KiCad's errors "
+                     f"({what}; --strict blocks them): " + ', '.join(f'{t} x{c}' for t, c in kinds.most_common()))
     return blocked, notes
 
 
@@ -79,7 +85,7 @@ def erc_check(report, owned=None):
     viol = [v for s in report.get('sheets', []) for v in s.get('violations', [])]
     errors, warnings, excluded = kicad.count_severities(viol)
     n = len(report.get('sheets', []))
-    blocked, notes = _owned_notes(report, 'erc', owned, excluded)
+    blocked, notes = _owned_notes(report, 'erc', owned, excluded, warnings)
     if owned and owned.get('pin_map'):
         notes.append(f"pin-conflict matrix: KiCad's default; the project had weakened {owned['pin_map']} of its 144 cells")
     det = [kicad.describe(v) for v in errors] + blocked + [f'warning: {kicad.describe(v)}' for v in warnings]
@@ -96,7 +102,7 @@ def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
     unchecked = [f'{kicad.describe(v)}: no courtyard, so courtyards_overlap could not see this footprint' for v in no_courtyard]
     types = Counter(v.get('type') for v in errors + warnings)
     kinds = ', '.join(f'{t} x{c}' for t, c in types.most_common())
-    blocked, notes = _owned_notes(report, 'drc', owned, excluded)
+    blocked, notes = _owned_notes(report, 'drc', owned, excluded, warnings)
     if owned and (owned.get('minimums') or owned.get('netclasses')):
         raised = [f'{k} {v[0]} -> {v[1]} mm' for k, v in sorted(owned['minimums'].items())]
         raised += [f'netclass {n} clearance {v[0]} -> {v[1]} mm' for n, v in sorted(owned['netclasses'].items())]

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "multichannel_mixer",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/multichannel-unrouted",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/multichannel-unrouted",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -23,6 +23,21 @@
   "owned": {
     "drc": {},
     "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
+    },
     "pin_map": 0,
     "minimums": {},
     "netclasses": {}
@@ -35,22 +50,22 @@
       "id": "erc",
       "title": "ERC",
       "pitfall": "\u00a712",
-      "status": "fail",
-      "summary": "4 errors, 32 warnings on 5 sheets",
+      "status": "warn",
+      "summary": "0 errors, 36 warnings on 5 sheets",
       "details": [
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+12V, Power input, Line] @ (86.36, 115.57)]",
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (86.36, 146.05)]",
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Hidden pin 1 [+1V1, Power input, Line] @ (143.51, 83.82)]",
-        "pin_not_connected: Pin not connected [Symbol J6 Pin R [Passive, Line] @ (193.04, 76.2)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+12V, Power input, Line] @ (86.36, 115.57)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R1 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 130.81)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R2 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 143.51)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (86.36, 146.05)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C1 [CTEB_2.2UF_35V_10%_254-500X840] @ (97.79, 138.43)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (110.49, 127.0)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Hidden pin 1 [+1V1, Power input, Line] @ (143.51, 83.82)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C2 [CTEB_2.2UF_35V_10%_254-500X840] @ (143.51, 138.43)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C3 [CC1206_100NF_50V_10%_X7R] @ (144.78, 50.8)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (149.86, 68.58)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R3 [R1206_10K_1%_0.25W_100PPM] @ (162.56, 62.23)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C4 [CTEB_2.2UF_35V_10%_254-500X840] @ (177.8, 73.66)]",
+        "warning: pin_not_connected: Pin not connected [Symbol J6 Pin R [Passive, Line] @ (193.04, 76.2)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Miscellaneous THD' [Symbol J5 [CLIFF_FC68148(DC-10A)] @ (194.31, 36.83)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C32 [CTEB_2.2UF_35V_10%_254-500X840] @ (102.87, 81.28)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R37 [R1206_10K_1%_0.25W_100PPM] @ (110.49, 81.28)]",
@@ -77,7 +92,9 @@
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "4 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x3, pin_not_connected x1"
+      ]
     },
     {
       "id": "drc",
@@ -87,8 +104,8 @@
       "summary": "6 errors, 115 warnings (lib_footprint_issues x93, via_dangling x8, clearance x6, track_dangling x4, connection_width x4, silk_over_copper x3, silk_edge_clearance x1, holes_co_located x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard",
       "details": [
         "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]",
-        "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]",
         "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4); Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85)]",
+        "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]",
         "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]",
         "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]",
         "clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]",
@@ -241,7 +258,7 @@
         "unconnected_items: Missing connection between items [Pad 2 [Net-(IC1B-IN+)] of R2 on B.Cu @ (188.77, 112.76); Pad 5 [Net-(IC1B-IN+)] of IC1 on B.Cu @ (187.635, 110.145)]",
         "unconnected_items: Missing connection between items [Pad 3 [vbias] of IC3 on B.Cu @ (40.215, 78.965); Pad 5 [vbias] of IC3 on B.Cu @ (41.485, 84.365)]",
         "unconnected_items: Missing connection between items [Track [vbias] on B.Cu, length 1.6000 mm @ (103.0, 81.4); Pad 5 [vbias] of IC3 on B.Cu @ (41.485, 84.365)]",
-        "unconnected_items: Missing connection between items [Pad 5 [vbias] of IC5 on B.Cu @ (104.27, 86.8); Track [vbias] on B.Cu, length 1.6000 mm @ (103.0, 81.4)]",
+        "unconnected_items: Missing connection between items [Track [vbias] on B.Cu, length 1.5300 mm @ (104.27, 86.8); Track [vbias] on B.Cu, length 1.6000 mm @ (103.0, 81.4)]",
         "unconnected_items: Missing connection between items [Track [vbias] on B.Cu, length 1.5300 mm @ (104.27, 86.8); Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]",
         "unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (127.8, 86.8); Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]",
         "unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (147.0, 83.000002); Pad 3 [vbias] of IC2 on B.Cu @ (147.0, 81.4)]",
@@ -255,7 +272,7 @@
         "unconnected_items: Missing connection between items [Pad 6 [vbias] of IC1 on B.Cu @ (187.635, 108.875); Pad 7 [vbias] of IC1 on B.Cu @ (187.635, 107.605)]",
         "unconnected_items: Missing connection between items [Pad 6 [vbias] of IC1 on B.Cu @ (187.635, 108.875); Pad 3 [vbias] of IC1 on B.Cu @ (193.035, 108.875)]",
         "unconnected_items: Missing connection between items [Pad 2 [+12V] of C21 on B.Cu @ (34.715, 81.965); Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365)]",
-        "unconnected_items: Missing connection between items [Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365); Pad 2 [+12V] of C39 on B.Cu @ (97.5, 84.4)]",
+        "unconnected_items: Missing connection between items [Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365); Track [+12V] on B.Cu, length 0.7000 mm @ (97.5, 84.4)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 19.0000 mm @ (18.675, 91.225); Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (121.15, 86.75); Track [+12V] on F.Cu, length 6.0953 mm @ (99.15, 89.35)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 0.7778 mm @ (142.6, 86.2); Pad 2 [+12V] of C12 on B.Cu @ (141.5, 84.4)]",
@@ -500,7 +517,7 @@
       "title": "bom.csv",
       "pitfall": "\u00a71",
       "status": "fail",
-      "summary": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/multichannel-unrouted.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
+      "summary": "/Users/bennett/projects/pcb-preflight/corpus/boms/multichannel-unrouted.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
       "details": [],
       "unchecked": [],
       "verified": [],

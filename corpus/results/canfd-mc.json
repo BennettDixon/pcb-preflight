@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "canfd-mc",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/canfd-mc",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/canfd-mc",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -23,13 +23,28 @@
   "owned": {
     "drc": {},
     "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
+    },
     "pin_map": 0,
     "minimums": {},
     "netclasses": {}
   },
   "copper_layers": 4,
   "footprints": 51,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/canfd-mc.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/canfd-mc.csv",
   "checks": [
     {
       "id": "erc",

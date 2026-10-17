@@ -60,7 +60,7 @@ FINDINGS
         ... 28 more (--max-details)
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("complex_hierarchy") on a silkscreen layer
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/complex-hierarchy.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/complex-hierarchy.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv

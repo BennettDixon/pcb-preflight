@@ -84,11 +84,16 @@ can see; printing them every time is what the "checked and left alone" style ask
   defaults (`preset.KICAD_DEFAULT`, read from KiCad 10.0's source and its 19 templates), and says when a
   custom-rules file was present. Exclusions are read from the `excluded` flag kicad-cli puts on a violation
   (it keeps the original severity; the `exclusion` severity string never appears): an excluded protected
-  violation blocks, any other exclusion is honoured and counted. The protected set is KiCad's default errors
+  violation blocks, any other exclusion is honoured and counted. The protected set is the KiCad default errors
   that decide whether the fab can make and assemble the board as drawn, plus the five parity checks (KiCad:
-  warnings), `pin_to_pin` (the matrix's on/off switch) and `missing_courtyard` (KiCad: ignore; a footprint
-  without a courtyard is listed as *not checked* rather than blocked). Not owned on purpose:
-  `lib_symbol_issues`, a library-lookup warning that would fail every CI runner without the libraries.
+  warnings) and `missing_courtyard` (KiCad: ignore; a footprint without a courtyard is listed as *not
+  checked* rather than blocked). Demoted to warnings, whatever the project says (`preset.ERC_DEMOTED`,
+  `DRC_DEMOTED`, decided on the corpus evidence on 2026-10-17): KiCad's electrical-intent ERC errors (an
+  unconnected pin, an undriven power pin, two outputs tied, a dangling label; the pin matrix is capped at
+  warning with them), which blocked 15 of 21 public boards for a missing PWR_FLAG, and `courtyards_overlap`
+  and `solder_mask_bridge`, which blocked 10 boards, 7 of them built and sold; none decides whether the fab
+  can build the board, and `--strict` promotes them. Not owned on purpose: `lib_symbol_issues`, a
+  library-lookup warning that would fail every CI runner without the libraries.
 * **Read-only, verified.** `kicad-cli pcb drc` writes a `<board>.kicad_prl` beside a board that has none
   (observed on KiCad 10.0.7). So the gate always copies the project to a temporary directory (minus
   backups, `fab/`, lock files and `<name>.kicad_dru`, see the next bullets) and runs there; there is no

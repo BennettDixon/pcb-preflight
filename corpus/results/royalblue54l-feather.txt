@@ -1,6 +1,6 @@
 RoyalBlue54L-Feather  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  8 copper layers, 71 footprints  -  bom.csv: royalblue54l-feather.csv
-RESULT: FAIL  -  3 blocking, 3 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -17,14 +17,7 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 48 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 7 errors, 64 warnings on 5 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J8 Pin 1 [VCC, Power input, Line] @ (224.79, 114.3)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U2 Pin 21 [VBUS, Power input, Line] @ (113.03, 66.04)]
-        pin_to_pin: Pins of type Power output and Power output are connected [Symbol U2 Pin 1 [VOUT1, Power output, Line] @ (184.15, 81.28); Symbol U2 Pin 20 [VSYS, Power output, Line] @ (151.13, 58.42)]
-        pin_to_pin: Pins of type Output and Output are connected [Symbol U2 Pin 31 [LSOUT2/VOUTLDO2, Output, Line] @ (184.15, 116.84); Symbol U2 Pin 29 [LSOUT1/VOUTLDO1, Output, Line] @ (184.15, 109.22)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR06 Pin 1 [Power input, Line] @ (191.77, 99.06)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (238.76, 106.68)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Pin 1 [Power input, Line] @ (243.84, 99.06)]
+  WARN  ERC (§12): 0 errors, 71 warnings on 5 sheets
         warning: footprint_link_issues: The current configuration does not include the footprint library 'marbastlib-various' [Symbol J3 [USB_C_Receptacle_USB2.0_16P] @ (74.93, 39.37)]
         warning: lib_symbol_mismatch: Symbol 'USB_C_Receptacle_USB2.0_16P' doesn't match copy in library 'Connector' [Symbol J3 [USB_C_Receptacle_USB2.0_16P] @ (74.93, 39.37)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C24 [C_Small] @ (88.9, 99.06)]
@@ -35,9 +28,9 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C25 [C_Small] @ (101.6, 99.06)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C18 [C_Small] @ (135.89, 60.96)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C20 [C_Small] @ (135.89, 66.04)]
-        warning: lib_symbol_issues: The symbol library 'hlord2000-Device' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/hlord2000-kicad-libraries/symbols/hlord2000-Device.kicad_sym' [Symbol Y2 [Crystal_GND24_Small_EZRoute] @ (144.78, 63.5)]
+        warning: lib_symbol_issues: The symbol library 'hlord2000-Device' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-zcz7ju4_/project/lib/hlord2000-kicad-libraries/symbols/hlord2000-Device.kicad_sym' [Symbol Y2 [Crystal_GND24_Small_EZRoute] @ (144.78, 63.5)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C7 [C_Small] @ (175.26, 26.67)]
-        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf52' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf52.kicad_sym' [Symbol U5 [nRF52833-QDXX] @ (185.42, 93.98)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf52' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-zcz7ju4_/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf52.kicad_sym' [Symbol U5 [nRF52833-QDXX] @ (185.42, 93.98)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C10 [C_Small] @ (198.12, 26.67)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C15 [C_Small] @ (208.28, 26.67)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C23 [C_Small] @ (210.82, 76.2)]
@@ -48,7 +41,7 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C19 [C_Small] @ (238.76, 63.5)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C5 [C_Small] @ (101.6, 68.58)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C1 [C_Small] @ (140.97, 49.53)]
-        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-npm' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-npm.kicad_sym' [Symbol U2 [nPM1300-QEXX] @ (148.59, 99.06)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-npm' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-zcz7ju4_/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-npm.kicad_sym' [Symbol U2 [nPM1300-QEXX] @ (148.59, 99.06)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C2 [C_Small] @ (158.75, 49.53)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C3 [C_Small] @ (168.91, 49.53)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C4 [C_Small] @ (179.07, 49.53)]
@@ -58,35 +51,31 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Bridged' doesn't match copy in library 'Jumper' [Symbol JP1 [SolderJumper_2_Bridged] @ (224.79, 93.98)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C12 [C_Small] @ (57.15, 82.55)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C13 [C_Small] @ (83.82, 67.31)]
+        warning: lib_symbol_mismatch: Symbol 'LED_Small' doesn't match copy in library 'Device' [Symbol D1 [LED_Small] @ (93.98, 115.57)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C14 [C_Small] @ (96.52, 64.77)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C9 [C_Small] @ (132.08, 45.72)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'nordic-lib-kicad-nrf54-modules' [Symbol U1 [BM15x] @ (137.16, 90.17)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf54-modules' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-zcz7ju4_/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf54-modules.kicad_sym' [Symbol U1 [BM15x] @ (137.16, 90.17)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U5 Pin 13 [D+, Unspecified, Line] @ (160.02, 48.26); Symbol U3 Pin 4 [IO3, Passive, Line] @ (101.6, 41.91)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U5 Pin 12 [D-, Unspecified, Line] @ (160.02, 50.8); Symbol U3 Pin 2 [IO2, Passive, Line] @ (101.6, 39.37)]
         ... 31 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to ignore (KiCad default warning)
-  FAIL  DRC (§12): 240 errors, 46 warnings (drill_out_of_range x183, lib_footprint_mismatch x43, copper_edge_clearance x31, clearance x13, courtyards_overlap x11, annular_width x2, lib_footprint_issues x2, holes_co_located x1); 1 footprints without a courtyard
+        note: 32 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x27, power_pin_not_driven x5
+  FAIL  DRC (§12): 229 errors, 57 warnings (drill_out_of_range x183, lib_footprint_mismatch x43, copper_edge_clearance x31, clearance x13, courtyards_overlap x11, annular_width x2, lib_footprint_issues x2, holes_co_located x1); 1 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1914 mm) [Track [GND] on F.Cu, length 0.4425 mm @ (127.91, 105.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Track [Net-(U5-DECUSB)] on F.Cu, length 0.5325 mm @ (138.68, 105.16); Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1975 mm) [Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725); Blind via [GND] on F.Cu - B.Cu @ (127.46, 105.48)]
-        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 1 [unconnected-(U3-IO1-Pad1)] of U3 on F.Cu @ (127.8975, 104.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
-        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 3 [GND] of U3 on F.Cu @ (127.8975, 105.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
-        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925); Pad 11 [Net-(U5-DECUSB)] of U5 on F.Cu @ (138.68, 105.6925)]
-        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925)]
-        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 14 [unconnected-(U5-P0.15-Pad14)] of U5 on F.Cu @ (137.48, 105.6925)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad A5 [/Debugger/USB.CC1] of J3 on F.Cu @ (125.405, 103.73); Pad B7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 104.23)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad A6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 104.73); Pad A7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 105.23)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 105.73); Pad A7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 105.23)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 105.73); Pad A8 [unconnected-(J3-SBU1-PadA8)] of J3 on F.Cu @ (125.405, 106.23)]
         clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 104.23); Pad A6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 104.73)]
-        courtyards_overlap: Courtyards overlap [Footprint J4 @ (136.88, 98.458); Footprint J2 @ (143.23, 94.82)]
-        courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP11 @ (139.1, 102.38)]
-        courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP10 @ (136.7, 99.98)]
-        courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP11 @ (139.1, 102.38)]
-        courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP10 @ (136.7, 99.98)]
-        courtyards_overlap: Courtyards overlap [Footprint H2 @ (174.98, 96.09); Footprint J2 @ (143.23, 94.82)]
-        courtyards_overlap: Courtyards overlap [Footprint J3 @ (121.36, 104.98); Footprint J5 @ (127.99, 96.633)]
-        courtyards_overlap: Courtyards overlap [Footprint TP6 @ (122.3, 108.58); Footprint TP7 @ (122.4, 106.18)]
-        courtyards_overlap: Courtyards overlap [Footprint TP8 @ (122.4, 103.78); Footprint TP5 @ (122.3, 101.38)]
-        courtyards_overlap: Courtyards overlap [Footprint TP8 @ (122.4, 103.78); Footprint TP7 @ (122.4, 106.18)]
-        courtyards_overlap: Courtyards overlap [Footprint H1 @ (121.64, 96.09); Footprint J5 @ (127.99, 96.633)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 1 [unconnected-(U3-IO1-Pad1)] of U3 on F.Cu @ (127.8975, 104.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 3 [GND] of U3 on F.Cu @ (127.8975, 105.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925); Pad 11 [Net-(U5-DECUSB)] of U5 on F.Cu @ (138.68, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 14 [unconnected-(U5-P0.15-Pad14)] of U5 on F.Cu @ (137.48, 105.6925)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1275 mm) [Arc on Edge.Cuts @ (121.64, 96.09); Zone [GND] on F.Cu, B.Cu and 4 more, priority 1 @ (118.06, 91.53)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1800 mm) [Segment on Edge.Cuts @ (121.64, 93.55); Zone [+BATT] on In2.Cu, priority 2 @ (144.26, 95.23)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1275 mm) [Arc on Edge.Cuts @ (121.64, 96.09); Zone [VDD] on In2.Cu and In4.Cu, priority 1 @ (118.06, 91.53)]
@@ -101,8 +90,20 @@ FINDINGS
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 9 [/Connectors/DIG.D6] of J2 @ (163.55, 93.55)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 10 [/Connectors/DIG.D5] of J2 @ (166.09, 93.55)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 11 [/Connectors/I2C.SCL] of J2 @ (168.63, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 12 [/Connectors/I2C.SDA] of J2 @ (171.17, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 1 [/Debugger/SWD_TRG.~{RESET}] of J1 @ (133.07, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 2 [VDD] of J1 @ (135.61, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 3 [unconnected-(J1-Pin_3-Pad3)] of J1 @ (138.15, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 4 [GND] of J1 @ (140.69, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 5 [/Connectors/ANALOG.A0] of J1 @ (143.23, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 6 [/Connectors/ANALOG.A1] of J1 @ (145.77, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 7 [/Connectors/ANALOG.A2] of J1 @ (148.31, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 8 [/Connectors/ANALOG.A3] of J1 @ (150.85, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 9 [/Connectors/ANALOG.A4] of J1 @ (153.39, 116.41)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 10 [/Connectors/ANALOG.A5] of J1 @ (155.93, 116.41)]
         ... 246 more (--max-details)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): text_thickness
+        note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x11
         note: minimums: JLCPCB 1 oz copper, 8 layers; below the fab's in the project, raised in the copy: min_clearance 0.0762 -> 0.09 mm, min_copper_edge_clearance 0.127 -> 0.2 mm, min_track_width 0.0762 -> 0.09 mm
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("RoyalBlue54L-Feather") on a silkscreen layer
@@ -155,5 +156,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  3 blocking, 3 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "tinytapeout-demo",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/tiny-tapeout",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/tiny-tapeout",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -23,6 +23,21 @@
   "owned": {
     "drc": {},
     "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
+    },
     "pin_map": 0,
     "minimums": {
       "min_clearance": [
@@ -34,23 +49,19 @@
   },
   "copper_layers": 4,
   "footprints": 309,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/tiny-tapeout.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/tiny-tapeout.csv",
   "checks": [
     {
       "id": "erc",
       "title": "ERC",
       "pitfall": "\u00a712",
-      "status": "fail",
-      "summary": "6 errors, 52 warnings on 2 sheets",
+      "status": "warn",
+      "summary": "0 errors, 58 warnings on 2 sheets",
       "details": [
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J15 Pin S1 [SHIELD, Power input, Line] @ (124.46, 71.12)]",
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR021 Hidden pin 1 [VBUS, Power input, Line] @ (147.32, 34.29)]",
-        "pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG03 Pin 1 [pwr, Power output, Line] @ (234.95, 33.02); Symbol U2 Pin 2 [VO, Power output, Line] @ (224.79, 34.29)]",
-        "pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG04 Pin 1 [pwr, Power output, Line] @ (236.22, 69.85); Symbol U3 Pin 5 [VOUT, Power output, Line] @ (226.06, 71.12)]",
-        "pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]",
-        "pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]",
         "warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'boot_mode' @ (55.88, 182.88); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J15 Pin S1 [SHIELD, Power input, Line] @ (124.46, 71.12)]",
         "warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U7 [W25Q32JVSS] @ (127.0, 205.74)]",
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR021 Hidden pin 1 [VBUS, Power input, Line] @ (147.32, 34.29)]",
         "warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d-' @ (149.86, 50.8); Hierarchical Label 'USB_D-' @ (81.28, 63.5)]",
         "warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d+' @ (149.86, 53.34); Hierarchical Label 'USB_D+' @ (81.28, 60.96)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 107.95)]",
@@ -71,6 +82,8 @@
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 146.05)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 148.59)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 151.13)]",
+        "warning: pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG03 Pin 1 [pwr, Power output, Line] @ (234.95, 33.02); Symbol U2 Pin 2 [VO, Power output, Line] @ (224.79, 34.29)]",
+        "warning: pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG04 Pin 1 [pwr, Power output, Line] @ (236.22, 69.85); Symbol U3 Pin 5 [VOUT, Power output, Line] @ (226.06, 71.12)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (247.015, 158.75)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (249.555, 158.75)]",
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol J7 Pin 1 [Pin_1, Passive, Line] @ (249.555, 161.29)]",
@@ -99,24 +112,28 @@
         "warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (269.875, 110.49)]",
         "warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d+' @ (269.875, 151.13); Hierarchical Label 'USB_D+' @ (81.28, 60.96)]",
         "warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d-' @ (269.875, 153.67); Hierarchical Label 'USB_D-' @ (81.28, 63.5)]",
+        "warning: pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]",
+        "warning: pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]",
         "warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U5 [W25Q32JVSS] @ (50.8, 180.34)]",
-        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (35.56, 71.12); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
+        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (43.18, 30.48); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "6 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x2, pin_to_pin x2, pin_not_connected x2"
+      ]
     },
     {
       "id": "drc",
       "title": "DRC",
       "pitfall": "\u00a712",
       "status": "fail",
-      "summary": "21 errors, 723 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard",
+      "summary": "13 errors, 731 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard",
       "details": [
         "clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]",
         "clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]",
-        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
         "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]",
+        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
         "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
         "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]",
         "shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]",
@@ -125,19 +142,19 @@
         "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B5 [/CC2] of J15 on F.Cu @ (83.0, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]",
         "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]",
         "clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J2 @ (75.31, 131.5); Footprint J3 @ (77.845, 128.955)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J5 @ (100.705, 128.955)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J6 @ (123.565, 128.955)]",
-        "courtyards_overlap: Courtyards overlap [Footprint C42 @ (143.6, 63.3); Footprint TP1 @ (141.8, 63.5)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J3 @ (77.845, 128.955); Footprint J17 @ (98.2, 131.5)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J5 @ (100.705, 128.955); Footprint J17 @ (98.2, 131.5)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J4 @ (118.42, 86.6); Footprint TP1 @ (141.8, 63.5)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J1 @ (151.5, 131.5); Footprint J6 @ (123.565, 128.955)]",
         "footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (118.01, 121.957019)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (123.5, 122.71)]",
         "warning: track_dangling: Track has unconnected end [Track [uio1] on B.Cu, length 0.2100 mm @ (110.89, 82.69)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [ctrl_ena] on F.Cu - B.Cu @ (73.102453, 109.325)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J2 @ (75.31, 131.5); Footprint J3 @ (77.845, 128.955)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J5 @ (100.705, 128.955)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J6 @ (123.565, 128.955)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint C42 @ (143.6, 63.3); Footprint TP1 @ (141.8, 63.5)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J3 @ (77.845, 128.955); Footprint J17 @ (98.2, 131.5)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J5 @ (100.705, 128.955); Footprint J17 @ (98.2, 131.5)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J4 @ (118.42, 86.6); Footprint TP1 @ (141.8, 63.5)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J1 @ (151.5, 131.5); Footprint J6 @ (123.565, 128.955)]",
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (158.0, 134.5); Segment on F.Silkscreen @ (104.6, 133.005)]",
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 86.03)]",
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 88.58762)]",
@@ -1022,6 +1039,7 @@
       ],
       "verified": [],
       "notes": [
+        "8 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x8",
         "minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm"
       ]
     },
