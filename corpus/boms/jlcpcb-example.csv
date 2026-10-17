@@ -1,0 +1,12 @@
+Ref,Value,Package,MPN,LCSC,Basic/Extended,Stock,Datasheet
+"C1,C2",22uF,C_0805,CL21A226MAQNNNE,C45783,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21A226MAQNNNE_C45783.pdf
+"C3,C4",10uF,C_0603,CL10A106MA8NRNC,C96446,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A106MA8NRNC_C96446.pdf
+C5,10uF,C_0805,GRM21BR61H106KE43L,C440198,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2411041759_Murata-Electronics-GRM21BR61H106KE43L_C440198.pdf
+C6,47uF,C_0805,CL21A476MQYNNNE,C16780,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL21A476MQYNNNE_C16780.pdf
+C7,100nF,C_0402,CL05B104KO5NNNC,C1525,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL05B104KO5NNNC_C1525.pdf
+"CN1,CN2",DBT10-7.62-2P,CONN-TH_2P-P7.62_DBT10-7.62-2P,,C395930,,,https://lcsc.com/product-detail/Barrier-Terminal-Blocks_DIBO-DBT10-7-62-2P_C395930.html
+L1,MLI2012F-1R5KT,L0805,,C2885888,,,
+R1,10kΩ,R_0603,0603WAF1002T5E,C25804,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf
+"R2,R3",100kΩ,R_0603,0603WAF1003T5E,C25803,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1003T5E_C25803.pdf
+R4,523kΩ,R0805,,C2683107,,,
+U1,TPS63070RNMR,VQFN-HR-15_L3.0-W2.5-P0.50-BL_TPS63070RNMR,,C109322,,,https://lcsc.com/product-detail/DC-DC-Converters_TI_TPS63070RNMR_TPS63070RNMR_C109322.html

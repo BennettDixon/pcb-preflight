@@ -1,0 +1,290 @@
+SH-RPi  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 168 footprints  -  bom.csv: sh-rpi.csv
+RESULT: FAIL  -  6 blocking, 4 warnings, 3 not checked  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 168 of 168 footprints name a symbol in the schematic
+  Copper layers (§9): 4 copper layers
+  Board name and revision on silk (§10): name "SH-RPi", revision "v2.0.1"
+  Connector names on silk (§8): 9 connectors each have a name on silk
+  DNP parts (§12): 1 DNP parts flagged on both schematic and board (R306)
+  Bought parts placed on the board (§5 §12): 152 of 152 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 152 bought references, every one on exactly one BOM line
+        note: not bought: H601, H602, H603, H604, TP201, TP301, TP501, TP502, TP901 (prefix FID/TP/H/MH); R306 (DNP); P601, P602, P603, P604, P605, P606 (excluded from the BOM)
+  BOM value matches the schematic (§1): 152 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue description matches the BOM value (§1 §2): 42 lines agree on every figure their value states (F, H, Ω, V), 32 state no figure
+
+FINDINGS
+  WARN  ERC (§12): 0 errors, 21 warnings on 10 sheets
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q301 [MMBT5551L] @ (71.12, 71.12)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q302 [MMBT5551L] @ (83.82, 63.5)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C304 [C_Small] @ (120.65, 147.32)]
+        warning: lib_symbol_mismatch: Symbol 'D_Small' doesn't match copy in library 'Device' [Symbol D302 [D_Small] @ (123.19, 110.49)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C306 [C_Small] @ (124.46, 29.21)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D305 [D] @ (180.34, 64.77)]
+        warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Bridged' doesn't match copy in library 'Jumper' [Symbol JP801 [SolderJumper_2_Bridged] @ (92.71, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C802 [C_Small] @ (100.33, 91.44)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D801 [D] @ (114.3, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D802 [D] @ (114.3, 80.01)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1001 [MMBT5551L] @ (87.63, 54.61)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1002 [MMBT5551L] @ (87.63, 92.71)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1003 [MMBT5551L] @ (87.63, 130.81)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C202 [C_Small] @ (130.81, 154.94)]
+        warning: lib_symbol_mismatch: Symbol 'D_Small' doesn't match copy in library 'Device' [Symbol D201 [D_Small] @ (133.35, 118.11)]
+        warning: lib_symbol_mismatch: Symbol 'Raspberry_Pi_2_3' doesn't match copy in library 'Connector' [Symbol J501 [Raspberry_Pi_2_3] @ (59.69, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Open' doesn't match copy in library 'Jumper' [Symbol JP501 [SolderJumper_2_Open] @ (99.06, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D506 [LED] @ (219.71, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D507 [LED] @ (234.95, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D508 [LED] @ (250.19, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D509 [LED] @ (265.43, 60.96)]
+  FAIL  DRC (§12): 210 errors, 148 warnings (drill_out_of_range x199, lib_footprint_mismatch x129, silk_over_copper x12, hole_to_hole x8, silk_overlap x5, copper_edge_clearance x2, silk_edge_clearance x2, padstack x1); 6 footprints without a courtyard
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0505 mm) [Segment on Edge.Cuts @ (59.5, 36.0); Zone [+5V] on F.Cu, priority 0 @ (79.3, 43.6)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0506 mm) [Arc on Edge.Cuts @ (118.5, 89.5); Zone [GND] on In1.Cu and In2.Cu, priority 0 @ (122.1, 93.0)]
+        padstack: Padstack is questionable (negative solder paste margin is larger than pad; no solder paste mask will be generated) [Pad 3 [GND] of J801 on B.Cu @ (84.3, 85.6)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 4 [+5V] of J501 @ (67.41, 38.73); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 1 [unconnected-(J501-3V3-Pad1)_1] of J501 @ (64.87, 41.27); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 2 [+5V] of J501 @ (64.87, 38.73); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 3 [/SDA] of J501 @ (67.41, 41.27); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 38 [unconnected-(J501-GPIO20/MOSI1-Pad38)_1] of J501 @ (110.59, 38.73)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 40 [unconnected-(J501-GPIO21/SCLK1-Pad40)_2] of J501 @ (113.13, 38.73)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 37 [unconnected-(J501-GPIO26-Pad37)_1] of J501 @ (110.59, 41.27); NPTH pad of J501 @ (111.86, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 39 [GND] of J501 @ (113.13, 41.27)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 74.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 75.225)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 76.425)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 74.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 75.225)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 76.425)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 55.625)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 56.825)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 58.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 55.625)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 56.825)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 58.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (93.6, 69.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (84.0, 49.1765)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (110.771052, 44.25)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (89.2, 68.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (104.6, 50.9)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (71.07, 46.9)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (97.8, 56.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (75.0, 79.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (76.8, 54.6)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (105.2, 69.6)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (116.278946, 44.25)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (89.3, 54.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (87.8, 54.2)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (119.2, 50.0)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (58.55, 75.0)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (58.5, 57.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (80.7, 56.6)]
+        ... 318 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_copper_edge_clearance 0.05 -> 0.2 mm
+  FAIL  Schematic / PCB parity (§5): 33 mismatches across 168 footprints
+        net_conflict: Pad net (/Buck converter stage 2/COMP_) doesn't match net given by schematic (/Buck converter 5V/COMP_) [Pad 2 [/Buck converter stage 2/COMP_] of C202 on F.Cu @ (117.72, 61.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of C203 on F.Cu @ (111.95, 51.2)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 2 [/Buck converter stage 2/BOOT_] of C203 on F.Cu @ (110.4, 51.2)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 1 [/Buck converter stage 2/BOOT_] of D201 on F.Cu @ (108.9, 52.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of D202 on F.Cu @ (118.25, 52.25)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of L201 on F.Cu @ (117.725, 48.06)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/RT) doesn't match net given by schematic (/Buck converter 5V/RT) [Pad 1 [/Buck converter stage 2/RT] of R201 on F.Cu @ (111.99, 60.15)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 1 [/Buck converter stage 2/BOOT_] of R202 on F.Cu @ (110.35, 52.77)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/BOOT) doesn't match net given by schematic (/Buck converter 5V/BOOT) [Pad 2 [/Buck converter stage 2/BOOT] of R202 on F.Cu @ (112.0, 52.77)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/COMP_) doesn't match net given by schematic (/Buck converter 5V/COMP_) [Pad 1 [/Buck converter stage 2/COMP_] of R203 on F.Cu @ (117.69, 60.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/COMP) doesn't match net given by schematic (/Buck converter 5V/COMP) [Pad 2 [/Buck converter stage 2/COMP] of R203 on F.Cu @ (118.71, 60.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 2 [/Buck converter stage 2/FB] of R204 on F.Cu @ (114.56, 60.03)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 1 [/Buck converter stage 2/FB] of R205 on F.Cu @ (115.6, 60.04)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/FBB_) doesn't match net given by schematic (/Buck converter 5V/FBB_) [Pad 2 [/Buck converter stage 2/FBB_] of R205 on F.Cu @ (115.6, 61.06)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/FBB_) doesn't match net given by schematic (/Buck converter 5V/FBB_) [Pad 1 [/Buck converter stage 2/FBB_] of R206 on F.Cu @ (116.65, 60.04)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of TP201 on B.Cu @ (118.5, 52.8)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/BOOT) doesn't match net given by schematic (/Buck converter 5V/BOOT) [Pad 1 [/Buck converter stage 2/BOOT] of U201 on F.Cu @ (112.475, 54.92)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/RT) doesn't match net given by schematic (/Buck converter 5V/RT) [Pad 4 [/Buck converter stage 2/RT] of U201 on F.Cu @ (112.475, 58.73)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 5 [/Buck converter stage 2/FB] of U201 on F.Cu @ (117.425, 58.73)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/COMP) doesn't match net given by schematic (/Buck converter 5V/COMP) [Pad 6 [/Buck converter stage 2/COMP] of U201 on F.Cu @ (117.425, 57.46)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 8 [/Buck converter stage 2/SW] of U201 on F.Cu @ (117.425, 54.92)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L1_) doesn't match net given by schematic (/I{slash}O/L1_) [Pad 2 [/I/O/L1_] of D506 on F.Cu @ (58.5, 55.2125)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L2_) doesn't match net given by schematic (/I{slash}O/L2_) [Pad 2 [/I/O/L2_] of D507 on F.Cu @ (58.5, 60.7125)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L3_) doesn't match net given by schematic (/I{slash}O/L3_) [Pad 2 [/I/O/L3_] of D508 on F.Cu @ (58.5, 66.2125)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L4_) doesn't match net given by schematic (/I{slash}O/L4_) [Pad 2 [/I/O/L4_] of D509 on F.Cu @ (58.5, 71.7125)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [PTH pad 7 [/I/O/GPIO4] of J501 @ (72.49, 41.27)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 7 [/I/O/GPIO4] of J501 on B.Cu @ (72.49, 41.82)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 7 [/I/O/GPIO4] of J501 on B.Cu @ (72.49, 42.985)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 1 [/I/O/GPIO4] of JP501 on B.Cu @ (73.345, 46.2)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L1_) doesn't match net given by schematic (/I{slash}O/L1_) [Pad 2 [/I/O/L1_] of R501 on F.Cu @ (60.19, 51.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L2_) doesn't match net given by schematic (/I{slash}O/L2_) [Pad 2 [/I/O/L2_] of R502 on F.Cu @ (60.19, 52.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L3_) doesn't match net given by schematic (/I{slash}O/L3_) [Pad 2 [/I/O/L3_] of R503 on F.Cu @ (60.18, 53.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: Pad net (/I/O/L4_) doesn't match net given by schematic (/I{slash}O/L4_) [Pad 2 [/I/O/L4_] of R504 on F.Cu @ (60.19, 54.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  FAIL  LCSC code on every BOM line (§1 §12): 3 of 77 lines have no LCSC code (a value and a package is not a part)
+        row 19 C1004,C1005,C1006: CAS SCAP 3.0V20F (CP_Radial_D12.6mm_H26.0mm_P5.30mm_Horizontal)
+        row 38 JP501: Open (SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm)
+        row 39 JP801: Bridged (SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm)
+  WARN  BOM lines complete (§1 §2): 77 of 77 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C201: 4.7uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C202: 3.3nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C203,C308: 100nF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C204,C205: 47uF 6.3V (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C301,C302,C702,C703,C704,C705: 10uF 50V (C_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C303: 1uF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 C304: 470pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 C305,C306,C311,C312,C403,C406,C803,C1001,C1002,C1003: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 C307: 220nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 C309,C310: 47uF 16V (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 C401,C402: 33pF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 C404,C405: 33pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 14 C701: 100nF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 C801: 1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 C802: 22pF C0G (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 C901: 1uF 16V (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 C902: 10uF 6.3V (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 C1004,C1005,C1006: CAS SCAP 3.0V20F (CP_Radial_D12.6mm_H26.0mm_P5.30mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 D201,D302,D305: 1N4148WT (D_SOD-523): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 D202: MSK340A (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 D301,D304: BZT52C3V3S (D_SOD-323): missing MPN, Basic/Extended, Stock, Datasheet
+        row 23 D303: SS56FL (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 24 D401,D402,D501,D503,D505: ESD5451N (D_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 25 D502,D504,D901,D1001,D1002,D1003: 1N5819WS (D_SOD-323_HandSoldering): missing MPN, Basic/Extended, Stock, Datasheet
+        row 26 D506,D507,D508,D509: WHITE LED (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 D701: 5.0SMDJ33CA (D_SMC): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 D702: 10S45SP (SS5U100_TO-277): missing MPN, Basic/Extended, Stock, Datasheet
+        row 29 D801,D802: 1N4148WS (D_SOD-323): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 F701: 12T.40000063AG12S1B02 (Fuse_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 FB401,FB402: GZ2012D601TF (L_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 J101,J502: Conn_01x02 (PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 J301: Conn_02x02 (PinHeader_2x02_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 34 J401: Conn_02x02_Top_Bottom (PinHeader_2x02_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 35 J402: Conn_02x06_Odd_Even (PinHeader_2x06_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 36 J501: Raspberry_Pi_2_3 (PassthroughPinSocket_FH-00339_2x40_P2.54mm_Vertical_Bottom): missing MPN, Basic/Extended, Stock
+        row 37 J801: Conn_01x03 (BatteryHolder_Myoung_MY-1220-03): missing MPN, Basic/Extended, Stock, Datasheet
+        row 38 JP501: Open (SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 39 JP801: Bridged (SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 40 L201,L702: FXL0420-1R0-M (L_MWSA0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 41 L301: SLO0530H3R3MTT (L_MWSA0503S): missing MPN, Basic/Extended, Stock, Datasheet
+        ... 37 more (--max-details)
+  FAIL  Catalogue and stock (§1 §2 §13): 70 codes found, 2 blocking, 1 low-stock/mismatch, 74 not checked; 39 Extended part types (one loading fee each)
+        C306602 (R304, R1004, R1007, R1010, R1014, R1016, R1018): out of stock at JLCPCB (RC-02W3003FT)
+        C434027 (D202): out of stock at JLCPCB (MSK340A)
+        C362273 (U303, U1001, U1002, U1003): stock 9 is under 10x the 4 needed (LMV321-TR)
+        ok: C1017 (FB401, FB402): GZ2012D601TF, 0805, Basic, stock 677,062
+        ok: C105362 (R301): FMF06FTHR010-LH, 1206, Extended, stock 145,329
+        ok: C11702 (R206, R408, R501, R502, R503, R504): 0402WGF1001TCE, 0402, Basic, stock 13,763,464
+        ok: C122865 (D303): SS56FL, SMAF, Extended, stock 4,468
+        ok: C13585 (C301, C302, C702, C703, C704, C705): CL31A106KBHNNNE, 1206, Basic, stock 2,290,406
+        ok: C140479 (F701): 12T.40000063AG12S1B02, 1206, Extended, stock 2,722
+        ok: C14663 (C203, C308, C701): CC0603KRX7R9BB104, 0603, Basic, stock 31,937,179
+        ok: C1525 (C305, C306, C311, C312, C403, C406, C803, C1001, C1002, C1003): CL05B104KO5NNNC, 0402, Basic, stock 24,783,027
+        ok: C1537 (C304): 0402B471K500NT, 0402, Extended, stock 566,500
+        ok: C15525 (C902): CL05A106MQ5NUNC, 0402, Basic, stock 10,721,009
+        ok: C1562 (C404, C405): 0402CG330J500NT, 0402, Basic, stock 1,279,415
+        ok: C15849 (C303): CL10A105KB8NNNC, 0603, Basic, stock 9,279,356
+        ok: C1653 (C802): CL10C220JB8NNNC, 0603, Basic, stock 2,163,064
+        ok: C1663 (C401, C402): CL10C330JB8NNNC, 0603, Basic, stock 1,118,085
+        ok: C167203 (L201, L702): FXL0420-1R0-M, SMD,4.4x4.2mm, Extended, stock 96,453
+        ok: C16772 (C307): CL05B224KO5NNNC, 0402, Basic, stock 1,480,266
+        ok: C173439 (D301, D304): BZT52C3V3S, SOD-323, Extended, stock 125,935
+        ok: C191023 (D502, D504, D901, D1001, D1002, D1003): 1N5819WS, SOD-323, Basic, stock 4,269,524
+        ok: C19666 (C201): CL10A475KO8NNNC, 0603, Basic, stock 3,540,252
+        ok: C2128 (D801, D802): 1N4148WS, SOD-323, Basic, stock 2,701,933
+        ok: C2145 (Q301, Q302): MMBT5551(RANGE:200-300), SOT-23, Basic, stock 1,710,022
+        ok: C2150 (Q1001, Q1002, Q1003): SS8050(RANGE:200-350), SOT-23, Basic, stock 2,144,658
+        ok: C22936 (R701): 0603WAF100KT5E, 0603, Basic, stock 146,056
+        ok: C25076 (R308, R405, R406): 0402WGF1000TCE, 0402, Basic, stock 8,049,858
+        ok: C25123 (R305): 0402WGF5100TCE, 0402, Basic, stock 1,630,507
+        ok: C25197 (R202, R309): 0603WAF510KT5E, 0603, Basic, stock 242,220
+        ok: C25741 (R302, R410): 0402WGF1003TCE, 0402, Basic, stock 9,261,463
+        ok: C25744 (R303, R311, R407, R409): 0402WGF1002TCE, 0402, Basic, stock 20,315,414
+        ok: C25750 (R1006, R1009, R1012): 0402WGF1203TCE, 0402, Extended, stock 532,630
+        ok: C25752 (R205): 0402WGF1202TCE, 0402, Basic, stock 952,883
+        ok: C25755 (R402, R1005, R1008, R1011): 0402WGF1503TCE, 0402, Extended, stock 189,275
+        ok: C25765 (R403): 0402WGF2002TCE, 0402, Basic, stock 2,440,064
+        ok: C25771 (R203): 0402WGF2702TCE, 0402, Extended, stock 813,334
+        ok: C25778 (R1013, R1015, R1017): 0402WGF3303TCE, 0402, Extended, stock 127,397
+        ok: C25779 (R1001, R1002, R1003): 0402WGF3302TCE, 0402, Basic, stock 1,054,019
+        ok: C25790 (R312): 0402WGF4703TCE, 0402, Extended, stock 175,274
+        ok: C25792 (R313): 0402WGF4702TCE, 0402, Basic, stock 4,981,558
+        ... 33 more (--max-details)
+  FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 61 agree with their footprint, 8 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        C122865 SS56FL (D303; bom.csv row 23): SMAF on D_SMA: footprint is SMA, part is SMAF
+        C2913642 5.0SMDJ33CA (D701; bom.csv row 27): SMC(DO-214AB) on D_SMC: pads match: D_SMC and D_SMC in the KiCad library (2 pads)
+        C2685112 FH-00339 (J501; bom.csv row 36): SMD,P=2.54mm on PassthroughPinSocket_FH-00339_2x40_P2.54mm_Vertical_Bottom: the footprint is drawn for this part (FH-00339 in its name, MPN FH-00339)
+        C964818 MY-1220-03 (J801; bom.csv row 37): - on BatteryHolder_Myoung_MY-1220-03: the footprint is drawn for this part (MY-1220-03 in its name, MPN MY-1220-03)
+        C3024482 RT6365GSP (U201, U301; bom.csv row 72): SOP-8-EP on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.3mm_ThermalVias: pads match: SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.3mm_ThermalVias and SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.3mm_ThermalVias in the KiCad library (16 pads)
+        C7440 PCF8563T/5,518 (U801; bom.csv row 76): SO-8 on SOIC-8_3.9x4.9mm_P1.27mm: pads match: SOIC-8_3.9x4.9mm_P1.27mm and SOIC-8_3.9x4.9mm_P1.27mm in the KiCad library (8 pads)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  FAIL  Catalogue category matches the reference prefix (§1 §2): 73 lines filed under the category their reference prefix means, 1 under another
+        C2915648 PCAQ7060MW-102 (L701; bom.csv row 42): L is a inductor/ferrite reference but the catalogue files this part under "Filters / Common Mode Filters"
+
+NOT CHECKED
+  DRC (§12): 6 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint P601 @ (60.5, 47.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P604 @ (116.07, 47.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P606 @ (70.67, 55.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P602 @ (102.07, 67.8)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P603 @ (99.8, 85.1)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P605 @ (60.5, 55.6)]: no courtyard, so courtyards_overlap could not see this footprint
+  Catalogue and stock (§1 §2 §13): 74 not compared
+        C1017 (FB401, FB402): no MPN in bom.csv to compare with the catalogue's GZ2012D601TF; the code was not checked against a part
+        C105362 (R301): no MPN in bom.csv to compare with the catalogue's FMF06FTHR010-LH; the code was not checked against a part
+        C11702 (R206, R408, R501, R502, R503, R504): no MPN in bom.csv to compare with the catalogue's 0402WGF1001TCE; the code was not checked against a part
+        C122865 (D303): no MPN in bom.csv to compare with the catalogue's SS56FL; the code was not checked against a part
+        C13585 (C301, C302, C702, C703, C704, C705): no MPN in bom.csv to compare with the catalogue's CL31A106KBHNNNE; the code was not checked against a part
+        C140479 (F701): no MPN in bom.csv to compare with the catalogue's 12T.40000063AG12S1B02; the code was not checked against a part
+        C14663 (C203, C308, C701): no MPN in bom.csv to compare with the catalogue's CC0603KRX7R9BB104; the code was not checked against a part
+        C14663 (C203, C308, C701): no MPN in bom.csv to compare with the catalogue's CC0603KRX7R9BB104; the code was not checked against a part
+        C1525 (C305, C306, C311, C312, C403, C406, C803, C1001, C1002, C1003): no MPN in bom.csv to compare with the catalogue's CL05B104KO5NNNC; the code was not checked against a part
+        C1537 (C304): no MPN in bom.csv to compare with the catalogue's 0402B471K500NT; the code was not checked against a part
+        C15525 (C902): no MPN in bom.csv to compare with the catalogue's CL05A106MQ5NUNC; the code was not checked against a part
+        C1562 (C404, C405): no MPN in bom.csv to compare with the catalogue's 0402CG330J500NT; the code was not checked against a part
+        C15849 (C303): no MPN in bom.csv to compare with the catalogue's CL10A105KB8NNNC; the code was not checked against a part
+        C1653 (C802): no MPN in bom.csv to compare with the catalogue's CL10C220JB8NNNC; the code was not checked against a part
+        C1663 (C401, C402): no MPN in bom.csv to compare with the catalogue's CL10C330JB8NNNC; the code was not checked against a part
+        C167203 (L201, L702): no MPN in bom.csv to compare with the catalogue's FXL0420-1R0-M; the code was not checked against a part
+        C16772 (C307): no MPN in bom.csv to compare with the catalogue's CL05B224KO5NNNC; the code was not checked against a part
+        C173439 (D301, D304): no MPN in bom.csv to compare with the catalogue's BZT52C3V3S; the code was not checked against a part
+        C191023 (D502, D504, D901, D1001, D1002, D1003): no MPN in bom.csv to compare with the catalogue's 1N5819WS; the code was not checked against a part
+        C19666 (C201): no MPN in bom.csv to compare with the catalogue's CL10A475KO8NNNC; the code was not checked against a part
+        C2128 (D801, D802): no MPN in bom.csv to compare with the catalogue's 1N4148WS; the code was not checked against a part
+        C2145 (Q301, Q302): no MPN in bom.csv to compare with the catalogue's MMBT5551(RANGE:200-300); the code was not checked against a part
+        C2150 (Q1001, Q1002, Q1003): no MPN in bom.csv to compare with the catalogue's SS8050(RANGE:200-350); the code was not checked against a part
+        C22936 (R701): no MPN in bom.csv to compare with the catalogue's 0603WAF100KT5E; the code was not checked against a part
+        C25076 (R308, R405, R406): no MPN in bom.csv to compare with the catalogue's 0402WGF1000TCE; the code was not checked against a part
+        C25123 (R305): no MPN in bom.csv to compare with the catalogue's 0402WGF5100TCE; the code was not checked against a part
+        C25197 (R202, R309): no MPN in bom.csv to compare with the catalogue's 0603WAF510KT5E; the code was not checked against a part
+        C25741 (R302, R410): no MPN in bom.csv to compare with the catalogue's 0402WGF1003TCE; the code was not checked against a part
+        C25744 (R303, R311, R407, R409): no MPN in bom.csv to compare with the catalogue's 0402WGF1002TCE; the code was not checked against a part
+        C25750 (R1006, R1009, R1012): no MPN in bom.csv to compare with the catalogue's 0402WGF1203TCE; the code was not checked against a part
+        C25752 (R205): no MPN in bom.csv to compare with the catalogue's 0402WGF1202TCE; the code was not checked against a part
+        C25755 (R402, R1005, R1008, R1011): no MPN in bom.csv to compare with the catalogue's 0402WGF1503TCE; the code was not checked against a part
+        C25765 (R403): no MPN in bom.csv to compare with the catalogue's 0402WGF2002TCE; the code was not checked against a part
+        C25771 (R203): no MPN in bom.csv to compare with the catalogue's 0402WGF2702TCE; the code was not checked against a part
+        C25778 (R1013, R1015, R1017): no MPN in bom.csv to compare with the catalogue's 0402WGF3303TCE; the code was not checked against a part
+        C25779 (R1001, R1002, R1003): no MPN in bom.csv to compare with the catalogue's 0402WGF3302TCE; the code was not checked against a part
+        C25790 (R312): no MPN in bom.csv to compare with the catalogue's 0402WGF4703TCE; the code was not checked against a part
+        C25792 (R313): no MPN in bom.csv to compare with the catalogue's 0402WGF4702TCE; the code was not checked against a part
+        C25794 (R201): no MPN in bom.csv to compare with the catalogue's 0402WGF5102TCE; the code was not checked against a part
+        C25796 (R401): no MPN in bom.csv to compare with the catalogue's 0402WGF5602TCE; the code was not checked against a part
+        ... 34 more (--max-details)
+  Catalogue package fits the footprint (§1): 8 not compared
+        C8387 WJ15EDGRC-3.81-02P-14-00A (J101, J502; bom.csv row 32): Push-Pull,P=3.81mm on PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C492419 PZ254V-12-4P (J301, J401; bom.csv row 33, 34): Plugin,P=2.54mm on PinHeader_2x02_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C5383107 2541WV-2x06P (J402; bom.csv row 35): Plugin,P=2.54mm on PinHeader_2x06_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C167203 FXL0420-1R0-M (L201, L702; bom.csv row 40): SMD,4.4x4.2mm on L_MWSA0402: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C325963 SLO0530H3R3MTT (L301; bom.csv row 41): SMD,5.4x5.2mm on L_MWSA0503S: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2915648 PCAQ7060MW-102 (L701; bom.csv row 42): SMD-4P,7x6mm on L_CMF7060F: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C507118 ATTINY1616-MNR (U401; bom.csv row 75): QFN-20-EP(3x3) on VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm: the pads match VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm, but "QFN-20-EP(3x3)" names more than one land pattern in the KiCad library (pitch 0.4 and 0.45 and 0.5 mm: QFN-20-1EP_3x3mm_P0.45mm_EP1.6x1.6mm, QFN-20-1EP_3x3mm_P0.45mm_EP1.6x1.6mm_ThermalVias, QFN-20-1EP_3x3mm_P0.4mm_EP1.65x1.65mm, QFN-20-1EP_3x3mm_P0.4mm_EP1.65x1.65mm_ThermalVias, +17 more); the string does not say which; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C55208 X1A0000610002 (Y801; bom.csv row 78): SMD2012-2P on Crystal_SMD_2012-2Pin_2.0x1.2mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 60 polarized or asymmetric parts (D701, L301, FB401, F701, L702, D305, D303, D505, Q302, FB402, U401, U1002, +48 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  6 blocking, 4 warnings, 3 not checked  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again

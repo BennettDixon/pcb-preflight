@@ -1,0 +1,7 @@
+Ref,Value,Package,MPN,LCSC,Basic/Extended,Stock,Datasheet
+C1,10uF,C_0402_1005Metric,,C15525,,,
+C2,2.2uF,C_0603_1608Metric,,C1607,,,
+R1,3.6kΩ ±1%,R_0603_1608Metric,,C22980,,,
+RV1,R_Potentiometer,Potentiometer_Bourns_TC33X_Vertical,,C720648,,,
+U1,CN5711,SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias,CN5711,C35634,,,
+"USB1,USB2",TYPE-C-31-M-12,HRO_TYPE-C-31-M-12,TYPE-C-31-M-12,C165948,,,

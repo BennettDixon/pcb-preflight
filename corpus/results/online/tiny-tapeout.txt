@@ -1,0 +1,244 @@
+tinytapeout-demo  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 309 footprints  -  bom.csv: tiny-tapeout.csv
+RESULT: FAIL  -  5 blocking, 3 warnings, 1 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Board footprints belong to this schematic (§5): 150 of 309 footprints name a symbol in the schematic, 159 board-only
+        note: 159 board-only footprints (no path, reference not in the schematic): STITCH1, STITCH1, STITCH1, STITCH1, STITCH1, STITCH1, STITCH8, STITCH1, TTLOGO, STITCH1, STITCH1, STITCH1, STITCH11, STITCH1, STITCH1, STITCH1, STITCH1, STITCH1, STITCH1, STITCH1, +139 more
+  Fiducials (§4): 3 on the front (FID3, FID2, FID1)
+  Placement origin (§4): aux axis origin at 56.5, 134.5 mm
+  Copper layers (§9): 4 copper layers
+  Connector names on silk (§8): 19 connectors each have a name on silk
+  DNP parts (§12): 11 DNP parts flagged on both schematic and board (C3, J1, J10, J11, J17, J2, J8, J9, R16, R42, U7)
+  Bought parts placed on the board (§5 §12): 122 of 122 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 122 bought references, every one on exactly one BOM line
+        note: not bought: FID1, FID2, FID3, TP1 (prefix FID/TP/H/MH); C3, J1, J10, J11, J17, J2, J8, J9, R16, R42, U7 (DNP); G***, JP1, JP2, JP3, JP4, JP5, JP6, JP7, JP8, MT1, MT2, MT3, +24 more (excluded from the BOM)
+  BOM value matches the schematic (§1): 122 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 4 agree with their footprint
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  Catalogue category matches the reference prefix (§1 §2): 4 lines filed under the category their reference prefix means
+  Catalogue description matches the BOM value (§1 §2): 2 lines agree on every figure their value states (F, H, Ω, V), 2 state no figure
+
+FINDINGS
+  FAIL  ERC (§12): 6 errors, 52 warnings on 2 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J15 Pin S1 [SHIELD, Power input, Line] @ (124.46, 71.12)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR021 Hidden pin 1 [VBUS, Power input, Line] @ (147.32, 34.29)]
+        pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG03 Pin 1 [pwr, Power output, Line] @ (234.95, 33.02); Symbol U2 Pin 2 [VO, Power output, Line] @ (224.79, 34.29)]
+        pin_to_pin: Pins of type Power output and Power output are connected [Symbol #FLG04 Pin 1 [pwr, Power output, Line] @ (236.22, 69.85); Symbol U3 Pin 5 [VOUT, Power output, Line] @ (226.06, 71.12)]
+        pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]
+        pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]
+        warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'boot_mode' @ (55.88, 182.88); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]
+        warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U7 [W25Q32JVSS] @ (127.0, 205.74)]
+        warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d-' @ (149.86, 50.8); Hierarchical Label 'USB_D-' @ (81.28, 63.5)]
+        warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'usb_d+' @ (149.86, 53.34); Hierarchical Label 'USB_D+' @ (81.28, 60.96)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 107.95)]
+        warning: similar_labels: Labels are similar (lower/upper case difference only) [Global Label 'boot_mode' @ (226.695, 107.95); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 113.03)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 115.57)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 118.11)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 120.65)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 123.19)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 125.73)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 128.27)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 130.81)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 133.35)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 135.89)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 138.43)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 140.97)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 143.51)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 146.05)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 148.59)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (226.695, 151.13)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (247.015, 158.75)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (249.555, 158.75)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol J7 Pin 1 [Pin_1, Passive, Line] @ (249.555, 161.29)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 105.41)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 107.95)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 113.03)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 115.57)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 118.11)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 120.65)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 123.19)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 125.73)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 128.27)]
+        ... 18 more (--max-details)
+  FAIL  DRC (§12): 21 errors, 723 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard
+        clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]
+        clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]
+        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]
+        clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]
+        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
+        clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]
+        shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]
+        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]
+        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B1_A12 [GND] of J15 on F.Cu @ (81.55, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]
+        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B5 [/CC2] of J15 on F.Cu @ (83.0, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]
+        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]
+        clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]
+        courtyards_overlap: Courtyards overlap [Footprint J2 @ (75.31, 131.5); Footprint J3 @ (77.845, 128.955)]
+        courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J5 @ (100.705, 128.955)]
+        courtyards_overlap: Courtyards overlap [Footprint J8 @ (121.045, 131.5); Footprint J6 @ (123.565, 128.955)]
+        courtyards_overlap: Courtyards overlap [Footprint C42 @ (143.6, 63.3); Footprint TP1 @ (141.8, 63.5)]
+        courtyards_overlap: Courtyards overlap [Footprint J3 @ (77.845, 128.955); Footprint J17 @ (98.2, 131.5)]
+        courtyards_overlap: Courtyards overlap [Footprint J5 @ (100.705, 128.955); Footprint J17 @ (98.2, 131.5)]
+        courtyards_overlap: Courtyards overlap [Footprint J4 @ (118.42, 86.6); Footprint TP1 @ (141.8, 63.5)]
+        courtyards_overlap: Courtyards overlap [Footprint J1 @ (151.5, 131.5); Footprint J6 @ (123.565, 128.955)]
+        footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (118.01, 121.957019)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (123.5, 122.71)]
+        warning: track_dangling: Track has unconnected end [Track [uio1] on B.Cu, length 0.2100 mm @ (110.89, 82.69)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [ctrl_ena] on F.Cu - B.Cu @ (73.102453, 109.325)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (158.0, 134.5); Segment on F.Silkscreen @ (104.6, 133.005)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 86.03)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 88.58762)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 88.705715)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 88.82381)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 88.941905)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.06)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.178095)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.29619)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.414285)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.53238)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.650475)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.76857)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.886665)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.00476)]
+        ... 704 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
+  FAIL  Unrouted connections (§11 §12): 1 connections still to route
+        unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 1 field/filter notes across 309 footprints
+        warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '
+USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle
+', Schematic: 'USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle') [Footprint J15 @ (84.75, 55.5)]
+  WARN  Board name and revision on silk (§10): no board name ("tinytapeout-demo") on a silkscreen layer
+        silk texts: 6, SPI MSTR, Using TT4+ New BKOUT, ON, ot6, m33, BOOT, bi1, in6, CLOCK, CLK, cINC
+  FAIL  LCSC code on every BOM line (§1 §12): 28 of 32 lines have no LCSC code (a value and a package is not a part)
+        row 2 C1,C5,C9,C11,C15,C17,C25,C32,C37,C42,C57,C59,C61: 1uF (C_0603_1608Metric)
+        row 3 C2,C4,C8,C12,C13,C14,C18,C19,C20,C22,C23,C24,C26,C27,C28,C31,C33,C34,C35,C36,C38,C39,C40,C41,C43,C56,C58,C60: 100nF (C_0402_1005Metric)
+        row 6 C16,C21: 10uF (C_0603_1608Metric)
+        row 7 C29,C30: 6pF (C_0402_1005Metric)
+        row 10 J3,J5,J6,J12,J13,J14: 613012243121 (PinSocket_2x06_P2.54mm_PMODHost1A)
+        row 11 J4: TT04_BREAKOUT_REVB (TT04_BREAKOUT_SMB)
+        row 12 J7: Conn_01x02 (PinHeader_1x02_P2.54mm_Vertical_SMD_Pin1Right)
+        row 13 J15: USB4500-03-0-A_REVA (GCT_USB4500-03-0-A_REVA)
+        row 14 J16,J18: 2x20_P2.54mm_Pinheader (TT_BREAKOUT_PINHEADER_PLACEHOLDER_WITHPAD)
+        row 15 R1,R2,R3,R4,R5,R6,R10,R11,R13,R14,R37: 1k (R_0402_1005Metric)
+        row 16 R7: 47k (R_0603_1608Metric)
+        row 17 R8,R9,R12,R30,R31,R32,R33,R34,R35,R36,R38,R39,R40,R43,R44,R45,R46,R47,R48: 10k (R_0402_1005Metric)
+        row 18 R15: 1.2K (R_0402_1005Metric)
+        row 19 R17,R19: 510 (R_0402_1005Metric)
+        row 20 R18: 0R (R_0402_1005Metric)
+        row 21 R20,R21: 5.1k (R_0402_1005Metric)
+        row 22 R22,R23,R24,R25,R26,R27,R28,R29: 68R (R_0402_1005Metric)
+        row 23 R41: 47R (R_0402_1005Metric)
+        row 24 SW1,SW2,SW3: 434121025816 (434121025816)
+        row 25 SW4: 418121270808 (418121270808)
+        row 26 U1: 157112V12700 (WL_S7DS-157112V12700)
+        row 27 U2: TLV1117LV33 (SOT-223-3_TabPin2)
+        row 28 U3: AP2112K-1.8 (SOT-23-5)
+        row 29 U4: 74CBTLV3257 (TSSOP-16_4.4x5mm_P0.65mm)
+        row 30 U5: W25Q32JVSS (SOIC-8_5.23x5.23mm_P1.27mm)
+        row 31 U6: RP2040 (QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm)
+        row 32 X1: 20MHz (Oscillator_SMD_ECS_2520MV-xxx-xx-4Pin_2.5x2.0mm)
+        row 33 Y1: 12.0MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm)
+  WARN  BOM lines complete (§1 §2): 32 of 32 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C5,C9,C11,C15,C17,C25,C32,C37,C42,C57,C59,C61: 1uF (C_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 3 C2,C4,C8,C12,C13,C14,C18,C19,C20,C22,C23,C24,C26,C27,C28,C31,C33,C34,C35,C36,C38,C39,C40,C41,C43,C56,C58,C60: 100nF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 4 C6,C7: 10uF (C_0805_2012Metric): missing Basic/Extended, Stock, Datasheet
+        row 5 C10: 22uF (C_0805_2012Metric): missing Basic/Extended, Stock, Datasheet
+        row 6 C16,C21: 10uF (C_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 7 C29,C30: 6pF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 8 D1,D2,D3,D4: Yellow (LED_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 9 F1: 350mA (Fuse_0805_2012Metric): missing Basic/Extended, Stock, Datasheet
+        row 10 J3,J5,J6,J12,J13,J14: 613012243121 (PinSocket_2x06_P2.54mm_PMODHost1A): missing Basic/Extended, Stock, Datasheet
+        row 11 J4: TT04_BREAKOUT_REVB (TT04_BREAKOUT_SMB): missing Basic/Extended, Stock, Datasheet
+        row 12 J7: Conn_01x02 (PinHeader_1x02_P2.54mm_Vertical_SMD_Pin1Right): missing Basic/Extended, Stock
+        row 13 J15: USB4500-03-0-A_REVA (GCT_USB4500-03-0-A_REVA): missing Basic/Extended, Stock, Datasheet
+        row 14 J16,J18: 2x20_P2.54mm_Pinheader (TT_BREAKOUT_PINHEADER_PLACEHOLDER_WITHPAD): missing Basic/Extended, Stock, Datasheet
+        row 15 R1,R2,R3,R4,R5,R6,R10,R11,R13,R14,R37: 1k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 16 R7: 47k (R_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 17 R8,R9,R12,R30,R31,R32,R33,R34,R35,R36,R38,R39,R40,R43,R44,R45,R46,R47,R48: 10k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 18 R15: 1.2K (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 19 R17,R19: 510 (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 20 R18: 0R (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 21 R20,R21: 5.1k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 22 R22,R23,R24,R25,R26,R27,R28,R29: 68R (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 23 R41: 47R (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 24 SW1,SW2,SW3: 434121025816 (434121025816): missing Basic/Extended, Stock
+        row 25 SW4: 418121270808 (418121270808): missing Basic/Extended, Stock
+        row 26 U1: 157112V12700 (WL_S7DS-157112V12700): missing Basic/Extended, Stock
+        row 27 U2: TLV1117LV33 (SOT-223-3_TabPin2): missing Basic/Extended, Stock
+        row 28 U3: AP2112K-1.8 (SOT-23-5): missing Basic/Extended, Stock
+        row 29 U4: 74CBTLV3257 (TSSOP-16_4.4x5mm_P0.65mm): missing Basic/Extended, Stock
+        row 30 U5: W25Q32JVSS (SOIC-8_5.23x5.23mm_P1.27mm): missing Basic/Extended, Stock
+        row 31 U6: RP2040 (QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm): missing Basic/Extended, Stock
+        row 32 X1: 20MHz (Oscillator_SMD_ECS_2520MV-xxx-xx-4Pin_2.5x2.0mm): missing Basic/Extended, Stock
+        row 33 Y1: 12.0MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing Basic/Extended, Stock
+  FAIL  Catalogue and stock (§1 §2 §13): 4 codes found, 5 blocking, 0 low-stock/mismatch, 0 not checked; 4 Extended part types (one loading fee each)
+        C1884490 (F1): bom.csv says MPN "0ZCK0035FF2G" but the catalogue says "JK-SMD0805-035-12V" (-40℃~+85℃ 1.2Ω 1.5mm 100A 100ms 12V 1mm 2.2mm 250mΩ 350mA 50)
+        C237493 (C6, C7): bom.csv says MPN "CL21B106KOQNNNF" but the catalogue says "GRM21BZ71E106KE15L" (10uF 25V X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - )
+        C72038 (D1, D2, D3, D4): out of stock at JLCPCB (19-213/Y2C-CQ2R2L/3T(CY))
+        C72038 (D1, D2, D3, D4): bom.csv says MPN "LTST-C190YKT" but the catalogue says "19-213/Y2C-CQ2R2L/3T(CY)" (-40℃~+85℃ 1.7V~2.3V 120° 20mA 585.5nm~591.5nm 591nm 60mW 90m)
+        C86816 (C10): bom.csv says MPN "CL21A226KOQNNNG" but the catalogue says "GRM21BR61E226ME44L" (22uF 25V X5R ±20% 0805 Multilayer Ceramic Capacitors MLCC - )
+        ok: C1884490 (F1): JK-SMD0805-035-12V, 0805, Extended, stock 1,754
+        ok: C237493 (C6, C7): GRM21BZ71E106KE15L, 0805, Extended, stock 148,782
+        ok: C72038 (D1, D2, D3, D4): 19-213/Y2C-CQ2R2L/3T(CY), 0603, Extended, stock 0
+        ok: C86816 (C10): GRM21BR61E226ME44L, 0805, Extended, stock 143,698
+
+NOT CHECKED
+  DRC (§12): 160 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (84.2, 115.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (152.3, 116.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (111.4, 84.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (118.7, 78.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (143.6, 111.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (140.1, 58.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH8 @ (160.2, 70.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (57.2, 75.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint TTLOGO @ (118.5, 71.08)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (123.9, 58.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (67.7, 79.8)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (100.4, 98.1)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH11 @ (109.56, 133.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (76.5, 85.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (118.7, 89.2)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (82.5, 114.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (127.4, 58.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (118.7, 69.2)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (65.0, 115.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (96.9, 128.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH4 @ (160.2, 90.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH16 @ (134.96, 133.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (127.8, 107.1)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (140.0, 127.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (60.2, 125.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH17 @ (140.04, 133.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (66.8, 105.2)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (92.2, 128.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (105.3, 68.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (142.5, 97.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (123.1, 108.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (123.1, 111.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (104.6, 58.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (106.6, 117.3)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH6 @ (99.4, 133.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (87.7, 77.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J18 @ (136.42, 86.6)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (59.9, 85.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (142.5, 91.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (92.0, 115.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        ... 120 more (--max-details)
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 27 polarized or asymmetric parts (J15, J13, Y1, J18, J12, SW2, J3, J7, J5, SW4, U1, U5, +15 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  5 blocking, 3 warnings, 1 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again

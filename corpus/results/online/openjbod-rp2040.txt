@@ -1,0 +1,256 @@
+OpenJBOD-RP2040  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 129 footprints  -  bom.csv: openjbod-rp2040.csv
+RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Board footprints belong to this schematic (§5): 125 of 129 footprints name a symbol in the schematic, 4 board-only
+        note: 4 board-only footprints (no path, reference not in the schematic): REF**, kibuzzard-68B1B45A, kibuzzard-68B1B461, REF**
+  Copper layers (§9): 4 copper layers
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 121 of 121 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  LCSC code on every BOM line (§1 §12): 49 lines, each with a C-number
+  bom.csv matches the schematic (§1 §5 §12): 121 bought references, every one on exactly one BOM line
+        note: not bought: H1, H2, H3 (prefix FID/TP/H/MH); J8 (DNP); REF**, kibuzzard-68B1B45A, kibuzzard-68B1B461 (excluded from the BOM)
+  BOM value matches the schematic (§1): 121 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue and stock (§1 §2 §13): 49 codes found, 0 blocking, 0 low-stock/mismatch, 49 not checked; 24 Extended part types (one loading fee each)
+  Catalogue category matches the reference prefix (§1 §2): 48 lines filed under the category their reference prefix means, 1 not checked
+
+FINDINGS
+  FAIL  ERC (§12): 5 errors, 99 warnings on 5 sheets
+        label_dangling: Label not connected [Label '+5vSB' @ (91.44, 55.88)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U2 Pin 3 [VI, Power input, Line] @ (100.33, 25.4)]
+        pin_not_driven: Input pin not driven by any Output pins [Symbol U1 Pin 24 [SWCLK, Input, Line] @ (52.07, 134.62)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U4 Pin 4 [AVDD, Power input, Line] @ (142.24, 74.93)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR034 Pin 1 [Power input, Line] @ (212.09, 99.06)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW3 Pin 1 [1, Unspecified, Line] @ (198.12, 152.4); Symbol SW3 Pin 3 [SH, Unspecified, Line] @ (198.12, 154.94)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW3 Hidden pin 4 [SH, Unspecified, Line] @ (198.12, 154.94); Symbol #PWR08 Hidden pin 1 [GND, Power input, Line] @ (196.85, 156.21)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW3 Pin 3 [SH, Unspecified, Line] @ (198.12, 154.94); Symbol #PWR08 Hidden pin 1 [GND, Power input, Line] @ (196.85, 156.21)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol SW3 Pin 2 [2, Unspecified, Line] @ (208.28, 152.4); Symbol J3 Pin 1 [Pin_1, Passive, Line] @ (218.44, 152.4)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT3904' doesn't match copy in library 'Transistor_BJT' [Symbol Q2 [MMBT3904] @ (266.7, 135.89)]
+        warning: lib_symbol_mismatch: Symbol 'USB_C_Receptacle_USB2.0_16P' doesn't match copy in library 'Connector' [Symbol J5 [USB_C_Receptacle_USB2.0_16P] @ (34.29, 86.36)]
+        warning: isolated_pin_label: Label connected to only one pin [Label 'PWR_OK' @ (62.23, 24.13)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C1 [C_Small] @ (99.06, 29.21)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C43 [C_Small] @ (110.49, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C44 [C_Small] @ (110.49, 106.68)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT3904' doesn't match copy in library 'Transistor_BJT' [Symbol Q1 [MMBT3904] @ (113.03, 149.86)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C15 [C_Small] @ (29.21, 114.3)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C16 [C_Small] @ (29.21, 124.46)]
+        warning: lib_symbol_mismatch: Symbol 'Crystal_GND24_Small' doesn't match copy in library 'Device' [Symbol Y1 [Crystal_GND24_Small] @ (40.64, 118.11)]
+        warning: isolated_pin_label: Label connected to only one pin [Label 'SWCLK' @ (43.18, 134.62)]
+        warning: isolated_pin_label: Label connected to only one pin [Label 'SWD' @ (43.18, 137.16)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C5 [C_Small] @ (50.8, 43.18)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C4 [C_Small] @ (62.23, 43.18)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C3 [C_Small] @ (68.58, 55.88)]
+        warning: lib_symbol_mismatch: Symbol 'RP2040' doesn't match copy in library 'MCU_RaspberryPi' [Symbol U1 [RP2040] @ (77.47, 106.68)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C7 [C_Small] @ (92.71, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C6 [C_Small] @ (92.71, 55.88)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C8 [C_Small] @ (104.14, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C9 [C_Small] @ (115.57, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C10 [C_Small] @ (127.0, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C11 [C_Small] @ (138.43, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C12 [C_Small] @ (149.86, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C13 [C_Small] @ (161.29, 44.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C14 [C_Small] @ (229.87, 41.91)]
+        warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U3 [W25Q128JVS] @ (240.03, 59.69)]
+        warning: lib_symbol_mismatch: Symbol 'W25Q128JVS' doesn't match copy in library 'Memory_Flash' [Symbol U3 [W25Q128JVS] @ (240.03, 59.69)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 9.525 mm @ (22.225, 19.05)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C24 [C_Small] @ (31.75, 22.86)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (41.275, 19.05)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 9.525 mm @ (31.75, 19.05)]
+        ... 64 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+  FAIL  DRC (§12): 11 errors, 121 warnings (lib_footprint_mismatch x112, hole_clearance x9, silk_edge_clearance x6, annular_width x2, padstack x2, lib_footprint_issues x1); 8 footprints without a courtyard
+        annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm) [Pad [<no net>] of J2 on Front @ (153.6956, 242.4); NPTH pad of J2 @ (152.1956, 242.4)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad A1 [GND] of J5 on Front @ (92.855, 103.2); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad A4 [/Power/USB_PWR] of J5 on Front @ (92.855, 104.0); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad A9 [/Power/USB_PWR] of J5 on Front @ (92.855, 108.8); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad A12 [GND] of J5 on Front @ (92.855, 109.6); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad B1 [GND] of J5 on Front @ (92.855, 109.6); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad B4 [/Power/USB_PWR] of J5 on Front @ (92.855, 108.8); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad B9 [/Power/USB_PWR] of J5 on Front @ (92.855, 104.0); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad B12 [GND] of J5 on Front @ (92.855, 103.2); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of J6 on F.Silkscreen @ (85.214989, 146.910003)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of J6 on F.Silkscreen @ (97.515015, 146.910003)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of J6 on F.Silkscreen @ (97.515015, 163.009997)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of D1 on F.Silkscreen @ (85.4275, 145.35)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of D1 on F.Silkscreen @ (89.7675, 141.05)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (85.32, 83.24); Segment of D1 on F.Silkscreen @ (89.7675, 145.35)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of J5 @ (91.785, 109.29)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R12 @ (117.75, 132.24)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C12 @ (119.84, 125.27)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C30 @ (108.46, 154.83)]
+        warning: lib_footprint_mismatch: Footprint 'C_0805_2012Metric_Pad1.18x1.45mm_HandSolder' does not match copy in library 'Capacitor_SMD' [Footprint FB1 @ (115.28, 144.6425)]
+        warning: lib_footprint_mismatch: Footprint 'MSOP-8_3x3mm_P0.65mm' does not match copy in library 'Package_SO' [Footprint U8 @ (127.3, 108.075)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R21 @ (110.61, 153.84)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R38 @ (135.6, 167.69)]
+        warning: lib_footprint_mismatch: Footprint 'MountingHole_4.3mm_M4_Pad_Via' does not match copy in library 'MountingHole' [Footprint H1 @ (95.48, 241.89)]
+        warning: lib_footprint_mismatch: Footprint 'QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm' does not match copy in library 'Package_DFN_QFN' [Footprint U1 @ (118.8475, 119.11)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C45 @ (138.1, 164.22)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C20 @ (116.43, 156.49)]
+        warning: lib_footprint_mismatch: Footprint 'Crystal_SMD_3225-4Pin_3.2x2.5mm' does not match copy in library 'Crystal' [Footprint Y2 @ (136.115, 153.985)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R19 @ (110.56, 149.27)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C21 @ (121.71, 161.36)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C5 @ (124.97, 117.53)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R11 @ (119.65, 128.6)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C6 @ (111.86, 114.63)]
+        warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint C16 @ (128.56, 118.94)]
+        warning: lib_footprint_mismatch: Footprint 'R_0603_1608Metric' does not match copy in library 'Resistor_SMD' [Footprint R15 @ (113.74, 150.79)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C26 @ (130.41, 154.98)]
+        warning: lib_footprint_mismatch: Footprint 'MountingHole_4.3mm_M4_Pad_Via' does not match copy in library 'MountingHole' [Footprint H2 @ (118.34, 241.89)]
+        ... 92 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0889 -> 0.09 mm
+  FAIL  Unrouted connections (§11 §12): 5 connections still to route
+        unconnected_items: Missing connection between items [PTH pad 2 [/+3.3v] of J1 @ (149.67, 131.29); PTH pad 12 [/+3.3v] of J1 @ (149.67, 89.29)]
+        unconnected_items: Missing connection between items [PTH pad 6 [/+5v] of J1 @ (149.67, 114.49); PTH pad 21 [/+5v] of J1 @ (153.87, 101.89)]
+        unconnected_items: Missing connection between items [PTH pad 4 [/+5v] of J1 @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
+        unconnected_items: Missing connection between items [PTH pad 22 [/+5v] of J1 @ (153.87, 97.69); PTH pad 23 [/+5v] of J1 @ (153.87, 93.49)]
+        unconnected_items: Missing connection between items [PTH pad 21 [/+5v] of J1 @ (153.87, 101.89); PTH pad 22 [/+5v] of J1 @ (153.87, 97.69)]
+  FAIL  Schematic / PCB parity (§5): 6 mismatches across 129 footprints
+        duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: No pad found for pin S1 (GND) in schematic [Footprint J5 @ (90.495, 106.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        missing_footprint: Missing footprint TP1 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        missing_footprint: Missing footprint TP2 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("OpenJBOD-RP2040") on a silkscreen layer
+        silk texts: POWER, UART, RX, +3.3v, PSW|PSW, PLED+ | PLED-, GND, TX, BOOTSEL, RESET, T2DATA, GND
+  WARN  Connector names on silk (§8): 3 of 7 connectors have neither a visible value nor silk text within 15 mm
+        J2 Bus_PCI_Express_x1 at 126.696, 234.4
+        J6 HR911105A at 98.13, 154.96
+        J1 ATX-24 at 151.77, 112.39
+  WARN  BOM lines complete (§1 §2): 49 of 49 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1: 22uF (C_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C2: 22uF Tant (CP_EIA-3216-18_Kemet-A): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C3,C6,C17,C24: 1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C4,C5,C7,C8,C9,C10,C11,C12,C13,C14,C18,C19,C20,C21,C22,C23,C25,C26,C27,C29,C38,C43,C44,C45: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C15,C16: 34pF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C28: 4.7uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 C30,C46: 22nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 C31,C32: 18pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 C33,C34,C35,C36,C37,C39: 47uF (CP_Elec_6.3x5.4): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 C40,C41: 6.8nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 C42: 1nF/2kV (C_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 D1: MHK2396YGBTD (LED-TH_MHK2396YGBTD): missing MPN, Basic/Extended, Stock
+        row 14 D2,D3: SS14 (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 D4: SDMK0340L (D_SOD-323): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 FAN1,FAN2,FAN3,FAN4,FAN5: Conn_01x04 (FanPinHeader_1x04_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 FB1: FerriteBead_Small (C_0805_2012Metric_Pad1.18x1.45mm_HandSolder): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 J1: ATX-24 (CONN-TH_M4202V-2X12P): missing MPN, Basic/Extended, Stock
+        row 19 J2: Bus_PCI_Express_x1 (91618-11010C): missing MPN, Basic/Extended, Stock
+        row 20 J3: Conn_02x02_Counter_Clockwise (PinHeader_2x02_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 J4: UART (PinHeader_1x03_P2.54mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 J5: USB_C_Receptacle_USB2.0_16P (USB-C-SMD_TYPE-C16PIN): missing MPN, Basic/Extended, Stock
+        row 23 J6: HR911105A (RJ45-TH_HR911105A): missing MPN, Basic/Extended, Stock
+        row 24 J7: TEMP1 (PinHeader_1x03_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 25 Q1,Q2: MMBT3904 (SOT-23): missing MPN, Basic/Extended, Stock
+        row 26 R1,R2,R6,R24,R25: 330R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 R3,R4: 27.4R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 R5,R7,R11,R12,R13,R18,R27,R28,R29,R30,R31,R38,R40: 4.7k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 29 R8,R9: 1k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 R10,R15,R16,R17: 3.3R (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 R14: 12.4k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 R19,R20,R21,R22: 49.9R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 R23: 10R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 34 R26: 1M (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 35 R32,R33,R34,R35: 10k (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 36 R36,R37: 5.1k (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 37 R39: 100k (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 38 R41: 100R (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 39 SW1,SW2,SW3: TC-6615-6-260G (KEY-TH_TC-6615-6-160G): missing MPN, Basic/Extended, Stock, Datasheet
+        row 40 U1: RP2040 (QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm): missing MPN, Basic/Extended, Stock
+        row 41 U2: AMS1117-3.3 (SOT-223-3_TabPin2): missing MPN, Basic/Extended, Stock
+        ... 9 more (--max-details)
+  FAIL  Catalogue package fits the footprint (§1): 2 do not fit the footprint; 39 agree with their footprint, 8 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        C2040 RP2040 (U1; bom.csv row 40): LQFN-56(7x7) on QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm: footprint is QFN-56(7x7), part is LQFN-56(7x7)
+        C97521 W25Q128JVSIQ (U3; bom.csv row 42): SOIC-8-208mil on SOIC-8_5.23x5.23mm_P1.27mm: footprint is SOIC-8, part is SOIC-8-208MIL; the pads differ too (ONSemi_SO-8FL_488AA against SOIC-8_5.3x5.3mm_P1.27mm: 5 pads against 8)
+        C2764899 MHK2396YGBTD (D1; bom.csv row 13): DIP-4-2.54mm on LED-TH_MHK2396YGBTD: the footprint is drawn for this part (MHK2396YGBTD in its name, MPN MHK2396YGBTD)
+        C2480 SS14 (D2, D3; bom.csv row 14): SMA(DO-214AC) on D_SMA: pads match: D_SMA and D_SMA in the KiCad library (2 pads)
+        C492535 M4202V-2x12P (J1; bom.csv row 18): Plugin,P=4.2mm on CONN-TH_M4202V-2X12P: the footprint is drawn for this part (M4202V-2X12P in its name, MPN M4202V-2x12P)
+        C5210918 91618-11010C (J2; bom.csv row 19): SMD,P=1mm on 91618-11010C: the footprint is drawn for this part (91618-11010C in its name, MPN 91618-11010C)
+        C393939 TYPE-C16PIN (J5; bom.csv row 22): SMD on USB-C-SMD_TYPE-C16PIN: the footprint is drawn for this part (TYPE-C16PIN in its name, MPN TYPE-C16PIN)
+        C12074 HR911105A (J6; bom.csv row 23): Plugin on RJ45-TH_HR911105A: the footprint is drawn for this part (HR911105A in its name, MPN HR911105A)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  FAIL  Catalogue description matches the BOM value (§1 §2): 23 lines agree on every figure their value states (F, H, Ω, V), 25 state no figure, 1 disagree
+        C1658 0603CG300J500NT (C15, C16; bom.csv row 6): bom.csv says 34pF but the catalogue description says 30pF (bom.csv value "34pF", description "30pF 50V C0G ±5% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
+
+NOT CHECKED
+  DRC (§12): 8 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-68B1B45A @ (110.425, 174.125)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J5 @ (90.495, 106.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW1 @ (89.223809, 125.6475)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW2 @ (89.223809, 116.32)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J1 @ (151.77, 112.39)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW3 @ (89.223809, 134.975)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D1 @ (91.7475, 143.2)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-68B1B461 @ (110.425, 174.125)]: no courtyard, so courtyards_overlap could not see this footprint
+  Catalogue and stock (§1 §2 §13): 49 not compared
+        C1015 (FB1): no MPN in bom.csv to compare with the catalogue's GZ2012D101TF; the code was not checked against a part
+        C11366 (C2): no MPN in bom.csv to compare with the catalogue's TAJA226K010RNJ; the code was not checked against a part
+        C11692 (R14): no MPN in bom.csv to compare with the catalogue's 0402WGF1242TCE; the code was not checked against a part
+        C11702 (R8, R9): no MPN in bom.csv to compare with the catalogue's 0402WGF1001TCE; the code was not checked against a part
+        C12074 (J6): no MPN in bom.csv to compare with the catalogue's HR911105A; the code was not checked against a part
+        C12891 (C1): no MPN in bom.csv to compare with the catalogue's CL31A226KAHNNNE; the code was not checked against a part
+        C129895 (U9): no MPN in bom.csv to compare with the catalogue's 24AA025E48T-I/OT; the code was not checked against a part
+        C139440 (D4): no MPN in bom.csv to compare with the catalogue's SDMK0340L-7-F; the code was not checked against a part
+        C148036 (U6): no MPN in bom.csv to compare with the catalogue's EMC2301-1-ACZL-TR; the code was not checked against a part
+        C1525 (C4, C5, C7, C8, C9, C10, C11, C12, C13, C14, C18, C19, C20, C21, C22, C23, C25, C26, C27, C29, C38, C43, C44, C45): no MPN in bom.csv to compare with the catalogue's CL05B104KO5NNNC; the code was not checked against a part
+        C1532 (C30, C46): no MPN in bom.csv to compare with the catalogue's 0402B223K500NT; the code was not checked against a part
+        C1542 (C40, C41): no MPN in bom.csv to compare with the catalogue's 0402B682K500NT; the code was not checked against a part
+        C1549 (C31, C32): no MPN in bom.csv to compare with the catalogue's 0402CG180J500NT; the code was not checked against a part
+        C1658 (C15, C16): no MPN in bom.csv to compare with the catalogue's 0603CG300J500NT; the code was not checked against a part
+        C2040 (U1): no MPN in bom.csv to compare with the catalogue's RP2040; the code was not checked against a part
+        C20526 (Q1, Q2): no MPN in bom.csv to compare with the catalogue's MMBT3904(RANGE:100-300); the code was not checked against a part
+        C23733 (C28): no MPN in bom.csv to compare with the catalogue's CL05A475MP5NRNC; the code was not checked against a part
+        C240840 (FAN1, FAN2, FAN3, FAN4, FAN5): no MPN in bom.csv to compare with the catalogue's 470531000; the code was not checked against a part
+        C2480 (D2, D3): no MPN in bom.csv to compare with the catalogue's SS14; the code was not checked against a part
+        C25076 (R41): no MPN in bom.csv to compare with the catalogue's 0402WGF1000TCE; the code was not checked against a part
+        C25077 (R23): no MPN in bom.csv to compare with the catalogue's 0402WGF100JTCE; the code was not checked against a part
+        C25104 (R1, R2, R6, R24, R25): no MPN in bom.csv to compare with the catalogue's 0402WGF3300TCE; the code was not checked against a part
+        C25120 (R19, R20, R21, R22): no MPN in bom.csv to compare with the catalogue's 0402WGF499JTCE; the code was not checked against a part
+        C25741 (R39): no MPN in bom.csv to compare with the catalogue's 0402WGF1003TCE; the code was not checked against a part
+        C25744 (R32, R33, R34, R35): no MPN in bom.csv to compare with the catalogue's 0402WGF1002TCE; the code was not checked against a part
+        C25900 (R5, R7, R11, R12, R13, R18, R27, R28, R29, R30, R31, R38, R40): no MPN in bom.csv to compare with the catalogue's 0402WGF4701TCE; the code was not checked against a part
+        C25905 (R36, R37): no MPN in bom.csv to compare with the catalogue's 0402WGF5101TCE; the code was not checked against a part
+        C26083 (R26): no MPN in bom.csv to compare with the catalogue's 0402WGF1004TCE; the code was not checked against a part
+        C2764899 (D1): no MPN in bom.csv to compare with the catalogue's MHK2396YGBTD; the code was not checked against a part
+        C2836440 (C33, C34, C35, C36, C37, C39): no MPN in bom.csv to compare with the catalogue's RVT47UF35V67RV0039; the code was not checked against a part
+        C284479 (R3, R4): no MPN in bom.csv to compare with the catalogue's ARG02FTC27R4; the code was not checked against a part
+        C2845272 (SW1, SW2, SW3): no MPN in bom.csv to compare with the catalogue's TC-6615-6-260G; the code was not checked against a part
+        C2894945 (J4): no MPN in bom.csv to compare with the catalogue's PZ254-1-03-W-8.5; the code was not checked against a part
+        C2930016 (R10, R15, R16, R17): no MPN in bom.csv to compare with the catalogue's FRC0603F3R30TS; the code was not checked against a part
+        C2937625 (J7): no MPN in bom.csv to compare with the catalogue's PZ254V-11-03P; the code was not checked against a part
+        C32843 (U4): no MPN in bom.csv to compare with the catalogue's W5500; the code was not checked against a part
+        C353856 (U5, U7): no MPN in bom.csv to compare with the catalogue's 74LVC1G02GW,125; the code was not checked against a part
+        C393939 (J5): no MPN in bom.csv to compare with the catalogue's TYPE-C16PIN; the code was not checked against a part
+        C492419 (J3): no MPN in bom.csv to compare with the catalogue's PZ254V-12-4P; the code was not checked against a part
+        C492535 (J1): no MPN in bom.csv to compare with the catalogue's M4202V-2x12P; the code was not checked against a part
+        ... 9 more (--max-details)
+  Catalogue package fits the footprint (§1): 8 not compared
+        C11366 TAJA226K010RNJ (C2; bom.csv row 3): CASE-A-3216-18(mm) on CP_EIA-3216-18_Kemet-A: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C240840 470531000 (FAN1, FAN2, FAN3, FAN4, FAN5; bom.csv row 16): Plugin,P=2.54mm on FanPinHeader_1x04_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C492419 PZ254V-12-4P (J3; bom.csv row 20): Plugin,P=2.54mm on PinHeader_2x02_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2894945 PZ254-1-03-W-8.5 (J4; bom.csv row 21): Push-Pull,P=2.54mm on PinHeader_1x03_P2.54mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2937625 PZ254V-11-03P (J7; bom.csv row 24): Plugin,P=2.54mm on PinHeader_1x03_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2845272 TC-6615-6-260G (SW1, SW2, SW3; bom.csv row 39): 弯插-4P,6x6mm on KEY-TH_TC-6615-6-160G: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C9002 X322512MSB4SI (Y1; bom.csv row 49): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C9006 X322525MOB4SI (Y2; bom.csv row 50): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+  Catalogue category matches the reference prefix (§1 §2): 1 not compared
+        C240840 470531000 (FAN1, FAN2, FAN3, FAN4, FAN5; bom.csv row 16): prefix FAN has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 36 polarized or asymmetric parts (FB1, U8, U1, J2, Y2, C33, U10, U2, Y1, Q2, C34, U6, +24 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again

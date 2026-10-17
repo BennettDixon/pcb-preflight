@@ -1,0 +1,107 @@
+complex_hierarchy  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 68 footprints  -  bom.csv: none
+RESULT: FAIL  -  3 blocking, 2 warnings, 1 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  ERC (§12): 0 errors, 0 warnings on 3 sheets
+  DRC (§12): 0 errors, 0 warnings
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered missing_courtyard to warning (KiCad default ignore)
+        note: minimums: JLCPCB 1 oz copper, 2 layers; below the fab's in the project, raised in the copy: min_copper_edge_clearance 0.01 -> 0.2 mm
+  Unrouted connections (§11 §12): 0 connections still to route
+  Placement origin (§4): aux axis origin at 83.5, 138 mm
+  Copper layers (§9): 2 copper layers
+  Connector names on silk (§8): 0 connectors each have a name on silk
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 68 of 68 bought references have a footprint on the board
+
+FINDINGS
+  FAIL  Schematic / PCB parity (§5): 68 mismatches across 68 footprints
+        footprint_symbol_mismatch: complex_hierarchy:CP_Axial_L11.0mm_D6.0mm_P18.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L11.0mm_D6.0mm_P18.00mm_Horizontal) [Footprint C101 @ (121.793, 60.579)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal) [Footprint C102 @ (117.348, 73.406)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal) [Footprint C103 @ (160.02, 78.359)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal) [Footprint C104 @ (126.619, 60.706)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal) [Footprint C105 @ (139.7, 77.216)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:D_DO-41_SOD81_P12.70mm_Horizontal doesn't match footprint given by symbol (Diode_THT:D_DO-41_SOD81_P12.70mm_Horizontal) [Footprint D101 @ (116.078, 68.326)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:Altech_AK300_1x02_P5.00mm_45-Degree doesn't match footprint given by symbol (TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree) [Footprint P101 @ (94.9, 56.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:Altech_AK300_1x02_P5.00mm_45-Degree doesn't match footprint given by symbol (TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree) [Footprint P102 @ (94.8, 69.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:TO-92_HandSolder doesn't match footprint given by symbol (Package_TO_SOT_THT:TO-92_HandSolder) [Footprint U101 @ (124.206, 70.866)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:DIP-8_W7.62mm_LongPads doesn't match footprint given by symbol (Package_DIP:DIP-8_W7.62mm_LongPads) [Footprint U102 @ (145.415, 72.136)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:C_Disc_D5.0mm_W2.5mm_P5.00mm doesn't match footprint given by symbol (Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm) [Footprint C201 @ (118.618, 109.474)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:C_Disc_D5.0mm_W2.5mm_P5.00mm doesn't match footprint given by symbol (Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm) [Footprint C202 @ (113.665, 106.045)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:C_Disc_D5.0mm_W2.5mm_P5.00mm doesn't match footprint given by symbol (Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm) [Footprint C203 @ (113.665, 112.776)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:C_Disc_D5.0mm_W2.5mm_P5.00mm doesn't match footprint given by symbol (Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm) [Footprint C204 @ (138.176, 130.048)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:D_DO-35_SOD27_P7.62mm_Horizontal doesn't match footprint given by symbol (Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal) [Footprint D201 @ (127.635, 105.918)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:D_DO-35_SOD27_P7.62mm_Horizontal doesn't match footprint given by symbol (Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal) [Footprint D202 @ (127.635, 108.966)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:D_DO-35_SOD27_P7.62mm_Horizontal doesn't match footprint given by symbol (Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal) [Footprint D203 @ (144.78, 123.571)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:D_DO-35_SOD27_P7.62mm_Horizontal doesn't match footprint given by symbol (Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal) [Footprint D204 @ (140.97, 123.571)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:Altech_AK300_1x02_P5.00mm_45-Degree doesn't match footprint given by symbol (TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree) [Footprint P201 @ (94.615, 111.633)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:Altech_AK300_1x02_P5.00mm_45-Degree doesn't match footprint given by symbol (TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree) [Footprint P202 @ (181.1925, 112.4575)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:TO-92_HandSolder doesn't match footprint given by symbol (Package_TO_SOT_THT:TO-92_HandSolder) [Footprint Q201 @ (131.445, 115.316)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:TO-92_HandSolder doesn't match footprint given by symbol (Package_TO_SOT_THT:TO-92_HandSolder) [Footprint Q202 @ (149.225, 115.062)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:TO-92_HandSolder doesn't match footprint given by symbol (Package_TO_SOT_THT:TO-92_HandSolder) [Footprint Q203 @ (151.765, 123.825)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:TO-92_HandSolder doesn't match footprint given by symbol (Package_TO_SOT_THT:TO-92_HandSolder) [Footprint Q204 @ (130.556, 125.73)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R201 @ (109.855, 107.061)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R202 @ (109.855, 110.236)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R203 @ (109.855, 112.776)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R204 @ (146.685, 108.966)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R205 @ (122.555, 115.316)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R206 @ (173.355, 119.126)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R207 @ (173.355, 122.936)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R208 @ (126.365, 128.016)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R209 @ (156.21, 116.713)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R210 @ (160.02, 116.586)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R211 @ (144.399, 126.873)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R212 @ (134.493, 120.142)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal doesn't match footprint given by symbol (Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal) [Footprint R213 @ (102.87, 126.746)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:Potentiometer_Bourns_3266W_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Bourns_3266W_Vertical) [Footprint RV201 @ (93.345, 125.476)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:DIP-8_W7.62mm_LongPads doesn't match footprint given by symbol (Package_DIP:DIP-8_W7.62mm_LongPads) [Footprint U201 @ (107.315, 124.206)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: complex_hierarchy:C_Disc_D5.0mm_W2.5mm_P5.00mm doesn't match footprint given by symbol (Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm) [Footprint C301 @ (118.745, 81.407)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        ... 28 more (--max-details)
+  FAIL  Board footprints belong to this schematic (§5): 0 orphaned, 0 unlinked, 29 renamed of 68 footprints
+        Q301 on the board is Q201 in the schematic (complex_hierarchy:MPSA92)
+        Q302 on the board is Q202 in the schematic (complex_hierarchy:MPSA42)
+        Q303 on the board is Q203 in the schematic (complex_hierarchy:MPSA92)
+        Q304 on the board is Q204 in the schematic (complex_hierarchy:MPSA42)
+        RV301 on the board is RV201 in the schematic (complex_hierarchy:POT)
+        R312 on the board is R212 in the schematic (complex_hierarchy:R)
+        R308 on the board is R208 in the schematic (complex_hierarchy:R)
+        R302 on the board is R202 in the schematic (complex_hierarchy:R)
+        R306 on the board is R206 in the schematic (complex_hierarchy:R)
+        R305 on the board is R205 in the schematic (complex_hierarchy:R)
+        R304 on the board is R204 in the schematic (complex_hierarchy:R)
+        R303 on the board is R203 in the schematic (complex_hierarchy:R)
+        R313 on the board is R213 in the schematic (complex_hierarchy:R)
+        R310 on the board is R210 in the schematic (complex_hierarchy:R)
+        R307 on the board is R207 in the schematic (complex_hierarchy:R)
+        R301 on the board is R201 in the schematic (complex_hierarchy:R)
+        R309 on the board is R209 in the schematic (complex_hierarchy:R)
+        R311 on the board is R211 in the schematic (complex_hierarchy:R)
+        U301 on the board is U201 in the schematic (complex_hierarchy:LM358N)
+        C304 on the board is C204 in the schematic (complex_hierarchy:C)
+        C303 on the board is C203 in the schematic (complex_hierarchy:C)
+        C301 on the board is C201 in the schematic (complex_hierarchy:C)
+        C302 on the board is C202 in the schematic (complex_hierarchy:C)
+        D301 on the board is D201 in the schematic (complex_hierarchy:D_Small)
+        D304 on the board is D204 in the schematic (complex_hierarchy:D_Small)
+        D302 on the board is D202 in the schematic (complex_hierarchy:D_Small)
+        D303 on the board is D203 in the schematic (complex_hierarchy:D_Small)
+        P301 on the board is P201 in the schematic (complex_hierarchy:CONN_2)
+        P302 on the board is P202 in the schematic (complex_hierarchy:CONN_2)
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("complex_hierarchy") on a silkscreen layer
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/complex-hierarchy.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): no readable bom.csv
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 26 polarized or asymmetric parts (C104, C101, C105, C103, Q201, Q203, Q301, Q302, Q303, Q304, U101, U301, +14 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  3 blocking, 2 warnings, 1 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
