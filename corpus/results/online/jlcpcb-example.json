@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "SMPS 12V-5V",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/jlcpcb-example",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/jlcpcb-example",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -38,7 +38,7 @@
   },
   "copper_layers": 2,
   "footprints": 19,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/jlcpcb-example.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jlcpcb-example.csv",
   "checks": [
     {
       "id": "erc",
@@ -372,16 +372,16 @@
       "summary": "11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked; 4 Extended part types (one loading fee each)",
       "details": [
         "ok: C109322 (U1): TPS63070RNMR, VQFN-15-HR(2.5x3), Extended, stock 33,251",
-        "ok: C1525 (C7): CL05B104KO5NNNC, 0402, Basic, stock 24,782,873",
-        "ok: C16780 (C6): CL21A476MQYNNNE, 0805, Basic, stock 1,548,407",
-        "ok: C25803 (R2, R3): 0603WAF1003T5E, 0603, Basic, stock 19,383,208",
-        "ok: C25804 (R1): 0603WAF1002T5E, 0603, Basic, stock 31,159,467",
+        "ok: C1525 (C7): CL05B104KO5NNNC, 0402, Basic, stock 24,775,228",
+        "ok: C16780 (C6): CL21A476MQYNNNE, 0805, Basic, stock 1,548,595",
+        "ok: C25803 (R2, R3): 0603WAF1003T5E, 0603, Basic, stock 19,381,788",
+        "ok: C25804 (R1): 0603WAF1002T5E, 0603, Basic, stock 31,151,373",
         "ok: C2683107 (R4): ARG05BTC5233, 0805, Extended, stock 245",
         "ok: C2885888 (L1): MLI2012F-1R5KT, 0805, Extended, stock 4,257",
         "ok: C395930 (CN1, CN2): DBT10-7.62-2P-GN-P, Plugin,P=7.62mm, Extended, stock 31,347",
-        "ok: C440198 (C5): GRM21BR61H106KE43L, 0805, Basic, stock 1,199,440",
-        "ok: C45783 (C1, C2): CL21A226MAQNNNE, 0805, Basic, stock 3,782,589",
-        "ok: C96446 (C3, C4): CL10A106MA8NRNC, 0603, Basic, stock 4,650,500"
+        "ok: C440198 (C5): GRM21BR61H106KE43L, 0805, Basic, stock 1,199,198",
+        "ok: C45783 (C1, C2): CL21A226MAQNNNE, 0805, Basic, stock 3,780,238",
+        "ok: C96446 (C3, C4): CL10A106MA8NRNC, 0603, Basic, stock 4,646,841"
       ],
       "unchecked": [
         "C109322 (U1): no MPN in bom.csv to compare with the catalogue's TPS63070RNMR; the code was not checked against a part",
@@ -397,15 +397,14 @@
       "title": "Catalogue package fits the footprint",
       "pitfall": "\u00a71",
       "status": "pass",
-      "summary": "9 agree with their footprint, 2 not compared (sign each under NOT CHECKED with a \"Package verified\" note on its bom.csv line, or fix the string it names)",
+      "summary": "11 agree with their footprint",
       "details": [
         "C395930 DBT10-7.62-2P-GN-P (CN1, CN2; bom.csv row 7): Plugin,P=7.62mm on CONN-TH_2P-P7.62_DBT10-7.62-2P: the footprint is drawn for this part (DBT10-7.62-2P in its name, MPN DBT10-7.62-2P-GN-P)",
+        "C2885888 MLI2012F-1R5KT (L1; bom.csv row 8): 0805 on L0805: pads match: C_0805_2012Metric and C_0805_2012Metric in the KiCad library (2 pads)",
+        "C2683107 ARG05BTC5233 (R4; bom.csv row 11): 0805 on R0805: pads match: C_0805_2012Metric and C_0805_2012Metric in the KiCad library (2 pads)",
         "C109322 TPS63070RNMR (U1; bom.csv row 12): VQFN-15-HR(2.5x3) on VQFN-HR-15_L3.0-W2.5-P0.50-BL_TPS63070RNMR: the footprint is drawn for this part (TPS63070RNMR in its name, MPN TPS63070RNMR)"
       ],
-      "unchecked": [
-        "C2885888 MLI2012F-1R5KT (L1; bom.csv row 8): 0805 on L0805: \"L0805\" is not in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
-        "C2683107 ARG05BTC5233 (R4; bom.csv row 11): 0805 on R0805: \"R0805\" is not in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line"
-      ],
+      "unchecked": [],
       "verified": [],
       "notes": [
         "pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates"

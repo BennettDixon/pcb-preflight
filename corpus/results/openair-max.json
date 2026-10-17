@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "One-Air-Max",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/openair-max",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/openair-max",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -50,7 +50,7 @@
   },
   "copper_layers": 4,
   "footprints": 210,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/openair-max.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/openair-max.csv",
   "checks": [
     {
       "id": "erc",
@@ -183,7 +183,7 @@
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol USB1 Pin A1B12 [GND, Unspecified, Line] @ (50.8, 57.15); Symbol #PWR05 Pin 1 [Power input, Line] @ (58.42, 64.77)]",
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol U2 Pin 3 [VOS, Unspecified, Line] @ (54.61, 129.54); Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]",
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol U2 Pin 4 [GND, Unspecified, Line] @ (54.61, 132.08); Symbol #PWR010 Pin 1 [Power input, Line] @ (50.8, 146.05)]",
-        "warning: multiple_net_names: Both +5VUSB and VBUS are attached to the same items; +5VUSB will be used in the netlist [Symbol #PWR06 Pin 1 [Power input, Line] @ (62.23, 30.48); Label 'VBUS' @ (57.15, 31.75)]",
+        "warning: multiple_net_names: Both +5VUSB and VBUS are attached to the same items; +5VUSB will be used in the netlist [Symbol #PWR0110 Pin 1 [Power input, Line] @ (187.96, 72.39); Label 'VBUS' @ (57.15, 31.75)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R1 [RC0402FR-075K1L] @ (66.04, 57.15)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R1 [RC0402FR-075K1L] @ (66.04, 57.15)]",
         "warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C11 Pin 2 [2, Unspecified, Line] @ (67.31, 205.74); Symbol PM1 Pin 1 [1, Unspecified, Line] @ (85.09, 205.74)]",
@@ -1622,27 +1622,18 @@
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
       "status": "fail",
-      "summary": "14 mismatches, 1 field/filter notes across 210 footprints",
+      "summary": "3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted",
       "details": [
-        "duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8, 104.02); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8375, 67.345); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (101.26, 85.845); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 104.92); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 67.845); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Battery1 @ (191.56, 61.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Solarpower1 @ (181.28, 116.62)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8, 104.02)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8375, 67.345)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (101.26, 85.845)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 104.92)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 67.845)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
         "warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '', Schematic: 'High-speed switching diodes') [Footprint D1 @ (184.26, 98.125)]"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "11 extra/duplicate footprint items with no pads (a logo or text) are not findings: duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8, 104.02); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8375, 67.345); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (101.26, 85.845); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 104.92); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 67.845); Footprint <no reference designator> @ (193.26, 86.445)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.26, 86.445)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8, 104.02)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8375, 67.345)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (101.26, 85.845)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 104.92)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 67.845)]"
+      ]
     },
     {
       "id": "identity",

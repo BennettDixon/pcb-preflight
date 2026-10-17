@@ -153,7 +153,7 @@ FINDINGS
         J18 ASP-218650-01_mounting_holes at 77.6805, 103.71
         J11 Conn_FFC_WE_68715014522 at 62.44, 103.71
         J8 Plug_Samtec_UMPT_1x6_UMPT-06-06.5-G-V-S-TR at 93.9305, 134.21
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv

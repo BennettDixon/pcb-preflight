@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "canfd-mc",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/canfd-mc",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/canfd-mc",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -29,7 +29,7 @@
   },
   "copper_layers": 4,
   "footprints": 51,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/canfd-mc.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/canfd-mc.csv",
   "checks": [
     {
       "id": "erc",
@@ -73,10 +73,10 @@
       "id": "parity",
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
-      "status": "fail",
-      "summary": "1 mismatches across 51 footprints",
+      "status": "warn",
+      "summary": "0 mismatches, 1 warnings across 51 footprints",
       "details": [
-        "net_conflict: Pad missing net given by schematic (unconnected-(U1-IO1-Pad39)) [Pad 39 [<no net>] of U1 on F.Cu @ (53.65, 59.645606)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)"
+        "warning: net_conflict: Pad missing net given by schematic (unconnected-(U1-IO1-Pad39)) [Pad 39 [<no net>] of U1 on F.Cu @ (53.65, 59.645606)]; the pad has no net and the schematic pin is unconnected: a no-connect, not two nets"
       ],
       "unchecked": [],
       "verified": [],
@@ -276,6 +276,6 @@
     "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
   ],
   "work_dir": null,
-  "result": "FAIL",
-  "exit_code": 1
+  "result": "NOT VERIFIED",
+  "exit_code": 3
 }

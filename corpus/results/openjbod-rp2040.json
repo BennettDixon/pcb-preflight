@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "OpenJBOD-RP2040",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/openjbod-rp2040",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/openjbod-rp2040",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -40,7 +40,7 @@
   },
   "copper_layers": 4,
   "footprints": 129,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/openjbod-rp2040.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/openjbod-rp2040.csv",
   "checks": [
     {
       "id": "erc",
@@ -151,8 +151,8 @@
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW1 Hidden pin 4 [SH, Unspecified, Line] @ (191.77, 54.61); Symbol #PWR024 Hidden pin 1 [GND, Power input, Line] @ (190.5, 55.88)]",
         "warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW1 Pin 3 [SH, Unspecified, Line] @ (191.77, 54.61); Symbol #PWR024 Hidden pin 1 [GND, Power input, Line] @ (190.5, 55.88)]",
         "warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol SW1 Pin 2 [2, Unspecified, Line] @ (201.93, 52.07); Symbol TP2 Pin 1 [1, Passive, Line] @ (204.47, 49.53)]",
-        "warning: multiple_net_names: Both +3.3vSB and +3.3v are attached to the same items; +3.3vSB will be used in the netlist [Label '+3.3vSB' @ (83.82, 63.5); Hierarchical Label '+3.3v' @ (24.13, 20.32)]",
-        "warning: multiple_net_names: Both PWM and PWM_R are attached to the same items; PWM will be used in the netlist [Label 'PWM' @ (41.91, 66.04); Label 'PWM_R' @ (146.05, 39.37)]"
+        "warning: multiple_net_names: Both +3.3vSB and +3.3v are attached to the same items; +3.3vSB will be used in the netlist [Label '+3.3vSB' @ (85.09, 104.14); Hierarchical Label '+3.3v' @ (24.13, 20.32)]",
+        "warning: multiple_net_names: Both PWM and PWM_R are attached to the same items; PWM will be used in the netlist [Label 'PWM' @ (41.91, 121.92); Label 'PWM_R' @ (146.05, 39.37)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -337,18 +337,17 @@
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
       "status": "fail",
-      "summary": "6 mismatches across 129 footprints",
+      "summary": "1 mismatches, 2 warnings across 129 footprints; 3 padless footprint items not counted",
       "details": [
-        "duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: No pad found for pin S1 (GND) in schematic [Footprint J5 @ (90.495, 106.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "missing_footprint: Missing footprint TP1 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "missing_footprint: Missing footprint TP2 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test",
-        "extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test"
+        "warning: missing_footprint: Missing footprint TP1 (TestPoint); TP1 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands",
+        "warning: missing_footprint: Missing footprint TP2 (TestPoint); TP2 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "3 extra/duplicate footprint items with no pads (a logo or text) are not findings: duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]"
+      ]
     },
     {
       "id": "identity",

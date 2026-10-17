@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BeyondexLimiter",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/beyondex-limiter-prefix",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/beyondex-limiter-prefix",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -29,7 +29,7 @@
   },
   "copper_layers": 2,
   "footprints": 9,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/beyondex-limiter-prefix.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/beyondex-limiter-prefix.csv",
   "checks": [
     {
       "id": "erc",
@@ -278,10 +278,10 @@
       "status": "pass",
       "summary": "6 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked; 4 Extended part types (one loading fee each)",
       "details": [
-        "ok: C15525 (C1): CL05A106MQ5NUNC, 0402, Basic, stock 10,721,124",
+        "ok: C15525 (C1): CL05A106MQ5NUNC, 0402, Basic, stock 10,720,669",
         "ok: C1607 (C2): CL10A225KP8NNNC, 0603, Extended, stock 165,908",
-        "ok: C165948 (USB1, USB2): TYPE-C-31-M-12, SMD, Extended, stock 365,801",
-        "ok: C22980 (R1): 0603WAF3601T5E, 0603, Basic, stock 848,534",
+        "ok: C165948 (USB1, USB2): TYPE-C-31-M-12, SMD, Extended, stock 365,713",
+        "ok: C22980 (R1): 0603WAF3601T5E, 0603, Basic, stock 848,334",
         "ok: C35634 (U1): CN5711, ESOP-8, Extended, stock 9,148",
         "ok: C720648 (RV1): TC33X-2-203E, SMD-3P,3.8x3.6mm, Extended, stock 7,886"
       ],
@@ -303,7 +303,7 @@
       "details": [
         "C22980 0603WAF3601T5E (R1; bom.csv row 4): 0603 on R_0402_1005Metric: footprint is 0402, part is 0603; the pads differ too (R_0402_1005Metric against C_0603_1608Metric: no pad near (-0.51, 0))",
         "C720648 TC33X-2-203E (RV1; bom.csv row 5): SMD-3P,3.8x3.6mm on Potentiometer_Bourns_TC33X_Vertical: the footprint is drawn for this part (TC33X in its name, MPN TC33X-2-203E)",
-        "C35634 CN5711 (U1; bom.csv row 6): ESOP-8 on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias: pads match: SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias and SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias in the KiCad library (16 pads)",
+        "C35634 CN5711 (U1; bom.csv row 6): ESOP-8 on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias: pads match: SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias and SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm in the KiCad library (9 pads)",
         "C165948 TYPE-C-31-M-12 (USB1, USB2; bom.csv row 7): SMD on HRO_TYPE-C-31-M-12: the footprint is drawn for this part (TYPE-C-31-M-12 in its name, MPN TYPE-C-31-M-12)"
       ],
       "unchecked": [],

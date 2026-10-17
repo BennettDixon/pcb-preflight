@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "SMPS 12V-5V",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/jlcpcb-example",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/jlcpcb-example",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -38,7 +38,7 @@
   },
   "copper_layers": 2,
   "footprints": 19,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/jlcpcb-example.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jlcpcb-example.csv",
   "checks": [
     {
       "id": "erc",

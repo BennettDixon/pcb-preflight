@@ -8,9 +8,12 @@ KiCad's own ERC/DRC counts are asserted by status only, since they move with the
 baseline was taken with kicad-cli 10.0.7).
 
 The baseline freezes behaviour, not correctness: RESULTS.md says which of these numbers are false
-failures (the 29 and 78 "renamed" footprints, the 68 and 115 library-nickname parity mismatches, the
-canfd-mc net conflict, cm5-minima's screw). A change that fixes one of them is expected to break the
-matching assertion here, and the baseline is then updated with the new, triaged number.
+failures (cm5-minima's screw, the ERC power_pin_not_driven and DRC courtyard/mask blocks the preset has
+not decided on). A change that fixes one of them is expected to break the matching assertion here, and
+the baseline is then updated with the new, triaged number; the 2026-10-17 fixes of the identity gate
+(185 false "renamed"), the parity gate (nickname-only, padless, renamed-sheet, no-connect and skipped-
+prefix items: 233) and the package reader did that once, and canfd-mc became the first board to leave
+FAIL (NOT VERIFIED offline).
 
   PREFLIGHT_CORPUS_BOARDS=canfd-mc,sh-rpi   run a subset
   PREFLIGHT_CORPUS_ONLINE=1                  also run the catalogue pass (network; stock moves daily,
@@ -38,53 +41,55 @@ BASELINE = {
                     'bom-lcsc': '47 of 49 lines have no LCSC code'}),
     'bitaxegt': ('FAIL', {'erc', 'drc', 'bom-lcsc'}, {'bom-lcsc': '35 of 39 lines have no LCSC code',
                                                       'identity': '186 of 187 footprints name a symbol in the schematic, 1 board-only'}),
-    'canfd-mc': ('FAIL', {'parity'}, {'parity': '1 mismatches across 51 footprints', 'identity': '51 of 51 footprints'}),
+    'canfd-mc': ('NOT VERIFIED', set(), {'parity': '0 mismatches, 1 warnings across 51 footprints', 'identity': '51 of 51 footprints'}),
     'cm5-minima': ('FAIL', {'erc', 'drc', 'parity', 'placement', 'bom-lcsc'},
-                   {'parity': '5 mismatches across 112 footprints', 'placement': '1 of 72 bought references',
+                   {'parity': '4 mismatches across 112 footprints; 1 padless footprint items not counted', 'placement': '1 of 72 bought references',
                     'bom-lcsc': '37 of 43 lines have no LCSC code'}),
-    'complex-hierarchy': ('FAIL', {'parity', 'identity', 'bom-file'},
-                          {'identity': '0 orphaned, 0 unlinked, 29 renamed of 68 footprints', 'parity': '68 mismatches across 68 footprints'}),
+    'complex-hierarchy': ('FAIL', {'bom-file'},
+                          {'identity': '68 of 68 footprints name a symbol in the schematic', 'parity': '0 mismatches, 68 warnings across 68 footprints'}),
     'jetson-thor-baseboard': ('FAIL', {'erc', 'drc', 'bom-file'}, {'identity': '1123 of 1125 footprints name a symbol in the schematic, 2 board-only'}),
     'jlcpcb-example': ('FAIL', {'erc'}, {'bom-lcsc': '11 lines, each with a C-number', 'parity': '0 mismatches across 19 footprints'}),
-    'multichannel': ('FAIL', {'erc', 'drc', 'parity', 'identity', 'bom-file'},
-                     {'identity': '0 orphaned, 0 unlinked, 78 renamed of 114 footprints', 'parity': '115 mismatches across 114 footprints'}),
-    'multichannel-unrouted': ('FAIL', {'erc', 'drc', 'unrouted', 'parity', 'identity', 'bom-file'},
-                              {'unrouted': '148 connections still to route', 'identity': '78 renamed of 114 footprints',
+    'multichannel': ('FAIL', {'erc', 'drc', 'parity', 'bom-file'},
+                     {'identity': '114 of 114 footprints name a symbol in the schematic', 'parity': '1 mismatches, 114 warnings across 114 footprints'}),
+    'multichannel-unrouted': ('FAIL', {'erc', 'drc', 'unrouted', 'parity', 'bom-file'},
+                              {'unrouted': '148 connections still to route', 'identity': '114 of 114 footprints name a symbol in the schematic',
                                'parity': '1 mismatches across 114 footprints'}),
     'openair-max': ('FAIL', {'erc', 'drc', 'parity', 'dnp', 'bom-lcsc'},
-                    {'parity': '14 mismatches, 1 field/filter notes across 210 footprints', 'dnp': '2 DNP parts inconsistent',
+                    {'parity': '3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted', 'dnp': '2 DNP parts inconsistent',
                      'bom-lcsc': '3 of 84 lines have no LCSC code'}),
     'openjbod-rp2040': ('FAIL', {'erc', 'drc', 'unrouted', 'parity'},
-                        {'unrouted': '5 connections still to route', 'parity': '6 mismatches across 129 footprints',
+                        {'unrouted': '5 connections still to route', 'parity': '1 mismatches, 2 warnings across 129 footprints; 3 padless footprint items not counted',
                          'bom-lcsc': '49 lines, each with a C-number'}),
     'pocketpd': ('FAIL', {'erc', 'drc', 'bom-lcsc'}, {'bom-lcsc': '1 of 34 lines have no LCSC code', 'parity': '0 mismatches, 73 field/filter notes'}),
     'royalblue54l-feather': ('FAIL', {'erc', 'drc', 'bom-lcsc'}, {'bom-lcsc': '2 of 29 lines have no LCSC code'}),
-    'sh-rpi': ('FAIL', {'drc', 'parity', 'bom-lcsc'}, {'parity': '33 mismatches across 168 footprints', 'bom-lcsc': '3 of 77 lines have no LCSC code'}),
+    'sh-rpi': ('FAIL', {'drc', 'bom-lcsc'}, {'parity': '0 mismatches, 33 warnings across 168 footprints', 'bom-lcsc': '3 of 77 lines have no LCSC code'}),
     'smarthome-metering-prefix': ('FAIL', {'erc', 'parity', 'dnp', 'placement', 'bom-file'},
                                   {'parity': '94 mismatches across 4 footprints', 'placement': '117 of 119 bought references', 'dnp': '3 DNP parts inconsistent'}),
     'smarthome-metering': ('FAIL', {'erc', 'parity', 'dnp', 'placement', 'bom-file'},
                            {'parity': '96 mismatches across 4 footprints', 'placement': '117 of 119 bought references', 'dnp': '3 DNP parts inconsistent'}),
-    'soldiercrab': ('FAIL', {'erc', 'drc', 'parity'}, {'parity': '1 mismatches, 5 field/filter notes across 77 footprints', 'bom-lcsc': '29 lines, each with a C-number'}),
+    'soldiercrab': ('FAIL', {'erc', 'drc'}, {'parity': '0 mismatches, 5 field/filter notes across 77 footprints; 1 padless footprint items not counted', 'bom-lcsc': '29 lines, each with a C-number'}),
     'sonatino': ('FAIL', {'erc', 'drc'}, {'bom-lcsc': '57 lines, each with a C-number', 'parity': '0 mismatches across 129 footprints'}),
     'tiny-tapeout': ('FAIL', {'erc', 'drc', 'unrouted', 'bom-lcsc'}, {'unrouted': '1 connections still to route', 'bom-lcsc': '28 of 32 lines have no LCSC code'}),
 }
 
-# Online (opt-in): catalogue-package summary per board, 2026-10-17. RESULTS.md: of the 12 "do not fit", 3 are right.
+# Online (opt-in): catalogue-package summary per board, 2026-10-17 after the package-reader fixes. RESULTS.md: the 4 "do
+# not fit" are right (the three documented problems and soldiercrab's 2520 oscillator on a 3225 footprint); the first run
+# had 12, 9 of them wrong, and 120 not compared, 82 of them spellings the table now reads.
 ONLINE_PACKAGE = {
     'beyondex-limiter-prefix': '1 do not fit the footprint; 5 agree',
     'beyondex-limiter': '6 agree with their footprint',
-    'bitaxeaura': '1 do not fit the footprint; 0 agree with their footprint, 1 not compared',
-    'bitaxegt': '2 agree with their footprint, 2 not compared',
-    'canfd-mc': '24 agree with their footprint, 2 not compared',
+    'bitaxeaura': '1 do not fit the footprint; 1 agree with their footprint',
+    'bitaxegt': '3 agree with their footprint, 1 not compared',
+    'canfd-mc': '26 agree with their footprint',
     'cm5-minima': '5 agree with their footprint, 1 not compared',
-    'jlcpcb-example': '9 agree with their footprint, 2 not compared',
-    'openair-max': '2 do not fit the footprint; 14 agree with their footprint, 65 not compared',
-    'openjbod-rp2040': '2 do not fit the footprint; 39 agree with their footprint, 8 not compared',
-    'pocketpd': '2 do not fit the footprint; 20 agree with their footprint, 10 not compared',
-    'royalblue54l-feather': '1 do not fit the footprint; 19 agree with their footprint, 7 not compared',
-    'sh-rpi': '1 do not fit the footprint; 61 agree with their footprint, 8 not compared',
-    'soldiercrab': '1 do not fit the footprint; 23 agree with their footprint, 4 not compared',
-    'sonatino': '1 do not fit the footprint; 46 agree with their footprint, 10 not compared',
+    'jlcpcb-example': '11 agree with their footprint',
+    'openair-max': '69 agree with their footprint, 12 not compared',
+    'openjbod-rp2040': '44 agree with their footprint, 5 not compared',
+    'pocketpd': '23 agree with their footprint, 9 not compared',
+    'royalblue54l-feather': '22 agree with their footprint, 5 not compared',
+    'sh-rpi': '1 do not fit the footprint; 63 agree with their footprint, 6 not compared',
+    'soldiercrab': '1 do not fit the footprint; 24 agree with their footprint, 3 not compared',
+    'sonatino': '50 agree with their footprint, 7 not compared',
     'tiny-tapeout': '4 agree with their footprint',
 }
 

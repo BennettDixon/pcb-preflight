@@ -79,7 +79,7 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5); PTH pad 1 [GND] of TP2
   FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 5 agree with their footprint
         C22980 0603WAF3601T5E (R1; bom.csv row 4): 0603 on R_0402_1005Metric: footprint is 0402, part is 0603; the pads differ too (R_0402_1005Metric against C_0603_1608Metric: no pad near (-0.51, 0))
         C720648 TC33X-2-203E (RV1; bom.csv row 5): SMD-3P,3.8x3.6mm on Potentiometer_Bourns_TC33X_Vertical: the footprint is drawn for this part (TC33X in its name, MPN TC33X-2-203E)
-        C35634 CN5711 (U1; bom.csv row 6): ESOP-8 on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias: pads match: SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias and SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias in the KiCad library (16 pads)
+        C35634 CN5711 (U1; bom.csv row 6): ESOP-8 on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias: pads match: SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias and SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm in the KiCad library (9 pads)
         C165948 TYPE-C-31-M-12 (USB1, USB2; bom.csv row 7): SMD on HRO_TYPE-C-31-M-12: the footprint is drawn for this part (TYPE-C-31-M-12 in its name, MPN TYPE-C-31-M-12)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
 

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BitaxeGT",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/bitaxegt",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/bitaxegt",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -38,7 +38,7 @@
   },
   "copper_layers": 6,
   "footprints": 187,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/bitaxegt.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/bitaxegt.csv",
   "checks": [
     {
       "id": "erc",

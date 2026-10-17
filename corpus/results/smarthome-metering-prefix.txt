@@ -96,7 +96,7 @@ FINDINGS
         DNP in the schematic but no footprint on the board: C6, C7, R17
   FAIL  Bought parts placed on the board (§5 §12): 117 of 119 bought references have no footprint on the board
         bought in the schematic but no footprint on the board: C1, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C2, C20, C3, C4, C5, C8, C9, D1, D10, +97 more
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv

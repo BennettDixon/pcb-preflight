@@ -1,9 +1,10 @@
 multichannel_mixer  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 114 footprints  -  bom.csv: none
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 4 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 114 of 114 footprints name a symbol in the schematic
   Copper layers (§9): 2 copper layers
   DNP parts (§12): 0 DNP parts flagged on both schematic and board
   Bought parts placed on the board (§5 §12): 114 of 114 bought references have a footprint on the board
@@ -47,30 +48,30 @@ FINDINGS
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R47 [R1206_10K_1%_0.25W_100PPM] @ (254.0, 78.74)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C40 [CTEB_2.2UF_35V_10%_254-500X840] @ (262.89, 78.74)]
   FAIL  DRC (§12): 24 errors, 91 warnings (lib_footprint_mismatch x81, clearance x24, connection_width x4, silk_over_copper x4, silk_edge_clearance x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C11 on B.Cu @ (150.4, 114.3); Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811); PTH pad 3 [Net-(C7-Pad1)] of RV1 @ (147.5, 115.4)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C7-Pad1)] of C7 on B.Cu @ (148.0, 117.9); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C11 on B.Cu @ (150.4, 114.3); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C11-Pad2)] of C11 on B.Cu @ (150.4, 117.3); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C8-Pad1)] of RV2 @ (147.5, 97.4); Track [Net-(IC2B-IN-)] on B.Cu, length 4.0000 mm @ (148.85, 94.85)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C11 on B.Cu @ (150.4, 114.3); Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811); PTH pad 3 [Net-(C7-Pad1)] of RV1 @ (147.5, 115.4)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C16-Pad1)] of RV5 @ (125.5, 115.4); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811); Pad 1 [GND] of C20 on B.Cu @ (128.4, 114.3)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C17-Pad1)] of RV6 @ (125.5, 97.4); Track [Net-(IC3B-IN-)] on B.Cu, length 4.0000 mm @ (126.85, 94.85)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C20 on B.Cu @ (128.4, 114.3); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811); Pad 2 [Net-(C20-Pad2)] of C20 on B.Cu @ (128.4, 117.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C16-Pad1)] of C16 on B.Cu @ (126.0, 117.9); Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C17-Pad1)] of RV6 @ (125.5, 97.4); Track [Net-(IC3B-IN-)] on B.Cu, length 4.0000 mm @ (126.85, 94.85)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C16-Pad1)] of RV5 @ (125.5, 115.4); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C20 on B.Cu @ (128.4, 114.3); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [Net-(C25-Pad1)] of C25 on B.Cu @ (170.0, 117.9)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C25-Pad1)] of RV9 @ (169.5, 115.4); Track [Net-(IC4B-IN-)] on B.Cu, length 3.1820 mm @ (168.8, 112.790811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 3.1820 mm @ (168.8, 112.790811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C29-Pad2)] of C29 on B.Cu @ (172.4, 117.3); Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C26-Pad1)] of RV10 @ (169.5, 97.4); Track [Net-(IC4B-IN-)] on B.Cu, length 4.0000 mm @ (170.85, 94.85)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 3.1820 mm @ (168.8, 112.790811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85); PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
@@ -88,90 +89,48 @@ FINDINGS
         warning: lib_footprint_mismatch: Footprint 'RESC3216X65N' does not match copy in library 'multichannel_mixer' [Footprint R36 @ (166.95, 147.4)]
         warning: lib_footprint_mismatch: Footprint 'RESC3216X65N' does not match copy in library 'multichannel_mixer' [Footprint R29 @ (170.4, 100.2)]
         ... 75 more (--max-details)
-  FAIL  Schematic / PCB parity (§5): 115 mismatches across 114 footprints
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C1 @ (181.73, 110.06)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C2 @ (186.46, 101.73)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C3 @ (182.46, 103.66)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C4 @ (193.87, 101.91)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:SOIC127P600X175-8N doesn't match footprint given by symbol (ICs And Semiconductors SMD:SOIC127P600X175-8N) [Footprint IC1 @ (190.335, 108.24)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CLIFF_FC68148(DC-10A) doesn't match footprint given by symbol (Miscellaneous THD:CLIFF_FC68148(DC-10A)) [Footprint J5 @ (191.285, 87.385)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  FAIL  Schematic / PCB parity (§5): 1 mismatches, 114 warnings across 114 footprints
         footprint_symbol_mismatch: Value (J6) doesn't match symbol value (CH1) [Footprint J6 @ (180.585, 65.585)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal doesn't match footprint given by symbol (Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal) [Footprint J6 @ (180.585, 65.585)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R1 @ (182.46, 106.335)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R2 @ (190.22, 112.76)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R3 @ (195.5, 107.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C5 @ (140.0, 79.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C6 @ (145.0, 78.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C7 @ (146.5, 117.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C8 @ (142.0, 102.8)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C9 @ (145.0, 123.7)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C10 @ (145.0, 129.0)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C11 @ (150.4, 115.8)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C12 @ (140.0, 84.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C13 @ (150.5, 76.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:SOIC127P600X175-8N doesn't match footprint given by symbol (ICs And Semiconductors SMD:SOIC127P600X175-8N) [Footprint IC2 @ (146.365, 84.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal doesn't match footprint given by symbol (Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal) [Footprint J1 @ (136.785, 65.635)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R4 @ (140.0, 76.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R5 @ (145.0, 76.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R6 @ (148.4, 102.8)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R7 @ (148.4, 100.2)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R8 @ (149.0, 135.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R9 @ (141.0, 117.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R10 @ (139.6, 113.6)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R11 @ (145.0, 93.0)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R12 @ (141.0, 135.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R13 @ (149.0, 121.0)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R14 @ (144.95, 147.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV1 @ (142.5, 115.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV2 @ (142.5, 97.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV3 @ (142.5, 133.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV4 @ (142.5, 151.45)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C14 @ (118.0, 79.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C15 @ (123.0, 78.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C16 @ (124.5, 117.9)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C1 @ (181.73, 110.06)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C2 @ (186.46, 101.73)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C3 @ (182.46, 103.66)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C4 @ (193.87, 101.91)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:SOIC127P600X175-8N doesn't match footprint given by symbol (ICs And Semiconductors SMD:SOIC127P600X175-8N) [Footprint IC1 @ (190.335, 108.24)]; only the library nickname differs (multichannel_mixer on the board, ICs And Semiconductors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CLIFF_FC68148(DC-10A) doesn't match footprint given by symbol (Miscellaneous THD:CLIFF_FC68148(DC-10A)) [Footprint J5 @ (191.285, 87.385)]; only the library nickname differs (multichannel_mixer on the board, Miscellaneous THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal doesn't match footprint given by symbol (Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal) [Footprint J6 @ (180.585, 65.585)]; only the library nickname differs (multichannel_mixer on the board, Connector_Audio in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R1 @ (182.46, 106.335)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R2 @ (190.22, 112.76)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R3 @ (195.5, 107.79)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C5 @ (140.0, 79.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C6 @ (145.0, 78.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C7 @ (146.5, 117.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C8 @ (142.0, 102.8)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C9 @ (145.0, 123.7)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C10 @ (145.0, 129.0)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C11 @ (150.4, 115.8)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C12 @ (140.0, 84.4)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C13 @ (150.5, 76.4)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:SOIC127P600X175-8N doesn't match footprint given by symbol (ICs And Semiconductors SMD:SOIC127P600X175-8N) [Footprint IC2 @ (146.365, 84.1)]; only the library nickname differs (multichannel_mixer on the board, ICs And Semiconductors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal doesn't match footprint given by symbol (Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal) [Footprint J1 @ (136.785, 65.635)]; only the library nickname differs (multichannel_mixer on the board, Connector_Audio in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R4 @ (140.0, 76.4)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R5 @ (145.0, 76.4)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R6 @ (148.4, 102.8)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R7 @ (148.4, 100.2)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R8 @ (149.0, 135.9)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R9 @ (141.0, 117.9)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R10 @ (139.6, 113.6)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R11 @ (145.0, 93.0)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R12 @ (141.0, 135.9)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R13 @ (149.0, 121.0)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:RESC3216X65N doesn't match footprint given by symbol (Resistors SMD:RESC3216X65N) [Footprint R14 @ (144.95, 147.4)]; only the library nickname differs (multichannel_mixer on the board, Resistors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV1 @ (142.5, 115.4)]; only the library nickname differs (multichannel_mixer on the board, Potentiometer_THT in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV2 @ (142.5, 97.4)]; only the library nickname differs (multichannel_mixer on the board, Potentiometer_THT in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV3 @ (142.5, 133.4)]; only the library nickname differs (multichannel_mixer on the board, Potentiometer_THT in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:Potentiometer_Alps_RK09K_Single_Vertical doesn't match footprint given by symbol (Potentiometer_THT:Potentiometer_Alps_RK09K_Single_Vertical) [Footprint RV4 @ (142.5, 151.45)]; only the library nickname differs (multichannel_mixer on the board, Potentiometer_THT in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840) [Footprint C14 @ (118.0, 79.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors THD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C15 @ (123.0, 78.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
+        warning: footprint_symbol_mismatch: multichannel_mixer:CAPC3216X140N doesn't match footprint given by symbol (Capacitors SMD:CAPC3216X140N) [Footprint C16 @ (124.5, 117.9)]; only the library nickname differs (multichannel_mixer on the board, Capacitors SMD in the schematic): the same footprint from a project-local copy of the library
         ... 75 more (--max-details)
-  FAIL  Board footprints belong to this schematic (§5): 0 orphaned, 0 unlinked, 78 renamed of 114 footprints
-        RV5 on the board is RV1 in the schematic (multichannel_mixer:POT)
-        J9 on the board is J1 in the schematic (multichannel_mixer:Audio-Jack-2_Switch_1)
-        RV13 on the board is RV1 in the schematic (multichannel_mixer:POT)
-        RV14 on the board is RV2 in the schematic (multichannel_mixer:POT)
-        RV10 on the board is RV2 in the schematic (multichannel_mixer:POT)
-        J7 on the board is J1 in the schematic (multichannel_mixer:Audio-Jack-2_Switch_1)
-        RV16 on the board is RV4 in the schematic (multichannel_mixer:POT)
-        C23 on the board is C5 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        C40 on the board is C13 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        C22 on the board is C13 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        RV6 on the board is RV2 in the schematic (multichannel_mixer:POT)
-        RV15 on the board is RV3 in the schematic (multichannel_mixer:POT)
-        J8 on the board is J1 in the schematic (multichannel_mixer:Audio-Jack-2_Switch_1)
-        C14 on the board is C5 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        RV9 on the board is RV1 in the schematic (multichannel_mixer:POT)
-        RV11 on the board is RV3 in the schematic (multichannel_mixer:POT)
-        RV8 on the board is RV4 in the schematic (multichannel_mixer:POT)
-        RV7 on the board is RV3 in the schematic (multichannel_mixer:POT)
-        RV12 on the board is RV4 in the schematic (multichannel_mixer:POT)
-        C31 on the board is C13 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        C32 on the board is C5 in the schematic (multichannel_mixer:CTEB_2.2UF_35V_10%_254-500X840)
-        R39 on the board is R6 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R34 on the board is R12 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R16 on the board is R5 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R41 on the board is R8 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R35 on the board is R13 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R44 on the board is R11 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        IC5 on the board is IC2 in the schematic (multichannel_mixer:TL072CD)
-        R36 on the board is R14 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R29 on the board is R7 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R27 on the board is R5 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R23 on the board is R12 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R28 on the board is R6 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R38 on the board is R5 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        R46 on the board is R13 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        C38 on the board is C11 in the schematic (multichannel_mixer:CC1206_100NF_50V_10%_X7R)
-        C20 on the board is C11 in the schematic (multichannel_mixer:CC1206_100NF_50V_10%_X7R)
-        R22 on the board is R11 in the schematic (multichannel_mixer:R1206_10K_1%_0.25W_100PPM)
-        C37 on the board is C10 in the schematic (multichannel_mixer:CC1206_100NF_50V_10%_X7R)
-        C21 on the board is C12 in the schematic (multichannel_mixer:CC1206_100NF_50V_10%_X7R)
-        ... 38 more (--max-details)
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("multichannel_mixer") on a silkscreen layer
@@ -183,7 +142,7 @@ FINDINGS
         J7 CH1 at 114.785, 65.635
         J8 CH1 at 158.785, 65.635
         J1 CH1 at 136.785, 65.635
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/multichannel.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/multichannel.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv
@@ -210,5 +169,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 4 warnings, 2 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -63,8 +63,8 @@ FINDINGS
         clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]
         clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]
         shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]
-        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
         clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]
+        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
         clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]
         shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]
         clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]
@@ -103,7 +103,7 @@ FINDINGS
         ... 704 more (--max-details)
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
   FAIL  Unrouted connections (§11 §12): 1 connections still to route
-        unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
+        unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]
   WARN  Schematic / PCB parity (§5): 0 mismatches, 1 field/filter notes across 309 footprints
         warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '
 USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle

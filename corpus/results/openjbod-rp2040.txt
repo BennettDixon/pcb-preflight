@@ -107,13 +107,11 @@ FINDINGS
         unconnected_items: Missing connection between items [Track [/+5v] on Front, length 4.6245 mm @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
         unconnected_items: Missing connection between items [PTH pad 22 [/+5v] of J1 @ (153.87, 97.69); PTH pad 23 [/+5v] of J1 @ (153.87, 93.49)]
         unconnected_items: Missing connection between items [PTH pad 21 [/+5v] of J1 @ (153.87, 101.89); PTH pad 22 [/+5v] of J1 @ (153.87, 97.69)]
-  FAIL  Schematic / PCB parity (§5): 6 mismatches across 129 footprints
-        duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  FAIL  Schematic / PCB parity (§5): 1 mismatches, 2 warnings across 129 footprints; 3 padless footprint items not counted
         net_conflict: No pad found for pin S1 (GND) in schematic [Footprint J5 @ (90.495, 106.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        missing_footprint: Missing footprint TP1 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        missing_footprint: Missing footprint TP2 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+        warning: missing_footprint: Missing footprint TP1 (TestPoint); TP1 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands
+        warning: missing_footprint: Missing footprint TP2 (TestPoint); TP2 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands
+        note: 3 extra/duplicate footprint items with no pads (a logo or text) are not findings: duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("OpenJBOD-RP2040") on a silkscreen layer

@@ -8,8 +8,10 @@ module and lets the names only choose the candidates.
 
 What is compared, per pad: SMD or through-hole, position, size, drill and whether the pad takes paste, each
 within a small tolerance (``same_pads``), with the footprint tried in its four rotations. Pads without
-copper (paste windows over an exposed pad) are not pads. Shapes (rect, roundrect, oval) and pad numbers
-are not compared: the land pattern is the question here, the pin map is §3 and stays by hand.
+copper (paste windows over an exposed pad) are not pads; pads with one number that touch are one pad, and
+a via-in-pad hole with the exposed pad's number is not a pad (``stack``). Shapes (rect, roundrect, oval)
+and pad numbers are otherwise not compared: the land pattern is the question here, the pin map is §3 and
+stays by hand.
 
 The library is found from ``--footprints``, ``$KICAD_FOOTPRINT_DIR``, the ``KICAD<n>_FOOTPRINT_DIR``
 variables KiCad itself sets, or the install the ``kicad-cli`` in use belongs to. Without one, the gates
@@ -92,8 +94,59 @@ def path_of(root, lib_id):
     return p if os.path.isfile(p) else None
 
 
+def _touch(a, b):
+    """Two axis-aligned pads whose copper rectangles overlap or touch."""
+    return (abs(a.x - b.x) <= (a.w + b.w) / 2 + 1e-6) and (abs(a.y - b.y) <= (a.h + b.h) / 2 + 1e-6)
+
+
+def _inside(hole, pad):
+    return abs(hole.x - pad.x) <= pad.w / 2 + 1e-6 and abs(hole.y - pad.y) <= pad.h / 2 + 1e-6
+
+
+def stack(numbered):
+    """One pad per piece of copper: SMD pads with the same number that touch or overlap are one pad (their
+    bounding box, paste if any of them takes it); a through-hole pad with the same number whose centre lies in
+    that copper is a thermal via in the pad, not a pad.
+
+    TI's PowerPAD footprints draw the exposed pad as several stacked or tiled pads numbered 9, with via-in-pad
+    holes numbered 9 (KiCad Package_SO:TI_SO-PowerPAD-8_ThermalVias: 19 pad entries, 9 pads; TI_SO-PowerPAD-8:
+    four tiles for pad 9). ``numbered`` is [(number, Pad)]; pads without a number are left as they are.
+    """
+    out, groups = [], {}
+    for n, p in numbered:
+        if n == '':
+            out.append(p)
+        else:
+            groups.setdefault(n, []).append(p)
+    for n, pads in groups.items():
+        smd = [p for p in pads if p.kind == 'smd']
+        holes = [p for p in pads if p.kind != 'smd']
+        merged = []
+        while smd:
+            group = [smd.pop(0)]
+            grew = True
+            while grew:
+                grew = False
+                for p in list(smd):
+                    if any(_touch(p, g) for g in group):
+                        group.append(p)
+                        smd.remove(p)
+                        grew = True
+            if len(group) == 1:
+                merged.append(group[0])
+            else:
+                x0, x1 = min(g.x - g.w / 2 for g in group), max(g.x + g.w / 2 for g in group)
+                y0, y1 = min(g.y - g.h / 2 for g in group), max(g.y + g.h / 2 for g in group)
+                merged.append(Pad('smd', round((x0 + x1) / 2, 6), round((y0 + y1) / 2, 6), round(x1 - x0, 6), round(y1 - y0, 6),
+                                  0.0, any(g.paste for g in group)))
+        out.extend(merged)
+        out.extend(h for h in holes if not any(_inside(h, m) for m in merged))
+    return tuple(out)
+
+
 def read_pads(path):
-    """The copper pads of a .kicad_mod file, as Pad tuples; raises OSError or ValueError for a bad file."""
+    """The copper pads of a .kicad_mod file, as Pad tuples, stacked pads counted once (``stack``); raises OSError or
+    ValueError for a bad file."""
     with open(path, encoding='utf-8') as f:
         root = sexpr.parse(f.read())
     if root[0] not in ('footprint', 'module'):
@@ -102,6 +155,7 @@ def read_pads(path):
     for p in sexpr.children(root, 'pad'):
         atoms = sexpr.atoms(p)
         kind = atoms[1] if len(atoms) > 1 else 'smd'
+        number = str(p[1]) if len(p) > 1 and not isinstance(p[1], list) else ''
         at = sexpr.child(p, 'at') or ['at', 0, 0]
         size = sexpr.child(p, 'size') or ['size', 0, 0]
         layers = [str(a) for a in (sexpr.child(p, 'layers') or [])[1:]]
@@ -116,8 +170,8 @@ def read_pads(path):
         rot = sexpr.number(at[3]) if len(at) > 3 else 0.0
         if abs(rot % 180 - 90) < 1e-6:
             w, h = h, w
-        pads.append(Pad(kind, sexpr.number(at[1]), sexpr.number(at[2]), w, h, d, any(a.endswith('.Paste') for a in layers)))
-    return tuple(pads)
+        pads.append((number, Pad(kind, sexpr.number(at[1]), sexpr.number(at[2]), w, h, d, any(a.endswith('.Paste') for a in layers))))
+    return stack(pads)
 
 
 def _near(a, b, tol):
@@ -159,7 +213,7 @@ def _match(pads_a, pads_b):
 
 def same_pads(pads_a, pads_b):
     """(True, '') when the two pad sets are one land pattern within tolerance, in any of four rotations;
-    (False, why) otherwise. Pad count must agree exactly: an exposed pad or a thermal via is a pad."""
+    (False, why) otherwise. Pad count must agree exactly: an exposed pad is a pad (a via inside it is not: ``stack``)."""
     if len(pads_a) != len(pads_b):
         return False, f'{len(pads_a)} pads against {len(pads_b)}'
     if not pads_a:

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "tinytapeout-demo",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/tiny-tapeout",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/tiny-tapeout",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -34,7 +34,7 @@
   },
   "copper_layers": 4,
   "footprints": 309,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/tiny-tapeout.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/tiny-tapeout.csv",
   "checks": [
     {
       "id": "erc",
@@ -116,8 +116,8 @@
         "clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]",
         "clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]",
         "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
-        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
         "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]",
+        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
         "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]",
         "shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]",
         "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]",
@@ -1032,7 +1032,7 @@
       "status": "fail",
       "summary": "1 connections still to route",
       "details": [
-        "unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]"
+        "unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]"
       ],
       "unchecked": [],
       "verified": [],

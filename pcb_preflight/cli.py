@@ -77,7 +77,7 @@ def run_check(a):
             drc_report, drc_out = kicad.drc(cli, pcb, os.path.join(work, 'drc.json'), parity=True)
             results.append(checks.drc_check(drc_report, owned, custom_rules, board.copper_layers))
             results.append(checks.unrouted_check(drc_report))
-            results.append(checks.parity_check(drc_report, drc_out, len(board.footprints)))
+            results.append(checks.parity_check(drc_report, drc_out, len(board.footprints), board, skip_prefixes, owned))
         except kicad.KicadError as e:
             for cid, title, pitfall in (('drc', 'DRC', '§12'), ('unrouted', 'Unrouted connections', '§11 §12'),
                                         ('parity', 'Schematic / PCB parity', '§5')):

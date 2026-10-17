@@ -1,5 +1,5 @@
 bitaxeAura  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 193 footprints  -  bom.csv: bitaxeaura.csv
-RESULT: FAIL  -  7 blocking, 4 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  7 blocking, 4 warnings, 1 not checked  -  exit 1
   7 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -62,13 +62,13 @@ FINDINGS
   FAIL  DRC (§12): 126 errors, 269 warnings (lib_footprint_mismatch x127, clearance x80, via_dangling x78, lib_footprint_issues x31, track_dangling x25, shorting_items x23, hole_clearance x14, solder_mask_bridge x7, silk_overlap x6, items_not_allowed x1, courtyards_overlap x1, copper_sliver x1, mirrored_text_on_front_layer x1); 15 footprints without a courtyard
         items_not_allowed: Items not allowed (keepout area 'Antenna Keepout') [Footprint U6 @ (114.27, 46.75)]
         shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.3500 mm @ (107.325, 124.775); Pad 7 [GND] of U7 on B.Cu @ (107.325, 123.425)]
-        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 2.8750 mm @ (103.425, 129.15); Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.1750 mm @ (107.975, 123.425); Pad 8 [GND] of U7 on B.Cu @ (107.975, 123.425)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 2.8750 mm @ (103.425, 129.15); Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
-        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15); Track [<no net>] on B.Cu, length 1.3850 mm @ (103.425, 129.15)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 1 [/ASIC/1V5] of C51 on B.Cu @ (101.8, 131.08); Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08)]
@@ -83,22 +83,22 @@ FINDINGS
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0053 mm) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1053 mm) [Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 1 [/ASIC/0V75-0] of U14 on F.Cu @ (62.668583, 81.785296)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/0V75-1] of U21 on F.Cu @ (83.796083, 50.862796); Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 3 [/5V] of U14 on F.Cu @ (63.738579, 82.4353)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 4 [/5V] of U14 on F.Cu @ (63.738579, 81.785294)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/0V75-1] of U21 on F.Cu @ (83.796083, 50.862796); Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797); Pad 3 [/5V] of U21 on F.Cu @ (84.866079, 51.5128)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797); Pad 4 [/5V] of U21 on F.Cu @ (84.866079, 50.862794)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/1V5] of U11 on F.Cu @ (62.668583, 79.215098); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/1V5-2] of U22 on F.Cu @ (83.796083, 53.432994); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 3 [/5V] of U11 on F.Cu @ (63.738579, 79.865102); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 3 [/5V] of U22 on F.Cu @ (84.866079, 54.082998); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 4 [/5V] of U11 on F.Cu @ (63.738579, 79.215096); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/1V5-2] of U22 on F.Cu @ (83.796083, 53.432994); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 3 [/5V] of U22 on F.Cu @ (84.866079, 54.082998); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 4 [/5V] of U22 on F.Cu @ (84.866079, 53.432992); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 1 [/ASIC/0V75-2] of U23 on F.Cu @ (83.796083, 56.003192)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 3 [/5V] of U23 on F.Cu @ (84.866079, 56.653196)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 4 [/5V] of U23 on F.Cu @ (84.866079, 56.00319)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 1 [/ASIC/0V75] of U16 on F.Cu @ (62.668583, 86.925692)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 3 [/5V] of U23 on F.Cu @ (84.866079, 56.653196)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 3 [/5V] of U16 on F.Cu @ (63.738579, 87.575696)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 4 [/5V] of U23 on F.Cu @ (84.866079, 56.00319)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 4 [/5V] of U16 on F.Cu @ (63.738579, 86.92569)]
         ... 355 more (--max-details)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_over_copper
@@ -114,18 +114,18 @@ FINDINGS
         unconnected_items: Missing connection between items [Pad 1 [/12V] of C96 on B.Cu @ (143.05, 136.975); Track [/12V] on B.Cu, length 0.2121 mm @ (144.85, 137.45)]
         unconnected_items: Missing connection between items [Pad 1 [/12V] of C97 on B.Cu @ (144.85, 136.68); Pad 1 [/12V] of C27 on F.Cu @ (153.63, 71.69)]
         unconnected_items: Missing connection between items [Pad 1 [/12V] of R14 on F.Cu @ (146.34, 55.9825); Track [/12V] on B.Cu, length 1.4500 mm @ (149.025, 59.575)]
-        unconnected_items: Missing connection between items [Track [/Power/AGND1] on F.Cu, length 1.0200 mm @ (125.05, 61.12); Track [/Power/AGND1] on F.Cu, length 0.2758 mm @ (126.325, 62.35)]
-        unconnected_items: Missing connection between items [Track [/Power/AGND1] on F.Cu, length 0.2758 mm @ (126.325, 62.35); Track [/Power/AGND1] on F.Cu, length 0.6800 mm @ (130.23, 60.41)]
+        unconnected_items: Missing connection between items [Track [/Power/AGND1] on F.Cu, length 1.0200 mm @ (125.05, 61.12); Via [/Power/AGND1] on F.Cu - B.Cu @ (126.325, 62.35)]
+        unconnected_items: Missing connection between items [Via [/Power/AGND1] on F.Cu - B.Cu @ (126.325, 62.35); Track [/Power/AGND1] on F.Cu, length 0.6800 mm @ (130.23, 60.41)]
         unconnected_items: Missing connection between items [Pad 38 [/Vcore] of U6 on B.Cu @ (108.55, 55.5); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
         unconnected_items: Missing connection between items [Pad 2 [/Vcore] of L1 on F.Cu @ (122.61, 79.2688); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
-        unconnected_items: Missing connection between items [Pad 2 [/Vcore] of C9 on F.Cu @ (128.03, 80.2); Track [/Vcore] on F.Cu, length 0.5900 mm @ (129.23, 62.18)]
+        unconnected_items: Missing connection between items [Pad 2 [/Vcore] of C9 on F.Cu @ (128.03, 80.2); Via [/Vcore] on F.Cu - B.Cu @ (129.23, 62.77)]
         unconnected_items: Missing connection between items [Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18); Track [/Vcore] on In2.Cu, length 3.2173 mm @ (133.325, 103.575)]
         unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
         unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18)]
         unconnected_items: Missing connection between items [Track [/Vcore] on In2.Cu, length 6.2000 mm @ (154.4, 102.8); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
-        unconnected_items: Missing connection between items [Track [/Vcore] on In2.Cu, length 0.1414 mm @ (160.6, 102.8); Pad 1 [/Vcore] of TP15 on B.Cu @ (275.17, 98.65)]
+        unconnected_items: Missing connection between items [Via [/Vcore] on F.Cu - B.Cu @ (160.7, 102.7); Pad 1 [/Vcore] of TP15 on B.Cu @ (275.17, 98.65)]
         unconnected_items: Missing connection between items [Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64); Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64)]
-        unconnected_items: Missing connection between items [Track [/Power/VSHARE] on F.Cu, length 0.0157 mm @ (127.18, 62.37); Track [/Power/VSHARE] on F.Cu, length 0.2404 mm @ (149.96, 62.19)]
+        unconnected_items: Missing connection between items [Via [/Power/VSHARE] on F.Cu - B.Cu @ (127.18, 62.37); Track [/Power/VSHARE] on F.Cu, length 1.7500 mm @ (149.96, 60.44)]
         unconnected_items: Missing connection between items [Track [/Power/EN_UVLO] on F.Cu, length 0.9100 mm @ (132.21, 63.17); Track [/Power/EN_UVLO] on F.Cu, length 1.0000 mm @ (151.88, 66.56)]
         unconnected_items: Missing connection between items [Pad 2 [/5V] of C38 on F.Cu @ (55.04, 79.24); Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18)]
         unconnected_items: Missing connection between items [Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18); Pad 2 [/5V] of C56 on F.Cu @ (55.04, 87.12)]
@@ -241,8 +241,9 @@ FINDINGS
         row 40 U3: TPSM861253RDXR (TPSM863257RDX): missing Basic/Extended, Stock
         row 41 U5: L78L05_SOT89 (SOT-89-3): missing Basic/Extended, Stock
         ... 9 more (--max-details)
-  FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 0 agree with their footprint, 1 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+  FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 1 agree with their footprint
         C92827 TMK107B7105KA-T (C4, C15, C19, C25, C36, C42, C46, C47; bom.csv row 4): 0603 on C_0402_1005Metric: footprint is 0402, part is 0603; the pads differ too (C_0402_1005Metric against C_0603_1608Metric: no pad near (-0.48, 0))
+        C5137262 SX3M25.000E20F30THN (U8; bom.csv row 44): SMD3225-4P on SMD3225-4P: pads match: Crystal_SMD_3225-4Pin_3.2x2.5mm and Crystal_SMD_3225-4Pin_3.2x2.5mm in the KiCad library (4 pads)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   FAIL  Catalogue category matches the reference prefix (§1 §2): 1 lines filed under the category their reference prefix means, 1 under another
         C5137262 SX3M25.000E20F30THN (U8; bom.csv row 44): U is an IC reference but the catalogue files this part under "Crystals, Oscillators, Resonators / Crystal Oscillators" (crystal)
@@ -264,8 +265,6 @@ NOT CHECKED
         missing_courtyard: Footprint has no courtyard defined [Footprint U9 @ (116.03, 96.9875)]: no courtyard, so courtyards_overlap could not see this footprint
         missing_courtyard: Footprint has no courtyard defined [Footprint U18 @ (145.99, 127.0225)]: no courtyard, so courtyards_overlap could not see this footprint
         missing_courtyard: Footprint has no courtyard defined [Footprint U8 @ (103.2, 102.7)]: no courtyard, so courtyards_overlap could not see this footprint
-  Catalogue package fits the footprint (§1): 1 not compared
-        C5137262 SX3M25.000E20F30THN (U8; bom.csv row 44): SMD3225-4P on SMD3225-4P: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
 
 BY HAND BEFORE ORDERING
   - Fab assembly preview: rotation of 34 polarized or asymmetric parts (L1, U4, U14, U21, U19, SW2, U24, SW1, U10, J5, U11, U22, +22 more) (§4)
@@ -276,5 +275,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  7 blocking, 4 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  7 blocking, 4 warnings, 1 not checked  -  exit 1
   7 findings block the order (FAIL lines under FINDINGS); fix them and run again

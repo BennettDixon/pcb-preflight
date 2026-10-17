@@ -1,6 +1,6 @@
 soldiercrab  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  6 copper layers, 77 footprints  -  bom.csv: soldiercrab.csv
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -72,46 +72,46 @@ FINDINGS
         courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
         courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
         courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D11] on B.Cu, length 1.5625 mm @ (141.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_A13] on B.Cu, length 3.0441 mm @ (129.1, 99.380878)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C7] on B.Cu, length 1.6218 mm @ (134.6, 100.803248)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C6] on B.Cu, length 1.4810 mm @ (135.1, 100.944038)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 34 [ECP5_C5] of J1 on B.Cu @ (136.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 36 [GND] of J1 on B.Cu @ (135.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 2 [+3V3] of J1 on B.Cu @ (144.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 38 [ECP5_C6] of J1 on B.Cu @ (135.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D13] on B.Cu, length 2.4218 mm @ (141.099552, 102.424552)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D13] on B.Cu, length 0.0006 mm @ (141.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D8] on B.Cu, length 1.8250 mm @ (133.6, 100.6)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 4 [unconnected-(J1-3.3V_EN-Pad4)] of J1 on B.Cu @ (143.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 40 [ECP5_C7] of J1 on B.Cu @ (134.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_E4] on B.Cu, length 1.9226 mm @ (139.6, 100.502352)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 6 [ECP5_C4] of J1 on B.Cu @ (143.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 42 [ECP5_D7] of J1 on B.Cu @ (134.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C12] on B.Cu, length 2.6218 mm @ (130.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 44 [ECP5_D8] of J1 on B.Cu @ (133.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C13] on B.Cu, length 2.7625 mm @ (130.1, 99.662458)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 8 [ECP5_D5] of J1 on B.Cu @ (142.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 10 [ECP5_T10_TCK] of J1 on B.Cu @ (142.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D6] on B.Cu, length 1.4588 mm @ (136.6, 100.966184)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 12 [ECP5_D11] of J1 on B.Cu @ (141.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 46 [ECP5_C9] of J1 on B.Cu @ (133.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_A14] on B.Cu, length 3.1218 mm @ (128.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 48 [ECP5_C10] of J1 on B.Cu @ (132.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 14 [ECP5_D13] of J1 on B.Cu @ (141.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C9] on B.Cu, length 1.9658 mm @ (133.1, 100.45921)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 16 [USB0_ID] of J1 on B.Cu @ (140.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 50 [ECP5_D9] of J1 on B.Cu @ (132.1, 102.425)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 33 [GND] of J1 on F.Cu @ (136.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 35 [ECP5_B5] of J1 on F.Cu @ (135.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 37 [ECP5_A5] of J1 on F.Cu @ (135.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B15] on F.Cu, length 0.9218 mm @ (128.85, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 0.8512 mm @ (142.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 39 [GND] of J1 on F.Cu @ (134.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_C15] on F.Cu, length 0.9218 mm @ (127.85, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.6968 mm @ (136.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 41 [ECP5_B6] of J1 on F.Cu @ (134.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 1 [GND] of J1 on F.Cu @ (144.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 43 [ECP5_A6] of J1 on F.Cu @ (133.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_T11_TMS] on F.Cu, length 2.4092 mm @ (139.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 3 [USB0_DP] of J1 on F.Cu @ (143.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 45 [GND] of J1 on F.Cu @ (133.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.4726 mm @ (134.85, 100.202352)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 5 [USB0_DM] of J1 on F.Cu @ (143.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 0.0643 mm @ (134.3955, 102.6295)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 47 [ECP5_B7] of J1 on F.Cu @ (132.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 5.0340 mm @ (134.3955, 97.5955)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 7 [GND] of J1 on F.Cu @ (142.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A15] on F.Cu, length 0.9218 mm @ (128.35, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A9] on F.Cu, length 2.8226 mm @ (130.85, 99.852352)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 49 [unconnected-(J1-BATT_VIN/3-Pad49)] of J1 on F.Cu @ (132.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 9 [USB0_VBUS] of J1 on F.Cu @ (142.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 51 [ECP5_A7] of J1 on F.Cu @ (131.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 11 [ECP5_A3] of J1 on F.Cu @ (141.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A10] on F.Cu, length 2.8034 mm @ (129.85, 99.871571)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 13 [ECP5_A2] of J1 on F.Cu @ (141.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 53 [ECP5_B8] of J1 on F.Cu @ (131.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A2] on F.Cu, length 2.2988 mm @ (141.35, 100.376197)]
         ... 240 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered courtyards_overlap to warning (KiCad default error)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_overlap
-  FAIL  Schematic / PCB parity (§5): 1 mismatches, 5 field/filter notes across 77 footprints
-        extra_footprint: Extra footprint [Footprint REF** @ (130.799552, 98.2028)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 5 field/filter notes across 77 footprints; 1 padless footprint items not counted
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C1521614', Schematic: 'C1550826') [Footprint IC1 @ (132.0, 92.0)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D1 @ (126.399552, 83.9028)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D2 @ (128.514552, 83.9028)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C23733', Schematic: 'C326586') [Footprint C20 @ (138.003059, 90.416179)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C23733', Schematic: 'C326586') [Footprint C27 @ (137.5, 87.5)]
+        note: 1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (130.799552, 98.2028)]
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("soldiercrab") on a silkscreen layer
@@ -165,5 +165,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

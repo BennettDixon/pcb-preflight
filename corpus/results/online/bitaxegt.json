@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BitaxeGT",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/bitaxegt",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/bitaxegt",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -38,7 +38,7 @@
   },
   "copper_layers": 6,
   "footprints": 187,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/bitaxegt.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/bitaxegt.csv",
   "checks": [
     {
       "id": "erc",
@@ -705,9 +705,9 @@
       "details": [
         "C25905 (R14, R25): bom.csv says MPN \"RMCF0402JT5K10\" but the catalogue says \"0402WGF5101TCE\" (-55\u2103~+155\u2103 5.1k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/)",
         "C262657 (J2): bom.csv says MPN \"FFC2B35-08-T\" but the catalogue says \"AFC01-S08FCA-00\" (-45\u2103~+85\u2103 0.3mm 0.5mm 2mm 500mA 50V 8P Bottom Contact Copper)",
-        "ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,085,712",
+        "ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,097,434",
         "ok: C262657 (J2): AFC01-S08FCA-00, SMD,P=0.5mm,Surface Mount\uff0cRight Angle, Extended, stock 52,791",
-        "ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 63,367",
+        "ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 63,377",
         "ok: C5137262 (U8): SX3M25.000E20F30THN, SMD3225-4P, Extended, stock 11,439"
       ],
       "unchecked": [],
@@ -719,13 +719,13 @@
       "title": "Catalogue package fits the footprint",
       "pitfall": "\u00a71",
       "status": "pass",
-      "summary": "2 agree with their footprint, 2 not compared (sign each under NOT CHECKED with a \"Package verified\" note on its bom.csv line, or fix the string it names)",
+      "summary": "3 agree with their footprint, 1 not compared (sign each under NOT CHECKED with a \"Package verified\" note on its bom.csv line, or fix the string it names)",
       "details": [
-        "C431092 XT30PW-M30.G.Y (J1; bom.csv row 15): - on XT30PW-M: the footprint is drawn for this part (XT30PW-M in its name, MPN XT30PW-M30.G.Y)"
+        "C431092 XT30PW-M30.G.Y (J1; bom.csv row 15): - on XT30PW-M: the footprint is drawn for this part (XT30PW-M in its name, MPN XT30PW-M30.G.Y)",
+        "C5137262 SX3M25.000E20F30THN (U8; bom.csv row 37): SMD3225-4P on SMD3225-4P: pads match: Crystal_SMD_3225-4Pin_3.2x2.5mm and Crystal_SMD_3225-4Pin_3.2x2.5mm in the KiCad library (4 pads)"
       ],
       "unchecked": [
-        "C262657 AFC01-S08FCA-00 (J2; bom.csv row 16): SMD,P=0.5mm,Surface Mount\uff0cRight Angle on FPC-SMD_P0.50-8P_FGS-XJ-H2.0: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
-        "C5137262 SX3M25.000E20F30THN (U8; bom.csv row 37): SMD3225-4P on SMD3225-4P: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line"
+        "C262657 AFC01-S08FCA-00 (J2; bom.csv row 16): SMD,P=0.5mm,Surface Mount\uff0cRight Angle on FPC-SMD_P0.50-8P_FGS-XJ-H2.0: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line"
       ],
       "verified": [],
       "notes": [

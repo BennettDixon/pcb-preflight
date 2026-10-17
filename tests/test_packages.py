@@ -54,7 +54,9 @@ class Fixture(unittest.TestCase):
             with self.subTest(footprint=r['footprint'], part=r['part']):
                 self.assertEqual(packages.fits(r['part'], r['footprint']).verdict, r['names_verdict'])
                 if LIBRARY:
-                    self.assertEqual(packages.fits(r['part'], r['footprint'], library=LIBRARY).verdict, r['verdict'])
+                    g = packages.fits(r['part'], r['footprint'], library=LIBRARY)
+                    if g.rule != packages.AMBIGUOUS:        # the board's own footprint picks among an ambiguous string's land patterns: one-sided by design
+                        self.assertEqual(g.verdict, r['verdict'])
 
     def test_every_rule_has_a_row(self):
         rows = fixture_rows()
@@ -85,6 +87,13 @@ class Fixture(unittest.TestCase):
             with self.subTest(standard_pitch=fam):
                 self.assertTrue(src.strip())
                 self.assertTrue(any(rd.pitch_source == src for rd in readings), f'no fixture row reads a {fam} without a stated pitch')
+        for key, src in packages.PATTERNS.items():
+            with self.subTest(pattern=key):
+                self.assertTrue(src.strip())
+                self.assertTrue(any(src == v[2] for rd in readings for v in rd.via), f'no fixture row is read by the {key} pattern')
+        for body in packages.SOIC_BODY:
+            with self.subTest(soic_body=body):
+                self.assertTrue(any(t.startswith(body + 'X') and packages.SIZE.fullmatch(t) for t in tokens), f'no fixture row names a {body} mm SOIC body')
 
 
 class Read(unittest.TestCase):
@@ -117,7 +126,31 @@ class Read(unittest.TestCase):
         self.assertEqual(self.names('SOIC-8_3.9x4.9mm_P1.27mm'), {'SOIC-8'})
         self.assertEqual(self.names('SOIC-16W_7.5x10.3mm_P1.27mm'), {'SOIC-16-300MIL'})
         self.assertEqual(self.names('SOP-8_150mil'), {'SOIC-8'})
-        self.assertEqual(self.names('LQFN-56(7x7)'), {'LQFN-56(7x7)'})
+        self.assertEqual(self.names('LQFN-56(7x7)'), {'QFN-56(7x7)'}, 'LQFN is a QFN (FAMILIES, C2040 RP2040)')
+        self.assertEqual(self.names('TDFN-6-EP(2x3)'), {'DFN-6(2x3)'})
+        self.assertEqual(self.names('Package_SO:SOIC-8_5.23x5.23mm_P1.27mm'), {'SOIC-8-208MIL'}, 'KiCad 9 spelling of the 208 mil body')
+        self.assertEqual(self.names('TI_SO-PowerPAD-8_ThermalVias'), {'SOIC-8-EP'})
+        self.assertEqual(self.names('Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm'), {'SOIC-16-300MIL'})
+
+    def test_patterns_read_by_shape_and_say_so(self):
+        for text, canon, key in (('easyeda2kicad:C0402', '0402', 'chip prefix'), ('PCM_JLCPCB:R0805', '0805', 'chip prefix'),
+                                 ('L0805', '0805', 'chip prefix'), ('WQFN4040-24', 'QFN-24(4x4)', 'body-pins'),
+                                 ('SOT-23-Thin-6', 'SOT-23-6', 'thin'), ('Package_BGA:BGA-24_5x5_6.0x8.0mm', 'BGA-24(6x8)', 'bga layout'),
+                                 ('SMD3225-4P', 'SMD-3225-4P', 'crystal'), ('Crystal:Crystal_SMD_2016-4Pin_2.0x1.6mm', 'SMD-2016-4P', 'crystal'),
+                                 ('CASE-A-3216-18(mm)', 'EIA-3216-18', 'tantalum case'), ('CP_EIA-3216-18_Kemet-A', 'EIA-3216-18', 'tantalum case'),
+                                 ('Package_SO:TI_SO-PowerPAD-8', 'SOIC-8-EP', 'powerpad')):
+            with self.subTest(text=text):
+                r = packages.read(text)
+                self.assertEqual(set(r.names), {canon})
+                self.assertIn(packages.PATTERNS[key], [v[2] for v in r.via], 'the pattern used is recorded with its source')
+        self.assertEqual(self.names('BGA24_6X8'), {'BGA-24(6x8)'})
+        self.assertEqual(self.names('Package_BGA:BGA-24_6x8mm_Layout5x5_P1.0mm'), {'BGA-24(6x8)'})
+        self.assertEqual(self.names('Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm'), {'QFN-16(3x3)'}, 'a QFN takes the first size as before')
+        self.assertEqual(self.names('SOT-5X3'), {'SOT-583-8'})
+        self.assertEqual(self.names('SOT-5X3-5'), {'SOT-553'})
+        self.assertEqual(self.names('SOT-583-8_L2.1-W1.2-P0.50-LS1.6-BL'), {'SOT-583-8'})
+        for s in ('C1234', 'SMD-4P,4.5x3.2mm', 'Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm', 'C9010'):
+            self.assertEqual(self.names(s), set(), f'{s}: not a chip size, crystal body or array spelling the table knows')
 
     def test_pitch_and_body_width_are_read_from_leaded_names(self):
         r = packages.read('Package_SO:SOP-8_6.62x9.15mm_P2.54mm')
@@ -193,6 +226,16 @@ class Library(unittest.TestCase):
         pads = LIBRARY.pads('Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm')
         self.assertEqual(len(pads), 17, '16 leads and the exposed pad; the four paste windows are not copper')
         self.assertFalse(any(p.paste for p in pads if p.w > 1), 'the exposed pad itself takes no paste')
+        tiv = LIBRARY.pads('Package_SO:TI_SO-PowerPAD-8_ThermalVias')
+        self.assertEqual(len(tiv), 9, '19 pad entries: the exposed pad 9 is three stacked rectangles and eight via-in-pad holes numbered 9')
+        ep = [p for p in tiv if p.w > 2]
+        self.assertEqual([(p.kind, p.x, p.y, p.w, p.h, p.drill, p.paste) for p in ep], [('smd', 0.0, 0.0, 2.95, 4.5, 0.0, True)])
+        tiles = LIBRARY.pads('Package_SO:TI_SO-PowerPAD-8')
+        self.assertEqual(len(tiles), 9, 'four tiles numbered 9 are one pad')
+        self.assertEqual([(p.w, p.h) for p in tiles if p.w > 2], [(2.41, 3.1)])
+        self.assertEqual(footprints.stack([('1', footprints.Pad('thru_hole', 0, 0, 1, 1, 0.5, False)), ('1', footprints.Pad('thru_hole', 5, 0, 1, 1, 0.5, False))]),
+                         (footprints.Pad('thru_hole', 0, 0, 1, 1, 0.5, False), footprints.Pad('thru_hole', 5, 0, 1, 1, 0.5, False)),
+                         'two holes with one number and no copper between them stay two pads')
         sot = LIBRARY.pads('Package_TO_SOT_SMD:SOT-23')
         self.assertEqual(footprints.same_pads(sot, tuple(p.rotated(1) for p in sot)), (True, ''))
         self.assertEqual(footprints.same_pads(sot, sot[:2])[0], False)
@@ -212,7 +255,12 @@ class Library(unittest.TestCase):
         self.assertEqual(fit('Package_SO:VSSOP-8_2.3x2mm_P0.5mm', 'VSSOP-8_3x3mm_P0.65mm'), (DIFFERENT, packages.PADS_DIFFER))
         self.assertEqual(fit('Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm', 'TQFN-20-1EP_4x4mm_P0.5mm_EP2.1x2.1mm'), (UNKNOWN, packages.PADS_UNKNOWN))
         f = packages.fits('Package_SO:TSSOP-14_4.4x5mm_P0.65mm', 'TSSOP-14', library=LIBRARY)
-        self.assertEqual((f.verdict, f.rule, f.by_names), (UNKNOWN, packages.AMBIGUOUS, SAME))
+        self.assertEqual((f.verdict, f.rule, f.by_names), (SAME, packages.PADS, SAME), 'the board\'s own footprint picks among the two TSSOP-14 pitches')
+        self.assertIn('"TSSOP-14" names more than one land pattern (pitch 0.4 and 0.65 mm) and the board\'s footprint is the TSSOP-14_4.4x5mm_P0.65mm one', f.reason)
+        f = packages.fits('TSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL', 'TSSOP-20', library=LIBRARY)
+        self.assertEqual((f.verdict, f.rule, f.by_names), (UNKNOWN, packages.AMBIGUOUS, SAME), 'a footprint KiCad does not have cannot pick')
+        f = packages.fits('TSSOP-14', 'Package_SO:TSSOP-14_4.4x5mm_P0.65mm', library=LIBRARY)
+        self.assertEqual((f.verdict, f.rule), (UNKNOWN, packages.AMBIGUOUS), 'an ambiguous footprint name is not picked by the part')
         f = packages.fits('Package_SO:VSSOP-8_3x3mm_P0.65mm', 'MSOP-8', library=LIBRARY)
         self.assertEqual((f.verdict, f.rule, f.by_names), (SAME, packages.PADS, DIFFERENT))
         self.assertIn('by name footprint is VSSOP-8, part is MSOP-8', f.reason)
@@ -281,6 +329,10 @@ class Gates(unittest.TestCase):
         self.assertEqual(c.status, 'pass', c.details)
         self.assertTrue(any('by name footprint is VSSOP-8, part is MSOP-8' in d for d in c.details), c.details)
         c = checks.catalogue_package_check([line(['U6'], 'VSSOP-8', 'C7851')], {'C7851': {'mpn': 'SN74LVC2G74DCUR', 'package': 'VSSOP-8'}}, SCH, LIBRARY)
+        self.assertEqual(c.status, 'pass', 'U6 is a known library footprint: its pads pick among the two VSSOP-8 land patterns')
+        self.assertTrue(any('names more than one land pattern (pitch 0.5 and 0.65 mm) and the board\'s footprint is the VSSOP-8_3x3mm_P0.65mm one' in d for d in c.details), c.details)
+        sch = SCH + [{'Ref': 'U7', 'Value': 'BQ77905', 'Footprint': 'easyeda2kicad:TSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL', 'DNP': False, 'ExcludeFromBOM': False}]
+        c = checks.catalogue_package_check([line(['U7'], 'TSSOP-20', 'C555146')], {'C555146': {'mpn': 'BQ7790512PWR', 'package': 'TSSOP-20'}}, sch, LIBRARY)
         self.assertEqual(c.status, 'skip')
         self.assertIn('names more than one land pattern', c.unchecked[0])
 

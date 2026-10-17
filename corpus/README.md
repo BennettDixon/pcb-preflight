@@ -18,7 +18,7 @@ What the gate makes of them, and what of that is right, is in [RESULTS.md](RESUL
 | `boms/<name>.csv` | the bom.csv the runs used, one per board with LCSC data, built by `make_boms.py` from the board's own symbol fields (its LCSC field, its part-number field, its Package field where it has one; else the footprint name, as `preflight bom-template` writes it). Boards without LCSC data run without a BOM |
 | `make_boms.py` | rebuilds `boms/` from `boards/` (the per-board field names are its CONFIG table); runs kicad-cli on a copy, writes nothing under `boards/` |
 | `run.sh` | runs the gate on every fetched board: `results/<name>.json` and `.txt` offline, `results/online/<name>.json` and `.txt` with `--online` for the boards whose BOM carries codes. `sh corpus/run.sh [--online|--online-only] [name...]` |
-| `results/` | the reports of 2026-10-17 (pcb-preflight main `3963b9a`, kicad-cli 10.0.7). The JSON is what `tests/test_corpus.py` freezes |
+| `results/` | the reports of 2026-10-17 (kicad-cli 10.0.7; pcb-preflight main `e88e6b4` plus the identity, parity and package fixes RESULTS.md records, rerun after the triage). The JSON is what `tests/test_corpus.py` freezes |
 | `RESULTS.md` | the triage: every blocking and not-checked finding sorted into true, false, noise or unknown with its evidence; the rule changes and fixture rows the corpus justifies |
 
 ## The boards

@@ -13,7 +13,7 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 134 bought references, every one on exactly one BOM line
         note: not bought: FID1, FID2, FID3, FID4, H1, H2, H3, H4, TP1, TP10, TP11, TP12, +34 more (prefix FID/TP/H/MH); R35 (DNP); G***, HS1, J3, J8, NT1, NT2 (excluded from the BOM)
   BOM value matches the schematic (§1): 134 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
-  Catalogue package fits the footprint (§1): 2 agree with their footprint, 2 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+  Catalogue package fits the footprint (§1): 3 agree with their footprint, 1 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue description matches the BOM value (§1 §2): 1 lines agree on every figure their value states (F, H, Ω, V), 3 state no figure
 
@@ -232,9 +232,9 @@ FINDINGS
   FAIL  Catalogue and stock (§1 §2 §13): 4 codes found, 2 blocking, 0 low-stock/mismatch, 0 not checked; 3 Extended part types (one loading fee each)
         C25905 (R14, R25): bom.csv says MPN "RMCF0402JT5K10" but the catalogue says "0402WGF5101TCE" (-55℃~+155℃ 5.1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/)
         C262657 (J2): bom.csv says MPN "FFC2B35-08-T" but the catalogue says "AFC01-S08FCA-00" (-45℃~+85℃ 0.3mm 0.5mm 2mm 500mA 50V 8P Bottom Contact Copper)
-        ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,085,712
+        ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,097,434
         ok: C262657 (J2): AFC01-S08FCA-00, SMD,P=0.5mm,Surface Mount，Right Angle, Extended, stock 52,791
-        ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 63,367
+        ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 63,377
         ok: C5137262 (U8): SX3M25.000E20F30THN, SMD3225-4P, Extended, stock 11,439
   FAIL  Catalogue category matches the reference prefix (§1 §2): 3 lines filed under the category their reference prefix means, 1 under another
         C5137262 SX3M25.000E20F30THN (U8; bom.csv row 37): U is an IC reference but the catalogue files this part under "Crystals, Oscillators, Resonators / Crystal Oscillators" (crystal)
@@ -247,9 +247,8 @@ NOT CHECKED
         missing_courtyard: Footprint has no courtyard defined [Footprint U8 @ (104.8, 117.54)]: no courtyard, so courtyards_overlap could not see this footprint
         missing_courtyard: Footprint has no courtyard defined [Footprint J1 @ (150.35, 57.75)]: no courtyard, so courtyards_overlap could not see this footprint
         missing_courtyard: Footprint has no courtyard defined [Footprint J2 @ (137.32, 42.84)]: no courtyard, so courtyards_overlap could not see this footprint
-  Catalogue package fits the footprint (§1): 2 not compared
+  Catalogue package fits the footprint (§1): 1 not compared
         C262657 AFC01-S08FCA-00 (J2; bom.csv row 16): SMD,P=0.5mm,Surface Mount，Right Angle on FPC-SMD_P0.50-8P_FGS-XJ-H2.0: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C5137262 SX3M25.000E20F30THN (U8; bom.csv row 37): SMD3225-4P on SMD3225-4P: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
 
 BY HAND BEFORE ORDERING
   - Fab assembly preview: rotation of 22 polarized or asymmetric parts (J7, J3, J8, U8, U11, U4, U2, U3, SW1, J1, L1, L2, +10 more) (§4)

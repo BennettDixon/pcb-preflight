@@ -40,8 +40,8 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 | G1 | ERC: zero errors (warnings listed). The checks the gate owns run as errors whatever the project says, the pin-conflict matrix is no weaker than KiCad's default, and a protected violation the project excluded blocks (see "Tool-owned severities") | §12 | `kicad-cli sch erc --format json --severity-all --output erc.json <sch>`; `sheets[].violations[]` with `severity` and KiCad's `excluded` flag, `ignored_checks[]` | yes |
 | G2 | DRC: zero errors (warnings listed by type); same ownership, plus the board's minimum constraints raised to the fab's. A footprint without a courtyard is *not checked* (courtyards_overlap cannot see it) | §12 | `kicad-cli pcb drc --format json --severity-all --all-track-errors --schematic-parity --output drc.json <pcb>`; `violations[]`, `ignored_checks[]` | yes |
 | G3 | Unrouted connections: none | §11 §12 | same report, `unconnected_items[]` (KiCad's connectivity, not the router's log) | yes |
-| G4 | Schematic / PCB parity: no missing, extra or duplicate footprints, no net conflicts, footprint attributes and value as in the schematic (`preset.PARITY`). Those five block whatever severity the project gives them (KiCad ships them as warnings); the field-text and footprint-filter notes kicad-cli files alongside them keep the project's severity. If kicad-cli prints "Failed to fetch schematic netlist" the gate is *not checked* and the result is ERROR | §5 | same run; `schematic_parity[]` | yes |
-| G4b | Board footprints belong to this schematic: every footprint's `(path "/<sheet uuid>/<symbol uuid>")` names a symbol that exists in the schematic (all sheets), under the same reference. KiCad's parity test matches by reference and passes a schematic regenerated with fresh uuids, the §5 incident itself; this gate reads the uuids. A footprint without a path is board-only (a hole, a logo) only when no symbol carries its reference; otherwise it is an unlinked part and blocks, so stripping the paths is no escape | §5 | `.kicad_pcb` footprints' `path`, `.kicad_sch` symbols' `uuid`, `instances` and `on_board` via `schematic.load_symbols()` | yes |
+| G4 | Schematic / PCB parity: no missing, extra or duplicate footprints, no net conflicts, footprint attributes and value as in the schematic (`preset.PARITY`). Those five block whatever severity the project gives them (KiCad ships them as warnings), except four forms the regression corpus (`corpus/RESULTS.md`) proved harmless on built boards: a footprint that differs from the symbol's only in its library nickname, a pad net that differs from the schematic's only in its sheet path (a sheet renamed after routing) and a no-net pad against an `unconnected-` pin are warnings; a missing footprint for a skipped reference prefix (TP, FID, H, MH) keeps KiCad's severity; an extra or duplicate footprint with no pads (a logo, text) is a note. The descriptions are parsed in their exact kicad-cli form, never guessed. The field-text and footprint-filter notes kicad-cli files alongside them keep the project's severity. If kicad-cli prints "Failed to fetch schematic netlist" the gate is *not checked* and the result is ERROR | §5 | same run; `schematic_parity[]` | yes |
+| G4b | Board footprints belong to this schematic: every footprint's `(path "[/<sub-sheet uuid>...]/<symbol uuid>")` names a symbol that exists in the schematic (all sheets), under the same reference. KiCad writes the footprint path without the root sheet uuid while a symbol's instance paths carry it, so the instance a footprint belongs to is the one whose path, root dropped, ends in the footprint's sheet chain; on a sheet placed twice each footprint thus finds its own reference (`Symbol.reference_on()`; before this, 185 footprints on three hierarchical corpus boards were reported renamed). KiCad's parity test matches by reference and passes a schematic regenerated with fresh uuids, the §5 incident itself; this gate reads the uuids. A footprint without a path is board-only (a hole, a logo) only when no symbol carries its reference; otherwise it is an unlinked part and blocks, so stripping the paths is no escape | §5 | `.kicad_pcb` footprints' `path`, `.kicad_sch` symbols' `uuid`, `instances` and `on_board` via `schematic.load_symbols()` | yes |
 | G5 | DNP parts: flagged DNP in the schematic *and* on the board, footprint still on the board, absent from bom.csv | §12 | `kicad-cli sch export bom --fields 'Reference,Value,Footprint,${DNP},${EXCLUDE_FROM_BOM},${EXCLUDE_FROM_BOARD}'` (one row per symbol) + the board's `(attr ... dnp)` | yes |
 | G5b | Bought parts placed: every reference that is in the BOM (not DNP, not excluded, not a FID/TP/H/MH) has a footprint on the board, and none is marked "exclude from board" in the schematic. KiCad's parity test skips an excluded symbol, so one schematic flag could take a bought part off the board while bom.csv kept its line | §5 §12 | the schematic BOM export + the board file | yes |
 | G6 | `bom.csv` exists with columns Ref, Value, Package, MPN, LCSC, Basic/Extended, Stock, Datasheet | §1 | `bom.csv` (header names matched loosely) | yes |
@@ -138,9 +138,15 @@ with `pcb_preflight/footprints.py`:
    *different* when the names also disagree and *unknown* when the names agreed (two QFN-20 4x4 footprints
    with 2.6 and 2.1 mm exposed pads). A string without dimensions that resolves to more than one land
    pattern in the library (`TSSOP-14` at 0.65 and 0.4 mm pitch, `VSSOP-8` at 3x3 and 2.3x2, `SSOP-8` at
-   0.65 and 1.27 mm) is *unknown*: the name does not say which, and a pad match to one of them does not
-   settle it. Without a library the names alone decide and the gate's note says so. The library is read,
-   never written, and the index of 4,400 footprints is built in well under a second.
+   0.65 and 1.27 mm) does not say which. When the other side is one footprint KiCad has (the board's own)
+   and its pads match one of those land patterns, the board has said which and the verdict is *same*
+   (`Fit.picked` records the ambiguity settled; sh-rpi, sonatino: three sold-board lines); when the board's
+   footprint is not in KiCad's library, or its pads match none of them, it is *unknown*. A pad is one piece
+   of copper: pads sharing a number that touch are one pad and a via-in-pad hole numbered like the exposed
+   pad is not a pad (`footprints.stack()`: TI's `TI_SO-PowerPAD-8_ThermalVias` has 19 pad entries and 9
+   pads). Without a library the names alone decide and the gate's note says so. The library is read,
+   never written, and the index of 4,500 footprints (the package libraries and `Crystal`) is built in well
+   under a second.
 3. **Canonical names carry what changes the land pattern.** Chip sizes (`0603`); leaded families with pin
    count, exposed pad and SOIC body width (`SOIC-8-EP`, `SOIC-8-208MIL`), plus the pitch and body width
    where the name states them; no-lead and QFP families with the body size when the name gives one
@@ -154,10 +160,13 @@ with `pcb_preflight/footprints.py`:
    the same family name apart. A string may name several packages (`SC-70(SOT-323)`); two strings fit when
    their sets meet. Not compared by name: exposed-pad size (the pads catch it), can height, and everything
    without a standard name (connectors, inductor bodies, fuse clips).
-4. **Spellings are data with a source.** `SYNONYMS` (whole spellings: `SOT-25-5`, `D2PAK`, `DO-214AA`) and
-   `FAMILIES` (spellings that take a pin count: `SOP`, `ESOP`, `HTSSOP`, `TSOT`, `VQFN`) map vendor names to
-   canonical ones, and every entry names the catalogue record, datasheet or `.kicad_mod` file it was seen
-   in. Nothing is added from memory: two entries carried over from the first cut (`DO-214AB`, `DPAK`)
+4. **Spellings are data with a source.** `SYNONYMS` (whole spellings: `SOT-25-5`, `D2PAK`, `DO-214AA`,
+   TI's `SOT-5X3`), `FAMILIES` (spellings that take a pin count: `SOP`, `ESOP`, `HTSSOP`, `TSOT`, `VQFN`,
+   `LQFN`, `TDFN`) and `PATTERNS` (shapes: EasyEDA's `C0402`, Diodes' `WQFN4040-24`, TI's `SOT-23-Thin-6`
+   and `SO-PowerPAD-8`, JLCPCB's crystal `SMD3225-4P` and tantalum `CASE-A-3216-18`, a BGA's ball layout
+   before its body) map vendor names to canonical ones, and every entry names the catalogue record,
+   datasheet or `.kicad_mod` file it was seen in; the 2026-10-17 corpus run supplied the last eleven, each
+   from a built board (`corpus/RESULTS.md`). Nothing is added from memory: two entries carried over from the first cut (`DO-214AB`, `DPAK`)
    stayed only once a record was found for each (C224045, C10663).
 5. **A fixture of real strings.** `tests/fixtures/packages.csv` pairs KiCad library footprint names with
    package strings copied from catalogue records, or with other KiCad footprint names for the pairs the

@@ -1,5 +1,5 @@
 SMPS 12V-5V  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  2 copper layers, 19 footprints  -  bom.csv: jlcpcb-example.csv
-RESULT: FAIL  -  1 blocking, 6 warnings, 4 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -15,7 +15,7 @@ CHECKED AND LEFT ALONE
         note: not bought: H1, H2, H3, H4 (prefix FID/TP/H/MH)
   BOM value matches the schematic (§1): 15 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
   Catalogue and stock (§1 §2 §13): 11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked; 4 Extended part types (one loading fee each)
-  Catalogue package fits the footprint (§1): 9 agree with their footprint, 2 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+  Catalogue package fits the footprint (§1): 11 agree with their footprint
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 10 lines filed under the category their reference prefix means, 1 not checked
   Catalogue description matches the BOM value (§1 §2): 8 lines agree on every figure their value states (F, H, Ω, V), 3 state no figure
@@ -136,9 +136,6 @@ NOT CHECKED
         C2683107 (R4): no MPN in bom.csv to compare with the catalogue's ARG05BTC5233; the code was not checked against a part
         C2885888 (L1): no MPN in bom.csv to compare with the catalogue's MLI2012F-1R5KT; the code was not checked against a part
         C395930 (CN1, CN2): no MPN in bom.csv to compare with the catalogue's DBT10-7.62-2P-GN-P; the code was not checked against a part
-  Catalogue package fits the footprint (§1): 2 not compared
-        C2885888 MLI2012F-1R5KT (L1; bom.csv row 8): 0805 on L0805: "L0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C2683107 ARG05BTC5233 (R4; bom.csv row 11): 0805 on R0805: "R0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue category matches the reference prefix (§1 §2): 1 not compared
         C395930 DBT10-7.62-2P-GN-P (CN1, CN2; bom.csv row 7): prefix CN has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
 
@@ -151,5 +148,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 6 warnings, 4 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

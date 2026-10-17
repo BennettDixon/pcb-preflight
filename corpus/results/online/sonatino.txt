@@ -1,6 +1,6 @@
 Sonatino  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 129 footprints  -  bom.csv: sonatino.csv
-RESULT: FAIL  -  5 blocking, 3 warnings, 4 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 3 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -16,6 +16,8 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 116 bought references, every one on exactly one BOM line
         note: not bought: H1, H3, H5, H7, TP1, TP2 (prefix FID/TP/H/MH); BT1, J2, J4, J6, J7 (DNP); JP1, JP2 (excluded from the BOM)
   BOM value matches the schematic (§1): 116 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 50 agree with their footprint, 7 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue description matches the BOM value (§1 §2): 29 lines agree on every figure their value states (F, H, Ω, V), 28 state no figure
 
 FINDINGS
@@ -63,45 +65,45 @@ FINDINGS
         ... 300 more (--max-details)
   FAIL  DRC (§12): 539 errors, 222 warnings (clearance x471, lib_footprint_mismatch x106, courtyards_overlap x63, text_height x59, lib_footprint_issues x17, silk_edge_clearance x16, silk_overlap x16, silk_over_copper x6, copper_edge_clearance x5, isolated_copper x2); 3 footprints without a courtyard
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1550 mm) [Track [/BAT+] on F.Cu, length 1.3150 mm @ (188.8, 50.1); Pad 2 [Net-(U4-CE)] of R17 on F.Cu @ (188.1, 49.54)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1865 mm) [Track [/BAT+] on B.Cu, length 4.3889 mm @ (168.061058, 33.9); PTH pad 11 [/GPIO7] of J2 @ (171.625, 35.0)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1865 mm) [Track [/BAT+] on B.Cu, length 4.3889 mm @ (168.061058, 33.9); PTH pad 13 [/GPIO9] of J2 @ (169.085, 35.0)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1500 mm) [Pad 37 [/CMD] of U2 on F.Cu @ (159.8, 38.3); Via [/BAT+] on F.Cu - B.Cu @ (160.925, 38.15)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1650 mm) [Track [/BAT+] on B.Cu, length 0.4950 mm @ (172.45, 33.9); Track [/GPIO5] on B.Cu, length 16.0128 mm @ (157.095164, 33.608)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1750 mm) [Pad 9 [/BCLK_DAC] of U13 on F.Cu @ (183.2375, 41.625); Track [/AVDD] on F.Cu, length 1.2728 mm @ (183.15, 41.05)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1865 mm) [Via [/AVDD] on F.Cu - B.Cu @ (173.25, 40.25); Track [/LRCLK_DAC] on B.Cu, length 6.9500 mm @ (172.75, 40.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1792 mm) [Track [/AVDD] on F.Cu, length 0.8375 mm @ (183.2375, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.7000 mm @ (184.5, 45.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1977 mm) [Via [/AVDD] on F.Cu - B.Cu @ (162.2, 56.45); Track [Net-(U14-IN-)] on F.Cu, length 0.0800 mm @ (162.74, 56.26)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 0.8375 mm @ (183.2375, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.5303 mm @ (184.125, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1500 mm) [Pad 6 [/Audio/PREAMP_SD] of U14 on F.Cu @ (162.125, 57.4875); Via [/AVDD] on F.Cu - B.Cu @ (162.2, 56.45)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1386 mm) [Via [/AVDD] on F.Cu - B.Cu @ (180.328332, 46.814131); Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1733 mm) [Track [/VIN] on In2.Cu, length 2.0135 mm @ (177.434175, 48.584175); Track [+3.3V] on In2.Cu, length 2.9000 mm @ (177.683878, 48.083878)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1941 mm) [Track [/VIN] on In2.Cu, length 2.0135 mm @ (177.434175, 48.584175); Via [/Audio/JACK_R] on F.Cu - B.Cu @ (176.246615, 49.203293)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1848 mm) [Via [/AVDD] on F.Cu - B.Cu @ (180.328332, 46.814131); Track [/Audio/HP_AMP_ENABLE] on F.Cu, length 2.6750 mm @ (179.78, 44.32)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1736 mm) [Track [/GPIO10] on B.Cu, length 3.2592 mm @ (170.495354, 42.654593); Track [Net-(JP2-A)] on B.Cu, length 3.0687 mm @ (173.904, 42.354)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1736 mm) [Track [/GPIO10] on B.Cu, length 3.2592 mm @ (170.495354, 42.654593); Track [Net-(JP2-A)] on B.Cu, length 0.7128 mm @ (170.835258, 42.354)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1730 mm) [Track [/GPIO10] on B.Cu, length 2.3514 mm @ (165.573561, 38.7); Track [/GPIO8] on B.Cu, length 1.9799 mm @ (164.364289, 40.4)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1980 mm) [Track [/GPIO10] on B.Cu, length 0.5303 mm @ (174.05, 43.375); Track [Net-(JP2-A)] on B.Cu, length 0.8000 mm @ (174.375, 43.625)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 0.9192 mm @ (162.6, 37.05); Track [/BAT+] on B.Cu, length 1.7750 mm @ (162.929, 36.146)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 1.8500 mm @ (163.25, 36.4); Track [/BAT+] on B.Cu, length 1.7750 mm @ (162.929, 36.146)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 1.8500 mm @ (163.25, 36.4); Track [/BAT+] on B.Cu, length 0.7014 mm @ (164.704, 36.146)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 12.4993 mm @ (165.352846, 36.147154); Track [/GPIO4] on B.Cu, length 1.6106 mm @ (175.566154, 36.401154)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 12.4993 mm @ (165.352846, 36.147154); Track [/GPIO4] on B.Cu, length 9.7173 mm @ (165.848846, 36.401154)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1733 mm) [Track [/VIN] on In2.Cu, length 2.4359 mm @ (179.156587, 50.306587); Track [+3.3V] on In2.Cu, length 2.9000 mm @ (177.683878, 48.083878)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO2] on B.Cu, length 12.4993 mm @ (165.352846, 36.147154); Track [/GPIO4] on B.Cu, length 0.8161 mm @ (165.271795, 36.978205)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1733 mm) [Track [/VIN] on In2.Cu, length 0.5291 mm @ (175.420638, 48.584175); Track [+3.3V] on In2.Cu, length 2.9000 mm @ (177.683878, 48.083878)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1863 mm) [Track [/GPIO8] on B.Cu, length 4.4007 mm @ (165.764289, 39.0); Track [/GPIO6] on B.Cu, length 2.2439 mm @ (164.347556, 40.9)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1730 mm) [Track [/GPIO8] on B.Cu, length 4.4007 mm @ (165.764289, 39.0); Track [/GPIO10] on B.Cu, length 1.6405 mm @ (167.925, 38.7)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1863 mm) [Track [/GPIO8] on B.Cu, length 2.0648 mm @ (170.165, 39.0); Track [/GPIO6] on B.Cu, length 6.4574 mm @ (165.934211, 39.313345)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1730 mm) [Track [/GPIO8] on B.Cu, length 4.4007 mm @ (165.764289, 39.0); Track [/GPIO10] on B.Cu, length 2.3514 mm @ (165.573561, 38.7)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1863 mm) [Track [/GPIO8] on B.Cu, length 4.4007 mm @ (165.764289, 39.0); Track [/GPIO6] on B.Cu, length 6.4574 mm @ (165.934211, 39.313345)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO11] on B.Cu, length 0.9659 mm @ (165.862, 33.862); Track [/GPIO5] on B.Cu, length 16.0128 mm @ (157.095164, 33.608)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1829 mm) [Track [/GPIO6] on B.Cu, length 2.5079 mm @ (172.391655, 39.313345); Track [/DAT_DAC] on B.Cu, length 12.7465 mm @ (178.876729, 39.623271)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1980 mm) [Track [/GPIO9] on F.Cu, length 5.1109 mm @ (162.939107, 33.5); Track [/BAT+] on F.Cu, length 1.6576 mm @ (167.432638, 33.825)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1980 mm) [Track [/GPIO9] on F.Cu, length 5.1109 mm @ (162.939107, 33.5); Track [/BAT+] on F.Cu, length 0.7425 mm @ (165.775, 33.825)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1980 mm) [Track [/GPIO9] on F.Cu, length 5.1109 mm @ (162.939107, 33.5); Track [/BAT+] on F.Cu, length 0.4974 mm @ (167.784348, 34.17671)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/GPIO1] on F.Cu, length 16.8450 mm @ (177.845, 36.4); Track [/GPIO7] on F.Cu, length 8.3330 mm @ (162.146, 36.146)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Track [/D-] on B.Cu, length 2.2500 mm @ (172.55, 57.15); Track [/D+] on B.Cu, length 2.8638 mm @ (172.266371, 57.55)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1595 mm) [Track [/D-] on B.Cu, length 5.4000 mm @ (170.1, 57.35); Track [/~{MUTE}] on B.Cu, length 0.5657 mm @ (170.15, 56.6)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Track [/D-] on B.Cu, length 2.2500 mm @ (172.55, 57.15); Track [/D+] on B.Cu, length 0.3267 mm @ (170.288408, 57.781)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1770 mm) [Track [/D-] on B.Cu, length 5.4000 mm @ (170.1, 57.35); Track [/D+] on B.Cu, length 1.5118 mm @ (163.82, 58.85)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Track [/D-] on B.Cu, length 2.2500 mm @ (172.55, 57.15); Track [/D+] on B.Cu, length 1.7470 mm @ (170.519408, 57.55)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1770 mm) [Track [/D-] on B.Cu, length 0.2828 mm @ (170.3, 57.15); Track [/D+] on B.Cu, length 5.3994 mm @ (164.889, 57.781)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1840 mm) [Track [/D-] on B.Cu, length 0.2828 mm @ (170.3, 57.15); Track [/D+] on B.Cu, length 0.3267 mm @ (170.288408, 57.781)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1564 mm) [Track [/GPIO3] on B.Cu, length 18.4742 mm @ (156.555416, 33.324584); Track [/GPIO5] on B.Cu, length 1.1201 mm @ (156.303164, 34.4)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1730 mm) [Via [/AVDD] on F.Cu - B.Cu @ (174.5, 45.6); Track [/Audio/HEADPHONE_L] on F.Cu, length 1.7875 mm @ (175.1, 45.0625)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1900 mm) [Pad 2 [Net-(U15-VREFP)] of C41 on F.Cu @ (173.7, 45.695); Via [/AVDD] on F.Cu - B.Cu @ (174.5, 45.6)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Pad 6 [/Audio/PREAMP_SD] of U14 on F.Cu @ (162.125, 57.4875); Track [/AVDD] on F.Cu, length 0.6916 mm @ (162.285987, 56.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1611 mm) [Pad 2 [Net-(U15-VREFP)] of C41 on F.Cu @ (173.7, 45.695); Track [/AVDD] on F.Cu, length 0.5657 mm @ (174.5, 45.4)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1960 mm) [Pad 5 [GNDA] of U7 on F.Cu @ (174.275, 54.2); Track [/AVDD] on F.Cu, length 0.6903 mm @ (174.665446, 53.662729)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Pad 12 [Net-(U15-VREFP)] of U15 on F.Cu @ (171.1, 45.825); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1548 mm) [Pad 2 [GND] of R33 on F.Cu @ (181.375, 41.575); Track [/AVDD] on F.Cu, length 0.8485 mm @ (181.509676, 40.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1846 mm) [Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17); Track [/AVDD] on F.Cu, length 0.1087 mm @ (180.328332, 46.814131)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1515 mm) [Pad 1 [GNDA] of C13 on F.Cu @ (182.5, 40.15); Track [/AVDD] on F.Cu, length 0.8485 mm @ (181.509676, 40.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1420 mm) [Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175); Track [Net-(U15-VREFP)] on F.Cu, length 1.6800 mm @ (171.1, 45.825)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Pad 14 [GNDA] of U15 on F.Cu @ (171.1, 44.525); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1391 mm) [Pad 1 [Net-(U15-VREFP)] of C44 on F.Cu @ (172.8, 45.845); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1950 mm) [Track [/AVDD] on F.Cu, length 1.2374 mm @ (184.9, 44.45); Pad 13 [GNDA] of U13 on F.Cu @ (183.2375, 44.225)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1420 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [Net-(U15-VREFP)] on F.Cu, length 1.6800 mm @ (171.1, 45.825)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [GNDA] on F.Cu, length 0.9970 mm @ (173.03, 43.82)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1630 mm) [Track [/AVDD] on F.Cu, length 1.0403 mm @ (182.109676, 41.05); Pad 2 [GND] of R33 on F.Cu @ (181.375, 41.575)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [GNDA] on F.Cu, length 1.2250 mm @ (172.325, 44.525)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1750 mm) [Track [/AVDD] on F.Cu, length 1.0403 mm @ (182.109676, 41.05); Pad 9 [/BCLK_DAC] of U13 on F.Cu @ (183.2375, 41.625)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1773 mm) [Track [/AVDD] on F.Cu, length 0.9122 mm @ (182.475, 45.525); Pad 16 [Net-(U13-LINEVOUTR)] of U13 on F.Cu @ (183.2375, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 1.1667 mm @ (184.075, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.7000 mm @ (184.5, 45.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 1.1667 mm @ (184.075, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.5303 mm @ (184.125, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1391 mm) [Pad 1 [Net-(U15-VREFP)] of C44 on F.Cu @ (172.8, 45.845); Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1797 mm) [Track [/AVDD] on F.Cu, length 0.9122 mm @ (182.475, 45.525); Pad 2 [Net-(U13-VMID)] of C23 on F.Cu @ (181.755, 45.2)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1994 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [Net-(U15-VREFP)] on F.Cu, length 0.7500 mm @ (172.8, 45.845)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1570 mm) [Track [/AVDD] on F.Cu, length 0.8738 mm @ (180.405201, 46.891); Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1854 mm) [Track [/AVDD] on F.Cu, length 0.3034 mm @ (174.457147, 52.764141); Via [+5V] on F.Cu - B.Cu @ (175.0592, 52.08777)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1854 mm) [Track [/AVDD] on F.Cu, length 0.3616 mm @ (174.760561, 52.764141); Via [+5V] on F.Cu - B.Cu @ (175.0592, 52.08777)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1968 mm) [Track [/AVDD] on F.Cu, length 0.0860 mm @ (162.2, 56.45); Track [Net-(U14-IN-)] on F.Cu, length 0.7566 mm @ (162.66, 56.26)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.1570 mm @ (173.125, 44.78); Track [GNDA] on F.Cu, length 0.9970 mm @ (173.03, 43.82)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1596 mm) [Track [/AVDD] on F.Cu, length 1.0182 mm @ (189.7, 42.925); Pad 7 [/DAT_DAC] of U13 on F.Cu @ (188.9625, 42.275)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1837 mm) [Track [/AVDD] on F.Cu, length 0.1570 mm @ (173.125, 44.78); Track [GNDA] on F.Cu, length 1.2250 mm @ (172.325, 44.525)]
         ... 721 more (--max-details)
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance None -> 0.09 mm, min_copper_edge_clearance None -> 0.2 mm, min_hole_to_hole None -> 0.2 mm, min_through_hole_diameter None -> 0.15 mm, min_track_width None -> 0.09 mm, min_via_annular_width None -> 0.05 mm, min_via_diameter None -> 0.25 mm
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
@@ -153,53 +155,44 @@ FINDINGS
         C323842 (U15): out of stock at JLCPCB (WM8782SEDS/RV)
         C146242 (U13): stock 3 is under 10x the 1 needed (WM8524CGEDT/R)
         C892227 (U6, U7): stock 11 is under 10x the 2 needed (NCP167BMX330TBG)
-        ok: C1002 (FB1, FB2): GZ1608D601TF, 0603, Basic, stock 656,439
+        ok: C1002 (FB1, FB2): GZ1608D601TF, 0603, Basic, stock 662,034
         ok: C102813 (R34): RTT021503FTH, 0402, Extended, stock 10
-        ok: C11702 (R13, R18, R23, R24): 0402WGF1001TCE, 0402, Basic, stock 13,763,464
-        ok: C12530 (C23, C34, C35): CL05A225MQ5NSNC, 0402, Basic, stock 4,366,053
-        ok: C12624 (PWR1): KT-0603G, 0603, Extended, stock 506,813
+        ok: C11702 (R13, R18, R23, R24): 0402WGF1001TCE, 0402, Basic, stock 13,764,087
+        ok: C12530 (C23, C34, C35): CL05A225MQ5NSNC, 0402, Basic, stock 4,365,671
+        ok: C12624 (PWR1): KT-0603G, 0603, Extended, stock 506,795
         ok: C128123 (R28): G32AT-B104, SMD, Extended, stock 360
         ok: C146242 (U13): WM8524CGEDT/R, TSSOP-16, Extended, stock 3
-        ok: C15008 (C1): CL31A107MQHNNNE, 1206, Basic, stock 1,300,993
-        ok: C15195 (C28): CL05B103KB5NNNC, 0402, Basic, stock 6,172,984
-        ok: C1525 (C15): CL05B104KO5NNNC, 0402, Basic, stock 24,783,027
-        ok: C1530 (C18, C19): 0402B221K500NT, 0402, Basic, stock 984,871
-        ok: C1531 (C25, C26): 0402B222K500NT, 0402, Extended, stock 855,003
-        ok: C1546 (C30): 0402CG101J500NT, 0402, Basic, stock 3,789,198
-        ok: C15525 (C8, C27, C31, C33, C36, C40, C41): CL05A106MQ5NUNC, 0402, Basic, stock 10,721,009
-        ok: C15849 (C24): CL10A105KB8NNNC, 0603, Basic, stock 9,279,336
-        ok: C15850 (C14): CL21A106KAYNNNE, 0805, Basic, stock 6,510,156
-        ok: C16581 (U4): TP4056-42-ESOP8, ESOP-8, Extended, stock 52,233
-        ok: C165948 (J3): TYPE-C-31-M-12, SMD, Extended, stock 365,806
-        ok: C19702 (C2, C13): CL10A106KP8NNNC, 0603, Basic, stock 11,149,540
-        ok: C21189 (R33): 0603WAF0000T5E, 0603, Basic, stock 23,666,119
+        ok: C15008 (C1): CL31A107MQHNNNE, 1206, Basic, stock 1,301,003
+        ok: C15195 (C28): CL05B103KB5NNNC, 0402, Basic, stock 6,170,483
+        ok: C1525 (C15): CL05B104KO5NNNC, 0402, Basic, stock 24,773,583
+        ok: C1530 (C18, C19): 0402B221K500NT, 0402, Basic, stock 984,781
+        ok: C1531 (C25, C26): 0402B222K500NT, 0402, Extended, stock 852,890
+        ok: C1546 (C30): 0402CG101J500NT, 0402, Basic, stock 3,789,515
+        ok: C15525 (C8, C27, C31, C33, C36, C40, C41): CL05A106MQ5NUNC, 0402, Basic, stock 10,720,719
+        ok: C15849 (C24): CL10A105KB8NNNC, 0603, Basic, stock 9,284,467
+        ok: C15850 (C14): CL21A106KAYNNNE, 0805, Basic, stock 6,507,758
+        ok: C16581 (U4): TP4056-42-ESOP8, ESOP-8, Extended, stock 52,223
+        ok: C165948 (J3): TYPE-C-31-M-12, SMD, Extended, stock 365,703
+        ok: C19702 (C2, C13): CL10A106KP8NNNC, 0603, Basic, stock 11,163,764
+        ok: C21189 (R33): 0603WAF0000T5E, 0603, Basic, stock 23,660,593
         ok: C224995 (SW3): DHN-02-V-T/R, SMD,P=1.27mm, Extended, stock 1,465
-        ok: C2286 (LED1): KT-0603R, 0603, Basic, stock 7,579,604
-        ok: C23733 (C20, C21): CL05A475MP5NRNC, 0402, Basic, stock 2,109,668
-        ok: C25117 (R14, R20, R21): 0402WGF4700TCE, 0402, Basic, stock 1,199,254
-        ok: C25741 (R12, R15, R37): 0402WGF1003TCE, 0402, Basic, stock 9,261,463
-        ok: C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): 0402WGF1002TCE, 0402, Basic, stock 20,315,414
-        ok: C25768 (R25): 0402WGF2202TCE, 0402, Basic, stock 1,433,462
-        ok: C25790 (R35): 0402WGF4703TCE, 0402, Extended, stock 175,274
-        ok: C25822 (R19): 0603WAF6803T5E, 0603, Extended, stock 1,126,846
+        ok: C2286 (LED1): KT-0603R, 0603, Basic, stock 7,577,172
+        ok: C23733 (C20, C21): CL05A475MP5NRNC, 0402, Basic, stock 2,109,818
+        ok: C25117 (R14, R20, R21): 0402WGF4700TCE, 0402, Basic, stock 1,198,862
+        ok: C25741 (R12, R15, R37): 0402WGF1003TCE, 0402, Basic, stock 9,222,722
+        ok: C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): 0402WGF1002TCE, 0402, Basic, stock 20,311,058
+        ok: C25768 (R25): 0402WGF2202TCE, 0402, Basic, stock 1,433,440
+        ok: C25790 (R35): 0402WGF4703TCE, 0402, Extended, stock 174,944
+        ok: C25822 (R19): 0603WAF6803T5E, 0603, Extended, stock 1,126,776
         ok: C25882 (R16): 0402WGF2401TCE, 0402, Extended, stock 365,110
-        ok: C25890 (R31): 0402WGF3301TCE, 0402, Basic, stock 1,889,088
-        ok: C25905 (R10, R11, R30): 0402WGF5101TCE, 0402, Basic, stock 5,085,782
-        ok: C26083 (R9, R26, R27): 0402WGF1004TCE, 0402, Basic, stock 2,884,224
+        ok: C25890 (R31): 0402WGF3301TCE, 0402, Basic, stock 1,888,883
+        ok: C25905 (R10, R11, R30): 0402WGF5101TCE, 0402, Basic, stock 5,097,459
+        ok: C26083 (R9, R26, R27): 0402WGF1004TCE, 0402, Basic, stock 2,883,417
         ok: C260933 (Q1, Q2, Q5): DMP2104LP-7, DFN1411-3, Extended, stock 863
         ok: C2880449 (U11): TC7WH08FK,LJ(CT, US-8, Extended, stock 2,030
         ok: C2976657 (U8): SN74LVC1G14DCKR(UMW), SC-70-5, Extended, stock 15,462
-        ok: C3013946 (U2): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,531
+        ok: C3013946 (U2): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,481
         ... 20 more (--max-details)
-  FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 46 agree with their footprint, 10 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
-        C700968 HSCC8233 (Q3; bom.csv row 27): TDFN-6-EP(2x3) on DFN-6-1EP_3x2mm_P0.5mm_EP1.65x1.35mm_Dual_MOSFETs: footprint is DFN-6(2x3), part is TDFN-6(2x3)
-        C428465 TF-008 (Card2; bom.csv row 18): SMD on TF-SMD_TF-008: the footprint is drawn for this part (TF-008 in its name, MPN TF-008)
-        C165948 TYPE-C-31-M-12 (J3; bom.csv row 22): SMD on USB_C_Receptacle_HRO_TYPE-C-31-M-12: the footprint is drawn for this part (TYPE-C-31-M-12 in its name, MPN TYPE-C-31-M-12)
-        C692436 PJ-321B (J5; bom.csv row 23): Plugin on PJ-321B: the footprint is drawn for this part (PJ-321B in its name, MPN PJ-321B)
-        C910544 MAX98357AETE+T (U1; bom.csv row 46): TQFN-16-EP(3x3) on TQFN-16-1EP_3x3mm_P0.5mm_EP1.23x1.23mm: pads match: TQFN-16-1EP_3x3mm_P0.5mm_EP1.23x1.23mm and TQFN-16-1EP_3x3mm_P0.5mm_EP1.23x1.23mm in the KiCad library (17 pads)
-        C3013946 ESP32-S3-WROOM-1U-N16R8 (U2; bom.csv row 47): SMD,19.2x18mm on ESP32-S3-WROOM-1U: the footprint is drawn for this part (ESP32-S3-WROOM-1U in its name, MPN ESP32-S3-WROOM-1U-N16R8)
-        C69901 TPA6132A2RTER (U16; bom.csv row 58): WQFN-16-EP(3x3) on WQFN-16-1EP_3x3mm_P0.5mm_EP1.6x1.6mm_ThermalVias: pads match: WQFN-16-1EP_3x3mm_P0.5mm_EP1.6x1.6mm_ThermalVias and QFN-16-1EP_3x3mm_P0.5mm_EP1.75x1.75mm_ThermalVias in the KiCad library (22 pads)
-        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   FAIL  Catalogue category matches the reference prefix (§1 §2): 54 lines filed under the category their reference prefix means, 1 under another, 2 not checked
         C85364 SRV05-4-P-T7 (U3; bom.csv row 48): U is an IC reference but the catalogue files this part under "Circuit Protection / ESD and Surge Protection (TVS/ESD)" (diode)
 
@@ -250,17 +243,14 @@ NOT CHECKED
         C323842 (U15): no MPN in bom.csv to compare with the catalogue's WM8782SEDS/RV; the code was not checked against a part
         C351410 (U5): no MPN in bom.csv to compare with the catalogue's DW01A; the code was not checked against a part
         ... 17 more (--max-details)
-  Catalogue package fits the footprint (§1): 10 not compared
+  Catalogue package fits the footprint (§1): 7 not compared
         C5349954 XL-1615RGBC-2812B (D1; bom.csv row 19): SMD-4P,1.6x1.5mm on LED-SMD_4P-L1.6-W1.5_XL-1615RGBC-WS2812B: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C128123 G32AT-B104 (R28; bom.csv row 39): SMD on G32AT-B103: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C354946 TSA343G00-250J2 (SW1, SW2; bom.csv row 44): SMD,4x2.9mm on SW_Push_1P1T_NO_3.95_2.9: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C224995 DHN-02-V-T/R (SW3; bom.csv row 45): SMD,P=1.27mm on SW_DIP_SPSTx02_Slide_Omron_A6H-2101_W6.15mm_P1.27mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C16581 TP4056-42-ESOP8 (U4; bom.csv row 49): ESOP-8 on TI_SO-PowerPAD-8: "TI_SO-PowerPAD-8" is not in the package table, but the pads differ (TI_SO-PowerPAD-8 against Diodes_SO-8EP: 12 pads against 9); to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C892227 NCP167BMX330TBG (U6, U7; bom.csv row 51): XDFN-4-EP(1x1) on OnSemi_XDFN4-1EP_1.0x1.0mm_EP0.52x0.52mm-FIXED: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C895405 FSA2269L10X (U9, U10; bom.csv row 53): MicroPak-10(1.6x2.1) on Fairchild_MicroPak-10_2.10x1.6mm_P0.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2880449 TC7WH08FK,LJ(CT (U11; bom.csv row 54): US-8 on VSSOP-8_2.3x2mm_P0.5mm: "US-8" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C146242 WM8524CGEDT/R (U13; bom.csv row 55): TSSOP-16 on TSSOP-16_4.4x5mm_P0.65mm: the pads match TSSOP-16_4.4x5mm_P0.65mm, but "TSSOP-16" names more than one land pattern in the KiCad library (pitch 0.4 and 0.65 mm: TSSOP-16_4.4x3.6mm_P0.4mm, TSSOP-16_4.4x5mm_P0.65mm); the string does not say which; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C323842 WM8782SEDS/RV (U15; bom.csv row 57): SSOP-20 on SSOP-20_5.3x7.2mm_P0.65mm: the pads match SSOP-20_5.3x7.2mm_P0.65mm, but "SSOP-20" names more than one land pattern in the KiCad library (body width 3.9 and 5.3 mm: SSOP-20_3.9x8.7mm_P0.635mm, SSOP-20_4.4x6.5mm_P0.65mm, SSOP-20_5.3x7.2mm_P0.65mm); the string does not say which; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue category matches the reference prefix (§1 §2): 2 not compared
         C428465 TF-008 (Card2; bom.csv row 18): prefix CARD has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
         C12624 KT-0603G (PWR1; bom.csv row 25): prefix PWR has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
@@ -274,5 +264,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 3 warnings, 4 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 3 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

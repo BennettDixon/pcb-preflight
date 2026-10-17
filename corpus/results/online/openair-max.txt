@@ -1,6 +1,6 @@
 One-Air-Max  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 210 footprints  -  bom.csv: openair-max.csv
-RESULT: FAIL  -  8 blocking, 4 warnings, 4 not checked  -  exit 1
-  8 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  7 blocking, 4 warnings, 4 not checked  -  exit 1
+  7 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -13,6 +13,8 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 184 bought references, every one on exactly one BOM line
         note: not bought: TP1, TP2, TP7, TP8, TP9 (prefix FID/TP/H/MH); Battery1, C71, C72, R23, R25, R73, R74, R75, R76, R77, R78, R8, +1 more (DNP); JP2, JP3 (excluded from the BOM);  (board-only, no symbol)
   BOM value matches the schematic (§1): 184 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 69 agree with their footprint, 12 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 71 lines filed under the category their reference prefix means, 13 not checked
 
 FINDINGS
@@ -64,18 +66,18 @@ FINDINGS
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631); Track [/Solar_module/VBAT] on PWR, length 1.5429 mm @ (169.181, 66.781)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 8.0070 mm @ (169.84, 63.64705)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 6 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 92.13); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631); Track [/Solar_module/VBAT] on PWR, length 1.5429 mm @ (169.181, 66.781)]
+        clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 7 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 92.15)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 8 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 93.43)]
-        clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 6 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 92.13); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 1 [/Solar_module/VBAT] of F2 on B.Cu @ (170.97, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 2 [Net-(F2-Pad2)] of F2 on B.Cu @ (167.79, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [BAT-] on F.Cu, priority 5 @ (104.66, 72.87); Zone [BAT-] on F.Cu, priority 5 @ (107.16, 63.62)]
@@ -103,22 +105,12 @@ FINDINGS
         note: severities: jlcpcb-assembly@2026.10; the project had lowered duplicate_footprints to ignore (KiCad default warning), extra_footprint to ignore (KiCad default warning), missing_footprint to ignore (KiCad default warning)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): via_dangling, track_dangling, lib_footprint_mismatch
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_hole_to_hole 0.0 -> 0.2 mm, min_track_width 0.0 -> 0.09 mm, min_via_annular_width 0.0 -> 0.05 mm
-  FAIL  Schematic / PCB parity (§5): 14 mismatches, 1 field/filter notes across 210 footprints
-        duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8, 104.02); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8375, 67.345); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (101.26, 85.845); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 104.92); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 67.845); Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  FAIL  Schematic / PCB parity (§5): 3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted
         net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Battery1 @ (191.56, 61.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Solarpower1 @ (181.28, 116.62)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.26, 86.445)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8, 104.02)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8375, 67.345)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (101.26, 85.845)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 104.92)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 67.845)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
         warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '', Schematic: 'High-speed switching diodes') [Footprint D1 @ (184.26, 98.125)]
+        note: 11 extra/duplicate footprint items with no pads (a logo or text) are not findings: duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8, 104.02); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (100.8375, 67.345); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (101.26, 85.845); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 104.92); Footprint <no reference designator> @ (193.26, 86.445)]; duplicate_footprints: Duplicate footprints [Footprint <no reference designator> @ (193.6975, 67.845); Footprint <no reference designator> @ (193.26, 86.445)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.26, 86.445)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8, 104.02)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (100.8375, 67.345)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (101.26, 85.845)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 104.92)]; extra_footprint: Extra footprint [Footprint <no reference designator> @ (193.6975, 67.845)]
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("One-Air-Max") on a silkscreen layer
@@ -180,53 +172,39 @@ FINDINGS
         C606168 (R10, R13, R36): stock 10 is under 10x the 3 needed (RC0402FR-7W100RL)
         C7433091 (L3): stock 3 is under 10x the 1 needed (YSMC0420V-1R0M)
         ok: C100044 (R26, R27, R33, R41, R51, R72): RC0603FR-070RL, 0603, Extended, stock 8,416,885
-        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,758
+        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,778
         ok: C105580 (R17, R19): RC0603FR-075K1L, 0603, Extended, stock 6,083,297
-        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,310,082
-        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,101,640
-        ok: C107229 (R7): RC0402FR-0751KL, 0402, Extended, stock 2,764,755
+        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,310,088
+        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,101,120
+        ok: C107229 (R7): RC0402FR-0751KL, 0402, Extended, stock 2,764,465
         ok: C108304 (FB1): PBY201209T-601Y-N, 0805, Extended, stock 119,440
         ok: C109447 (C6): CC0603MRX5R6BB226, 0603, Extended, stock 69,945
         ok: C109464 (C23, C27, C30, C33, C35, C38, C40, C43, C45): CC1206KKX7R7BB106, 1206, Extended, stock 5
-        ok: C114606 (R18): RC0603FR-0710ML, 0603, Extended, stock 1,051,369
+        ok: C114606 (R18): RC0603FR-0710ML, 0603, Extended, stock 1,051,349
         ok: C114614 (R40): RC0603FR-0727KL, 0603, Extended, stock 237,000
         ok: C114622 (R24): RC0603FR-07470KL, 0603, Extended, stock 328,075
-        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,483,613
+        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,483,414
         ok: C126361 (R21): RC0603FR-073ML, 0603, Extended, stock 5,497
         ok: C128404 (U13, U14, U15, U16, U17, U18): TPS27081ADDCR, SOT-23-6, Extended, stock 18,744
         ok: C137745 (R38): RC0603FR-0730K1L, 0603, Extended, stock 459,742
         ok: C137808 (R16): RC0603FR-0710K5L, 0603, Extended, stock 9,786
-        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,510,079
-        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,931,286
+        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,509,919
+        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,929,887
         ok: C151819 (D2): MMSZ5246BS-7-F, SOD-323, Extended, stock 27,406
-        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 24,782,873
-        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,920,454
+        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 24,773,453
+        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,919,443
         ok: C1624 (C67): 0603B501K500NT, 0603, Extended, stock 7,714
         ok: C163488 (R43): RC0402FR-0716K9L, 0402, Extended, stock 15
         ok: C185317 (R34): RC0603FR-075K23L, 0603, Extended, stock 6
-        ok: C189467 (C41): CC0402KRX7R7BB102, 0402, Extended, stock 409,629
+        ok: C189467 (C41): CC0402KRX7R7BB102, 0402, Extended, stock 409,699
         ok: C19184086 (BAT1): BH-18650-B5BA016, -, Extended, stock 44
         ok: C20345985 (U6): TPS62903QRYTRQ1, VQFN-9(2.2x2), Extended, stock 41
         ok: C2076880 (R71): ERJ2RKF2100X, 0402, Extended, stock 15,024
         ok: C220680 (U12): AT24CM02-SSHD-B, SOIC-8, Extended, stock 65
         ok: C22399629 (C36): CGA0603X7R475K160JT, 0603, Extended, stock 51,451
-        ok: C22399676 (U7): TPS2117DRLR, SOT-5X3, Extended, stock 2,305
+        ok: C22399676 (U7): TPS2117DRLR, SOT-5X3, Extended, stock 2,296
         ok: C226371 (R56): AC0402FR-0724K9L, 0402, Extended, stock 23,250
         ... 48 more (--max-details)
-  FAIL  Catalogue package fits the footprint (§1): 2 do not fit the footprint; 14 agree with their footprint, 65 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
-        C473912 TPL5010DDCR (U3; bom.csv row 76): SOT-23-Thin-6 on SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR: footprint is SOT-23-6, part is SOT-23; the pads differ too (SOT-23-6 against SOT-23: 6 pads against 3)
-        C22399676 TPS2117DRLR (U7; bom.csv row 80): SOT-5X3 on SOT-583-8_L2.1-W1.2-P0.50-LS1.6-BL: footprint is SOT-583-8, part is SOT-5-3
-        C19184086 BH-18650-B5BA016 (BAT1; bom.csv row 2): - on BAT-SMD_BH-18650-B5BA016: the footprint is drawn for this part (BH-18650-B5BA016 in its name, MPN BH-18650-B5BA016)
-        C2845385 HC-1.25-8PWT (CE1; bom.csv row 23): SMD,P=1.25mm,Surface Mount，Right Angle on CONN-SMD_HC-1.25-8PWT: the footprint is drawn for this part (HC-1.25-8PWT in its name, MPN HC-1.25-8PWT)
-        C2845394 HC-1.25-8PLT (CO2, IO1, NO2, PM1, PM2; bom.csv row 24): SMD,P=1.25mm on CONN-SMD_8P-P1.25_HC-1.25-8PLT: the footprint is drawn for this part (HC-1.25-8PLT in its name, MPN HC-1.25-8PLT)
-        C908801 SMBJ24A (D3; bom.csv row 27): DO-214AA(SMB) on SMB_L4.4-W3.6-LS5.3-RD: pads match: D_SMB and D_SMB in the KiCad library (2 pads)
-        C707277 DC-045A-13A (DC1; bom.csv row 29): SMD on DC-IN-SMD_DC-045A-13A: the footprint is drawn for this part (DC-045A-13A in its name, MPN DC-045A-13A)
-        C2905011 1.25-4PWB (I2C3; bom.csv row 34): SMD,P=1.25mm,Surface Mount，Right Angle on CONN-SMD_1.25-4PWB: the footprint is drawn for this part (1.25-4PWB in its name, MPN 1.25-4PWB)
-        C528772 TK-6580A8-1 (PWR_SW1; bom.csv row 41): Plugin on SW-TH_TK-6580A8-1: the footprint is drawn for this part (TK-6580A8-1 in its name, MPN TK-6580A8-1)
-        C492993 TS-1096-A1B2-D2 (SW1; bom.csv row 73): 插件,7.3x3.5mm on KEY-TH_TS-1096-A1B2-D2: the footprint is drawn for this part (TS-1096-A1B2-D2 in its name, MPN TS-1096-A1B2-D2)
-        C5366877 ESP32-C6-WROOM-1-N8 (U1; bom.csv row 74): SMD,25.5x18mm on WIRELM-SMD_ESP32-C6-WROOM-1: the footprint is drawn for this part (ESP32-C6-WROOM-1 in its name, MPN ESP32-C6-WROOM-1-N8)
-        C2988369 GT-USB-7010ASV (USB1; bom.csv row 84): SMD on USB-C-SMD_G-SWITCH_GT-USB-7010ASV: the footprint is drawn for this part (GT-USB-7010ASV in its name, MPN GT-USB-7010ASV)
-        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   FAIL  Catalogue description matches the BOM value (§1 §2): 43 lines agree on every figure their value states (F, H, Ω, V), 37 state no figure, 1 disagree
         C106200 CC0402JRNPO9BN101 (C53, C56; bom.csv row 19): bom.csv says 100nF but the catalogue description says 100pF (bom.csv value "0.1uF", description "100pF 50V NP0 ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
 
@@ -315,48 +293,19 @@ NOT CHECKED
         C2870154 (U2): no MPN in bom.csv to compare with the catalogue's TPS62902RPJR; the code was not checked against a part
         C2892549 (NTC1): no MPN in bom.csv to compare with the catalogue's KNTC0805/10KF3950; the code was not checked against a part
         ... 41 more (--max-details)
-  Catalogue package fits the footprint (§1): 65 not compared
-        C309458 CC0402KRX7R6BB104 (C1, C7, C9, C10, C11, C12, C13, C50, C51, C52, C65, C70; bom.csv row 3): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C3039694 CL21B106KAYQNNE (C2; bom.csv row 4): 0805 on C0805: "C0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C7472972 HGC1206R7226K160NSPJ (C3; bom.csv row 5): 1206 on C1206: "C1206" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C541378 CC0402KRX7R7BB332 (C4, C49; bom.csv row 6): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C1525 CL05B104KO5NNNC (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63; bom.csv row 7): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C109447 CC0603MRX5R6BB226 (C6; bom.csv row 8): 0603 on C0603: "C0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C541371 CC0402KRX7R6BB103 (C8; bom.csv row 9): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C6119813 CGA0402X5R226M100GT (C14, C57, C58, C68, C74; bom.csv row 10): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C14663 CC0603KRX7R9BB104 (C15, C16, C17, C18, C19, C21, C24, C25; bom.csv row 11): 0603 on C0603: "C0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C7500380 CC0402KRX5R9BB105 (C20, C22; bom.csv row 12): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C109464 CC1206KKX7R7BB106 (C23, C27, C30, C33, C35, C38, C40, C43, C45; bom.csv row 13): 1206 on C1206: "C1206" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C307434 CL05B473KO5NNNC (C28, C29; bom.csv row 14): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C385032 GRM155R61E225KE11D (C32, C59, C60, C61, C62, C64; bom.csv row 15): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C22399629 CGA0603X7R475K160JT (C36; bom.csv row 16): 0603 on C0603: "C0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C189467 CC0402KRX7R7BB102 (C41; bom.csv row 17): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C907991 GRM21BZ71A226ME15L (C46, C48; bom.csv row 18): 0805 on C0805: "C0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C106200 CC0402JRNPO9BN101 (C53, C56; bom.csv row 19): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C1555 0402CG220J500NT (C54, C55; bom.csv row 20): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C14445 CL05A105KP5NNNC (C66, C73; bom.csv row 21): 0402 on C0402: "C0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C1624 0603B501K500NT (C67; bom.csv row 22): 0603 on C0603: "C0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C2685749 BSMD1206-200-16V (F1; bom.csv row 30): 1206 on F1206: "F1206" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C108304 PBY201209T-601Y-N (FB1; bom.csv row 32): 0805 on L0805: "L0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+  Catalogue package fits the footprint (§1): 12 not compared
         C2718488 2.54-1*4PFemale (I2C1, I2C2; bom.csv row 33): Plugin,P=2.54mm on HDR-TH_4P-P2.54-V-F: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C87572 SPM6530T-1R0M120 (L1; bom.csv row 35): SMD,7.1x6.5mm on IND-SMD_L7.1-W6.5-P5.60: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C5357696 XGL4020-102MEC (L2; bom.csv row 36): SMD,4x4mm on IND-SMD_L4.0-W4.0_XAL4030-332MEC: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C7433091 YSMC0420V-1R0M (L3; bom.csv row 37): SMD,4x4mm on IND-SMD_L4.0-W4.0_XGL4020: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2895465 XL-304UBC (LED2; bom.csv row 38): Plugin,D=3mm on LED-TH_BD3.8-P2.54-FD_BLUE: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C84263 NCD0603R1 (LED3; bom.csv row 39): 0603 on LED0603-RD_RED: "LED0603-RD_RED" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C2892549 KNTC0805/10KF3950 (NTC1; bom.csv row 40): 0805 on R0805: "R0805" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C105872 RC0402FR-075K1L (R1, R2; bom.csv row 43): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C60491 RC0402FR-07100KL (R3, R6, R31, R37; bom.csv row 44): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C60490 RC0402FR-0710KL (R4, R5, R28, R29, R30, R32, R45, R49, R50; bom.csv row 45): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C107229 RC0402FR-0751KL (R7; bom.csv row 46): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C851849 RC0402FR-7W1KL (R9, R12, R14, R15; bom.csv row 47): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C606168 RC0402FR-7W100RL (R10, R13, R36; bom.csv row 48): 0402 on R0402: "R0402" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C705061 RL2512FK-070R01L (R11; bom.csv row 49): 2512 on R2512: "R2512" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C137808 RC0603FR-0710K5L (R16; bom.csv row 50): 0603 on R0603: "R0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C105580 RC0603FR-075K1L (R17, R19; bom.csv row 51): 0603 on R0603: "R0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C114606 RC0603FR-0710ML (R18; bom.csv row 52): 0603 on R0603: "R0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C105578 RC0603FR-071ML (R20; bom.csv row 53): 0603 on R0603: "R0603" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        ... 25 more (--max-details)
+        C2870154 TPS62902RPJR (U2; bom.csv row 75): VQFN-9-HR(1.5x2) on VQFN-HR-9_L2.0-W1.5-P0.50-TL: "VQFN-HR-9_L2.0-W1.5-P0.50-TL" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C555146 BQ7790512PWR (U4; bom.csv row 77): TSSOP-20 on TSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL: the pads match TSSOP-20_4.4x5mm_P0.4mm, but "TSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL" names more than one land pattern in the KiCad library (pitch 0.4 and 0.5 and 0.65 mm; body width 3 and 4.4 mm: TSSOP-20_4.4x5mm_P0.4mm, TSSOP-20_4.4x5mm_P0.5mm, TSSOP-20_4.4x6.5mm_P0.65mm, Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm, +1 more); the string does not say which; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C3682029 BQ25672RQMR (U5; bom.csv row 78): VQFN-29(4x4) on VQFN-29_L4.0-W4.0-P0.40-BL: both are QFN-29, but only one side gives the body size (QFN-29 against QFN-29(4x4)); to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C20345985 TPS62903QRYTRQ1 (U6; bom.csv row 79): VQFN-9(2.2x2) on VQFNHR-9_L2.2-W2.0_TPS62993QRYTRQ1: "VQFNHR-9_L2.2-W2.0_TPS62993QRYTRQ1" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C401039 WK2132-ISSG (U8; bom.csv row 81): SSOP-16-208mil on SSOP-16_L7.2-W5.3-P0.65-LS7.8-BL: the pads match SSOP-16_3.9x4.9mm_P0.635mm, but "SSOP-16_L7.2-W5.3-P0.65-LS7.8-BL" names more than one land pattern in the KiCad library (body width 3.9 and 5.3 mm: SSOP-16_3.9x4.9mm_P0.635mm, SSOP-16_4.4x5.2mm_P0.65mm, SSOP-16_5.3x6.2mm_P0.65mm); the string does not say which; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C362355 TAXM147456M2QLDBET1T (X1; bom.csv row 85): SMD5032-2P on OSC-SMD_L5.0-W3.2: "OSC-SMD_L5.0-W3.2" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue category matches the reference prefix (§1 §2): 13 not compared
         C19184086 BH-18650-B5BA016 (BAT1; bom.csv row 2): prefix BAT has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
         C2845385 HC-1.25-8PWT (CE1; bom.csv row 23): prefix CE has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
@@ -381,5 +330,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  8 blocking, 4 warnings, 4 not checked  -  exit 1
-  8 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  7 blocking, 4 warnings, 4 not checked  -  exit 1
+  7 findings block the order (FAIL lines under FINDINGS); fix them and run again

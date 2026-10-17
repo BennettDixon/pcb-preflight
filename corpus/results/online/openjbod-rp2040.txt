@@ -1,6 +1,6 @@
 OpenJBOD-RP2040  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 129 footprints  -  bom.csv: openjbod-rp2040.csv
-RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked  -  exit 1
-  6 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  5 blocking, 5 warnings, 4 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Board footprints belong to this schematic (§5): 125 of 129 footprints name a symbol in the schematic, 4 board-only
@@ -14,6 +14,8 @@ CHECKED AND LEFT ALONE
         note: not bought: H1, H2, H3 (prefix FID/TP/H/MH); J8 (DNP); REF**, kibuzzard-68B1B45A, kibuzzard-68B1B461 (excluded from the BOM)
   BOM value matches the schematic (§1): 121 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
   Catalogue and stock (§1 §2 §13): 49 codes found, 0 blocking, 0 low-stock/mismatch, 49 not checked; 24 Extended part types (one loading fee each)
+  Catalogue package fits the footprint (§1): 44 agree with their footprint, 5 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 48 lines filed under the category their reference prefix means, 1 not checked
 
 FINDINGS
@@ -104,18 +106,16 @@ FINDINGS
         ... 92 more (--max-details)
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0889 -> 0.09 mm
   FAIL  Unrouted connections (§11 §12): 5 connections still to route
-        unconnected_items: Missing connection between items [PTH pad 2 [/+3.3v] of J1 @ (149.67, 131.29); PTH pad 12 [/+3.3v] of J1 @ (149.67, 89.29)]
+        unconnected_items: Missing connection between items [Track [/+3.3v] on Back, length 37.1300 mm @ (112.54, 131.29); PTH pad 12 [/+3.3v] of J1 @ (149.67, 89.29)]
         unconnected_items: Missing connection between items [PTH pad 6 [/+5v] of J1 @ (149.67, 114.49); PTH pad 21 [/+5v] of J1 @ (153.87, 101.89)]
-        unconnected_items: Missing connection between items [PTH pad 4 [/+5v] of J1 @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
+        unconnected_items: Missing connection between items [Track [/+5v] on Front, length 4.6245 mm @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
         unconnected_items: Missing connection between items [PTH pad 22 [/+5v] of J1 @ (153.87, 97.69); PTH pad 23 [/+5v] of J1 @ (153.87, 93.49)]
         unconnected_items: Missing connection between items [PTH pad 21 [/+5v] of J1 @ (153.87, 101.89); PTH pad 22 [/+5v] of J1 @ (153.87, 97.69)]
-  FAIL  Schematic / PCB parity (§5): 6 mismatches across 129 footprints
-        duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  FAIL  Schematic / PCB parity (§5): 1 mismatches, 2 warnings across 129 footprints; 3 padless footprint items not counted
         net_conflict: No pad found for pin S1 (GND) in schematic [Footprint J5 @ (90.495, 106.4)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        missing_footprint: Missing footprint TP1 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        missing_footprint: Missing footprint TP2 (TestPoint) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
-        extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+        warning: missing_footprint: Missing footprint TP1 (TestPoint); TP1 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands
+        warning: missing_footprint: Missing footprint TP2 (TestPoint); TP2 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands
+        note: 3 extra/duplicate footprint items with no pads (a logo or text) are not findings: duplicate_footprints: Duplicate footprints [Footprint REF** @ (106.9, 241.1); Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]; extra_footprint: Extra footprint [Footprint REF** @ (106.9, 241.1)]
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("OpenJBOD-RP2040") on a silkscreen layer
@@ -166,16 +166,6 @@ FINDINGS
         row 40 U1: RP2040 (QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm): missing MPN, Basic/Extended, Stock
         row 41 U2: AMS1117-3.3 (SOT-223-3_TabPin2): missing MPN, Basic/Extended, Stock
         ... 9 more (--max-details)
-  FAIL  Catalogue package fits the footprint (§1): 2 do not fit the footprint; 39 agree with their footprint, 8 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
-        C2040 RP2040 (U1; bom.csv row 40): LQFN-56(7x7) on QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm: footprint is QFN-56(7x7), part is LQFN-56(7x7)
-        C97521 W25Q128JVSIQ (U3; bom.csv row 42): SOIC-8-208mil on SOIC-8_5.23x5.23mm_P1.27mm: footprint is SOIC-8, part is SOIC-8-208MIL; the pads differ too (ONSemi_SO-8FL_488AA against SOIC-8_5.3x5.3mm_P1.27mm: 5 pads against 8)
-        C2764899 MHK2396YGBTD (D1; bom.csv row 13): DIP-4-2.54mm on LED-TH_MHK2396YGBTD: the footprint is drawn for this part (MHK2396YGBTD in its name, MPN MHK2396YGBTD)
-        C2480 SS14 (D2, D3; bom.csv row 14): SMA(DO-214AC) on D_SMA: pads match: D_SMA and D_SMA in the KiCad library (2 pads)
-        C492535 M4202V-2x12P (J1; bom.csv row 18): Plugin,P=4.2mm on CONN-TH_M4202V-2X12P: the footprint is drawn for this part (M4202V-2X12P in its name, MPN M4202V-2x12P)
-        C5210918 91618-11010C (J2; bom.csv row 19): SMD,P=1mm on 91618-11010C: the footprint is drawn for this part (91618-11010C in its name, MPN 91618-11010C)
-        C393939 TYPE-C16PIN (J5; bom.csv row 22): SMD on USB-C-SMD_TYPE-C16PIN: the footprint is drawn for this part (TYPE-C16PIN in its name, MPN TYPE-C16PIN)
-        C12074 HR911105A (J6; bom.csv row 23): Plugin on RJ45-TH_HR911105A: the footprint is drawn for this part (HR911105A in its name, MPN HR911105A)
-        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   FAIL  Catalogue description matches the BOM value (§1 §2): 23 lines agree on every figure their value states (F, H, Ω, V), 25 state no figure, 1 disagree
         C1658 0603CG300J500NT (C15, C16; bom.csv row 6): bom.csv says 34pF but the catalogue description says 30pF (bom.csv value "34pF", description "30pF 50V C0G ±5% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
 
@@ -231,15 +221,12 @@ NOT CHECKED
         C492419 (J3): no MPN in bom.csv to compare with the catalogue's PZ254V-12-4P; the code was not checked against a part
         C492535 (J1): no MPN in bom.csv to compare with the catalogue's M4202V-2x12P; the code was not checked against a part
         ... 9 more (--max-details)
-  Catalogue package fits the footprint (§1): 8 not compared
-        C11366 TAJA226K010RNJ (C2; bom.csv row 3): CASE-A-3216-18(mm) on CP_EIA-3216-18_Kemet-A: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+  Catalogue package fits the footprint (§1): 5 not compared
         C240840 470531000 (FAN1, FAN2, FAN3, FAN4, FAN5; bom.csv row 16): Plugin,P=2.54mm on FanPinHeader_1x04_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C492419 PZ254V-12-4P (J3; bom.csv row 20): Plugin,P=2.54mm on PinHeader_2x02_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2894945 PZ254-1-03-W-8.5 (J4; bom.csv row 21): Push-Pull,P=2.54mm on PinHeader_1x03_P2.54mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2937625 PZ254V-11-03P (J7; bom.csv row 24): Plugin,P=2.54mm on PinHeader_1x03_P2.54mm_Vertical: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2845272 TC-6615-6-260G (SW1, SW2, SW3; bom.csv row 39): 弯插-4P,6x6mm on KEY-TH_TC-6615-6-160G: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C9002 X322512MSB4SI (Y1; bom.csv row 49): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C9006 X322525MOB4SI (Y2; bom.csv row 50): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue category matches the reference prefix (§1 §2): 1 not compared
         C240840 470531000 (FAN1, FAN2, FAN3, FAN4, FAN5; bom.csv row 16): prefix FAN has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
 
@@ -252,5 +239,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked  -  exit 1
-  6 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  5 blocking, 5 warnings, 4 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again

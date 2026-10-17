@@ -2,8 +2,12 @@
 
 What the gate says about 21 public KiCad boards it had never seen, and what of that is right. The runs are
 the files under `results/` (offline, every board) and `results/online/` (the 15 boards whose bom.csv carries
-LCSC codes), produced by `sh corpus/run.sh --online` with pcb-preflight at main `3963b9a` (after PR #2: pad
-geometry and value gates), kicad-cli 10.0.7, preset `jlcpcb-assembly@2026.10`, on 2026-10-17. The boards,
+LCSC codes), produced by `sh corpus/run.sh --online` with kicad-cli 10.0.7 and preset `jlcpcb-assembly@2026.10`
+on 2026-10-17: first with pcb-preflight at main `3963b9a` (after PR #2: pad geometry and value gates), which
+is the run the triage below sorts, then again the same day with the three gate fixes the triage asked for
+(identity, parity, package reader: "Rule changes" items 1, 3 and 6, made in the working tree on top of main
+`e88e6b4`), which is what `results/` holds now. Where a number moved between the two runs, the row or
+paragraph says so and why: a bug was fixed, no policy changed (items 2, 4 and 5 are untouched). The boards,
 their commits, licences and why each is here are in `README.md` and `index.csv`; the bom.csv files the runs
 used are under `boms/` (built by `make_boms.py` from each board's own LCSC and part-number symbol fields).
 
@@ -12,15 +16,21 @@ reports. Counts of 199 for one violation type are kicad-cli's per-type cap, not 
 
 ## Headline
 
-* **Every board fails.** 21 of 21 offline, 15 of 15 online. No board in the corpus reaches PASS or NOT
-  VERIFIED, including the eight that were ordered, assembled and sold.
+* **Every board fails** on the first run: 21 of 21 offline, 15 of 15 online. No board in the corpus reaches
+  PASS or NOT VERIFIED, including the eight that were ordered, assembled and sold. After the fixes, 20 of 21
+  fail offline: canfd-mc (ordered and assembled at JLCPCB) is NOT VERIFIED offline, the first board to leave
+  FAIL, since its one blocking item was the no-connect `net_conflict` below; online it still fails on a
+  true finding (U4 out of stock today).
 * **Of the 11 boards believed fab-ready, 3 are blocked offline by nothing but false failures, noise and
   unknowns** (canfd-mc: one parity item; soldiercrab: 215 items, all false; openjbod-rp2040: false and
   noise plus 5 unrouted pins on its ATX connector that KiCad counts and the designer evidently did not).
   Four more are blocked by false failures and noise plus a borderline true item: copper within 0.2 mm of
   a routed edge on a track or pad (pocketpd 2, sonatino 5, royalblue 28: JLCPCB's published figure, and
   the fab built all three) and, on sh-rpi, one BOM line for hand-fitted supercaps the project marks
-  `JLCPCB_IGNORE`. The remaining four carry a plain true finding: tiny-tapeout (3 pads shorted to another
+  `JLCPCB_IGNORE` (after the fixes sh-rpi's 33 parity items are warnings and its DRC and bom-lcsc lines are
+  what block; soldiercrab and openjbod-rp2040 stay blocked, by the ERC/DRC items 2, 4 and 5 leave to the
+  preset decision and, on openjbod, by the 5 unrouted ATX pins and the J5 shield pin). The remaining four
+  carry a plain true finding: tiny-tapeout (3 pads shorted to another
   net and 1 unrouted connection, on the revision whose Gerbers are in the repo), openair-max (two DNP
   parts not flagged on the board, a pad net that differs from the schematic), cm5-minima and bitaxegt
   (BOMs not chosen from the JLCPCB catalogue: 37 and 35 lines without a code; built elsewhere or from
@@ -37,12 +47,15 @@ reports. Counts of 199 for one violation type are kicad-cli's per-type cap, not 
   unrouted multichannel board: 148 connections still to route. smarthome-metering: 76 missing footprints
   and 117 bought references not placed, before and after its fix (the wrong-footprint commit changed only
   the schematic, and the board was never laid out at that commit).
-* **Three gate bugs, each on several boards:** the identity gate mislabels every symbol on a reused sheet
-  as renamed (185 footprints on 3 boards); the parity gate blocks a footprint whose only difference from
-  the symbol's is the library nickname (181 footprints on 2 boards) and blocks padless logos and text
-  footprints (16 on 4 boards); `packages.fits()` returns 9 false *different* verdicts on 6 fab-ready
-  boards and leaves 82 lines of chip parts and crystals uncompared because of EasyEDA-style footprint
-  names and JLCPCB crystal spellings.
+* **Three gate bugs, each on several boards, fixed on 2026-10-17 after this triage:** the identity gate
+  mislabelled every symbol on a reused sheet as renamed (185 footprints on 3 boards: now 0, the three
+  boards' identity gates pass); the parity gate blocked a footprint whose only difference from the
+  symbol's is the library nickname (181 footprints on 2 boards: now warnings) and blocked padless logos
+  and text footprints (16 on 4 boards: now notes, not findings), a renamed sheet's nets (sh-rpi 33: now
+  warnings), a no-net pad on an unconnected pin (canfd-mc 1: now a warning) and two missing test points
+  (openjbod: now warnings); `packages.fits()` returned 9 false *different* verdicts on 6 fab-ready boards
+  and left 82 lines of chip parts and crystals uncompared because of EasyEDA-style footprint names and
+  JLCPCB crystal spellings (now: see "Package verdicts", after the fixes).
 * **ERC `power_pin_not_driven` blocks 15 of 21 boards**, 11 of them fab-ready. It is KiCad's missing
   PWR_FLAG error; nothing about it decides whether the fab can build the board.
 
@@ -54,19 +67,19 @@ Every blocking item in the 21 offline reports and the 15 online ones, by the rul
 | Verdict | Rule / finding | Items | Boards | Evidence |
 |:--|:--|--:|--:|:--|
 | false failure | ERC `power_pin_not_driven` blocks | 74 | 15 | every fab-ready board but sh-rpi and canfd-mc; KiCad's missing-PWR_FLAG error, not a manufacturability check |
-| false failure | identity gate: "X on the board is Y in the schematic" on a reused sheet | 185 | 3 | complex-hierarchy 29, multichannel 78, multichannel-unrouted 78; see bug 1 |
-| false failure | parity `footprint_symbol_mismatch` where only the library nickname differs | 181 | 2 | complex-hierarchy 68 of 68, multichannel 113 of 115 (`complex_hierarchy:CP_Axial_...` vs `Capacitor_THT:CP_Axial_...`) |
-| false failure | parity `extra_footprint` / `duplicate_footprints` on a footprint with no pads | 16 | 4 | openair-max 11 (six `<no reference designator>` logos, 0 pads), openjbod-rp2040 3 (`REF**` OSHW logo), cm5-minima 1, soldiercrab 1 (`REF**` WEEE logo) |
-| false failure | parity `net_conflict` when only the sheet name in the net path differs | 33 | 1 | sh-rpi: all 33 are `/Buck converter stage 2/SW` vs `/Buck converter 5V/SW` (a sheet renamed after routing); the board is a sold product |
-| false failure | parity `net_conflict`: pad `<no net>` vs schematic `unconnected-(U1-IO1-Pad39)` | 1 | 1 | canfd-mc, ordered and assembled at JLCPCB; the only blocking finding on that board offline |
-| false failure | parity `missing_footprint` for a reference the gate itself skips (TP) | 2 | 1 | openjbod-rp2040 TP1, TP2: the placement and BOM gates skip TP by prefix, parity does not |
+| false failure → fixed (0 left) | identity gate: "X on the board is Y in the schematic" on a reused sheet | 185 | 3 | complex-hierarchy 29, multichannel 78, multichannel-unrouted 78; see bug 1. After the fix all three identity gates pass (68 of 68, 114 of 114, 114 of 114) |
+| false failure → fixed (warnings) | parity `footprint_symbol_mismatch` where only the library nickname differs | 181 | 2 | complex-hierarchy 68 of 68, multichannel 113 of 115 (`complex_hierarchy:CP_Axial_...` vs `Capacitor_THT:CP_Axial_...`). After the fix: 68 and 114 warnings (multichannel's second rerun counts J6's value line as the one mismatch and 114 nickname lines), 0 blocking |
+| false failure → fixed (notes) | parity `extra_footprint` / `duplicate_footprints` on a footprint with no pads | 16 | 4 | openair-max 11 (six `<no reference designator>` logos, 0 pads), openjbod-rp2040 3 (`REF**` OSHW logo), cm5-minima 1, soldiercrab 1 (`REF**` WEEE logo). After the fix each report's parity line ends "N padless footprint items not counted" and lists them in a note |
+| false failure → fixed (warnings) | parity `net_conflict` when only the sheet name in the net path differs | 33 | 1 | sh-rpi: all 33 are `/Buck converter stage 2/SW` vs `/Buck converter 5V/SW` (a sheet renamed after routing); the board is a sold product. After the fix: 33 warnings, parity no longer blocks sh-rpi |
+| false failure → fixed (warning) | parity `net_conflict`: pad `<no net>` vs schematic `unconnected-(U1-IO1-Pad39)` | 1 | 1 | canfd-mc, ordered and assembled at JLCPCB; the only blocking finding on that board offline. After the fix canfd-mc is NOT VERIFIED offline |
+| false failure → fixed (warnings) | parity `missing_footprint` for a reference the gate itself skips (TP) | 2 | 1 | openjbod-rp2040 TP1, TP2: the placement and BOM gates skip TP by prefix, parity did not. After the fix the project's own severity (KiCad's default warning) stands: 2 warnings |
 | false failure | placement: a BOM part with no footprint, excluded from the board | 1 | 1 | cm5-minima M705 "M.2 Screw" (Footprint ""), excluded from the board on purpose |
 | false failure | DRC `courtyards_overlap` blocks | 108 | 8 | sonatino 63, royalblue 11, pocketpd 10, soldiercrab 10 (project had set it to warning), tiny-tapeout 8, jetson 3, cm5 2, bitaxeaura 1; six of the eight were built |
 | false failure | DRC `solder_mask_bridge` blocks | 271 | 4 | soldiercrab 199 (BGA-256), cm5-minima 54 (project had set it to warning), openair-max 11, bitaxeaura 7; the fab merges the openings |
 | false failure | DRC `copper_edge_clearance` on a zone fill, after the preset raised the project's edge clearance | 11 | 3 | bitaxegt 6 (project 0, zone 0.0005 mm from the edge), sh-rpi 2 (project 0.05), royalblue 3 (project 0.127); the fab mills through a pour |
 | false failure | bom-lcsc rejects JLCPCB's 10-digit codes | 2 | 2 | pocketpd SW1 `C9900176956`, royalblue U1 `C9900148376`; both answer at getComponentDetail (brand "JLCPCB Assembly") |
 | false failure | bom-lcsc: solder jumpers counted as bought | 2 | 1 | sh-rpi JP501 "Open", JP801 "Bridged" (SolderJumper-2 footprints): nothing to buy |
-| false failure | `catalogue-package` *different* on a correct part | 9 | 6 | see "Package verdicts" below: LQFN-56 (RP2040, 2 boards), WQFN4040-24, SOIC-8_5.23x5.23mm, SOT-5X3 and SOT-5X3-5, SOT-23-Thin-6, BGA24_6X8, TDFN-6-EP |
+| false failure → fixed (0 left) | `catalogue-package` *different* on a correct part | 9 | 6 | see "Package verdicts" below: LQFN-56 (RP2040, 2 boards), WQFN4040-24, SOIC-8_5.23x5.23mm, SOT-5X3 and SOT-5X3-5, SOT-23-Thin-6, BGA24_6X8, TDFN-6-EP. After the fixes the online pass has 4 *different*, all true |
 | false failure | `catalogue-category` U / L against the catalogue's class | 6 | 6 | crystal oscillator as U (bitaxegt U8, bitaxeaura U8: C5137262), ESD array as U (royalblue U3 C2999113, sonatino U3 C85364), common-mode choke as L (canfd-mc L1 C123085, sh-rpi L701 C2915648) |
 | noise | other ERC errors (`pin_not_connected`, `pin_not_driven`, `pin_to_pin`, `label_dangling`, `hier_label_mismatch`, `wire_dangling`) | 127 | 12 | KiCad's connectivity errors the designers left (missing no-connect flags, output-to-output on paralleled pins); real in the schematic, not fab-blocking; bitaxegt's `hier_label_mismatch` (sheet pin BAP_VIN) is a genuine schematic defect |
 | noise | DRC violations of the project's **own** rule, stricter than the fab's | 836 | 9 | `drill_out_of_range` with the project's min hole 0.3 (sh-rpi 199, beyondex 6+6) or 0.508 (openair-max 199) against 0.2 and 0.4 mm vias; `clearance` at the project's 0.127 (beyondex), 0.3 (multichannel 24+6), 0.1 (openair-max 14), 0.15 netclass (pocketpd 21), 0.2032 (royalblue 13), 0.2 (tiny-tapeout 9); `hole_to_hole` 0.2461 vs the project's 0.25 (sh-rpi 8); the report does not separate these from the fab's limits |
@@ -96,19 +109,36 @@ Totals over the 21 offline reports, with the verdicts above applied item by item
 classification in this table; `results/*.json` holds the items): 887 false-failure items, 1 153 noise,
 197 unknown, 1 160 true. By boards rather than items: a false failure blocks 19 of 21 reports, a true
 finding 15 (counting the edge-clearance tracks and the missing bom.csv of the four boards without LCSC
-data as true).
+data as true). **After the fixes** the rows marked "→ fixed" are gone: 418 offline items (185 + 181 + 16
++ 33 + 1 + 2) are now warnings or notes and the 9 online package verdicts are *same*, so 460 false-failure
+items remain, every one under items 2, 4, 5, 7 and 8 of the rule-changes list (the preset's ERC and DRC
+severities, whose rule a DRC figure is, the 10-digit codes and the categories), which are decisions still
+to make, not bugs. A false failure then blocks 18 of 21 reports offline (canfd-mc, complex-hierarchy's
+parity and sh-rpi's parity cleared; complex-hierarchy fails on bom-file alone, which is true), and 20 of
+21 still fail.
 
 ## Package verdicts (`packages.fits()`), online
 
-The online pass compared 409 (code, footprint) lines on 15 boards (`catalogue-package` summaries):
+The first online pass compared 409 (code, footprint) lines on 15 boards (`catalogue-package` summaries):
 277 same, 12 different, 120 not compared (unknown). Of the 12 *different*, 3 are right and 9 are wrong;
 of the 120 unknown, 82 are spellings the table should read (the EasyEDA chip names and the crystals
-below) and the rest are connectors, custom footprints and the by-design cases. There is no offline
+below) and the rest are connectors, custom footprints and the by-design cases. **After the fixes** (the
+same 409 lines, rerun the same day; `results/online/`): 356 same, 4 different, 49 not compared. The 4
+*different* are all right: the three true ones below and soldiercrab Y1 (`SMD2520-4P` on a 3225 crystal
+footprint, which the first run could not read). The 49 unknown are the by-design list (connectors,
+inductor bodies, buttons, custom and vendor footprints: VQFN-HR, USON, XDFN, MicroPak, CABGA, an OSC
+footprint) plus openair-max's two EasyEDA names that state no pitch the reader takes (TSSOP-20_L6.5-W4.4-
+P0.65-LS6.4-BL, SSOP-16_L7.2-W5.3-P0.65-LS7.8-BL) and one `VQFN-29(4x4)` whose footprint gives no body;
+none is a chip, crystal or JEDEC package the catalogue strings name. The rerun also found a pattern the
+first fix had got wrong: cm5-minima D401-D403's `DFN2510A-10_L2.5-W1.0-P0.50-BL` (C478121 PUSB3F96X,
+`DFN2510-10`) carries a variant letter after the body digits, which the body-pins pattern now allows
+(fixture row). There is no offline
 package gate any more: after PR #2 the comparison runs only with `--online`, against the catalogue's
 string, so a board without codes (or without the network) gets no package verdict at all; the
 `bom-value` gate is what runs offline.
 
-**False *different*** (every board a sold or ordered product):
+**False *different*** (every board a sold or ordered product; all nine are *same* after the fixes, each with
+a fixture row in `tests/fixtures/packages.csv` naming the record):
 
 | Board / ref | Footprint on the board | Catalogue string (code, MPN) | What went wrong |
 |:--|:--|:--|:--|
@@ -130,7 +160,10 @@ gate keeps SMAF apart on purpose, and this is a real, if tolerated, land-pattern
 JST footprints, `SMD-4P,6.2x6.2mm` buttons, `Push-Pull,P=3.81mm` on a Phoenix block, `CABGA-256` on
 `lattice_cabga256`, `XDFN-4-EP(1x1)` on `Texas_X2SON-4`, `US-8` on `VSSOP-8_2.3x2mm`.
 
-**Not compared, and should be** (false unknown):
+**Not compared, and should be** (false unknown; after the fixes every line of this table is compared: the
+chip names and crystals are *same*, soldiercrab Y1 is *different*, the tantalum and the two PowerPAD lines
+are *same* by pads with the stacked pad 9 counted once, the three ambiguous lines are *same* because the
+board's own footprint picks):
 
 | Spelling | Lines | Boards | Record |
 |:--|--:|--:|:--|
@@ -188,12 +221,26 @@ the floor" and reports the violation exactly like a fab-limit one.
   multichannel: 78 of 114. Matching the instance path by its tail (`path.endswith(sheet)`) resolves all
   107 and changes nothing on the five other hierarchical boards checked (cm5-minima, openair-max,
   jetson-thor-baseboard, sh-rpi: 0 renamed before and after). Verified with the loader on the files.
+  **Fixed 2026-10-17** (`schematic.Symbol.reference_on()`: the instance whose path, root sheet dropped, is
+  the footprint's sheet chain; `tests/test_contract.py` has a sheet placed twice): the rerun's identity
+  gates read `68 of 68`, `114 of 114`, `114 of 114 footprints name a symbol in the schematic`, and the
+  six other boards with sub-sheets are unchanged (`results/*.json`).
 * **Parity on reused sheets:** kicad-cli's own parity test is fine with reused sheets (0 mismatches of
   that kind on multichannel's routed board).
 * **Parity library nickname:** KiCad reports `complex_hierarchy:X doesn't match footprint given by symbol
   (Capacitor_THT:X)` as a warning; the preset promotes the whole `footprint_symbol_mismatch` type to
   blocking, so a project-local footprint copy (the demos, and any project that archives its libraries)
-  blocks on every footprint. 181 items; the footprint names are identical in all of them.
+  blocks on every footprint. 181 items; the footprint names are identical in all of them. **Fixed
+  2026-10-17** (`checks.parity_check` parses kicad-cli's `X doesn't match footprint given by symbol (Y)`
+  and compares the bare names): 68 and 114 warnings in the rerun, each saying which nickname is on the
+  board and which in the schematic. The same change parses `Pad net (A) doesn't match net given by
+  schematic (B)` (a rename when both are sheet paths with one leaf: sh-rpi's 33), `Pad missing net given
+  by schematic (unconnected-(...))` on a `<no net>` pad (canfd-mc's 1), `Missing footprint TP1 (...)` for a
+  skipped prefix (openjbod's 2, now the project's own severity) and, with the board file, `extra_footprint`
+  / `duplicate_footprints` whose footprints have no pads (16 items, now notes). Any other parity
+  description is handled as before: `Value (R5) doesn't match symbol value (715)`, the two `'Do not
+  populate' settings differ`, `No pad found for pin ...`, `unconnected-(I2C3-Pad6)` against `GND` and
+  smarthome-metering's `unconnected-(X1-Pin_1-Pad1)` against `/AI2` all still block (true findings).
 * **Placement gate:** correct on all 21 boards except cm5-minima's screw (M705, no footprint, excluded from
   the board: the gate asks for it to be placed). sh-rpi's `JLCPCB_IGNORE` parts (supercaps, hand-soldered)
   and solder jumpers have no representation; they come out as "no LCSC code".
@@ -202,10 +249,12 @@ the floor" and reports the violation exactly like a fab-limit one.
 
 ## Rule changes the corpus justifies
 
-In the order of boards they would unblock. None is made here.
+In the order of boards they would unblock. Items 1, 3 and 6 were made on 2026-10-17 (plain gate bugs with
+evidence on several boards; `results/` is the rerun); 2, 4, 5, 7, 8 and 9 are not made here: they are
+decisions about what the preset owns, not bugs.
 
 1. **Identity: match the instance path by its tail** (schematic.py / checks.identity_check). Unblocks
-   complex-hierarchy and both multichannel boards; proven above.
+   complex-hierarchy and both multichannel boards; proven above. **Done.**
 2. **ERC `power_pin_not_driven` as a warning under the preset** (preset.ERC_PROTECTED keeps it; a
    `KICAD_DEFAULT` override or a preset "demoted" set). Unblocks or reduces 15 boards. The other ERC
    connectivity errors (`pin_not_connected` without a no-connect flag, output-to-output on paralleled
@@ -217,7 +266,8 @@ In the order of boards they would unblock. None is made here.
    4 boards); `missing_footprint` for a skip-prefix reference (TP) keeps KiCad's severity; a
    `net_conflict` whose two net names differ only in their sheet path is a rename, and one between
    `<no net>` and an `unconnected-(...)` name is a no-connect. The last two unblock sh-rpi and canfd-mc
-   completely offline.
+   completely offline. **Done** (parity gate only; sh-rpi stays FAIL on its own DRC rule and the
+   JLCPCB_IGNORE lines, items 4 and 7; canfd-mc is NOT VERIFIED).
 4. **DRC: say whose rule it is.** Mark each violation as the fab's floor or the project's own stricter
    value (the constraint figure in KiCad's message against `preset.minimums()`), and treat the project's
    own as a warning. Removes 836 noise items on 9 boards and leaves jetson's 0.1 mm holes blocking.
@@ -232,7 +282,9 @@ In the order of boards they would unblock. None is made here.
    (`C0402`, `R0805`, `L0805`); crystal spellings (`SMD3225-4P` ↔ `Crystal_SMD_3225-4Pin`); tantalum case
    codes (`CASE-A-3216-18`); in the pad comparison, pads with the same number stacked in an exposed pad
    count once (TI ThermalVias footprints). Resolve ambiguity in favour of the board's own footprint when
-   its pads match one candidate (3 lines, 2 sold boards).
+   its pads match one candidate (3 lines, 2 sold boards). **Done** (`packages.PATTERNS` with a source per
+   shape, `footprints.stack()`, `packages._own_pick()`; the fixture rows below are in
+   `tests/fixtures/packages.csv`).
 7. **bom-lcsc: accept `C` + up to 10 digits**; a `C99…` code is a JLCPCB-assembly consigned / global
    sourcing part (both corpus records answer with brand "JLCPCB Assembly" and stock 0), so the stock gate
    should list it as "pre-order, by hand" rather than out of stock. Solder-jumper prefixes (JP with a
@@ -249,11 +301,16 @@ In the order of boards they would unblock. None is made here.
 
 ## Fixture rows the corpus justifies
 
-Each row is a real string from the record named, paired with the footprint it was on. None is added to
-`tests/fixtures/*.csv` here: 22 of the 26 package rows **fail against the current reader** (checked with
-`packages.fits()` and the KiCad 10 library on 2026-10-17; the verdict it gives today is in the last
-column), so they are expected-failure proposals for the changes above, and the four that pass confirm the
-true findings.
+Each row is a real string from the record named, paired with the footprint it was on. When the triage was
+written, 22 of the 26 package rows **failed against the reader of `3963b9a`** (checked with
+`packages.fits()` and the KiCad 10 library on 2026-10-17; the verdict it gave then is in the last column)
+and the four that passed confirm the true findings. All 26 are now in `tests/fixtures/packages.csv`
+(section "the regression corpus of 2026-10-17"), each giving the `expect` verdict with the library (rule
+`pads`, or `pads-differ` / `names` for the *different* rows) and by names alone, together with four rows
+the fixes needed for their own coverage (the 300 mil SOIC body, the two KiCad 10 renamings, openair-max
+U4's EasyEDA TSSOP-20 as the case where an ambiguous string stays unknown) and four existing rows whose
+expectation the ambiguity rule changed (TSSOP-14 and VSSOP-8 against the board's own footprint: now
+*same*). The catalogue.csv rows below are items 7 and 8 and are **not** added.
 
 ### tests/fixtures/packages.csv (columns: footprint, part, verdict, rule, names_verdict, names_rule, seen_in, mpn)
 
@@ -314,11 +371,11 @@ the project's own constraint, stricter than the fab's floor.
 |:--|:--|:--|
 | erc | 7 `power_pin_not_driven`, 41 `pin_not_driven` (resistor pins typed Input), 1 `wire_dangling` | false (7), noise (42) |
 | drc | 199 `drill_out_of_range` (own 0.508 mm vs 0.4 mm vias); 14 `clearance` (own 0.1); 11 `solder_mask_bridge`; 5 `annular_width` (pegs); 4 `padstack_invalid`; 1 `zones_intersect` | noise, noise, false, noise, unknown, noise |
-| parity | 6 `extra_footprint` + 5 `duplicate_footprints` on padless logos; 2 value mismatches; I2C3 pad 6 `unconnected-` vs GND | false (11), true (3) |
+| parity | 6 `extra_footprint` + 5 `duplicate_footprints` on padless logos; 2 DNP-attribute mismatches; I2C3 pad 6 `unconnected-` vs GND | false (11; after the fixes a note, 3 mismatches left), true (3) |
 | dnp | Battery1, Solarpower1 DNP in the schematic, not on the board | true |
 | bom-lcsc | D1 BAS16J (Package field only), F2 fuse, Q1/Q2 CSD18534Q5A: no code | true |
 | stock (online) | C273332, C309458 out of stock; 5 low stock; 81 lines without an MPN to compare | true; not checked |
-| catalogue-package (online) | U3 SOT-23-Thin-6, U7 SOT-5X3 *different*; 65 lines `C0402`-style unknown | false (2 + 65) |
+| catalogue-package (online) | U3 SOT-23-Thin-6, U7 SOT-5X3 *different*; 65 lines `C0402`-style unknown | false (2 + 65); after the fixes 69 agree, 12 by-design unknown |
 | catalogue-value (online) | C53/C56 0.1uF on a 100 pF part | true |
 
 ### royalblue54l-feather (fab: yes) — FAIL
@@ -326,7 +383,7 @@ the project's own constraint, stricter than the fab's floor.
 | drc | 183 `drill_out_of_range` blind vias at 1e-05 mm; 31 `copper_edge_clearance` (raised 0.127 → 0.2; 3 zones); 13 `clearance` (own 0.2032); 11 `courtyards_overlap`; 2 `annular_width` | unknown, false/true, noise, false, noise |
 | bom-lcsc | J6 FFC connector without a code; U1 `C9900148376` | true, false |
 | stock (online) | U4 W25Q16JVUXIQ out of stock | true |
-| catalogue-package (online) | U3 SOT-5X3-5 *different*; 7 unknown (crystals Y1/Y2, Wurth LED, JST, Winbond USON, TXB0106 RGY) | false; false (2) + by design (5) |
+| catalogue-package (online) | U3 SOT-5X3-5 *different*; 7 unknown (crystals Y1/Y2, Wurth LED, JST, Winbond USON, TXB0106 RGY) | false; false (2) + by design (5); after the fixes 22 agree, 5 by design |
 | catalogue-category (online) | U3 ESD array | false |
 
 ### tiny-tapeout (fab: yes, rev 0.9.4 Gerbers in the repo) — FAIL
@@ -336,17 +393,17 @@ the project's own constraint, stricter than the fab's floor.
 | bom-lcsc | 28 of 32 lines carry only an MPN | true (not chosen from JLCPCB) |
 | stock (online) | 4 MPN mismatches (the JLC field names a substitute), D1-D4 out of stock | true |
 
-### complex-hierarchy (KiCad demo) — FAIL
-| parity | 68 `footprint_symbol_mismatch`, every one a library-nickname difference | false |
-| identity | 29 "renamed" on the twice-placed ampli_ht sheet | false (bug 1) |
+### complex-hierarchy (KiCad demo) — FAIL (after the fixes: FAIL on bom-file alone)
+| parity | 68 `footprint_symbol_mismatch`, every one a library-nickname difference | false; after the fixes 68 warnings, 0 mismatches |
+| identity | 29 "renamed" on the twice-placed ampli_ht sheet | false (bug 1); after the fixes 68 of 68 pass |
 | bom-file | no bom.csv | true (no LCSC data to build one) |
 
 ### multichannel / multichannel-unrouted (KiCad demo) — FAIL
 | erc | 3 `power_pin_not_driven`, 1 `pin_not_connected` | false, noise |
 | drc | 24 / 6 `clearance` (own 0.3 mm) | noise |
 | unrouted (unrouted variant) | 148 | true (by construction) |
-| parity | 113 nickname mismatches (routed board); J6 value (unrouted board) | false; true |
-| identity | 78 "renamed" on the four-times-placed channel_strip sheet | false (bug 1) |
+| parity | 113 nickname mismatches (routed board); J6 value (both boards) | false (after the fixes 114 warnings and the J6 line as the one mismatch on the routed board; the first run folded one J6 line into the 115); true |
+| identity | 78 "renamed" on the four-times-placed channel_strip sheet | false (bug 1); after the fixes 114 of 114 pass on both |
 | bom-file | no bom.csv | true |
 
 ### jetson-thor-baseboard (fab: believed yes, not JLCPCB) — FAIL
@@ -357,31 +414,31 @@ the project's own constraint, stricter than the fab's floor.
 ### cm5-minima (fab: yes, NextPCB) — FAIL
 | erc | 2 `pin_not_connected` (hierarchical label in root), 1 `power_pin_not_driven`, 1 `pin_not_driven` | noise, false, noise |
 | drc | 54 `solder_mask_bridge` (project: warning); 6 `annular_width` (pegs); 2 `courtyards_overlap`; 2 `copper_edge_clearance` (pads); 1 `zones_intersect`; 38 without courtyard | false, noise, false, true, noise |
-| parity | J701 M1-M4 "no pad found for pin"; 1 `extra_footprint` (REF**) | unknown, false |
+| parity | J701 M1-M4 "no pad found for pin"; 1 `extra_footprint` (REF**) | unknown, false (after the fixes a note; 4 mismatches left) |
 | placement | M705 M.2 screw, excluded from the board | false |
 | bom-lcsc | 37 of 43 lines | true (not JLCPCB) |
-| catalogue-package (online) | 5 same, CN1 JST unknown | by design |
+| catalogue-package (online) | 5 same, CN1 JST unknown | by design; unchanged after the fixes (D401-D403 `DFN2510-10` on `DFN2510A-10` stays same, see "Package verdicts") |
 
 ### jlcpcb-example (fab: unknown) — FAIL
 | erc | 3 `power_pin_not_driven` | false |
 | drc | 0 errors (58 warnings: dangling stitching vias, hole-to-hole) | — |
 | stock (online) | 11 found, 4 without an MPN | not checked |
-| catalogue-package (online) | 9 same (TPS63070 VQFN-HR-15 by name, DBT10 block by name); L1 `L0805`, R4 `R0805` unknown | false unknown (2) |
+| catalogue-package (online) | 9 same (TPS63070 VQFN-HR-15 by name, DBT10 block by name); L1 `L0805`, R4 `R0805` unknown | false unknown (2); after the fixes 11 agree |
 
 The one board in the corpus drawn entirely from the JLCPCB KiCad Library is blocked by ERC alone.
 
-### canfd-mc (fab: yes, JLCPCB assembled 2026-09) — FAIL
-| parity | 1 `net_conflict`: U1 pad 39 `<no net>` vs `unconnected-(U1-IO1-Pad39)` | false |
+### canfd-mc (fab: yes, JLCPCB assembled 2026-09) — FAIL (after the fixes: NOT VERIFIED offline, FAIL online on stock)
+| parity | 1 `net_conflict`: U1 pad 39 `<no net>` vs `unconnected-(U1-IO1-Pad39)` | false; after the fixes a warning, nothing blocks offline |
 | stock (online) | U4 TCAN332GDR out of stock today; 26 lines without an MPN | true; not checked |
-| catalogue-package (online) | 24 same; U3 LM5164 PowerPAD (19 pads vs 9) and X1 crystal unknown | false unknown (2) |
+| catalogue-package (online) | 24 same; U3 LM5164 PowerPAD (19 pads vs 9) and X1 crystal unknown | false unknown (2); after the fixes 26 agree |
 | catalogue-category (online) | L1 common-mode choke | false |
 
-### openjbod-rp2040 (fab: yes) — FAIL
+### openjbod-rp2040 (fab: yes) — FAIL (after the fixes still FAIL: erc, drc, unrouted, parity's J5 S1)
 | erc | 3 `power_pin_not_driven`; `label_dangling` +5vSB; `pin_not_driven` SWCLK | false, noise, noise |
 | drc | 9 `hole_clearance` (J2/J5 pegs against their own pads); 2 `annular_width` | noise |
 | unrouted | 5 on J1 ATX-24 +5v/+3.3v pins (after `--refill-zones` too) | unknown |
-| parity | TP1/TP2 missing; REF** OSHW logo extra + duplicate; J5 pin S1 no pad | false, false, unknown |
-| catalogue-package (online) | U1 LQFN-56, U3 SOIC-8-208mil *different*; C2 tantalum, Y1/Y2 crystals, headers unknown | false (2); false unknown (3), by design (5) |
+| parity | TP1/TP2 missing; REF** OSHW logo extra + duplicate; J5 pin S1 no pad | false (after the fixes 2 warnings), false (a note), unknown (the 1 mismatch left) |
+| catalogue-package (online) | U1 LQFN-56, U3 SOIC-8-208mil *different*; C2 tantalum, Y1/Y2 crystals, headers unknown | false (2); false unknown (3), by design (5); after the fixes 44 agree, 5 by design |
 | catalogue-value (online) | C15/C16 34pF on a 30 pF part | true |
 
 ### bitaxegt (fab: believed yes) — FAIL
@@ -390,6 +447,7 @@ The one board in the corpus drawn entirely from the JLCPCB KiCad Library is bloc
 | bom-lcsc | 35 of 39 lines | true (Digi-Key BOM) |
 | stock (online) | R14/R25 and J2: the BOM MPN names a different maker's part | true |
 | catalogue-category (online) | U8 oscillator | false |
+| catalogue-package (online) | (after the fixes) U8 `SMD3225-4P` agrees: 3 agree, 1 by design | — |
 
 ### bitaxeaura (documented problem, mid-layout) — FAIL
 | erc / drc / unrouted | 29 ERC errors; 126 DRC errors (23 shorts, 80 clearance); 291 unrouted | true |
@@ -398,26 +456,26 @@ The one board in the corpus drawn entirely from the JLCPCB KiCad Library is bloc
 | catalogue-package (online) | C92827 TMK107B7105KA-T 0603 on C_0402 (8 refs; issue #1 names 6) | true |
 | catalogue-category (online) | U8 oscillator | false |
 
-### sh-rpi (fab: yes, sold) — FAIL
+### sh-rpi (fab: yes, sold) — FAIL (after the fixes still FAIL: drc and bom-lcsc)
 | drc | 199 `drill_out_of_range` (own 0.3 vs 0.2 mm vias); 8 `hole_to_hole` (own 0.25 vs 0.2461); 2 `copper_edge_clearance` zones (raised 0.05 → 0.2); 1 `padstack` | noise, noise, false, noise |
-| parity | 33 `net_conflict`, all a renamed sheet | false |
+| parity | 33 `net_conflict`, all a renamed sheet | false; after the fixes 33 warnings, parity passes to warn |
 | bom-lcsc | C1004-C1006 supercaps (`JLCPCB_IGNORE`), JP501/JP801 solder jumpers | true-by-contract (hand-fitted), false |
 | stock (online) | R304 group and D202 out of stock; LMV321 low | true |
-| catalogue-package (online) | D303 SMAF on D_SMA *different*; U401 QFN-20-EP(3x3) ambiguous though the pads match; Y801 crystal, headers, Phoenix block, inductors unknown | true, false unknown, false unknown (1), by design (6) |
+| catalogue-package (online) | D303 SMAF on D_SMA *different*; U401 QFN-20-EP(3x3) ambiguous though the pads match; Y801 crystal, headers, Phoenix block, inductors unknown | true, false unknown, false unknown (1), by design (6); after the fixes 1 different (D303), 63 agree, 6 by design |
 | catalogue-category (online) | L701 common-mode choke | false |
 
-### soldiercrab (fab: yes, Crowd Supply) — FAIL
+### soldiercrab (fab: yes, Crowd Supply) — FAIL (after the fixes still FAIL: erc and drc)
 | erc | 5 `power_pin_not_driven` | false |
 | drc | 199 `solder_mask_bridge` (BGA-256); 10 `courtyards_overlap` (project: warning) | false |
-| parity | REF** WEEE logo extra; 5 `lcsc#` field notes (IC1 C1521614 on the board vs C1550826 in the schematic) | false; warning worth reading |
+| parity | REF** WEEE logo extra; 5 `lcsc#` field notes (IC1 C1521614 on the board vs C1550826 in the schematic) | false (after the fixes a note; parity is warn); warning worth reading |
 | stock (online) | 13 MPN mismatches (`Substitution` field = substitutes allowed); U10, R7, D1/D2 out of stock; IC1 stock 1 | true-by-contract; true |
-| catalogue-package (online) | U10 BGA24_6X8 *different*; Y1 SMD2520-4P on a 3225 footprint unknown (should be different); CABGA-256, XDFN-4 unknown | false; false unknown; by design |
+| catalogue-package (online) | U10 BGA24_6X8 *different*; Y1 SMD2520-4P on a 3225 footprint unknown (should be different); CABGA-256, XDFN-4 unknown | false; false unknown; by design; after the fixes Y1 is the 1 different (true), 24 agree, 3 by design |
 
 ### sonatino (fab: yes; no .kicad_pro in the repo) — FAIL
 | erc | 12 `power_pin_not_driven`; 2 `pin_not_driven` | false, noise |
 | drc | 471 `clearance` at KiCad's 0.2 mm default (artefact of the empty project file); 63 `courtyards_overlap`; 5 `copper_edge_clearance` tracks | noise (artefact), false, true |
 | stock (online) | U15 WM8782 out of stock (discontinued, says the README); 2 low | true |
-| catalogue-package (online) | Q3 TDFN-6-EP *different*; U13 TSSOP-16 and U15 SSOP-20 ambiguous though the pads match; U4 TP4056 PowerPAD (12 pads vs 9); 7 custom | false; false unknown (3); by design |
+| catalogue-package (online) | Q3 TDFN-6-EP *different*; U13 TSSOP-16 and U15 SSOP-20 ambiguous though the pads match; U4 TP4056 PowerPAD (12 pads vs 9); 7 custom | false; false unknown (3); by design; after the fixes 50 agree, 7 by design |
 | catalogue-category (online) | U3 SRV05-4 ESD array | false |
 
 ### pocketpd (fab: yes, Crowd Supply) — FAIL
@@ -425,7 +483,7 @@ The one board in the corpus drawn entirely from the JLCPCB KiCad Library is bloc
 | drc | 21 `clearance` (netclass 0.15 own); 16 `starved_thermal`; 10 `courtyards_overlap`; 2 `copper_edge_clearance` pads | noise, noise, false, true |
 | bom-lcsc | SW1 `C9900176956` | false |
 | stock (online) | U5 W25Q16, U1/U6 LM73100 out of stock | true |
-| catalogue-package (online) | U2 WQFN4040-24, U3 LQFN-56 *different*; Y1 crystal unknown; 9 custom footprints unknown | false (2); false unknown; by design |
+| catalogue-package (online) | U2 WQFN4040-24, U3 LQFN-56 *different*; Y1 crystal unknown; 9 custom footprints unknown | false (2); false unknown; by design; after the fixes 23 agree, 9 by design |
 
 ### smarthome-metering-prefix / smarthome-metering (documented problem) — FAIL
 | erc | 15 `pin_not_connected` on the ESP32 | noise |

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "CM5_MINIMA_3",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/cm5-minima",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/cm5-minima",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -42,7 +42,7 @@
   },
   "copper_layers": 6,
   "footprints": 112,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/cm5-minima.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/cm5-minima.csv",
   "checks": [
     {
       "id": "erc",
@@ -449,17 +449,18 @@
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
       "status": "fail",
-      "summary": "5 mismatches across 112 footprints",
+      "summary": "4 mismatches across 112 footprints; 1 padless footprint items not counted",
       "details": [
         "net_conflict: No pad found for pin M1 (GND) in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: No pad found for pin M2 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: No pad found for pin M3 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test"
+        "net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)]"
+      ]
     },
     {
       "id": "identity",

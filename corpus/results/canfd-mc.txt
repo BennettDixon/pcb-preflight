@@ -1,6 +1,6 @@
 canfd-mc  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 51 footprints  -  bom.csv: canfd-mc.csv
-RESULT: FAIL  -  1 blocking, 4 warnings, 1 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked  -  exit 3
+  1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -23,8 +23,8 @@ FINDINGS
         warning: same_local_global_label: Local and global labels have same name [Symbol #PWR02 Pin 1 [Power input, Line] @ (250.19, 275.59); Label 'GND' @ (234.95, 182.88)]
   WARN  DRC (§12): 0 errors, 1 warnings (lib_footprint_mismatch x1)
         warning: lib_footprint_mismatch: Footprint 'ESP32-S3-WROOM-1U' does not match copy in library 'RF_Module' [Footprint U1 @ (60.79, 68.395606)]
-  FAIL  Schematic / PCB parity (§5): 1 mismatches across 51 footprints
-        net_conflict: Pad missing net given by schematic (unconnected-(U1-IO1-Pad39)) [Pad 39 [<no net>] of U1 on F.Cu @ (53.65, 59.645606)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 1 warnings across 51 footprints
+        warning: net_conflict: Pad missing net given by schematic (unconnected-(U1-IO1-Pad39)) [Pad 39 [<no net>] of U1 on F.Cu @ (53.65, 59.645606)]; the pad has no net and the schematic pin is unconnected: a no-connect, not two nets
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  BOM lines complete (§1 §2): 26 of 26 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
         row 2 C1,C2: 4.7uF 100V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
@@ -66,5 +66,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 4 warnings, 1 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked  -  exit 3
+  1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue

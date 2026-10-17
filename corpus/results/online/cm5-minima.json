@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "CM5_MINIMA_3",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/cm5-minima",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/cm5-minima",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -42,7 +42,7 @@
   },
   "copper_layers": 6,
   "footprints": 112,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/cm5-minima.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/cm5-minima.csv",
   "checks": [
     {
       "id": "erc",
@@ -449,17 +449,18 @@
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
       "status": "fail",
-      "summary": "5 mismatches across 112 footprints",
+      "summary": "4 mismatches across 112 footprints; 1 padless footprint items not counted",
       "details": [
         "net_conflict: No pad found for pin M1 (GND) in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: No pad found for pin M2 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
         "net_conflict: No pad found for pin M3 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)",
-        "extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked \"Not in schematic\" in its properties (attr board_only); KiCad then leaves it out of this test"
+        "net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)]"
+      ]
     },
     {
       "id": "identity",
@@ -733,6 +734,7 @@
       "status": "pass",
       "summary": "5 agree with their footprint, 1 not compared (sign each under NOT CHECKED with a \"Package verified\" note on its bom.csv line, or fix the string it names)",
       "details": [
+        "C478121 PUSB3F96X (D401, D402, D403; bom.csv row 10): DFN2510-10 on DFN2510A-10_L2.5-W1.0-P0.50-BL: both are DFN-10(1x2.5); DFN2510A-10 read as DFN-10(1x2.5) (Diodes Inc. writes the body size in tenths of a millimetre between the family and the pin count: JLCPCB C5244513 (AP33772DKZ-13) lists WQFN4040-24, the datasheet's W-QFN4040-24 (4.0 x 4.0 mm, 24 pins) on KiCad QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm (pocketpd U2, a sold board); a variant letter may follow the body: C478121 (Diodes PUSB3F96X) lists DFN2510-10 on the EasyEDA footprint DFN2510A-10_L2.5-W1.0-P0.50-BL (cm5-minima D401)); DFN2510-10 read as DFN-10(1x2.5) (Diodes Inc. writes the body size in tenths of a millimetre between the family and the pin count: JLCPCB C5244513 (AP33772DKZ-13) lists WQFN4040-24, the datasheet's W-QFN4040-24 (4.0 x 4.0 mm, 24 pins) on KiCad QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm (pocketpd U2, a sold board); a variant letter may follow the body: C478121 (Diodes PUSB3F96X) lists DFN2510-10 on the EasyEDA footprint DFN2510A-10_L2.5-W1.0-P0.50-BL (cm5-minima D401))",
         "C778185 MK-11C04-G013 (SW101; bom.csv row 35): SMD,5.5x0.7mm on SW-SMD_MK-11C04-G013: the footprint is drawn for this part (MK-11C04-G013 in its name, MPN MK-11C04-G013)",
         "C381059 TS-1010A-B (SW501; bom.csv row 36): SMD,4.5x3.5mm on SW-SMD_TS-1010A-B: the footprint is drawn for this part (TS-1010A-B in its name, MPN TS-1010A-B)",
         "C5454943 TYPEC-305-ACP16H458 (USB701; bom.csv row 44): SMD on USB-C-SMD_TYPEC-305-ACP16H458: the footprint is drawn for this part (TYPEC-305-ACP16H458 in its name, MPN TYPEC-305-ACP16H458)"

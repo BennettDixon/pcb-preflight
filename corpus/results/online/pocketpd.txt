@@ -1,6 +1,6 @@
 PicoPDSupply  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  2 copper layers, 90 footprints  -  bom.csv: pocketpd.csv
-RESULT: FAIL  -  5 blocking, 4 warnings, 4 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 4 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -15,6 +15,8 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 81 bought references, every one on exactly one BOM line
         note: not bought: H1, H2, H3, H5 (prefix FID/TP/H/MH); G***, J2, J3, J5, J9 (excluded from the BOM)
   BOM value matches the schematic (§1): 81 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 23 agree with their footprint, 9 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 32 lines filed under the category their reference prefix means, 1 not checked
   Catalogue description matches the BOM value (§1 §2): 9 lines agree on every figure their value states (F, H, Ω, V), 24 state no figure
 
@@ -62,26 +64,26 @@ FINDINGS
         warning: multiple_net_names: Both USB_D- and D- are attached to the same items; USB_D- will be used in the netlist [Label 'USB_D-' @ (91.44, 66.04); Hierarchical Label 'D-' @ (63.5, 45.72)]
         ... 6 more (--max-details)
   FAIL  DRC (§12): 49 errors, 106 warnings (lib_footprint_mismatch x67, clearance x21, starved_thermal x16, lib_footprint_issues x14, silk_overlap x11, courtyards_overlap x10, silk_edge_clearance x10, silk_over_copper x3, copper_edge_clearance x2, via_dangling x1); 7 footprints without a courtyard
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101); Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 5.0194 mm @ (51.379378, 70.05)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372)]
         courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint D2 @ (73.66, 51.6)]
         courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint J5 @ (74.81, 72.0)]
@@ -95,10 +97,10 @@ FINDINGS
         courtyards_overlap: Courtyards overlap [Footprint J2 @ (70.61, 71.65); Footprint H1 @ (66.5, 79.9)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 1 [GND] of SW5 on F.Cu @ (53.835, 34.841217)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 2 [unconnected-(SW5-Pad2)] of SW5 on F.Cu @ (58.085, 34.841217)]
-        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of U4 on F.Cu @ (48.06, 46.3625)]
-        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
         starved_thermal: Thermal relief connection to zone incomplete (layer B.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on B.Cu, priority 0 @ (93.96, 85.0); PTH pad 2 [GND] of J3 @ (47.76, 35.4)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 19 [GND] of U3 on F.Cu @ (57.56, 53.3625)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C8 on F.Cu @ (50.58, 55.8)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C19 on F.Cu @ (61.965, 64.363)]
@@ -188,44 +190,38 @@ FINDINGS
   FAIL  Catalogue and stock (§1 §2 §13): 32 codes found, 2 blocking, 0 low-stock/mismatch, 32 not checked; 22 Extended part types (one loading fee each)
         C2843335 (U5): out of stock at JLCPCB (W25Q16JVUXIQ)
         C3210761 (U1, U6): out of stock at JLCPCB (LM73100RPWR)
-        ok: C10425 (U8): SN74LVC1G17DCKR, SC-70-5, Extended, stock 74,939
+        ok: C10425 (U8): SN74LVC1G17DCKR, SC-70-5, Extended, stock 73,975
         ok: C112032 (U4): AP2204K-3.3TRG1, SOT-23-5, Extended, stock 7,746
-        ok: C11702 (R12, R18, R20, R26, R27, R29, R30): 0402WGF1001TCE, 0402, Basic, stock 13,763,464
-        ok: C12530 (C6, C13, C18): CL05A225MQ5NSNC, 0402, Basic, stock 4,366,053
+        ok: C11702 (R12, R18, R20, R26, R27, R29, R30): 0402WGF1001TCE, 0402, Basic, stock 13,764,087
+        ok: C12530 (C6, C13, C18): CL05A225MQ5NSNC, 0402, Basic, stock 4,365,637
         ok: C133334 (Y1): TAXM12M4RLBDDT2T, SMD3225-4P, Extended, stock 118,738
         ok: C138021 (R10, R11): RC0402FR-0727RL, 0402, Extended, stock 58,382
-        ok: C138687 (C15, C22, C23): CL32B106KBJNNNE, 1210, Extended, stock 79,075
-        ok: C138714 (D1): TPD4E05U06DQAR, USON-10(1x2.5), Extended, stock 216,000
-        ok: C14663 (C28, C30): CC0603KRX7R9BB104, 0603, Basic, stock 31,937,179
-        ok: C1525 (C1, C2, C4, C5, C7, C8, C9, C10, C11, C12, C14, C19, C21, C24, C26): CL05B104KO5NNNC, 0402, Basic, stock 24,783,027
-        ok: C1570 (C16, C20): 0402CG300J500NT, 0402, Extended, stock 166,365
+        ok: C138687 (C15, C22, C23): CL32B106KBJNNNE, 1210, Extended, stock 79,029
+        ok: C138714 (D1): TPD4E05U06DQAR, USON-10(1x2.5), Extended, stock 215,967
+        ok: C14663 (C28, C30): CC0603KRX7R9BB104, 0603, Basic, stock 31,929,967
+        ok: C1525 (C1, C2, C4, C5, C7, C8, C9, C10, C11, C12, C14, C19, C21, C24, C26): CL05B104KO5NNNC, 0402, Basic, stock 24,774,238
+        ok: C1570 (C16, C20): 0402CG300J500NT, 0402, Extended, stock 166,045
         ok: C178560 (C17): EEEFK1V101XP, SMD,D6.3xL7.7mm, Extended, stock 7,174
         ok: C19077540 (D3, D6): SMAJ20CA, DO-214AC(SMA), Extended, stock 23,199
         ok: C20071191 (J4): F136-1104S3CMUB2, SMD,P=2.54mm(Staggered pins), Extended, stock 1,444
-        ok: C2040 (U3): RP2040, LQFN-56(7x7), Extended, stock 52,243
-        ok: C2286 (D5): KT-0603R, 0603, Basic, stock 7,579,604
-        ok: C25077 (R13, R14, R25): 0402WGF100JTCE, 0402, Basic, stock 3,884,771
-        ok: C25744 (R6, R7, R9, R15, R16, R17, R19, R22, R28): 0402WGF1002TCE, 0402, Basic, stock 20,315,414
-        ok: C25905 (R2, R3, R4, R5, R8, R21, R23, R24): 0402WGF5101TCE, 0402, Basic, stock 5,085,782
+        ok: C2040 (U3): RP2040, LQFN-56(7x7), Extended, stock 51,938
+        ok: C2286 (D5): KT-0603R, 0603, Basic, stock 7,577,217
+        ok: C25077 (R13, R14, R25): 0402WGF100JTCE, 0402, Basic, stock 3,890,997
+        ok: C25744 (R6, R7, R9, R15, R16, R17, R19, R22, R28): 0402WGF1002TCE, 0402, Basic, stock 20,311,173
+        ok: C25905 (R2, R3, R4, R5, R8, R21, R23, R24): 0402WGF5101TCE, 0402, Basic, stock 5,097,414
         ok: C2762973 (SW2, SW4): GT-TC120A-H120-L1, SMD-4P,6.2x6.2mm, Extended, stock 830
-        ok: C28323 (C3, C27): CL21B105KBFNNNE, 0805, Basic, stock 2,347,320
+        ok: C28323 (C3, C27): CL21B105KBFNNNE, 0805, Basic, stock 2,347,240
         ok: C2843335 (U5): W25Q16JVUXIQ, USON-8-EP(2x3), Extended, stock 0
         ok: C2988648 (R1): HoLLR1206-1W-5mR-1%, 1206, Extended, stock 83,955
         ok: C3210761 (U1, U6): LM73100RPWR, VQFN-10-HR(2x2), Extended, stock 0
-        ok: C49851 (U7): INA226AIDGSR, VSSOP-10, Extended, stock 40,474
+        ok: C49851 (U7): INA226AIDGSR, VSSOP-10, Extended, stock 40,379
         ok: C5244513 (U2): AP33772DKZ-13, WQFN4040-24, Extended, stock 64
         ok: C692458 (SW5): TS-1010-C-A, SMD,4.7x2.3mm, Extended, stock 30,618
         ok: C7437326 (J6): 24.245.1, Plugin, Extended, stock 4,387
         ok: C7437327 (J8): 24.245.2, Plugin, Extended, stock 9,014
         ok: C77131 (TH1): NCP15XH103F03RC, 0402, Extended, stock 301,729
-        ok: C8678 (D2): SS34, SMA(DO-214AC), Basic, stock 3,878,081
+        ok: C8678 (D2): SS34, SMA(DO-214AC), Basic, stock 3,876,551
         ok: C963411 (J1): GT-USB-7010AW, SMD, Extended, stock 1,099
-  FAIL  Catalogue package fits the footprint (§1): 2 do not fit the footprint; 20 agree with their footprint, 10 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
-        C5244513 AP33772DKZ-13 (U2; bom.csv row 29): WQFN4040-24 on QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm: footprint is QFN-24(4x4), part is QFN-4040
-        C2040 RP2040 (U3; bom.csv row 30): LQFN-56(7x7) on QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm: footprint is QFN-56(7x7), part is LQFN-56(7x7)
-        C8678 SS34 (D2; bom.csv row 10): SMA(DO-214AC) on D_SMA: pads match: D_SMA and D_SMA in the KiCad library (2 pads)
-        C19077540 SMAJ20CA (D3, D6; bom.csv row 11): DO-214AC(SMA) on D_SMA: pads match: D_SMA and D_SMA in the KiCad library (2 pads)
-        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
 
 NOT CHECKED
   DRC (§12): 7 not compared
@@ -269,7 +265,7 @@ NOT CHECKED
         C77131 (TH1): no MPN in bom.csv to compare with the catalogue's NCP15XH103F03RC; the code was not checked against a part
         C8678 (D2): no MPN in bom.csv to compare with the catalogue's SS34; the code was not checked against a part
         C963411 (J1): no MPN in bom.csv to compare with the catalogue's GT-USB-7010AW; the code was not checked against a part
-  Catalogue package fits the footprint (§1): 10 not compared
+  Catalogue package fits the footprint (§1): 9 not compared
         C138714 TPD4E05U06DQAR (D1; bom.csv row 9): USON-10(1x2.5) on SON50P100X255X50-10N: "USON-10(1x2.5)" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C963411 GT-USB-7010AW (J1; bom.csv row 13): SMD on USB_C_GSwitch: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C20071191 F136-1104S3CMUB2 (J4; bom.csv row 14): SMD,P=2.54mm(Staggered pins) on Conn_OLED_PocketPD: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
@@ -279,7 +275,6 @@ NOT CHECKED
         C692458 TS-1010-C-A (SW5; bom.csv row 26): SMD,4.7x2.3mm on Button-SMD_TS24CA: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C3210761 LM73100RPWR (U1, U6; bom.csv row 28): VQFN-10-HR(2x2) on VQFN-HR-16: "VQFN-HR-16" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
         C2843335 W25Q16JVUXIQ (U5; bom.csv row 32): USON-8-EP(2x3) on 8-USON: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
-        C133334 TAXM12M4RLBDDT2T (Y1; bom.csv row 35): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
   Catalogue category matches the reference prefix (§1 §2): 1 not compared
         C77131 NCP15XH103F03RC (TH1; bom.csv row 27): prefix TH has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
 
@@ -292,5 +287,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  5 blocking, 4 warnings, 4 not checked  -  exit 1
-  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  4 blocking, 4 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

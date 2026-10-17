@@ -102,12 +102,12 @@ FINDINGS
         ... 223 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered solder_mask_bridge to warning (KiCad default error)
         note: minimums: JLCPCB 1 oz copper, 6 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0 -> 0.09 mm
-  FAIL  Schematic / PCB parity (§5): 5 mismatches across 112 footprints
+  FAIL  Schematic / PCB parity (§5): 4 mismatches across 112 footprints; 1 padless footprint items not counted
         net_conflict: No pad found for pin M1 (GND) in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         net_conflict: No pad found for pin M2 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         net_conflict: No pad found for pin M3 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
-        extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it); a footprint meant to live only on the board (mounting hole, logo) is marked "Not in schematic" in its properties (attr board_only); KiCad then leaves it out of this test
+        note: 1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)]
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("CM5_MINIMA_3") on a silkscreen layer
   WARN  Connector names on silk (§8): 8 of 8 connectors have neither a visible value nor silk text within 15 mm
