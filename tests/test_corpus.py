@@ -15,7 +15,11 @@ the baseline is then updated with the new, triaged number; the 2026-10-17 fixes 
 prefix items: 233) and the package reader did that once, and canfd-mc became the first board to leave
 FAIL (NOT VERIFIED offline). The policy decisions of the same day (preset.ERC_DEMOTED: KiCad's
 electrical-intent ERC errors as warnings; preset.DRC_DEMOTED: courtyards_overlap and solder_mask_bridge as
-warnings) did it again: ERC blocks no board any more, and jlcpcb-example and soldiercrab left FAIL.
+warnings) did it again: ERC blocks no board any more, and jlcpcb-example and soldiercrab left FAIL. Then
+"whose rule is it" (checks.FLOORED): a DRC violation whose measured figure still clears the fab's floor is
+the project's own stricter rule and a warning; both beyondex boards left FAIL, and what blocks the built
+boards now is copper_edge_clearance (the fab's 0.2 mm figure), hole_clearance and annular_width (no floor
+in the preset yet), starved_thermal, and the true findings.
 
   PREFLIGHT_CORPUS_BOARDS=canfd-mc,sh-rpi   run a subset
   PREFLIGHT_CORPUS_ONLINE=1                  also run the catalogue pass (network; stock moves daily,
@@ -36,9 +40,9 @@ BOMS = os.path.join(ROOT, 'corpus', 'boms')
 
 # board -> (result, blocking gates, {gate: substring of its summary})
 BASELINE = {
-    'beyondex-limiter': ('FAIL', {'drc'},
+    'beyondex-limiter': ('NOT VERIFIED', set(),
                 {'bom-lcsc': '6 lines, each with a C-number'}),
-    'beyondex-limiter-prefix': ('FAIL', {'drc'},
+    'beyondex-limiter-prefix': ('NOT VERIFIED', set(),
                 {'bom-lcsc': '6 lines, each with a C-number'}),
     'bitaxeaura': ('FAIL', {'bom-lcsc', 'drc', 'parity', 'unrouted'},
                 {'bom-lcsc': '47 of 49 lines have no LCSC code',
@@ -60,10 +64,10 @@ BASELINE = {
                 {'identity': '1123 of 1125 footprints name a symbol in the schematic, 2 board-only'}),
     'jlcpcb-example': ('NOT VERIFIED', set(),
                 {'bom-lcsc': '11 lines, each with a C-number', 'parity': '0 mismatches across 19 footprints'}),
-    'multichannel': ('FAIL', {'bom-file', 'drc', 'parity'},
+    'multichannel': ('FAIL', {'bom-file', 'parity'},
                 {'identity': '114 of 114 footprints name a symbol in the schematic',
                  'parity': '1 mismatches, 114 warnings across 114 footprints'}),
-    'multichannel-unrouted': ('FAIL', {'bom-file', 'drc', 'parity', 'unrouted'},
+    'multichannel-unrouted': ('FAIL', {'bom-file', 'parity', 'unrouted'},
                 {'identity': '114 of 114 footprints name a symbol in the schematic',
                  'parity': '1 mismatches across 114 footprints',
                  'unrouted': '148 connections still to route'}),

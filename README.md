@@ -70,7 +70,7 @@ The RESULT line is on the second line of the report and again at the end, and th
 
 What the gate owns, it sets in its copy of the `.kicad_pro` before `kicad-cli` runs, because the project is
 the thing under review: the protected checks run as errors whatever the project says (an agent told to
-"make DRC pass" cannot do it by setting `unconnected_items` to `ignore`); KiCad's electrical-intent ERC errors (an unconnected pin, an undriven power pin, two outputs tied, a dangling label) and the courtyard-overlap and solder-mask-bridge DRC checks run as warnings, since none decides whether the fab can build the board (`--strict` promotes them); the ERC pin-conflict matrix is
+"make DRC pass" cannot do it by setting `unconnected_items` to `ignore`); KiCad's electrical-intent ERC errors (an unconnected pin, an undriven power pin, two outputs tied, a dangling label), the courtyard-overlap and solder-mask-bridge DRC checks, and a DRC violation of the project's own stricter constraint that still clears the fab's floor (a 0.2 mm hole where the designer asked for 0.3) run as warnings, since none decides whether the fab can build the board (`--strict` promotes them); the ERC pin-conflict matrix is
 no weaker than KiCad's default; the board's minimum constraints are no lower than JLCPCB's published
 capability for 1 oz copper (`min_track_width 0` does not pass a 0.05 mm track); custom design rules
 (`<name>.kicad_dru`) are left out of the copy, since a rule can relax or mute a constraint; a protected
@@ -156,7 +156,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 | Gate | Blocks? | Reads |
 |:--|:--|:--|
 | ERC errors (KiCad's electrical-intent errors, such as an undriven power pin, are reported as warnings); a protected check the project excludes; the pin-conflict matrix no weaker than KiCad's | yes | `kicad-cli sch erc --format json --severity-all`, run under the preset's severities |
-| DRC errors (warnings reported); a protected check the project excludes; the fab's minimums; a footprint without a courtyard is not checked | yes | `kicad-cli pcb drc --format json --severity-all --all-track-errors`, same |
+| DRC errors (warnings reported); a protected check the project excludes; the fab's minimums, and a violation of the project's own stricter constraint that still clears the fab's floor is a warning; a footprint without a courtyard is not checked | yes | `kicad-cli pcb drc --format json --severity-all --all-track-errors`, same |
 | Unrouted connections | yes | same report, `unconnected_items` |
 | Schematic / PCB parity: missing, extra or duplicate footprints, net conflicts, attribute and value mismatches, whatever severity KiCad gives them; a nickname-only footprint difference, a sheet-path-only net difference and a no-net pad on an unconnected pin are warnings, a missing skipped-prefix footprint keeps KiCad's severity, a padless extra footprint (logo, text) is a note; field-text and footprint-filter notes keep the project's severity | yes | same run with `--schematic-parity` |
 | Board footprints belong to this schematic: each footprint's path names a symbol uuid that exists, under the same reference (on a sheet placed more than once, the reference of the instance the footprint's sheet chain names); a footprint without a path is board-only only when no symbol carries its reference | yes | `.kicad_pcb` footprint paths + `.kicad_sch` symbols, all sheets |

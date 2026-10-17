@@ -285,6 +285,31 @@ class KicadGates(unittest.TestCase):
         c = checks.drc_check({'violations': [violation('clearance', 'warning')], 'ignored_checks': []}, owned={})
         self.assertEqual((c.status, c.details[0][:18], c.notes), ('warn', 'warning: clearance', []))
 
+    def test_only_the_fabs_floor_blocks(self):
+        def v(t, desc):
+            return violation(t, 'error', desc)
+        rep = {'violations': [
+            v('track_width', 'Track width (board setup constraints min width 0.2000 mm; actual 0.1500 mm)'),      # project's own: above 0.10
+            v('track_width', 'Track width (board setup constraints min width 0.2000 mm; actual 0.0500 mm)'),      # the fab's: below 0.10
+            v('drill_out_of_range', 'Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm)'),   # above 0.15
+            v('drill_out_of_range', 'Hole size out of range (board setup constraints min hole 0.3000 mm; actual 7.5e-05 mm)'),  # below
+            v('clearance', "Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1200 mm)"),      # above 0.10 on 2 layers
+            v('clearance', 'Clearance violation (board minimum clearance 0.1000 mm)'),                              # no figure: blocks
+            v('shorting_items', 'Items shorting two nets'),                                                          # not floored: blocks
+        ], 'ignored_checks': []}
+        c = checks.drc_check(rep, owned={}, copper_layers=2)
+        self.assertEqual(c.status, 'fail')
+        self.assertIn('4 errors, 3 warnings', c.summary)
+        self.assertEqual(sum(1 for d in c.details if d.startswith("warning (project's own rule): ")), 3)
+        self.assertTrue(any(d.startswith('track_width') and '0.0500' in d for d in c.details))
+        self.assertTrue(any(d.startswith('drill_out_of_range') and '7.5e-05' in d for d in c.details))
+        self.assertTrue(any(d.startswith('clearance') and 'board minimum clearance 0.1000 mm)' in d for d in c.details), 'unreadable figure blocks')
+        self.assertTrue(any(n.startswith("3 errors are the project's own constraints, stricter than JLCPCB's floor") and 'track_width x1, floor 0.1 mm' in n for n in c.notes), c.notes)
+        c = checks.drc_check({'violations': [v('clearance', "Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.0950 mm)")], 'ignored_checks': []}, owned={}, copper_layers=4)
+        self.assertEqual(c.status, 'warn', '0.095 mm clears the 0.09 mm multilayer floor')
+        c = checks.drc_check({'violations': [v('clearance', "Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.0950 mm)")], 'ignored_checks': []}, owned={}, copper_layers=2)
+        self.assertEqual(c.status, 'fail', 'but not the 0.10 mm two-layer floor')
+
     def test_missing_courtyard_is_not_checked_rather_than_blocked(self):
         rep = {'violations': [violation('missing_courtyard', 'error', 'Footprint has no courtyard defined')], 'ignored_checks': []}
         c = checks.drc_check(rep, owned={})

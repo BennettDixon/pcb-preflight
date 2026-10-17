@@ -74,14 +74,31 @@ tables describe the run *before* them, and tests/test_corpus.py freezes the run 
 
 Offline, after the two decisions (kicad-cli 10.0.7, `sh corpus/run.sh`):
 
-| | Triage run | After the gate fixes | After the policy decisions |
-|:--|:--|:--|:--|
-| Boards blocked by ERC | 15 of 21 | 15 of 21 | 0 of 21 |
-| Boards failing offline | 21 of 21 | 20 of 21 | 18 of 21 (canfd-mc, jlcpcb-example, soldiercrab are NOT VERIFIED) |
+| | Triage run | After the gate fixes | After the policy decisions | After "whose rule is it" |
+|:--|:--|:--|:--|:--|
+| Boards blocked by ERC | 15 of 21 | 15 of 21 | 0 of 21 | 0 of 21 |
+| Boards failing offline | 21 of 21 | 20 of 21 | 18 of 21 | 16 of 21 (canfd-mc, jlcpcb-example, soldiercrab and both beyondex boards are NOT VERIFIED) |
 
-What still blocks the fab-ready boards is DRC, mostly rule-change item 4 (the project's own stricter
-constraints counted as the fab's: `drill_out_of_range` x199 on four boards, `clearance` on three) and the
-true items the headline names; item 4 is not decided.
+**"Whose rule is it" (rule change 4), applied 2026-10-17** (`checks.FLOORED`): for track width, clearance,
+edge clearance, hole size, annular width and hole-to-hole, the gate reads the measured figure from KiCad's
+message and blocks only when it is under `preset.minimums()`; a figure that clears the fab's floor is the
+project's own stricter rule and a warning, with a note saying how many and against which floor. That
+reclassified 1,021 errors across 12 boards (drill_out_of_range x199 on openair-max and sh-rpi, clearance
+x471 on sonatino, ...).
+
+What still blocks the built boards offline, and is the next set of decisions:
+
+* `copper_edge_clearance` under JLCPCB's published 0.2 mm: sonatino 5, royalblue 31, sh-rpi 2, bitaxegt 6.
+  The fab built all four. Either the published figure is conservative for routed edges or the fab accepts
+  it silently; a sourced answer is needed before the floor moves.
+* `hole_clearance` (openjbod 9, bitaxegt 2, bitaxeaura 14) and `annular_width` (royalblue 2, openjbod 2,
+  cm5-minima 6): the preset has no sourced floor for hole-to-copper, and the annular items are pads with no
+  ring and no net (pegs). Both need a sourced figure or a rule for netless pads.
+* `drill_out_of_range` with figures under 0.15 mm: jetson x199 and royalblue x183 use 0.1 mm holes, which
+  JLCPCB lists as available at extra cost; the preset's floor is the standard 0.15 mm.
+* `starved_thermal` x16 on pocketpd: a zone-connection matter KiCad ships as error; not a fab limit.
+* The true findings the headline names (tiny-tapeout's shorts and unrouted connection, openair-max's DNP
+  and net mismatches, BOMs not chosen from the JLCPCB catalogue on cm5-minima and bitaxegt).
 
 ## How the blocking findings sort
 

@@ -60,18 +60,10 @@ FINDINGS
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (264.795, 133.35)]
         ... 18 more (--max-details)
         note: 6 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x2, pin_to_pin x2, pin_not_connected x2
-  FAIL  DRC (§12): 13 errors, 731 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard
-        clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]
-        clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]
-        clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]
-        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]
+  FAIL  DRC (§12): 5 errors, 739 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard
         shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
-        clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]
+        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]
         shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]
-        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]
-        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B1_A12 [GND] of J15 on F.Cu @ (81.55, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]
-        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B5 [/CC2] of J15 on F.Cu @ (83.0, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]
-        clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]
         clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]
         footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]
         warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (118.01, 121.957019)]
@@ -101,11 +93,20 @@ FINDINGS
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.76857)]
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 89.886665)]
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.00476)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.122855)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.24095)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.359045)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.47714)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.595235)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.71333)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.831425)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (56.5, 131.5); Segment of J13 on F.Silkscreen @ (48.37, 90.94952)]
         ... 704 more (--max-details)
         note: 8 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x8
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
+        note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x8, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Unrouted connections (§11 §12): 1 connections still to route
-        unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]
+        unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
   WARN  Schematic / PCB parity (§5): 0 mismatches, 1 field/filter notes across 309 footprints
         warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '
 USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle

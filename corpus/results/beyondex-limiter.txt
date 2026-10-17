@@ -1,6 +1,6 @@
 BeyondexLimiter  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 9 footprints  -  bom.csv: beyondex-limiter.csv
-RESULT: FAIL  -  1 blocking, 5 warnings, 1 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked  -  exit 3
+  1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -20,15 +20,7 @@ FINDINGS
   WARN  ERC (§12): 0 errors, 1 warnings on 1 sheet
         warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]
         note: 1 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x1
-  FAIL  DRC (§12): 8 errors, 28 warnings (text_height x14, text_thickness x7, drill_out_of_range x6, silk_edge_clearance x4, clearance x2, lib_footprint_mismatch x2, silk_overlap x1)
-        clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1099 mm) [Track [/VIN] on F.Cu, length 2.1213 mm @ (173.6, 95.1); Pad B5 [unconnected-(USB1-CC2-PadB5)] of USB1 on F.Cu @ (173.1625, 95.75)]
-        clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 96.4375)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 96.4375)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 96.4375)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 95.0375)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 95.0375)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 95.0375)]
+  WARN  DRC (§12): 0 errors, 36 warnings (text_height x14, text_thickness x7, drill_out_of_range x6, silk_edge_clearance x4, lib_footprint_mismatch x2, clearance x2, silk_overlap x1)
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (178.0, 93.0); Segment of USB1 on F.Silkscreen @ (180.5125, 93.03)]
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (178.0, 102.0); Segment of USB1 on F.Silkscreen @ (180.5125, 101.97)]
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (157.5, 93.0); Segment of USB2 on F.Silkscreen @ (157.0, 93.03)]
@@ -59,7 +51,16 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5)]
         warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of U1 @ (165.025, 92.425)]
         warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of U1 @ (165.025, 92.425)]
         warning: silk_overlap: Silkscreen clearance [Segment of U1 on F.Silkscreen @ (165.445, 97.7975); Circle of USB2 on F.Silkscreen @ (165.4, 94.3)]
+        warning (project's own rule): clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1099 mm) [Track [/VIN] on F.Cu, length 2.1213 mm @ (173.6, 95.1); Pad B5 [unconnected-(USB1-CC2-PadB5)] of USB1 on F.Cu @ (173.1625, 95.75)]
+        warning (project's own rule): clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 96.4375)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 96.4375)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 96.4375)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 95.0375)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 95.0375)]
+        warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 95.0375)]
         note: custom design rules BeyondexLimiter.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)
+        note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x6, floor 0.15 mm, clearance x2, floor 0.1 mm); reported as warnings, --strict blocks them
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("BeyondexLimiter") on a silkscreen layer
@@ -84,5 +85,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 5 warnings, 1 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked  -  exit 3
+  1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue

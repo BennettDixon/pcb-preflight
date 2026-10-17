@@ -132,7 +132,7 @@
       "title": "DRC",
       "pitfall": "\u00a712",
       "status": "fail",
-      "summary": "9 errors, 254 warnings (solder_mask_bridge x54, lib_footprint_mismatch x51, silk_overlap x33, text_thickness x27, text_height x27, silk_edge_clearance x17, silk_over_copper x17, lib_footprint_issues x14, annular_width x6, padstack x6, via_dangling x3, copper_edge_clearance x2, courtyards_overlap x2, holes_co_located x2, zones_intersect x1, isolated_copper x1); 38 footprints without a courtyard",
+      "summary": "8 errors, 255 warnings (solder_mask_bridge x54, lib_footprint_mismatch x51, silk_overlap x33, text_thickness x27, text_height x27, silk_edge_clearance x17, silk_over_copper x17, lib_footprint_issues x14, annular_width x6, padstack x6, via_dangling x3, copper_edge_clearance x2, courtyards_overlap x2, holes_co_located x2, zones_intersect x1, isolated_copper x1); 38 footprints without a courtyard",
       "details": [
         "annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (89.73, 50.7)]",
         "annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (82.57, 50.7)]",
@@ -141,7 +141,6 @@
         "annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 71.38)]",
         "annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 74.38)]",
         "zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [M2_3V3] on F.Cu and In3.Cu, priority 10 @ (117.35, 51.35); Zone [M2_3V3] on In3.Cu, priority 10 @ (117.35, 50.05)]",
-        "copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.2164 mm) [Segment on Edge.Cuts @ (78.37, 44.033579); Pad 15 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 45.3)]",
         "copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.1914 mm) [Segment on Edge.Cuts @ (89.283579, 28.241421); Pad 16 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 27.0)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [/CM5/PWR_BUT] on F.Cu - B.Cu @ (130.959409, 65.559501)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [/USB_C.D_P] on F.Cu - B.Cu @ (85.848, 48.520413)]",
@@ -396,7 +395,8 @@
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Segment of Module302 on B.Silkscreen @ (130.75, 77.6); Pad 5 [GND] of SW101 on B.Cu @ (130.81, 69.88)]",
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of kibuzzard-67EBD221 @ (78.826325, 79.7); PTH pad 1 [GND] of H105 @ (78.15, 81.35)]",
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of kibuzzard-67EBAC4C @ (126.35, 78.052888); NPTH pad of Module301 @ (127.25, 77.6)]",
-        "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of kibuzzard-67EBAC4C @ (126.35, 78.052888); NPTH pad of Module302 @ (127.25, 77.6)]"
+        "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of kibuzzard-67EBAC4C @ (126.35, 78.052888); NPTH pad of Module302 @ (127.25, 77.6)]",
+        "warning (project's own rule): copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.2164 mm) [Segment on Edge.Cuts @ (78.37, 44.033579); Pad 15 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 45.3)]"
       ],
       "unchecked": [
         "missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773BA89 @ (128.16, 56.77)]: no courtyard, so courtyards_overlap could not see this footprint",
@@ -441,7 +441,8 @@
       "verified": [],
       "notes": [
         "56 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x54, courtyards_overlap x2",
-        "minimums: JLCPCB 1 oz copper, 6 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0 -> 0.09 mm"
+        "minimums: JLCPCB 1 oz copper, 6 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0 -> 0.09 mm",
+        "1 errors are the project's own constraints, stricter than JLCPCB's floor (copper_edge_clearance x1, floor 0.2 mm); reported as warnings, --strict blocks them"
       ]
     },
     {
