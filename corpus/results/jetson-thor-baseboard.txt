@@ -1,0 +1,171 @@
+jetson-agx-thor-baseboard  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  10 copper layers, 1125 footprints  -  bom.csv: none
+RESULT: FAIL  -  3 blocking, 5 warnings, 1 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 1123 of 1125 footprints name a symbol in the schematic, 2 board-only
+        note: 2 board-only footprints (no path, reference not in the schematic): REF**, REF**
+  Copper layers (§9): 10 copper layers
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 857 of 857 bought references have a footprint on the board
+
+FINDINGS
+  FAIL  ERC (§12): 5 errors, 3007 warnings on 15 sheets
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U44 Pin 3 [FLG, Output, Line] @ (119.38, 213.36); Symbol U45 Pin 3 [FLG, Output, Line] @ (119.38, 246.38)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U46 Pin 3 [FLG, Output, Line] @ (228.6, 213.36); Symbol U47 Pin 3 [FLG, Output, Line] @ (228.6, 246.38)]
+        pin_not_connected: Pin not connected [Symbol J18 Pin B24 [B24, Passive, Line] @ (330.2, 87.63)]
+        pin_not_connected: Pin not connected [Symbol J18 Pin B25 [B25, Passive, Line] @ (330.2, 90.17)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U11 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 50.8); Symbol U75 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 182.88)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR01 [GND] @ (381.0, 246.38)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H2 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 213.36)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H2 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 213.36)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H3 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 219.71)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H3 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 219.71)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H4 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 226.06)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H4 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 226.06)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H11 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 232.41)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H11 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 232.41)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H12 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 238.76)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H12 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 238.76)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H13 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 245.11)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H13 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 245.11)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0287 [+3V3] @ (76.2, 134.62)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R158 [R_0R_0402] @ (76.2, 140.97)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R158 [R_0R_0402] @ (76.2, 140.97)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0288 [+1V8] @ (85.09, 80.01)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R159 [R_0R_0402] @ (85.09, 87.63)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R159 [R_0R_0402] @ (85.09, 87.63)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R160 [R_0R_0402] @ (85.09, 104.14)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R160 [R_0R_0402] @ (85.09, 104.14)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0289 [GND] @ (85.09, 106.68)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0290 [+1V8] @ (85.09, 134.62)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R161 [R_0R_0402] @ (85.09, 140.97)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R161 [R_0R_0402] @ (85.09, 140.97)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R162 [R_0R_0402] @ (90.17, 66.04)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R162 [R_0R_0402] @ (90.17, 66.04)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R163 [R_0R_0402] @ (90.17, 68.58)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R163 [R_0R_0402] @ (90.17, 68.58)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R389 [R_2k2_0402] @ (91.44, 151.13)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R389 [R_2k2_0402] @ (91.44, 151.13)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0291 [+3V3] @ (92.71, 200.66)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R165 [R_10k_0402] @ (92.71, 208.28)]
+        ... 2972 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+  FAIL  DRC (§12): 202 errors, 218 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)
+        courtyards_overlap: Courtyards overlap [Footprint J7 @ (235.485532, 76.21); Footprint D24 @ (238.25, 71.6)]
+        courtyards_overlap: Courtyards overlap [Footprint D24 @ (238.25, 71.6); Footprint J2 @ (226.96, 59.49)]
+        courtyards_overlap: Courtyards overlap [Footprint J19 @ (198.6, 144.9); Footprint J12 @ (198.6, 144.9)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_5] of U30 @ (202.95, 80.807)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_3] of U30 @ (202.95, 79.93)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_7] of U30 @ (202.95, 79.056)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_8] of U30 @ (202.0, 80.807)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_6] of U30 @ (202.0, 79.93)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_9] of U30 @ (202.0, 79.057)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)] of U30 @ (202.95, 77.882)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_1] of U30 @ (202.95, 77.005)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_5] of U30 @ (202.95, 76.13)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_4] of U30 @ (202.0, 77.882)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_6] of U30 @ (202.0, 77.005)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_9] of U30 @ (202.0, 76.131)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.751, 77.158)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.749, 79.801)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.749, 78.48)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 80.984)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 79.807)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 77.158)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 75.984)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.549, 78.48)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 79.807)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 78.481)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 77.158)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (142.0, 66.2)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (126.6, 151.2)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (214.25, 113.1)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (138.6, 65.7)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (80.855532, 97.995)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (70.695532, 91.645)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (80.855532, 113.235)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (213.8, 76.2)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (61.4, 107.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (102.15, 104.7)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (207.5, 128.0)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (229.0, 73.8)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (95.530532, 84.15)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (173.05, 143.92)]
+        ... 380 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered missing_courtyard to warning (KiCad default ignore)
+        note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): lib_footprint_mismatch
+        note: minimums: JLCPCB 1 oz copper, 10 layers; below the fab's in the project, raised in the copy: min_through_hole_diameter 0.1 -> 0.15 mm
+        note: custom design rules jetson-agx-thor-baseboard.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 113 field/filter notes across 1125 footprints
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R195 @ (92.98, 148.205736)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R196 @ (92.98, 149.18)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R201 @ (92.87, 149.209999)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R202 @ (92.87, 148.17)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R290 @ (142.8, 71.7)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R291 @ (143.8, 71.7)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R292 @ (157.15, 67.53)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R293 @ (157.15, 66.51)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R294 @ (157.14, 65.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R295 @ (157.15, 68.55)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R341 @ (168.0, 63.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R297 @ (90.0, 65.45)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R298 @ (88.0, 64.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R301 @ (88.0, 57.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R302 @ (88.0, 59.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R21 @ (202.3, 130.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R40 @ (195.1, 130.3)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R46 @ (203.3, 130.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R48 @ (216.1, 126.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R57 @ (216.1, 125.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R58 @ (201.3, 130.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R62 @ (200.3, 130.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R71 @ (195.1, 131.3)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R88 @ (191.3, 122.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R89 @ (195.1, 128.3)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R90 @ (195.1, 129.3)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R378 @ (190.3, 122.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R379 @ (189.3, 122.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R380 @ (188.3, 122.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R252 @ (203.4, 101.800001)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R253 @ (205.4, 101.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R268 @ (235.7, 106.814)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R276 @ (214.8, 107.0)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R277 @ (214.9, 98.2)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R281 @ (203.4, 105.800001)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R282 @ (203.4, 104.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R283 @ (203.4, 106.800001)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R339 @ (238.2, 107.824468)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R118 @ (214.9, 95.1)]
+        warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R121 @ (210.114132, 94.642)]
+        ... 73 more (--max-details)
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("jetson-agx-thor-baseboard") on a silkscreen layer
+        silk texts: 5V_{AON}, BOOT, RESET, USB-C 4, PCB SHA ########, USB-C 1 DP, 1V15, USB-C 3, DC POWER, 5V_{SOM}, GND, 12V
+  WARN  Connector names on silk (§8): 6 of 18 connectors have neither a visible value nor silk text within 15 mm
+        J1 Hermaphroditic_Molex_203456-0003_CUSTOM_Jetson_AGX_Thor_H8mm at 116.531, 78.15
+        J19 Amphenol_SFP28_Cage_U773GC16382071 at 198.6, 144.9
+        J12 Amphenol_SFP28_1x20_UE763GA202600T at 198.6, 144.9
+        J18 ASP-218650-01_mounting_holes at 77.6805, 103.71
+        J11 Conn_FFC_WE_68715014522 at 62.44, 103.71
+        J8 Plug_Samtec_UMPT_1x6_UMPT-06-06.5-G-V-S-TR at 93.9305, 134.21
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): no readable bom.csv
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 194 polarized or asymmetric parts (Q18, U71, D39, U57, D10, J15, U26, U69, Q10, D30, U31, D61, +182 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  3 blocking, 5 warnings, 1 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -1,0 +1,257 @@
+CM5_MINIMA_3  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  6 copper layers, 112 footprints  -  bom.csv: cm5-minima.csv
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 84 of 112 footprints name a symbol in the schematic, 28 board-only
+        note: 28 board-only footprints (no path, reference not in the schematic): kibuzzard-6773BA89, kibuzzard-6773C222, kibuzzard-67CC6BD3, kibuzzard-675DA866, kibuzzard-6773C2D7, kibuzzard-675EDCA4, kibuzzard-6772DA33, kibuzzard-67CC6BA6, kibuzzard-6773B9CA, kibuzzard-67EBEF55, kibuzzard-67EBB9C1, kibuzzard-675DA850, kibuzzard-6773C376, kibuzzard-675EDCB9, kibuzzard-6772D327, kibuzzard-675DA838, kibuzzard-6773B9F7, REF**, kibuzzard-67CC6D9E, kibuzzard-67EBF14E, +8 more
+  Placement origin (§4): aux axis origin at 78.15, 81.35 mm
+  Copper layers (§9): 6 copper layers
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 72 bought references, every one on exactly one BOM line
+        note: not bought: H101, H102, H103, H104, H105, TP101, TP102, TP103, TP104, TP105, TP106 (prefix FID/TP/H/MH); M701, R103 (DNP); REF**, kibuzzard-675DA838, kibuzzard-675DA850, kibuzzard-675DA866, kibuzzard-675EDCA4, kibuzzard-675EDCB9, kibuzzard-6772D327, kibuzzard-6772DA33, kibuzzard-6773B9CA, kibuzzard-6773B9F7, kibuzzard-6773BA89, kibuzzard-6773C222, +16 more (excluded from the BOM)
+  BOM value matches the schematic (§1): 72 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+
+FINDINGS
+  FAIL  ERC (§12): 4 errors, 54 warnings on 8 sheets
+        pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (78.74, 71.12)]
+        pin_not_connected: Hierarchical label 'USB_C{USB}' in root sheet cannot be connected to non-existent parent sheet [Hierarchical Label 'USB_C{USB}' @ (113.03, 71.12)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (69.85, 172.72)]
+        pin_not_driven: Input pin not driven by any Output pins [Symbol Module301 Pin 93 [nRPIBOOT, Input, Line] @ (147.32, 195.58)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol J101 [USB_C_Receptacle_USB2.0_16P] @ (35.56, 74.93)]
+        warning: lib_symbol_mismatch: Symbol 'USB_C_Receptacle_USB2.0_16P' doesn't match copy in library 'Connector' [Symbol J101 [USB_C_Receptacle_USB2.0_16P] @ (35.56, 74.93)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol SW101 [MK-11C04-G013] @ (87.63, 162.56)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'EasyEDA' [Symbol SW101 [MK-11C04-G013] @ (87.63, 162.56)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW101 Pin 4 [4, Unspecified, Line] @ (92.71, 157.48); Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64)]
+        warning: pin_to_pin: Pins of type Unspecified and Input are connected [Symbol SW101 Pin C [C, Unspecified, Line] @ (92.71, 162.56); Symbol Module301 Pin 93 [nRPIBOOT, Input, Line] @ (147.32, 195.58)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW101 Pin 1 [1, Unspecified, Line] @ (92.71, 165.1); Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW101 Pin 5 [5, Unspecified, Line] @ (92.71, 167.64); Symbol #PWR0106 Pin 1 [Power input, Line] @ (93.98, 171.45)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM4IO' [Symbol U401 [TPD4EUSB30] @ (59.69, 81.28)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM4IO' [Symbol U402 [TPD4EUSB30] @ (100.33, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Samacsys' [Symbol J1 [GLPLX-SMT-188S7-QQ-Y_G] @ (146.05, 43.18)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Samacsys' [Symbol J1 [GLPLX-SMT-188S7-QQ-Y_G] @ (146.05, 43.18)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol USB701 [TYPEC-305-ACP16H458] @ (50.8, 87.63)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'EasyEDA' [Symbol USB701 [TYPEC-305-ACP16H458] @ (50.8, 87.63)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol U701 [AP2553W6] @ (105.41, 39.37)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'New_Library' [Symbol Module301 [ComputeModule5-CM5_GPIO] @ (119.38, 134.62)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol CN1 [SM02B-SRSS-TB(LF)(SN)] @ (119.38, 238.76)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'EasyEDA' [Symbol CN1 [SM02B-SRSS-TB(LF)(SN)] @ (119.38, 238.76)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'New_Library' [Symbol Module302 [ComputeModule5-CM5_HSS] @ (298.45, 135.89)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Antmicro-footprints' [Symbol M303 [Compute-Module-4_H1.5mm] @ (356.87, 242.57)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroModules' [Symbol M303 [Compute-Module-4_H1.5mm] @ (356.87, 242.57)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol SW501 [TS-1010A-B] @ (29.21, 115.57)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'EasyEDA' [Symbol SW501 [TS-1010A-B] @ (29.21, 115.57)]
+        warning: lib_symbol_mismatch: Symbol 'LIS3DH' doesn't match copy in library 'Sensor_Motion' [Symbol U1 [LIS3DH] @ (64.77, 100.33)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM4IO' [Symbol U602 [74LVC1G07_copy] @ (76.2, 35.56)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol D605 [LED] @ (88.9, 22.86)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D605 [LED] @ (88.9, 22.86)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol D606 [LED] @ (138.43, 22.86)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D606 [LED] @ (138.43, 22.86)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol U702 [AP3441SHE-7B] @ (67.31, 167.64)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol J701 [Bus_M.2_Socket_M] @ (154.94, 80.01)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'EasyEDA' [Symbol D702 [LED] @ (195.58, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D702 [LED] @ (195.58, 68.58)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol U703 [ASEK-32.768KHZ-L-R-T] @ (209.55, 129.54)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library '_pico' [Symbol M701 [SolderNut] @ (251.46, 87.63)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'CM5IO' [Symbol M701 [SolderNut] @ (251.46, 87.63)]
+        ... 18 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+  FAIL  DRC (§12): 65 errors, 198 warnings (solder_mask_bridge x54, lib_footprint_mismatch x51, silk_overlap x33, text_thickness x27, text_height x27, silk_edge_clearance x17, silk_over_copper x17, lib_footprint_issues x14, annular_width x6, padstack x6, via_dangling x3, courtyards_overlap x2, copper_edge_clearance x2, holes_co_located x2, zones_intersect x1, isolated_copper x1); 38 footprints without a courtyard
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (89.73, 50.7)]
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of J101 @ (82.57, 50.7)]
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB701 @ (89.73, 62.25)]
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB701 @ (82.57, 62.25)]
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 71.38)]
+        annular_width: Annular width (board setup constraints min annular width 0.0750 mm; actual 0.0000 mm) [PTH pad [<no net>] of SW101 @ (130.74, 74.38)]
+        zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [M2_3V3] on F.Cu and In3.Cu, priority 10 @ (117.35, 51.35); Zone [M2_3V3] on In3.Cu, priority 10 @ (117.35, 50.05)]
+        courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint J601 @ (99.65, 49.85)]
+        courtyards_overlap: Courtyards overlap [Footprint J1 @ (88.9, 36.15); Footprint H102 @ (78.15, 23.35)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.2164 mm) [Segment on Edge.Cuts @ (78.37, 44.033579); Pad 15 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 45.3)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3720 mm; actual 0.1914 mm) [Segment on Edge.Cuts @ (89.283579, 28.241421); Pad 16 [Net-(J1-MP1)] of J1 on F.Cu @ (83.996, 27.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 3 [GND] of J701 on F.Cu @ (104.85, 25.45); Pad 5 [unconnected-(J701-PETn3-Pad5)] of J701 on F.Cu @ (105.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 4 [M2_3V3] of J701 on F.Cu @ (105.1, 33.0); Pad 6 [unconnected-(J701-NC-Pad6)] of J701 on F.Cu @ (105.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 5 [unconnected-(J701-PETn3-Pad5)] of J701 on F.Cu @ (105.35, 25.45); Pad 7 [unconnected-(J701-PETp3-Pad7)] of J701 on F.Cu @ (105.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 6 [unconnected-(J701-NC-Pad6)] of J701 on F.Cu @ (105.6, 33.0); Pad 8 [unconnected-(J701-NC-Pad8)] of J701 on F.Cu @ (106.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 7 [unconnected-(J701-PETp3-Pad7)] of J701 on F.Cu @ (105.85, 25.45); Pad 9 [GND] of J701 on F.Cu @ (106.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 8 [unconnected-(J701-NC-Pad8)] of J701 on F.Cu @ (106.1, 33.0); Pad 10 [Net-(J701-DAS/~{DSS}/~{LED1})] of J701 on F.Cu @ (106.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 9 [GND] of J701 on F.Cu @ (106.35, 25.45); Pad 11 [unconnected-(J701-PERn3-Pad11)] of J701 on F.Cu @ (106.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 10 [Net-(J701-DAS/~{DSS}/~{LED1})] of J701 on F.Cu @ (106.6, 33.0); Pad 12 [M2_3V3] of J701 on F.Cu @ (107.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 11 [unconnected-(J701-PERn3-Pad11)] of J701 on F.Cu @ (106.85, 25.45); Pad 13 [unconnected-(J701-PERp3-Pad13)] of J701 on F.Cu @ (107.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 13 [unconnected-(J701-PERp3-Pad13)] of J701 on F.Cu @ (107.35, 25.45); Pad 15 [GND] of J701 on F.Cu @ (107.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 15 [GND] of J701 on F.Cu @ (107.85, 25.45); Pad 17 [unconnected-(J701-PETn2-Pad17)] of J701 on F.Cu @ (108.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 17 [unconnected-(J701-PETn2-Pad17)] of J701 on F.Cu @ (108.35, 25.45); Pad 19 [unconnected-(J701-PETp2-Pad19)] of J701 on F.Cu @ (108.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 18 [M2_3V3] of J701 on F.Cu @ (108.6, 33.0); Pad 20 [unconnected-(J701-NC-Pad20)] of J701 on F.Cu @ (109.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 19 [unconnected-(J701-PETp2-Pad19)] of J701 on F.Cu @ (108.85, 25.45); Pad 21 [GND] of J701 on F.Cu @ (109.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 20 [unconnected-(J701-NC-Pad20)] of J701 on F.Cu @ (109.1, 33.0); Pad 22 [unconnected-(J701-NC-Pad22)] of J701 on F.Cu @ (109.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 21 [GND] of J701 on F.Cu @ (109.35, 25.45); Pad 23 [unconnected-(J701-PERn2-Pad23)] of J701 on F.Cu @ (109.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 22 [unconnected-(J701-NC-Pad22)] of J701 on F.Cu @ (109.6, 33.0); Pad 24 [unconnected-(J701-NC-Pad24)] of J701 on F.Cu @ (110.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 23 [unconnected-(J701-PERn2-Pad23)] of J701 on F.Cu @ (109.85, 25.45); Pad 25 [unconnected-(J701-PERp2-Pad25)] of J701 on F.Cu @ (110.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 24 [unconnected-(J701-NC-Pad24)] of J701 on F.Cu @ (110.1, 33.0); Pad 26 [unconnected-(J701-NC-Pad26)] of J701 on F.Cu @ (110.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 25 [unconnected-(J701-PERp2-Pad25)] of J701 on F.Cu @ (110.35, 25.45); Pad 27 [GND] of J701 on F.Cu @ (110.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 26 [unconnected-(J701-NC-Pad26)] of J701 on F.Cu @ (110.6, 33.0); Pad 28 [unconnected-(J701-NC-Pad28)] of J701 on F.Cu @ (111.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 27 [GND] of J701 on F.Cu @ (110.85, 25.45); Pad 29 [unconnected-(J701-PETn1-Pad29)] of J701 on F.Cu @ (111.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 28 [unconnected-(J701-NC-Pad28)] of J701 on F.Cu @ (111.1, 33.0); Pad 30 [unconnected-(J701-NC-Pad30)] of J701 on F.Cu @ (111.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 29 [unconnected-(J701-PETn1-Pad29)] of J701 on F.Cu @ (111.35, 25.45); Pad 31 [unconnected-(J701-PETp1-Pad31)] of J701 on F.Cu @ (111.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 30 [unconnected-(J701-NC-Pad30)] of J701 on F.Cu @ (111.6, 33.0); Pad 32 [unconnected-(J701-NC-Pad32)] of J701 on F.Cu @ (112.1, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 31 [unconnected-(J701-PETp1-Pad31)] of J701 on F.Cu @ (111.85, 25.45); Pad 33 [GND] of J701 on F.Cu @ (112.35, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 32 [unconnected-(J701-NC-Pad32)] of J701 on F.Cu @ (112.1, 33.0); Pad 34 [unconnected-(J701-NC-Pad34)] of J701 on F.Cu @ (112.6, 33.0)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 33 [GND] of J701 on F.Cu @ (112.35, 25.45); Pad 35 [unconnected-(J701-PERn1-Pad35)] of J701 on F.Cu @ (112.85, 25.45)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Pad 34 [unconnected-(J701-NC-Pad34)] of J701 on F.Cu @ (112.6, 33.0); Pad 36 [unconnected-(J701-NC-Pad36)] of J701 on F.Cu @ (113.1, 33.0)]
+        ... 223 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered solder_mask_bridge to warning (KiCad default error)
+        note: minimums: JLCPCB 1 oz copper, 6 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_track_width 0.0 -> 0.09 mm
+  FAIL  Schematic / PCB parity (§5): 4 mismatches across 112 footprints; 1 padless footprint items not counted
+        net_conflict: No pad found for pin M1 (GND) in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: No pad found for pin M2 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: No pad found for pin M3 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        net_conflict: No pad found for pin M4 in schematic [Footprint J701 @ (113.6, 30.725)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        note: 1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (116.7, 77.79)]
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("CM5_MINIMA_3") on a silkscreen layer
+  WARN  Connector names on silk (§8): 8 of 8 connectors have neither a visible value nor silk text within 15 mm
+        J502 I2C at 84.75, 76.05
+        J1 GLPLX-SMT-188S7 at 88.9, 36.15
+        J601 JST_SHBM04B-SRSS-TB at 99.65, 49.85
+        J503 SPI at 92.43, 55.19
+        J101 TYPEC-305-ACP16H458 at 86.15, 50.7
+        J701 Bus_M.2_Socket_M at 113.6, 30.725
+        J501 GT-HD001B-CNNG1 at 99.09, 72.07
+        J802 Conn_01x22_Female at 128, 46.625
+  FAIL  Bought parts placed on the board (§5 §12): 1 of 72 bought references have no footprint on the board
+        in the BOM but excluded from the board in the schematic (place it, or exclude it from the BOM too): M705
+  FAIL  LCSC code on every BOM line (§1 §12): 37 of 43 lines have no LCSC code (a value and a package is not a part)
+        row 2 C101,C102,C501,C502,C503,C706,C712: 100n (C_0402_1005Metric)
+        row 3 C401: 100n (0402)
+        row 4 C601: 4u7 (0805)
+        row 5 C701,C703,C704,C705,C708,C709,C710,C711: 10u (C_0805_2012Metric)
+        row 6 C702: 100uF (CP_EIA-3528-21_Kemet-B)
+        row 7 C707: 4.7nF (C_0402_1005Metric)
+        row 9 D101,D502,D701: RCLAMP0502BA (SOT-416)
+        row 11 D605,D606,D702: GREEN (0603)
+        row 12 J1: GLPLX-SMT-188S7 (GLPLXSMT188S7QQYG)
+        row 13 J101: TYPEC-305-ACP16H458 (USB-C-SMD_TYPEC-305-ACP16H458)
+        row 14 J501: GT-HD001B-CNNG1 (EDAC 690-019-298-412)
+        row 15 J502: I2C (JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical)
+        row 16 J503: SPI (JST_SUR_BM10B-SURS-TF_1x10-1MP_P0.80mm_Vertical)
+        row 17 J601: JST_SHBM04B-SRSS-TB (JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical)
+        row 18 J701: Bus_M.2_Socket_M (M.2 M Key socket_2230_2242)
+        row 19 J802: Conn_01x22_Female (Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal)
+        row 20 L701: 2.2uH (L_Coilcraft_XAL5030-XXX)
+        row 21 M702: M.2 Solder Nut (MountingHole_3mm_Pad)
+        row 22 M705: M.2 Screw (no package)
+        row 23 Module301: ComputeModule5-CM5 (Raspberry-Pi-5-Compute-Module_GPIO)
+        row 24 Module302: ComputeModule5-CM5 (Raspberry-Pi-5-Compute-Module_HSS)
+        row 25 R101,R501,R502,R706,R707: 2k2 (R_0402_1005Metric)
+        row 26 R102: 0R (R_0402_1005Metric)
+        row 27 R104,R107,R108: 10k (0402)
+        row 28 R401,R402: 470R (0402)
+        row 29 R403: 0R (0402)
+        row 30 R605,R606: 2k2 (0402)
+        row 31 R701: 15k (R_0402_1005Metric)
+        row 32 R702,R703: 22k (0402)
+        row 33 R704: 100k (R_0402_1005Metric)
+        row 34 R705: 10k (R_0402_1005Metric)
+        row 37 U1: LIS3DH (LGA-16_3x3mm_P0.5mm_LayoutBorder3x5y)
+        row 38 U401,U402: TPD4EUSB30 (USON-10_2.5x1.0mm_P0.5mm)
+        row 40 U602: SN74LVC1G14DBVR (SOT-353_SC-70-5)
+        row 41 U701: AP22653W6 (SOT-23-6)
+        row 42 U702: AP3441SHE-7B (DFN-8-1EP_2x2mm_P0.5mm_EP1.05x1.75mm)
+        row 43 U703: ASEK-32.768KHZ-L-R-T (Crystal_SMD_3225-4Pin_3.2x2.5mm)
+  WARN  BOM lines complete (§1 §2): 43 of 43 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C101,C102,C501,C502,C503,C706,C712: 100n (C_0402_1005Metric): missing MPN, Basic/Extended, Stock
+        row 3 C401: 100n (0402): missing Basic/Extended, Stock, Datasheet
+        row 4 C601: 4u7 (0805): missing Basic/Extended, Stock, Datasheet
+        row 5 C701,C703,C704,C705,C708,C709,C710,C711: 10u (C_0805_2012Metric): missing MPN, Basic/Extended, Stock
+        row 6 C702: 100uF (CP_EIA-3528-21_Kemet-B): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C707: 4.7nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 CN1: SM02B-SRSS-TB (LF)(SN) (CONN-SMD_2P-P1.00_SM02B-SRSS-TB-LF-SN): missing MPN, Basic/Extended, Stock
+        row 9 D101,D502,D701: RCLAMP0502BA (SOT-416): missing MPN, Basic/Extended, Stock
+        row 10 D401,D402,D403: PUSB3F96X (DFN2510A-10_L2.5-W1.0-P0.50-BL): missing MPN, Basic/Extended, Stock
+        row 11 D605,D606,D702: GREEN (0603): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 J1: GLPLX-SMT-188S7 (GLPLXSMT188S7QQYG): missing Basic/Extended, Stock
+        row 13 J101: TYPEC-305-ACP16H458 (USB-C-SMD_TYPEC-305-ACP16H458): missing MPN, Basic/Extended, Stock
+        row 14 J501: GT-HD001B-CNNG1 (EDAC 690-019-298-412): missing MPN, Basic/Extended, Stock
+        row 15 J502: I2C (JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 J503: SPI (JST_SUR_BM10B-SURS-TF_1x10-1MP_P0.80mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 J601: JST_SHBM04B-SRSS-TB (JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 J701: Bus_M.2_Socket_M (M.2 M Key socket_2230_2242): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 J802: Conn_01x22_Female (Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal): missing MPN, Basic/Extended, Stock
+        row 20 L701: 2.2uH (L_Coilcraft_XAL5030-XXX): missing MPN, Basic/Extended, Stock
+        row 21 M702: M.2 Solder Nut (MountingHole_3mm_Pad): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 M705: M.2 Screw (no package): missing MPN, Package, Basic/Extended, Stock
+        row 23 Module301: ComputeModule5-CM5 (Raspberry-Pi-5-Compute-Module_GPIO): missing MPN, Basic/Extended, Stock, Datasheet
+        row 24 Module302: ComputeModule5-CM5 (Raspberry-Pi-5-Compute-Module_HSS): missing MPN, Basic/Extended, Stock, Datasheet
+        row 25 R101,R501,R502,R706,R707: 2k2 (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 26 R102: 0R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 R104,R107,R108: 10k (0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 R401,R402: 470R (0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 29 R403: 0R (0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 R605,R606: 2k2 (0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 R701: 15k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 R702,R703: 22k (0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 R704: 100k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 34 R705: 10k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 35 SW101: MK-11C04-G013 (SW-SMD_MK-11C04-G013): missing MPN, Basic/Extended, Stock
+        row 36 SW501: TS-1010A-B (SW-SMD_TS-1010A-B): missing MPN, Basic/Extended, Stock
+        row 37 U1: LIS3DH (LGA-16_3x3mm_P0.5mm_LayoutBorder3x5y): missing MPN, Basic/Extended, Stock
+        row 38 U401,U402: TPD4EUSB30 (USON-10_2.5x1.0mm_P0.5mm): missing Basic/Extended, Stock, Datasheet
+        row 39 U405: STMPS2151STR (SOT-23-5): missing MPN, Basic/Extended, Stock
+        row 40 U602: SN74LVC1G14DBVR (SOT-353_SC-70-5): missing Basic/Extended, Stock
+        row 41 U701: AP22653W6 (SOT-23-6): missing MPN, Basic/Extended, Stock
+        ... 3 more (--max-details)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
+  DRC (§12): 38 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773BA89 @ (128.16, 56.77)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773C222 @ (92.56, 62.0)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D401 @ (99.35, 67.34)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67CC6BD3 @ (128.05, 35.6)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-675DA866 @ (99.85, 45.25)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773C2D7 @ (86.91, 56.12)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-675EDCA4 @ (81.5, 65.65)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6772DA33 @ (129.1, 37.2)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67CC6BA6 @ (81.55, 76.05)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D702 @ (98.76, 24.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773B9CA @ (104.0, 59.44)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBEF55 @ (121.45, 62.35)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBB9C1 @ (95.85, 55.25)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-675DA850 @ (100.57, 64.13)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J101 @ (86.15, 50.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773C376 @ (94.51, 24.84)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-675EDCB9 @ (81.65, 47.275)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6772D327 @ (102.85, 49.85)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-675DA838 @ (90.45, 45.3)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D402 @ (102.35, 67.34)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint USB701 @ (86.15, 62.25)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW501 @ (130.57, 66.27)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D605 @ (131.94, 59.62)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-6773B9F7 @ (128.22, 62.04)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D606 @ (131.94, 56.68)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67CC6D9E @ (122.15, 63.85)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBF14E @ (81.65, 72.1)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint CN1 @ (83.25, 69.49)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67CC7445 @ (116.82992, 77.922918)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D403 @ (95.97, 75.24)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67CC6D94 @ (122.25, 62.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBD221 @ (82.38, 79.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBAC4C @ (126.35, 74.25)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW101 @ (130.18, 72.88)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBF015 @ (80.0, 62.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67795592 @ (125.35, 70.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBD21C @ (86.64, 75.97)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint kibuzzard-67EBF0A0 @ (88.1, 68.95)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 29 polarized or asymmetric parts (U405, J502, J1, U702, D401, U701, D702, L701, U703, J601, U602, J503, +17 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again

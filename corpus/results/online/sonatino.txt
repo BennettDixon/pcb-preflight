@@ -1,0 +1,268 @@
+Sonatino  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 129 footprints  -  bom.csv: sonatino.csv
+RESULT: FAIL  -  4 blocking, 3 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Schematic / PCB parity (§5): 0 mismatches across 129 footprints
+  Board footprints belong to this schematic (§5): 129 of 129 footprints name a symbol in the schematic
+  Placement origin (§4): aux axis origin at 126.5, 63.9 mm
+  Copper layers (§9): 4 copper layers
+  Connector names on silk (§8): 4 connectors each have a name on silk
+  DNP parts (§12): 1 DNP parts flagged on both schematic and board (J4)
+  Bought parts placed on the board (§5 §12): 116 of 116 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  LCSC code on every BOM line (§1 §12): 57 lines, each with a C-number
+  bom.csv matches the schematic (§1 §5 §12): 116 bought references, every one on exactly one BOM line
+        note: not bought: H1, H3, H5, H7, TP1, TP2 (prefix FID/TP/H/MH); BT1, J2, J4, J6, J7 (DNP); JP1, JP2 (excluded from the BOM)
+  BOM value matches the schematic (§1): 116 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 50 agree with their footprint, 7 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  Catalogue description matches the BOM value (§1 §2): 29 lines agree on every figure their value states (F, H, Ω, V), 28 state no figure
+
+FINDINGS
+  FAIL  ERC (§12): 14 errors, 326 warnings on 3 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [GND, Power input, Line] @ (27.94, 175.26)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR012 Hidden pin 1 [GNDA, Power input, Line] @ (33.02, 86.36)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Hidden pin 1 [+5V, Power input, Line] @ (35.56, 41.148)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U4 Pin 4 [VCC, Power input, Line] @ (122.428, 82.804)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U5 Pin 5 [VCC, Power input, Line] @ (124.968, 123.444)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U5 Pin 6 [GND, Power input, Line] @ (124.968, 125.984)]
+        pin_not_driven: Input pin not driven by any Output pins [Symbol Q3 Pin 2 [G, Input, Line] @ (128.778, 132.334)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U4 Pin 3 [GND, Power input, Line] @ (133.858, 98.044)]
+        pin_not_driven: Input pin not driven by any Output pins [Symbol Q3 Pin 5 [G, Input, Line] @ (141.478, 132.334)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U15 Pin 10 [VMID, Power input, Line] @ (223.52, 35.56)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U15 Pin 17 [COM, Power input, Line] @ (226.06, 35.56)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U16 Pin 12 [HPVDD, Power input, Line] @ (231.14, 128.27)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U15 Pin 12 [VREFP, Power input, Line] @ (232.41, 35.56)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U16 Pin 8 [HPVSS, Power input, Line] @ (261.62, 128.27)]
+        warning: pin_to_pin: Pins of type Unspecified and Bidirectional are connected [Symbol Card2 Pin 2 [CD/DAT3, Unspecified, Line] @ (27.94, 165.1); Symbol U2 Pin 34 [MTDI/GPIO41/CLK_OUT1, Bidirectional, Line] @ (191.77, 146.05)]
+        warning: pin_to_pin: Pins of type Unspecified and Bidirectional are connected [Symbol Card2 Pin 3 [CMD, Unspecified, Line] @ (27.94, 167.64); Symbol U2 Pin 37 [U0TXD/GPIO43/CLK_OUT1, Bidirectional, Line] @ (232.41, 146.05)]
+        warning: lib_symbol_mismatch: Symbol '+3.3V' doesn't match copy in library 'power' [Symbol #PWR01 [+3.3V] @ (27.94, 170.18)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol Card2 Pin 4 [VDD, Unspecified, Line] @ (27.94, 170.18); Symbol #PWR01 Hidden pin 1 [+3.3V, Power input, Line] @ (27.94, 170.18)]
+        warning: pin_to_pin: Pins of type Unspecified and Bidirectional are connected [Symbol Card2 Pin 5 [CLK, Unspecified, Line] @ (27.94, 172.72); Symbol U2 Pin 35 [MTMS/GPIO42, Bidirectional, Line] @ (189.23, 146.05)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR02 [GND] @ (27.94, 175.26)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol Card2 Pin 6 [VSS, Unspecified, Line] @ (27.94, 175.26); Symbol #PWR02 Hidden pin 1 [GND, Power input, Line] @ (27.94, 175.26)]
+        warning: pin_to_pin: Pins of type Unspecified and Bidirectional are connected [Symbol Card2 Pin 7 [DAT0, Unspecified, Line] @ (27.94, 177.8); Symbol U2 Pin 36 [U0RXD/GPIO44/CLK_OUT2, Bidirectional, Line] @ (229.87, 146.05)]
+        warning: lib_symbol_mismatch: Symbol '+5V' doesn't match copy in library 'power' [Symbol #PWR06 [+5V] @ (33.02, 77.47)]
+        warning: lib_symbol_mismatch: Symbol '+3.3V' doesn't match copy in library 'power' [Symbol #PWR07 [+3.3V] @ (33.02, 80.01)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR08 [GND] @ (33.02, 88.9)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR014 Hidden pin 1 [GNDA, Power input, Line] @ (35.56, 36.068)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (35.56, 38.608)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR03 [GND] @ (35.56, 38.608)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR04 Hidden pin 1 [+5V, Power input, Line] @ (35.56, 41.148)]
+        warning: lib_symbol_mismatch: Symbol '+5V' doesn't match copy in library 'power' [Symbol #PWR04 [+5V] @ (35.56, 41.148)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR05 Hidden pin 1 [+3.3V, Power input, Line] @ (35.56, 43.688)]
+        warning: lib_symbol_mismatch: Symbol '+3.3V' doesn't match copy in library 'power' [Symbol #PWR05 [+3.3V] @ (35.56, 43.688)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Custom' [Symbol Card2 [TF-008] @ (41.91, 171.45)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Custom' [Symbol Card2 [TF-008] @ (41.91, 171.45)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR038 [GND] @ (55.88, 163.83)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR010 [GND] @ (58.42, 24.13)]
+        warning: lib_symbol_mismatch: Symbol 'GND' doesn't match copy in library 'power' [Symbol #PWR018 [GND] @ (68.58, 48.26)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 0.762 mm @ (70.866, 143.256)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol R34 Pin 1 [Passive, Line] @ (70.866, 143.256)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.524 mm @ (70.866, 150.876)]
+        ... 300 more (--max-details)
+  FAIL  DRC (§12): 539 errors, 222 warnings (clearance x471, lib_footprint_mismatch x106, courtyards_overlap x63, text_height x59, lib_footprint_issues x17, silk_edge_clearance x16, silk_overlap x16, silk_over_copper x6, copper_edge_clearance x5, isolated_copper x2); 3 footprints without a courtyard
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1550 mm) [Track [/BAT+] on F.Cu, length 1.3150 mm @ (188.8, 50.1); Pad 2 [Net-(U4-CE)] of R17 on F.Cu @ (188.1, 49.54)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1750 mm) [Pad 9 [/BCLK_DAC] of U13 on F.Cu @ (183.2375, 41.625); Track [/AVDD] on F.Cu, length 1.2728 mm @ (183.15, 41.05)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1865 mm) [Via [/AVDD] on F.Cu - B.Cu @ (173.25, 40.25); Track [/LRCLK_DAC] on B.Cu, length 6.9500 mm @ (172.75, 40.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1792 mm) [Track [/AVDD] on F.Cu, length 0.8375 mm @ (183.2375, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.7000 mm @ (184.5, 45.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1977 mm) [Via [/AVDD] on F.Cu - B.Cu @ (162.2, 56.45); Track [Net-(U14-IN-)] on F.Cu, length 0.0800 mm @ (162.74, 56.26)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 0.8375 mm @ (183.2375, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.5303 mm @ (184.125, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1500 mm) [Pad 6 [/Audio/PREAMP_SD] of U14 on F.Cu @ (162.125, 57.4875); Via [/AVDD] on F.Cu - B.Cu @ (162.2, 56.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1386 mm) [Via [/AVDD] on F.Cu - B.Cu @ (180.328332, 46.814131); Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1848 mm) [Via [/AVDD] on F.Cu - B.Cu @ (180.328332, 46.814131); Track [/Audio/HP_AMP_ENABLE] on F.Cu, length 2.6750 mm @ (179.78, 44.32)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1730 mm) [Via [/AVDD] on F.Cu - B.Cu @ (174.5, 45.6); Track [/Audio/HEADPHONE_L] on F.Cu, length 1.7875 mm @ (175.1, 45.0625)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1900 mm) [Pad 2 [Net-(U15-VREFP)] of C41 on F.Cu @ (173.7, 45.695); Via [/AVDD] on F.Cu - B.Cu @ (174.5, 45.6)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Pad 6 [/Audio/PREAMP_SD] of U14 on F.Cu @ (162.125, 57.4875); Track [/AVDD] on F.Cu, length 0.6916 mm @ (162.285987, 56.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1611 mm) [Pad 2 [Net-(U15-VREFP)] of C41 on F.Cu @ (173.7, 45.695); Track [/AVDD] on F.Cu, length 0.5657 mm @ (174.5, 45.4)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1960 mm) [Pad 5 [GNDA] of U7 on F.Cu @ (174.275, 54.2); Track [/AVDD] on F.Cu, length 0.6903 mm @ (174.665446, 53.662729)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Pad 12 [Net-(U15-VREFP)] of U15 on F.Cu @ (171.1, 45.825); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1548 mm) [Pad 2 [GND] of R33 on F.Cu @ (181.375, 41.575); Track [/AVDD] on F.Cu, length 0.8485 mm @ (181.509676, 40.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1846 mm) [Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17); Track [/AVDD] on F.Cu, length 0.1087 mm @ (180.328332, 46.814131)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1515 mm) [Pad 1 [GNDA] of C13 on F.Cu @ (182.5, 40.15); Track [/AVDD] on F.Cu, length 0.8485 mm @ (181.509676, 40.45)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1420 mm) [Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175); Track [Net-(U15-VREFP)] on F.Cu, length 1.6800 mm @ (171.1, 45.825)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1460 mm) [Pad 14 [GNDA] of U15 on F.Cu @ (171.1, 44.525); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1391 mm) [Pad 1 [Net-(U15-VREFP)] of C44 on F.Cu @ (172.8, 45.845); Track [/AVDD] on F.Cu, length 1.4730 mm @ (172.573026, 45.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1950 mm) [Track [/AVDD] on F.Cu, length 1.2374 mm @ (184.9, 44.45); Pad 13 [GNDA] of U13 on F.Cu @ (183.2375, 44.225)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1420 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [Net-(U15-VREFP)] on F.Cu, length 1.6800 mm @ (171.1, 45.825)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [GNDA] on F.Cu, length 0.9970 mm @ (173.03, 43.82)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1630 mm) [Track [/AVDD] on F.Cu, length 1.0403 mm @ (182.109676, 41.05); Pad 2 [GND] of R33 on F.Cu @ (181.375, 41.575)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [GNDA] on F.Cu, length 1.2250 mm @ (172.325, 44.525)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1750 mm) [Track [/AVDD] on F.Cu, length 1.0403 mm @ (182.109676, 41.05); Pad 9 [/BCLK_DAC] of U13 on F.Cu @ (183.2375, 41.625)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1773 mm) [Track [/AVDD] on F.Cu, length 0.9122 mm @ (182.475, 45.525); Pad 16 [Net-(U13-LINEVOUTR)] of U13 on F.Cu @ (183.2375, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 1.1667 mm @ (184.075, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.7000 mm @ (184.5, 45.8)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1680 mm) [Track [/AVDD] on F.Cu, length 1.1667 mm @ (184.075, 45.525); Track [Net-(U13-LINEVOUTR)] on F.Cu, length 0.5303 mm @ (184.125, 46.175)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1391 mm) [Pad 1 [Net-(U15-VREFP)] of C44 on F.Cu @ (172.8, 45.845); Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1797 mm) [Track [/AVDD] on F.Cu, length 0.9122 mm @ (182.475, 45.525); Pad 2 [Net-(U13-VMID)] of C23 on F.Cu @ (181.755, 45.2)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1994 mm) [Track [/AVDD] on F.Cu, length 0.5586 mm @ (172.968026, 44.78); Track [Net-(U15-VREFP)] on F.Cu, length 0.7500 mm @ (172.8, 45.845)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1570 mm) [Track [/AVDD] on F.Cu, length 0.8738 mm @ (180.405201, 46.891); Pad 2 [GNDA] of C20 on F.Cu @ (180.8, 46.17)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1854 mm) [Track [/AVDD] on F.Cu, length 0.3034 mm @ (174.457147, 52.764141); Via [+5V] on F.Cu - B.Cu @ (175.0592, 52.08777)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1854 mm) [Track [/AVDD] on F.Cu, length 0.3616 mm @ (174.760561, 52.764141); Via [+5V] on F.Cu - B.Cu @ (175.0592, 52.08777)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1968 mm) [Track [/AVDD] on F.Cu, length 0.0860 mm @ (162.2, 56.45); Track [Net-(U14-IN-)] on F.Cu, length 0.7566 mm @ (162.66, 56.26)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1270 mm) [Track [/AVDD] on F.Cu, length 0.1570 mm @ (173.125, 44.78); Track [GNDA] on F.Cu, length 0.9970 mm @ (173.03, 43.82)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1596 mm) [Track [/AVDD] on F.Cu, length 1.0182 mm @ (189.7, 42.925); Pad 7 [/DAT_DAC] of U13 on F.Cu @ (188.9625, 42.275)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1837 mm) [Track [/AVDD] on F.Cu, length 0.1570 mm @ (173.125, 44.78); Track [GNDA] on F.Cu, length 1.2250 mm @ (172.325, 44.525)]
+        ... 721 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance None -> 0.09 mm, min_copper_edge_clearance None -> 0.2 mm, min_hole_to_hole None -> 0.2 mm, min_through_hole_diameter None -> 0.15 mm, min_track_width None -> 0.09 mm, min_via_annular_width None -> 0.05 mm, min_via_diameter None -> 0.25 mm
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("Sonatino") on a silkscreen layer
+        silk texts: SD, PWR, GAIN, +, SPKR, RGB(45), -, Headphone, ON, Line, +, © Lumination Labs, Inc.
+  WARN  BOM lines complete (§1 §2): 57 of 57 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1: 100uF (C_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C2,C13: 10uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C3,C6,C7,C29,C32,C39,C42,C44,C47: 0.1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C4,C9,C10,C11,C12,C22,C37,C38,C43,C45: 1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C5,C46: 22uF (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C8,C27,C31,C33,C36,C40,C41: 10uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 C14: 10uF (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 C15: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 C16: 0.1uF (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 C18,C19: 220pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 C20,C21: 4.7uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 C23,C34,C35: 2.2uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 14 C24: 1uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 C25,C26: 2.2nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 C28: 10nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 C30: 100pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 Card2: TF-008 (TF-SMD_TF-008): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 D1: WS2812B (LED-SMD_4P-L1.6-W1.5_XL-1615RGBC-WS2812B): missing MPN, Basic/Extended, Stock
+        row 20 D2,D3: DSK34 (SOD-123FL): missing MPN, Basic/Extended, Stock
+        row 21 FB1,FB2: FerriteBead (L_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 J3: USB_C_Receptacle_USB2.0 (USB_C_Receptacle_HRO_TYPE-C-31-M-12): missing MPN, Basic/Extended, Stock
+        row 23 J5: AudioJack4 (PJ-321B): missing MPN, Basic/Extended, Stock, Datasheet
+        row 24 LED1: LED_RED (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 25 PWR1: LED_GREEN (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 26 Q1,Q2,Q5: DMP2104LP (Diodes_DFN1411-3): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 Q3: HSCC8233 (DFN-6-1EP_3x2mm_P0.5mm_EP1.65x1.35mm_Dual_MOSFETs): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 Q4: TPM3134NX3 (SOT-723): missing MPN, Basic/Extended, Stock
+        row 29 R1: 3.9k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 R2,R3,R4,R5,R6,R7,R8,R17,R22,R29,R32,R36: 10K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 R9,R26,R27: 1M (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 R10,R11,R30: 5.1K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 R12,R15,R37: 100K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 34 R13,R18,R23,R24: 1K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 35 R14,R20,R21: 470 (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 36 R16: 2.4K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 37 R19: 680K (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 38 R25: 22K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 39 R28: 100K (G32AT-B103): missing MPN, Basic/Extended, Stock, Datasheet
+        row 40 R31: 3.3K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 41 R33: 0 (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        ... 17 more (--max-details)
+  FAIL  Catalogue and stock (§1 §2 §13): 57 codes found, 1 blocking, 2 low-stock/mismatch, 57 not checked; 31 Extended part types (one loading fee each)
+        C323842 (U15): out of stock at JLCPCB (WM8782SEDS/RV)
+        C146242 (U13): stock 3 is under 10x the 1 needed (WM8524CGEDT/R)
+        C892227 (U6, U7): stock 11 is under 10x the 2 needed (NCP167BMX330TBG)
+        ok: C1002 (FB1, FB2): GZ1608D601TF, 0603, Basic, stock 662,034
+        ok: C102813 (R34): RTT021503FTH, 0402, Extended, stock 10
+        ok: C11702 (R13, R18, R23, R24): 0402WGF1001TCE, 0402, Basic, stock 13,764,087
+        ok: C12530 (C23, C34, C35): CL05A225MQ5NSNC, 0402, Basic, stock 4,365,671
+        ok: C12624 (PWR1): KT-0603G, 0603, Extended, stock 506,795
+        ok: C128123 (R28): G32AT-B104, SMD, Extended, stock 360
+        ok: C146242 (U13): WM8524CGEDT/R, TSSOP-16, Extended, stock 3
+        ok: C15008 (C1): CL31A107MQHNNNE, 1206, Basic, stock 1,301,003
+        ok: C15195 (C28): CL05B103KB5NNNC, 0402, Basic, stock 6,170,483
+        ok: C1525 (C15): CL05B104KO5NNNC, 0402, Basic, stock 24,773,583
+        ok: C1530 (C18, C19): 0402B221K500NT, 0402, Basic, stock 984,781
+        ok: C1531 (C25, C26): 0402B222K500NT, 0402, Extended, stock 852,890
+        ok: C1546 (C30): 0402CG101J500NT, 0402, Basic, stock 3,789,515
+        ok: C15525 (C8, C27, C31, C33, C36, C40, C41): CL05A106MQ5NUNC, 0402, Basic, stock 10,720,719
+        ok: C15849 (C24): CL10A105KB8NNNC, 0603, Basic, stock 9,284,467
+        ok: C15850 (C14): CL21A106KAYNNNE, 0805, Basic, stock 6,507,758
+        ok: C16581 (U4): TP4056-42-ESOP8, ESOP-8, Extended, stock 52,223
+        ok: C165948 (J3): TYPE-C-31-M-12, SMD, Extended, stock 365,703
+        ok: C19702 (C2, C13): CL10A106KP8NNNC, 0603, Basic, stock 11,163,764
+        ok: C21189 (R33): 0603WAF0000T5E, 0603, Basic, stock 23,660,593
+        ok: C224995 (SW3): DHN-02-V-T/R, SMD,P=1.27mm, Extended, stock 1,465
+        ok: C2286 (LED1): KT-0603R, 0603, Basic, stock 7,577,172
+        ok: C23733 (C20, C21): CL05A475MP5NRNC, 0402, Basic, stock 2,109,818
+        ok: C25117 (R14, R20, R21): 0402WGF4700TCE, 0402, Basic, stock 1,198,862
+        ok: C25741 (R12, R15, R37): 0402WGF1003TCE, 0402, Basic, stock 9,222,722
+        ok: C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): 0402WGF1002TCE, 0402, Basic, stock 20,311,058
+        ok: C25768 (R25): 0402WGF2202TCE, 0402, Basic, stock 1,433,440
+        ok: C25790 (R35): 0402WGF4703TCE, 0402, Extended, stock 174,944
+        ok: C25822 (R19): 0603WAF6803T5E, 0603, Extended, stock 1,126,776
+        ok: C25882 (R16): 0402WGF2401TCE, 0402, Extended, stock 365,110
+        ok: C25890 (R31): 0402WGF3301TCE, 0402, Basic, stock 1,888,883
+        ok: C25905 (R10, R11, R30): 0402WGF5101TCE, 0402, Basic, stock 5,097,459
+        ok: C26083 (R9, R26, R27): 0402WGF1004TCE, 0402, Basic, stock 2,883,417
+        ok: C260933 (Q1, Q2, Q5): DMP2104LP-7, DFN1411-3, Extended, stock 863
+        ok: C2880449 (U11): TC7WH08FK,LJ(CT, US-8, Extended, stock 2,030
+        ok: C2976657 (U8): SN74LVC1G14DCKR(UMW), SC-70-5, Extended, stock 15,462
+        ok: C3013946 (U2): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,481
+        ... 20 more (--max-details)
+  FAIL  Catalogue category matches the reference prefix (§1 §2): 54 lines filed under the category their reference prefix means, 1 under another, 2 not checked
+        C85364 SRV05-4-P-T7 (U3; bom.csv row 48): U is an IC reference but the catalogue files this part under "Circuit Protection / ESD and Surge Protection (TVS/ESD)" (diode)
+
+NOT CHECKED
+  DRC (§12): 3 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint D1 @ (154.3, 55.65)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J5 @ (168.8, 54.825)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint Card2 @ (133.9, 46.01)]: no courtyard, so courtyards_overlap could not see this footprint
+  Catalogue and stock (§1 §2 §13): 57 not compared
+        C1002 (FB1, FB2): no MPN in bom.csv to compare with the catalogue's GZ1608D601TF; the code was not checked against a part
+        C102813 (R34): no MPN in bom.csv to compare with the catalogue's RTT021503FTH; the code was not checked against a part
+        C11702 (R13, R18, R23, R24): no MPN in bom.csv to compare with the catalogue's 0402WGF1001TCE; the code was not checked against a part
+        C12530 (C23, C34, C35): no MPN in bom.csv to compare with the catalogue's CL05A225MQ5NSNC; the code was not checked against a part
+        C12624 (PWR1): no MPN in bom.csv to compare with the catalogue's KT-0603G; the code was not checked against a part
+        C128123 (R28): no MPN in bom.csv to compare with the catalogue's G32AT-B104; the code was not checked against a part
+        C146242 (U13): no MPN in bom.csv to compare with the catalogue's WM8524CGEDT/R; the code was not checked against a part
+        C15008 (C1): no MPN in bom.csv to compare with the catalogue's CL31A107MQHNNNE; the code was not checked against a part
+        C15195 (C28): no MPN in bom.csv to compare with the catalogue's CL05B103KB5NNNC; the code was not checked against a part
+        C1525 (C15): no MPN in bom.csv to compare with the catalogue's CL05B104KO5NNNC; the code was not checked against a part
+        C1530 (C18, C19): no MPN in bom.csv to compare with the catalogue's 0402B221K500NT; the code was not checked against a part
+        C1531 (C25, C26): no MPN in bom.csv to compare with the catalogue's 0402B222K500NT; the code was not checked against a part
+        C1546 (C30): no MPN in bom.csv to compare with the catalogue's 0402CG101J500NT; the code was not checked against a part
+        C15525 (C8, C27, C31, C33, C36, C40, C41): no MPN in bom.csv to compare with the catalogue's CL05A106MQ5NUNC; the code was not checked against a part
+        C15849 (C24): no MPN in bom.csv to compare with the catalogue's CL10A105KB8NNNC; the code was not checked against a part
+        C15850 (C14): no MPN in bom.csv to compare with the catalogue's CL21A106KAYNNNE; the code was not checked against a part
+        C16581 (U4): no MPN in bom.csv to compare with the catalogue's TP4056-42-ESOP8; the code was not checked against a part
+        C165948 (J3): no MPN in bom.csv to compare with the catalogue's TYPE-C-31-M-12; the code was not checked against a part
+        C19702 (C2, C13): no MPN in bom.csv to compare with the catalogue's CL10A106KP8NNNC; the code was not checked against a part
+        C21189 (R33): no MPN in bom.csv to compare with the catalogue's 0603WAF0000T5E; the code was not checked against a part
+        C224995 (SW3): no MPN in bom.csv to compare with the catalogue's DHN-02-V-T/R; the code was not checked against a part
+        C2286 (LED1): no MPN in bom.csv to compare with the catalogue's KT-0603R; the code was not checked against a part
+        C23733 (C20, C21): no MPN in bom.csv to compare with the catalogue's CL05A475MP5NRNC; the code was not checked against a part
+        C25117 (R14, R20, R21): no MPN in bom.csv to compare with the catalogue's 0402WGF4700TCE; the code was not checked against a part
+        C25741 (R12, R15, R37): no MPN in bom.csv to compare with the catalogue's 0402WGF1003TCE; the code was not checked against a part
+        C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): no MPN in bom.csv to compare with the catalogue's 0402WGF1002TCE; the code was not checked against a part
+        C25768 (R25): no MPN in bom.csv to compare with the catalogue's 0402WGF2202TCE; the code was not checked against a part
+        C25790 (R35): no MPN in bom.csv to compare with the catalogue's 0402WGF4703TCE; the code was not checked against a part
+        C25822 (R19): no MPN in bom.csv to compare with the catalogue's 0603WAF6803T5E; the code was not checked against a part
+        C25882 (R16): no MPN in bom.csv to compare with the catalogue's 0402WGF2401TCE; the code was not checked against a part
+        C25890 (R31): no MPN in bom.csv to compare with the catalogue's 0402WGF3301TCE; the code was not checked against a part
+        C25905 (R10, R11, R30): no MPN in bom.csv to compare with the catalogue's 0402WGF5101TCE; the code was not checked against a part
+        C26083 (R9, R26, R27): no MPN in bom.csv to compare with the catalogue's 0402WGF1004TCE; the code was not checked against a part
+        C260933 (Q1, Q2, Q5): no MPN in bom.csv to compare with the catalogue's DMP2104LP-7; the code was not checked against a part
+        C2880449 (U11): no MPN in bom.csv to compare with the catalogue's TC7WH08FK,LJ(CT; the code was not checked against a part
+        C2976657 (U8): no MPN in bom.csv to compare with the catalogue's SN74LVC1G14DCKR(UMW); the code was not checked against a part
+        C3013946 (U2): no MPN in bom.csv to compare with the catalogue's ESP32-S3-WROOM-1U-N16R8; the code was not checked against a part
+        C307331 (C3, C6, C7, C29, C32, C39, C42, C44, C47): no MPN in bom.csv to compare with the catalogue's CL05B104KB54PNC; the code was not checked against a part
+        C323842 (U15): no MPN in bom.csv to compare with the catalogue's WM8782SEDS/RV; the code was not checked against a part
+        C351410 (U5): no MPN in bom.csv to compare with the catalogue's DW01A; the code was not checked against a part
+        ... 17 more (--max-details)
+  Catalogue package fits the footprint (§1): 7 not compared
+        C5349954 XL-1615RGBC-2812B (D1; bom.csv row 19): SMD-4P,1.6x1.5mm on LED-SMD_4P-L1.6-W1.5_XL-1615RGBC-WS2812B: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C128123 G32AT-B104 (R28; bom.csv row 39): SMD on G32AT-B103: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C354946 TSA343G00-250J2 (SW1, SW2; bom.csv row 44): SMD,4x2.9mm on SW_Push_1P1T_NO_3.95_2.9: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C224995 DHN-02-V-T/R (SW3; bom.csv row 45): SMD,P=1.27mm on SW_DIP_SPSTx02_Slide_Omron_A6H-2101_W6.15mm_P1.27mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C892227 NCP167BMX330TBG (U6, U7; bom.csv row 51): XDFN-4-EP(1x1) on OnSemi_XDFN4-1EP_1.0x1.0mm_EP0.52x0.52mm-FIXED: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C895405 FSA2269L10X (U9, U10; bom.csv row 53): MicroPak-10(1.6x2.1) on Fairchild_MicroPak-10_2.10x1.6mm_P0.5mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2880449 TC7WH08FK,LJ(CT (U11; bom.csv row 54): US-8 on VSSOP-8_2.3x2mm_P0.5mm: "US-8" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+  Catalogue category matches the reference prefix (§1 §2): 2 not compared
+        C428465 TF-008 (Card2; bom.csv row 18): prefix CARD has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
+        C12624 KT-0603G (PWR1; bom.csv row 25): prefix PWR has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 31 polarized or asymmetric parts (U2, U4, FB1, U6, U3, D2, D1, U16, D3, J5, Q3, U5, +19 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  4 blocking, 3 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

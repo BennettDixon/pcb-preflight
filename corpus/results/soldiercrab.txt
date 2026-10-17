@@ -1,0 +1,169 @@
+soldiercrab  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  6 copper layers, 77 footprints  -  bom.csv: soldiercrab.csv
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 72 of 77 footprints name a symbol in the schematic, 5 board-only
+        note: 5 board-only footprints (no path, reference not in the schematic): G***, G***, G***, REF**, G***
+  Copper layers (§9): 6 copper layers
+  Connector names on silk (§8): 0 connectors each have a name on silk
+  DNP parts (§12): 2 DNP parts flagged on both schematic and board (J1, R16)
+  Bought parts placed on the board (§5 §12): 70 of 70 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  LCSC code on every BOM line (§1 §12): 29 lines, each with a C-number
+  bom.csv matches the schematic (§1 §5 §12): 70 bought references, every one on exactly one BOM line
+        note: not bought: J1, R16 (DNP); G***, REF** (excluded from the BOM)
+  BOM value matches the schematic (§1): 70 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+
+FINDINGS
+  FAIL  ERC (§12): 5 errors, 73 warnings on 8 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR028 Hidden pin 1 [VCCRAM, Power input, Line] @ (231.14, 48.26)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+3V3, Power input, Line] @ (90.17, 148.59)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR012 Hidden pin 1 [+1V1, Power input, Line] @ (25.4, 30.48)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (66.675, 173.99)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR026 Hidden pin 1 [+2V5, Power input, Line] @ (107.95, 30.48)]
+        warning: lib_symbol_mismatch: Symbol 'MICROMOD-2222' doesn't match copy in library 'micromod' [Symbol J1 [MICROMOD-2222] @ (66.04, 90.17)]
+        warning: lib_symbol_issues: Symbol 'DSC60xx' not found in symbol library 'support_hardware' [Symbol Y1 [DSC60xx] @ (255.27, 107.95)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'OLIMEX_RCL' [Symbol R11 [R] @ (232.41, 107.95)]
+        warning: lib_symbol_mismatch: Symbol 'LED_Small_Filled' doesn't match copy in library 'Device' [Symbol D1 [LED_Small_Filled] @ (232.41, 114.3)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'OLIMEX_RCL' [Symbol R15 [R] @ (238.76, 107.95)]
+        warning: lib_symbol_mismatch: Symbol 'LED_Small_Filled' doesn't match copy in library 'Device' [Symbol D2 [LED_Small_Filled] @ (238.76, 114.3)]
+        warning: lib_symbol_mismatch: Symbol 'W25Q32JVSS' doesn't match copy in library 'Memory_Flash' [Symbol U7 [W25Q32JVSS] @ (99.06, 45.72)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'soldiercrab_pmic' [Symbol U4 [NCP167] @ (48.26, 109.22)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 9.525 mm @ (66.675, 162.56)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR031 Hidden pin 1 [+3V3, Power input, Line] @ (66.675, 162.56)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (66.675, 163.83)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol C20 Pin 1 [Passive, Line] @ (66.675, 163.83)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (66.675, 171.45)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR01 Pin 1 [Power input, Line] @ (66.675, 173.99)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'soldiercrab_pmic' [Symbol U2 [NCP167] @ (87.63, 165.1)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (103.505, 92.71)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR030 Hidden pin 1 [+3V3, Power input, Line] @ (103.505, 92.71)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (103.505, 93.98)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol C6 Pin 1 [Passive, Line] @ (103.505, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (103.505, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR010 Pin 1 [Power input, Line] @ (103.505, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 7.62 mm @ (108.585, 92.71)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (108.585, 93.98)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol R1 Pin 1 [Passive, Line] @ (108.585, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 2.54 mm @ (108.585, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (111.125, 107.95)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (113.665, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 3.81 mm @ (113.665, 107.95)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 8.89 mm @ (116.205, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (118.745, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.08 mm @ (118.745, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (126.365, 111.76)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR016 Pin 1 [Power input, Line] @ (126.365, 113.03)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (133.985, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 12.70 mm @ (133.985, 104.14)]
+        ... 38 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+        note: pin-conflict matrix: KiCad's default; the project had weakened 2 of its 144 cells
+  FAIL  DRC (§12): 209 errors, 71 warnings (solder_mask_bridge x199, lib_footprint_mismatch x68, courtyards_overlap x10, text_thickness x2, silk_over_copper x1); 5 footprints without a courtyard
+        courtyards_overlap: Courtyards overlap [Footprint U7 @ (142.437052, 87.536957); Footprint C5 @ (140.623469, 90.7271)]
+        courtyards_overlap: Courtyards overlap [Footprint C2 @ (125.0, 96.5); Footprint U1 @ (126.399552, 94.1528)]
+        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint R108 @ (144.546153, 99.501036)]
+        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint IC1 @ (132.0, 92.0)]
+        courtyards_overlap: Courtyards overlap [Footprint C65 @ (142.842812, 92.60789); Footprint R16 @ (141.254552, 93.3028)]
+        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint IC1 @ (132.0, 92.0)]
+        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint R10 @ (144.649552, 89.1528)]
+        courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
+        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
+        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 33 [GND] of J1 on F.Cu @ (136.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 35 [ECP5_B5] of J1 on F.Cu @ (135.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 37 [ECP5_A5] of J1 on F.Cu @ (135.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B15] on F.Cu, length 0.9218 mm @ (128.85, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 0.8512 mm @ (142.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 39 [GND] of J1 on F.Cu @ (134.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_C15] on F.Cu, length 0.9218 mm @ (127.85, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.6968 mm @ (136.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 41 [ECP5_B6] of J1 on F.Cu @ (134.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 1 [GND] of J1 on F.Cu @ (144.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 43 [ECP5_A6] of J1 on F.Cu @ (133.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_T11_TMS] on F.Cu, length 2.4092 mm @ (139.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 3 [USB0_DP] of J1 on F.Cu @ (143.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 45 [GND] of J1 on F.Cu @ (133.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.4726 mm @ (134.85, 100.202352)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 5 [USB0_DM] of J1 on F.Cu @ (143.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 0.0643 mm @ (134.3955, 102.6295)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 47 [ECP5_B7] of J1 on F.Cu @ (132.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 5.0340 mm @ (134.3955, 97.5955)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 7 [GND] of J1 on F.Cu @ (142.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A15] on F.Cu, length 0.9218 mm @ (128.35, 101.753248)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A9] on F.Cu, length 2.8226 mm @ (130.85, 99.852352)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 49 [unconnected-(J1-BATT_VIN/3-Pad49)] of J1 on F.Cu @ (132.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 9 [USB0_VBUS] of J1 on F.Cu @ (142.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 51 [ECP5_A7] of J1 on F.Cu @ (131.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 11 [ECP5_A3] of J1 on F.Cu @ (141.85, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A10] on F.Cu, length 2.8034 mm @ (129.85, 99.871571)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 13 [ECP5_A2] of J1 on F.Cu @ (141.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 53 [ECP5_B8] of J1 on F.Cu @ (131.35, 102.675)]
+        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A2] on F.Cu, length 2.2988 mm @ (141.35, 100.376197)]
+        ... 240 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered courtyards_overlap to warning (KiCad default error)
+        note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_overlap
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 5 field/filter notes across 77 footprints; 1 padless footprint items not counted
+        warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C1521614', Schematic: 'C1550826') [Footprint IC1 @ (132.0, 92.0)]
+        warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D1 @ (126.399552, 83.9028)]
+        warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D2 @ (128.514552, 83.9028)]
+        warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C23733', Schematic: 'C326586') [Footprint C20 @ (138.003059, 90.416179)]
+        warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C23733', Schematic: 'C326586') [Footprint C27 @ (137.5, 87.5)]
+        note: 1 extra/duplicate footprint items with no pads (a logo or text) are not findings: extra_footprint: Extra footprint [Footprint REF** @ (130.799552, 98.2028)]
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("soldiercrab") on a silkscreen layer
+        silk texts: aus DE, mit
+  WARN  BOM lines complete (§1 §2): 29 of 29 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C2,C3,C4,C23: 2.2uF (C_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 3 C5,C8,C13,C16,C17,C18,C19,C21,C22,C79,C80,C81,C82,C83: 1uF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 4 C6,C28,C29: 10uF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 5 C7,C9,C10,C11,C12,C14,C15,C24,C26,C31,C32,C33,C35,C65: 0.1uF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 6 C20,C27: 4.7uF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 7 C25: 10pF (C_0201_0603Metric): missing Basic/Extended, Stock, Datasheet
+        row 8 C34,C36,C37: 1uF (C_0201_0603Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 D1,D2: LED 0402 RED (LED_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 IC1: ECP5-BGA256 (lattice_cabga256): missing Basic/Extended, Stock, Datasheet
+        row 11 L1: 2.2uH (L_0805_2012Metric): missing Basic/Extended, Stock, Datasheet
+        row 12 R1: 10k (R_0201_0603Metric): missing Basic/Extended, Stock, Datasheet
+        row 13 R2: 100k (R_0201_0603Metric): missing Basic/Extended, Stock, Datasheet
+        row 14 R3: 120k (R_0201_0603Metric): missing Basic/Extended, Stock, Datasheet
+        row 15 R5: 2.2k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 16 R6,R13,R109: 5.1k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 17 R7: 8.06k (R_0201_0603Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 R8: 20K (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 R9,R10: 27R (R_0201_0603Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 R11,R15: 330R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 R12,R14: 330 (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 22 R108: 330 (R_0201_0603Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 23 R110: 10k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 24 U1: TLV62569ADRLR (SOT-563): missing Basic/Extended, Stock
+        row 25 U2: NCP115-2.5 (Texas_X2SON-4_1x1mm_P0.65mm): missing Basic/Extended, Stock, Datasheet
+        row 26 U3: USB3343 (QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm): missing Basic/Extended, Stock
+        row 27 U4: NCP115-1.8 (Texas_X2SON-4_1x1mm_P0.65mm): missing Basic/Extended, Stock, Datasheet
+        row 28 U7: W25Q128JVP (WSON-8-1EP_6x5mm_P1.27mm_EP3.4x4mm): missing Basic/Extended, Stock, Datasheet
+        row 29 U10: PSRAM (oSPI /HyperRAM) (BGA-24_5x5_6.0x8.0mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 Y1: Osc48MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing Basic/Extended, Stock, Datasheet
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
+  DRC (§12): 5 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (127.499552, 100.6028)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (134.958478, 100.511726)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (131.182841, 100.597273)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint REF** @ (130.799552, 98.2028)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (137.040594, 97.812364)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 11 polarized or asymmetric parts (U10, U3, D1, IC1, D2, Y1, U7, U2, U1, U4, L1) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -1,0 +1,272 @@
+bitaxeAura  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 193 footprints  -  bom.csv: bitaxeaura.csv
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Board footprints belong to this schematic (§5): 191 of 193 footprints name a symbol in the schematic, 2 board-only
+        note: 2 board-only footprints (no path, reference not in the schematic): G***, G***
+  Fiducials (§4): 3 on the front (FID3, FID2, FID1, FID5, FID4, FID6)
+  Copper layers (§9): 4 copper layers
+  DNP parts (§12): 3 DNP parts flagged on both schematic and board (R10, R12, R9)
+  Bought parts placed on the board (§5 §12): 147 of 147 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 147 bought references, every one on exactly one BOM line
+        note: not bought: FID1, FID2, FID3, FID4, FID5, FID6, H1, H2, H3, H4, TP1, TP10, +26 more (prefix FID/TP/H/MH); R10, R12, R9 (DNP); G***, HS1, NT1, NT2 (excluded from the BOM)
+  BOM value matches the schematic (§1): 147 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+
+FINDINGS
+  FAIL  ERC (§12): 29 errors, 254 warnings on 5 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J1 Pin 1 [+V, Power input, Line] @ (49.53, 146.05)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J1 Pin 2 [GND, Power input, Line] @ (49.53, 151.13)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U3 Pin 1 [VIN, Power input, Line] @ (76.2, 224.79)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U1 Pin 8 [SW, Output, Line] @ (269.24, 54.61); Symbol U1 Pin 11 [SW, Output, Line] @ (269.24, 62.23)]
+        pin_to_pin: Pins of type Output and Power output are connected [Symbol U1 Pin 11 [SW, Output, Line] @ (269.24, 62.23); Symbol U1 Pin 12 [SW, Power output, Line] @ (269.24, 64.77)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U1 Pin 13 [PGND, Output, Line] @ (269.24, 71.12); Symbol U1 Pin 14 [PGND, Output, Line] @ (269.24, 73.66)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U1 Pin 14 [PGND, Output, Line] @ (269.24, 73.66); Symbol U4 Pin 13 [PGND, Output, Line] @ (269.24, 185.42)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U1 Pin 37 [AGND, Power input, Line] @ (269.24, 123.19)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U4 Pin 8 [SW, Output, Line] @ (269.24, 168.91); Symbol U4 Pin 11 [SW, Output, Line] @ (269.24, 176.53)]
+        pin_to_pin: Pins of type Output and Power output are connected [Symbol U4 Pin 11 [SW, Output, Line] @ (269.24, 176.53); Symbol U4 Pin 12 [SW, Power output, Line] @ (269.24, 179.07)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U4 Pin 13 [PGND, Output, Line] @ (269.24, 185.42); Symbol U4 Pin 14 [PGND, Output, Line] @ (269.24, 187.96)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U4 Pin 37 [AGND, Power input, Line] @ (269.24, 237.49)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 15 [GPIO3/TOUCH3/ADC1_CH2*, Bidirectional, Line] @ (85.09, 81.28)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 5 [GPIO5/TOUCH5/ADC1_CH4, Bidirectional, Line] @ (85.09, 86.36)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 6 [GPIO6/TOUCH6/ADC1_CH5, Bidirectional, Line] @ (85.09, 88.9)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 7 [GPIO7/TOUCH7/ADC1_CH6, Bidirectional, Line] @ (85.09, 91.44)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 12 [GPIO8/TOUCH8/ADC1_CH7/SUBSPICS1, Bidirectional, Line] @ (85.09, 93.98)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 17 [GPIO9/TOUCH9/ADC1_CH8/FSPIHD/SUBSPIHD, Bidirectional, Line] @ (85.09, 96.52)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 22 [GPIO14/TOUCH14/ADC2_CH3/FSPIWP/FSPIDQS/SUBSPIWP, Bidirectional, Line] @ (85.09, 109.22)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 8 [GPIO15/U0RTS/ADC2_CH4/XTAL_32K_P, Bidirectional, Line] @ (85.09, 111.76)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 9 [GPIO16/U0CTS/ADC2_CH5/XTAL_32K_NH5, Bidirectional, Line] @ (85.09, 114.3)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 23 [GPIO21, Bidirectional, Line] @ (199.39, 83.82)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 26 [*GPIO45, Bidirectional, Line] @ (199.39, 86.36)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 16 [*GPIO46, Bidirectional, Line] @ (199.39, 88.9)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 28 [SPIIO6/GPIO35/FSPID/SUBSPID, Bidirectional, Line] @ (199.39, 101.6)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 29 [SPIIO7/GPIO36/FSPICLK/SUBSPICLK, Bidirectional, Line] @ (199.39, 104.14)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 30 [SPIDQS/GPIO37/FSPIQ/SUBSPIQ, Bidirectional, Line] @ (199.39, 106.68)]
+        pin_not_connected: Pin not connected [Symbol U6 Pin 31 [GPIO38/FSPIWP/SUBSPIWP, Bidirectional, Line] @ (199.39, 109.22)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U7 Pin 16 [VCCA, Power input, Line] @ (217.17, 76.2)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'bitaxe' [Symbol HS1 [Heatsink] @ (120.65, 171.45)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C39 [C_Small] @ (34.29, 229.87)]
+        warning: isolated_pin_label: Label connected to only one pin [Hierarchical Label 'PWR_EN' @ (36.83, 43.18)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'bitaxe' [Symbol J1 [XT30PW-M] @ (41.91, 148.59)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C40 [C_Small] @ (43.18, 229.87)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C46 [C_Small] @ (52.07, 179.07)]
+        warning: isolated_pin_label: Label connected to only one pin [Label 'PWR_EN' @ (53.34, 43.18)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C47 [C_Small] @ (80.01, 179.07)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'bitaxe' [Symbol U3 [TPSM861253RDXR] @ (86.36, 229.87)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C43 [C_Small] @ (116.84, 236.22)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C21 [C_Small] @ (124.46, 120.65)]
+        ... 243 more (--max-details)
+  FAIL  DRC (§12): 126 errors, 269 warnings (lib_footprint_mismatch x127, clearance x80, via_dangling x78, lib_footprint_issues x31, track_dangling x25, shorting_items x23, hole_clearance x14, solder_mask_bridge x7, silk_overlap x6, items_not_allowed x1, courtyards_overlap x1, copper_sliver x1, mirrored_text_on_front_layer x1); 15 footprints without a courtyard
+        items_not_allowed: Items not allowed (keepout area 'Antenna Keepout') [Footprint U6 @ (114.27, 46.75)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 2.8750 mm @ (103.425, 129.15); Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 1 [/ASIC/1V5] of C51 on B.Cu @ (101.8, 131.08); Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08)]
+        shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.3500 mm @ (107.325, 124.775); Pad 7 [GND] of U7 on B.Cu @ (107.325, 123.425)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.1750 mm @ (107.975, 123.425); Pad 8 [GND] of U7 on B.Cu @ (107.975, 123.425)]
+        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15); Track [<no net>] on B.Cu, length 1.3850 mm @ (103.425, 129.15)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        shorting_items: Items shorting two nets (nets /Power/VSHARE and /12V) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Pad 5 [/12V] of U2 on B.Cu @ (149.9, 59.9)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0012 mm) [Pad 5 [/12V] of U2 on B.Cu @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        shorting_items: Items shorting two nets (nets /Power/VSHARE and /Power/cur_sense) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Pad 6 [/Power/cur_sense] of U2 on B.Cu @ (149.9, 60.55)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Pad 6 [/Power/cur_sense] of U2 on B.Cu @ (149.9, 60.55); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        shorting_items: Items shorting two nets (nets /Power/VSHARE and /Power/cur_sense) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Track [/Power/cur_sense] on B.Cu, length 0.9000 mm @ (150.825, 60.525)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0250 mm) [Track [/Power/cur_sense] on B.Cu, length 0.9000 mm @ (150.825, 60.525); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0053 mm) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1053 mm) [Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/0V75-1] of U21 on F.Cu @ (83.796083, 50.862796); Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 1 [/ASIC/0V75-0] of U14 on F.Cu @ (62.668583, 81.785296)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 3 [/5V] of U14 on F.Cu @ (63.738579, 82.4353)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND0] of U14 on F.Cu @ (63.203581, 82.110297); Pad 4 [/5V] of U14 on F.Cu @ (63.738579, 81.785294)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797); Pad 3 [/5V] of U21 on F.Cu @ (84.866079, 51.5128)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND1] of U21 on F.Cu @ (84.331081, 51.187797); Pad 4 [/5V] of U21 on F.Cu @ (84.866079, 50.862794)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/1V5] of U11 on F.Cu @ (62.668583, 79.215098); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 1 [/ASIC/1V5-2] of U22 on F.Cu @ (83.796083, 53.432994); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 3 [/5V] of U11 on F.Cu @ (63.738579, 79.865102); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 3 [/5V] of U22 on F.Cu @ (84.866079, 54.082998); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 4 [/5V] of U11 on F.Cu @ (63.738579, 79.215096); Pad 5 [GND] of U11 on F.Cu @ (63.203581, 79.540099)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 4 [/5V] of U22 on F.Cu @ (84.866079, 53.432992); Pad 5 [/ASIC/GND2] of U22 on F.Cu @ (84.331081, 53.757995)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 1 [/ASIC/0V75-2] of U23 on F.Cu @ (83.796083, 56.003192)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 3 [/5V] of U23 on F.Cu @ (84.866079, 56.653196)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [/ASIC/GND2] of U23 on F.Cu @ (84.331081, 56.328193); Pad 4 [/5V] of U23 on F.Cu @ (84.866079, 56.00319)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 1 [/ASIC/0V75] of U16 on F.Cu @ (62.668583, 86.925692)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 3 [/5V] of U16 on F.Cu @ (63.738579, 87.575696)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.1201 mm) [Pad 5 [GND] of U16 on F.Cu @ (63.203581, 87.250693); Pad 4 [/5V] of U16 on F.Cu @ (63.738579, 86.92569)]
+        ... 355 more (--max-details)
+        note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_over_copper
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_copper_edge_clearance 0.0 -> 0.2 mm
+  FAIL  Unrouted connections (§11 §12): 291 connections still to route
+        unconnected_items: Missing connection between items [PTH pad 2 [/12V] of J7 @ (138.0806, 146.338851); Pad 1 [/12V] of C96 on B.Cu @ (143.05, 136.975)]
+        unconnected_items: Missing connection between items [Pad 3 [/12V] of U5 on B.Cu @ (138.75, 50.5375); Pad 1 [/12V] of U3 on B.Cu @ (138.962499, 38.887501)]
+        unconnected_items: Missing connection between items [Pad 2 [/12V] of C46 on B.Cu @ (138.78, 52.7); Pad 3 [/12V] of U5 on B.Cu @ (138.75, 50.5375)]
+        unconnected_items: Missing connection between items [Pad 1 [/12V] of C1 on F.Cu @ (138.85, 57.5125); Pad 2 [/12V] of C46 on B.Cu @ (138.78, 52.7)]
+        unconnected_items: Missing connection between items [Track [/12V] on B.Cu, length 1.6000 mm @ (140.15, 37.0); Pad 1 [/12V] of U3 on B.Cu @ (138.962499, 38.887501)]
+        unconnected_items: Missing connection between items [Pad 1 [/12V] of C40 on B.Cu @ (141.1, 38.43); Track [/12V] on B.Cu, length 0.1414 mm @ (140.15, 38.6)]
+        unconnected_items: Missing connection between items [Pad 1 [/12V] of C39 on B.Cu @ (142.45, 38.675); Pad 1 [/12V] of C40 on B.Cu @ (141.1, 38.43)]
+        unconnected_items: Missing connection between items [Pad 1 [/12V] of C96 on B.Cu @ (143.05, 136.975); Track [/12V] on B.Cu, length 0.2121 mm @ (144.85, 137.45)]
+        unconnected_items: Missing connection between items [Track [/12V] on B.Cu, length 0.7700 mm @ (144.85, 136.68); Pad 1 [/12V] of C27 on F.Cu @ (153.63, 71.69)]
+        unconnected_items: Missing connection between items [Pad 1 [/12V] of R14 on F.Cu @ (146.34, 55.9825); Track [/12V] on B.Cu, length 1.4500 mm @ (149.025, 59.575)]
+        unconnected_items: Missing connection between items [Track [/Power/AGND1] on F.Cu, length 1.0200 mm @ (125.05, 61.12); Track [/Power/AGND1] on F.Cu, length 0.2758 mm @ (126.325, 62.35)]
+        unconnected_items: Missing connection between items [Track [/Power/AGND1] on F.Cu, length 0.2758 mm @ (126.325, 62.35); Track [/Power/AGND1] on F.Cu, length 0.6800 mm @ (130.23, 60.41)]
+        unconnected_items: Missing connection between items [Track [/Vcore] on B.Cu, length 0.2970 mm @ (108.34, 55.29); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
+        unconnected_items: Missing connection between items [Pad 2 [/Vcore] of L1 on F.Cu @ (122.61, 79.2688); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
+        unconnected_items: Missing connection between items [Pad 2 [/Vcore] of C9 on F.Cu @ (128.03, 80.2); Track [/Vcore] on F.Cu, length 0.5900 mm @ (129.23, 62.18)]
+        unconnected_items: Missing connection between items [Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18); Track [/Vcore] on In2.Cu, length 3.2173 mm @ (133.325, 103.575)]
+        unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
+        unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18)]
+        unconnected_items: Missing connection between items [Track [/Vcore] on In2.Cu, length 6.2000 mm @ (154.4, 102.8); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
+        unconnected_items: Missing connection between items [Track [/Vcore] on In2.Cu, length 0.1414 mm @ (160.6, 102.8); Pad 1 [/Vcore] of TP15 on B.Cu @ (275.17, 98.65)]
+        unconnected_items: Missing connection between items [Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64); Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64)]
+        unconnected_items: Missing connection between items [Track [/Power/VSHARE] on F.Cu, length 0.0157 mm @ (127.18, 62.37); Track [/Power/VSHARE] on F.Cu, length 0.2404 mm @ (149.96, 62.19)]
+        unconnected_items: Missing connection between items [Track [/Power/EN_UVLO] on F.Cu, length 0.9100 mm @ (132.21, 63.17); Pad 27 [/Power/EN_UVLO] of U4 on F.Cu @ (151.88, 66.56)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C38 on F.Cu @ (55.04, 79.24); Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18); Pad 2 [/5V] of C56 on F.Cu @ (55.04, 87.12)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C56 on F.Cu @ (55.04, 87.12); Pad 2 [/5V] of C58 on F.Cu @ (55.04, 91.06)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U11 on F.Cu @ (63.738579, 79.215096); Pad 3 [/5V] of U11 on F.Cu @ (63.738579, 79.865102)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U11 on F.Cu @ (63.738579, 79.215096); Pad 2 [/5V] of C38 on F.Cu @ (55.04, 79.24)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U11 on F.Cu @ (63.738579, 79.215096); Pad 2 [/5V] of C76 on F.Cu @ (78.3575, 58.1675)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U14 on F.Cu @ (63.738579, 81.785294); Pad 3 [/5V] of U14 on F.Cu @ (63.738579, 82.4353)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U14 on F.Cu @ (63.738579, 81.785294); Pad 3 [/5V] of U11 on F.Cu @ (63.738579, 79.865102)]
+        unconnected_items: Missing connection between items [Pad 3 [/5V] of U14 on F.Cu @ (63.738579, 82.4353); Pad 4 [/5V] of U15 on F.Cu @ (63.738579, 84.355492)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U15 on F.Cu @ (63.738579, 84.355492); Pad 3 [/5V] of U15 on F.Cu @ (63.738579, 85.005498)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U16 on F.Cu @ (63.738579, 86.92569); Pad 3 [/5V] of U15 on F.Cu @ (63.738579, 85.005498)]
+        unconnected_items: Missing connection between items [Pad 3 [/5V] of U16 on F.Cu @ (63.738579, 87.575696); Pad 4 [/5V] of U16 on F.Cu @ (63.738579, 86.92569)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C71 on F.Cu @ (78.3575, 48.3175); Pad 2 [/5V] of C72 on F.Cu @ (78.3575, 50.2875)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C75 on F.Cu @ (78.3575, 56.1975); Pad 2 [/5V] of C72 on F.Cu @ (78.3575, 50.2875)]
+        unconnected_items: Missing connection between items [Pad 2 [/5V] of C76 on F.Cu @ (78.3575, 58.1675); Pad 2 [/5V] of C75 on F.Cu @ (78.3575, 56.1975)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U20 on F.Cu @ (84.866079, 48.292596); Pad 3 [/5V] of U20 on F.Cu @ (84.866079, 48.942602)]
+        unconnected_items: Missing connection between items [Pad 4 [/5V] of U20 on F.Cu @ (84.866079, 48.292596); Pad 2 [/5V] of C71 on F.Cu @ (78.3575, 48.3175)]
+        ... 251 more (--max-details)
+  FAIL  Schematic / PCB parity (§5): 4 mismatches across 193 footprints
+        footprint_symbol_mismatch: Value (R5) doesn't match symbol value (715) [Footprint R5 @ (131.29, 61.58)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: Value (R7) doesn't match symbol value (4.64k) [Footprint R7 @ (127.452, 58.49)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: Value (R11) doesn't match symbol value (6.81k) [Footprint R11 @ (128.858, 58.49)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+        footprint_symbol_mismatch: Value (R13) doesn't match symbol value (6.81k) [Footprint R13 @ (130.264, 58.49)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("bitaxeAura") on a silkscreen layer
+        silk texts: BAP, FOSS || GTFO, Aura 900x
+  WARN  Connector names on silk (§8): 3 of 6 connectors have neither a visible value nor silk text within 15 mm
+        J7 Conn_01x04 at 140.621, 146.339
+        J8 TC2030-IDC at 113.4, 32.465
+        J4 USB_C_Receptacle_USB2.0 at 122.35, 31.96
+  FAIL  LCSC code on every BOM line (§1 §12): 47 of 49 lines have no LCSC code (a value and a package is not a part)
+        row 2 C1,C22: 33uF (CP_EIA-7343-31_Kemet-D)
+        row 3 C2,C3,C23,C24,C39,C43,C44,C49: 10uF (C_0603_1608Metric)
+        row 5 C5,C26: 4.7nF (C_0402_1005Metric)
+        row 6 C6,C27: 2.2nF (C_0402_1005Metric)
+        row 7 C7,C17,C28,C40,C50,C51,C52,C53,C60,C61,C70,C94,C97: 0.1uF (C_0402_1005Metric)
+        row 8 C8,C29: 1000pF (C_0805_2012Metric)
+        row 9 C9,C10,C11,C12,C13,C14,C30,C31,C32,C33,C34,C35: 100uF (C_1206_3216Metric)
+        row 10 C16,C37: 4.7uF (C_0402_1005Metric)
+        row 11 C18: 100pF (C_0402_1005Metric)
+        row 12 C20,C45: 33pF (C_0402_1005Metric)
+        row 13 C21,C38,C41,C54,C55,C56,C57,C58,C59,C64,C65,C66,C67,C71,C72,C73,C74,C75,C76,C77,C78,C79,C80,C81,C82,C83,C84,C85,C86,C87,C88,C89,C90: 1uF (C_0402_1005Metric)
+        row 14 C48: 12pF (C_0402_1005Metric)
+        row 15 C96: 47uF (C_1206_3216Metric)
+        row 16 J1: XT30 (XT30PW-M)
+        row 17 J3: Conn_01x04 (PinHeader_1x04_P2.54mm_Vertical_shifted)
+        row 18 J4: USB_C_Receptacle_USB2.0 (USB_C_Receptacle_GCT_USB4105-xx-A)
+        row 19 J5: Conn_01x06 (PinHeader_1x06_P2.54mm_Vertical)
+        row 20 J7: Conn_01x04 (470531000)
+        row 21 J8: TC2030-IDC (Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical)
+        row 22 L1,L2: 105nH (IND_FP0705_EAT)
+        row 23 R1,R8: 49.9 (R_0402_1005Metric)
+        row 24 R2,R15: 1 (R_0805_2012Metric)
+        row 25 R3,R16: 10 (R_0402_1005Metric)
+        row 26 R4: 6.34k (R_0402_1005Metric)
+        row 27 R5: 698 (R_0402_1005Metric)
+        row 28 R6,R18,R19,R20,R30: 10k (R_0402_1005Metric)
+        row 29 R7: 8.66k (R_0402_1005Metric)
+        row 30 R11: 56.2k (R_0402_1005Metric)
+        row 31 R13: 68.1k (R_0402_1005Metric)
+        row 32 R14: 10m (R_2512_6332Metric)
+        row 33 R17,R23: 20k (R_0402_1005Metric)
+        row 34 R21,R22,R40: 4.7k (R_0402_1005Metric)
+        row 35 R31: 5.6k (R_0402_1005Metric)
+        row 36 R37,R38,R39: 0 (R_0402_1005Metric)
+        row 37 SW1,SW2: SWITCH-SPST (SW_CS1213AGF260_CRS)
+        row 38 U1,U4: TPS546D24ARVFR (LQFN40-CLIP)
+        row 39 U2: NCS21671SQ050T2G (SOT-363_SC-70-6)
+        row 40 U3: TPSM861253RDXR (TPSM863257RDX)
+        row 41 U5: L78L05_SOT89 (SOT-89-3)
+        row 42 U6: ESP32-S3-WROOM-1 (ESP32-S3-WROOM-1)
+        ... 7 more (--max-details)
+  WARN  BOM lines complete (§1 §2): 49 of 49 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C22: 33uF (CP_EIA-7343-31_Kemet-D): missing Basic/Extended, Stock
+        row 3 C2,C3,C23,C24,C39,C43,C44,C49: 10uF (C_0603_1608Metric): missing Basic/Extended, Stock, Datasheet
+        row 4 C4,C15,C19,C25,C36,C42,C46,C47: 1uF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 5 C5,C26: 4.7nF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 6 C6,C27: 2.2nF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 7 C7,C17,C28,C40,C50,C51,C52,C53,C60,C61,C70,C94,C97: 0.1uF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 8 C8,C29: 1000pF (C_0805_2012Metric): missing Basic/Extended, Stock
+        row 9 C9,C10,C11,C12,C13,C14,C30,C31,C32,C33,C34,C35: 100uF (C_1206_3216Metric): missing Basic/Extended, Stock, Datasheet
+        row 10 C16,C37: 4.7uF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 11 C18: 100pF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 12 C20,C45: 33pF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 13 C21,C38,C41,C54,C55,C56,C57,C58,C59,C64,C65,C66,C67,C71,C72,C73,C74,C75,C76,C77,C78,C79,C80,C81,C82,C83,C84,C85,C86,C87,C88,C89,C90: 1uF (C_0402_1005Metric): missing Basic/Extended, Stock
+        row 14 C48: 12pF (C_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 15 C96: 47uF (C_1206_3216Metric): missing Basic/Extended, Stock, Datasheet
+        row 16 J1: XT30 (XT30PW-M): missing Basic/Extended, Stock, Datasheet
+        row 17 J3: Conn_01x04 (PinHeader_1x04_P2.54mm_Vertical_shifted): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 J4: USB_C_Receptacle_USB2.0 (USB_C_Receptacle_GCT_USB4105-xx-A): missing Basic/Extended, Stock
+        row 19 J5: Conn_01x06 (PinHeader_1x06_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 J7: Conn_01x04 (470531000): missing Basic/Extended, Stock, Datasheet
+        row 21 J8: TC2030-IDC (Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 L1,L2: 105nH (IND_FP0705_EAT): missing Basic/Extended, Stock
+        row 23 R1,R8: 49.9 (R_0402_1005Metric): missing Basic/Extended, Stock
+        row 24 R2,R15: 1 (R_0805_2012Metric): missing Basic/Extended, Stock
+        row 25 R3,R16: 10 (R_0402_1005Metric): missing Basic/Extended, Stock
+        row 26 R4: 6.34k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 R5: 698 (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 R6,R18,R19,R20,R30: 10k (R_0402_1005Metric): missing Basic/Extended, Stock
+        row 29 R7: 8.66k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 R11: 56.2k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 R13: 68.1k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 R14: 10m (R_2512_6332Metric): missing Basic/Extended, Stock
+        row 33 R17,R23: 20k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 34 R21,R22,R40: 4.7k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 35 R31: 5.6k (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 36 R37,R38,R39: 0 (R_0402_1005Metric): missing Basic/Extended, Stock, Datasheet
+        row 37 SW1,SW2: SWITCH-SPST (SW_CS1213AGF260_CRS): missing Basic/Extended, Stock
+        row 38 U1,U4: TPS546D24ARVFR (LQFN40-CLIP): missing Basic/Extended, Stock
+        row 39 U2: NCS21671SQ050T2G (SOT-363_SC-70-6): missing Basic/Extended, Stock
+        row 40 U3: TPSM861253RDXR (TPSM863257RDX): missing Basic/Extended, Stock
+        row 41 U5: L78L05_SOT89 (SOT-89-3): missing Basic/Extended, Stock
+        ... 9 more (--max-details)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
+  DRC (§12): 15 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint U14 @ (63.203581, 82.110297)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (227.138695, 32.315804)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U21 @ (84.331081, 51.187797)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U19 @ (146.02, 96.9925)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U10 @ (116.02, 127.0375)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U11 @ (63.203581, 79.540099)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U22 @ (84.331081, 53.757995)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U23 @ (84.331081, 56.328193)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U16 @ (63.203581, 87.250693)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (226.73739, 31.682811)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U20 @ (84.331081, 48.617599)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U15 @ (63.203581, 84.680495)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U9 @ (116.03, 96.9875)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U18 @ (145.99, 127.0225)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U8 @ (103.2, 102.7)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 34 polarized or asymmetric parts (L1, U4, U14, U21, U19, SW2, U24, SW1, U10, J5, U11, U22, +22 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again

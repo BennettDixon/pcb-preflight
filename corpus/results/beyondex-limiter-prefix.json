@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "version": "0.2.0",
+  "project": "BeyondexLimiter",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/beyondex-limiter-prefix",
+  "kicad_version": "10.0.7",
+  "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+  "preset": "jlcpcb-assembly@2026.10",
+  "options": {
+    "online": false,
+    "strict": false,
+    "skip_prefixes": [
+      "FID",
+      "TP",
+      "H",
+      "MH",
+      "#"
+    ],
+    "stock_multiple": 10,
+    "custom_rules_present": true,
+    "footprints": "/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints"
+  },
+  "owned": {
+    "drc": {},
+    "erc": {},
+    "pin_map": 0,
+    "minimums": {},
+    "netclasses": {}
+  },
+  "copper_layers": 2,
+  "footprints": 9,
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/beyondex-limiter-prefix.csv",
+  "checks": [
+    {
+      "id": "erc",
+      "title": "ERC",
+      "pitfall": "\u00a712",
+      "status": "fail",
+      "summary": "1 errors, 0 warnings on 1 sheet",
+      "details": [
+        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "drc",
+      "title": "DRC",
+      "pitfall": "\u00a712",
+      "status": "fail",
+      "summary": "8 errors, 29 warnings (text_height x14, text_thickness x7, drill_out_of_range x6, silk_edge_clearance x4, clearance x2, lib_footprint_mismatch x2, silk_overlap x1, silk_over_copper x1)",
+      "details": [
+        "clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1099 mm) [Track [/VIN] on F.Cu, length 2.1213 mm @ (173.6, 95.1); Pad B5 [unconnected-(USB1-CC2-PadB5)] of USB1 on F.Cu @ (173.1625, 95.75)]",
+        "clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 96.4375)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 96.4375)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 96.4375)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 95.0375)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 95.0375)]",
+        "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 95.0375)]",
+        "warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (178.0, 93.0); Segment of USB1 on F.Silkscreen @ (180.5125, 93.03)]",
+        "warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (178.0, 102.0); Segment of USB1 on F.Silkscreen @ (180.5125, 101.97)]",
+        "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (157.5, 93.0); Segment of USB2 on F.Silkscreen @ (157.0, 93.03)]",
+        "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (157.5, 93.0); Segment of USB2 on F.Silkscreen @ (157.0, 101.97)]",
+        "warning: lib_footprint_mismatch: Footprint 'HRO_TYPE-C-31-M-12' does not match copy in library 'BeyondexLimiter' [Footprint USB1 @ (177.9125, 97.5)]",
+        "warning: lib_footprint_mismatch: Footprint 'HRO_TYPE-C-31-M-12' does not match copy in library 'BeyondexLimiter' [Footprint USB2 @ (159.6, 97.5)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [PCB text 'Output' on F.Silkscreen @ (159.5, 92.3)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [PCB text 'Input' on F.Silkscreen @ (174.8, 92.3)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [PCB text '\u2192In' on B.Silkscreen @ (179.9, 97.5)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [PCB text 'Beyondex Current Limiter\nUSB 2.0 Adjustable Limit\nv0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [PCB text 'Out\u2192' on B.Silkscreen @ (157.7, 97.5)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Footprint text of TP1 (ISET) @ (166.0, 99.975)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.3000 mm) [Footprint text of TP1 (ISET) @ (166.0, 99.975)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of C1 @ (171.975, 96.45)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of C1 @ (171.975, 96.45)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Footprint text of TP2 (GND) @ (171.975, 98.7)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.3000 mm) [Footprint text of TP2 (GND) @ (171.975, 98.7)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of RV1 @ (172.175, 102.45)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of RV1 @ (172.175, 102.45)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of C2 @ (171.5, 92.175)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of C2 @ (171.5, 92.175)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [Reference field of USB1 @ (175.9, 103.3)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of R1 @ (165.45, 102.725)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of R1 @ (165.45, 102.725)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7500 mm) [Reference field of USB2 @ (161.7, 103.3)]",
+        "warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of U1 @ (165.025, 92.425)]",
+        "warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of U1 @ (165.025, 92.425)]",
+        "warning: silk_overlap: Silkscreen clearance [Segment of U1 on F.Silkscreen @ (165.445, 97.7975); Circle of USB2 on F.Silkscreen @ (165.4, 94.3)]",
+        "warning: silk_over_copper: Silkscreen clipped by solder mask [PCB text 'Beyondex Current Limiter\nUSB 2.0 Adjustable Limit\nv0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5); PTH pad 1 [GND] of TP2 @ (171.25, 98.7)]"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "custom design rules BeyondexLimiter.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)"
+      ]
+    },
+    {
+      "id": "unrouted",
+      "title": "Unrouted connections",
+      "pitfall": "\u00a711 \u00a712",
+      "status": "pass",
+      "summary": "0 connections still to route",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "parity",
+      "title": "Schematic / PCB parity",
+      "pitfall": "\u00a75",
+      "status": "pass",
+      "summary": "0 mismatches across 9 footprints",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "identity",
+      "title": "Board footprints belong to this schematic",
+      "pitfall": "\u00a75",
+      "status": "pass",
+      "summary": "9 of 9 footprints name a symbol in the schematic",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "fiducials",
+      "title": "Fiducials",
+      "pitfall": "\u00a74",
+      "status": "warn",
+      "summary": "0 on the front, the fab's placement preview wants 3",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "origin",
+      "title": "Placement origin",
+      "pitfall": "\u00a74",
+      "status": "warn",
+      "summary": "no aux axis origin set; set it at a board corner so the position file and drills share one origin",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "layers",
+      "title": "Copper layers",
+      "pitfall": "\u00a79",
+      "status": "pass",
+      "summary": "2 copper layers",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "silk",
+      "title": "Board name and revision on silk",
+      "pitfall": "\u00a710",
+      "status": "warn",
+      "summary": "no revision text (like \"v0.6\") on a silkscreen layer; no board name (\"BeyondexLimiter\") on a silkscreen layer",
+      "details": [
+        "silk texts: Output, Input, \u2192In, Beyondex Current Limiter\\nUSB 2.0 Adjustable Limit\\nv0.6 Designed by Kibbie, Out\u2192"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "connector-names",
+      "title": "Connector names on silk",
+      "pitfall": "\u00a78",
+      "status": "pass",
+      "summary": "0 connectors each have a name on silk",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "dnp",
+      "title": "DNP parts",
+      "pitfall": "\u00a712",
+      "status": "pass",
+      "summary": "0 DNP parts flagged on both schematic and board",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "placement",
+      "title": "Bought parts placed on the board",
+      "pitfall": "\u00a75 \u00a712",
+      "status": "pass",
+      "summary": "7 of 7 bought references have a footprint on the board",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-columns",
+      "title": "bom.csv columns",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "all 8 columns present",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-lcsc",
+      "title": "LCSC code on every BOM line",
+      "pitfall": "\u00a71 \u00a712",
+      "status": "pass",
+      "summary": "6 lines, each with a C-number",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-fields",
+      "title": "BOM lines complete",
+      "pitfall": "\u00a71 \u00a72",
+      "status": "warn",
+      "summary": "6 of 6 lines are not \"done\" (MPN, package, Basic/Extended, stock, datasheet)",
+      "details": [
+        "row 2 C1: 10uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 3 C2: 2.2uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 4 R1: 3.6k\u03a9 \u00b11% (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 5 RV1: R_Potentiometer (Potentiometer_Bourns_TC33X_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 6 U1: CN5711 (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias): missing Basic/Extended, Stock, Datasheet",
+        "row 7 USB1,USB2: TYPE-C-31-M-12 (HRO_TYPE-C-31-M-12): missing Basic/Extended, Stock, Datasheet"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-refs",
+      "title": "bom.csv matches the schematic",
+      "pitfall": "\u00a71 \u00a75 \u00a712",
+      "status": "pass",
+      "summary": "7 bought references, every one on exactly one BOM line",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "not bought: TP1, TP2 (prefix FID/TP/H/MH)"
+      ]
+    },
+    {
+      "id": "bom-value",
+      "title": "BOM value matches the schematic",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "7 references, bom.csv Value equals the schematic Value on each (\u00b5/u, \u03a9/ohm, spaces and case aside)",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "stock",
+      "title": "Catalogue and stock",
+      "pitfall": "\u00a71 \u00a72 \u00a713",
+      "status": "skip",
+      "summary": "not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    }
+  ],
+  "by_hand": [
+    "Fab assembly preview: rotation of 1 polarized or asymmetric parts (U1) (\u00a74)",
+    "Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (\u00a73)",
+    "Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (\u00a72)",
+    "Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (\u00a77)",
+    "Enclosure: component heights, connector edges, mounting hole pattern (\u00a710)",
+    "Hand-drawn power loops, a human look at every autorouted trace (\u00a711)",
+    "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
+  ],
+  "work_dir": null,
+  "result": "FAIL",
+  "exit_code": 1
+}

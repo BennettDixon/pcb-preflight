@@ -1,0 +1,159 @@
+RoyalBlue54L-Feather  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  8 copper layers, 71 footprints  -  bom.csv: royalblue54l-feather.csv
+RESULT: FAIL  -  3 blocking, 3 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Schematic / PCB parity (§5): 0 mismatches across 71 footprints
+  Board footprints belong to this schematic (§5): 71 of 71 footprints name a symbol in the schematic
+  Placement origin (§4): aux axis origin at 119.1, 116.41 mm
+  Copper layers (§9): 8 copper layers
+  Connector names on silk (§8): 5 connectors each have a name on silk
+  DNP parts (§12): 11 DNP parts flagged on both schematic and board (TP1, TP10, TP11, TP12, TP2, TP3, TP5, TP6, TP7, TP8, TP9)
+  Bought parts placed on the board (§5 §12): 48 of 48 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 48 bought references, every one on exactly one BOM line
+        note: not bought: H1, H2, H3, H4, J1, J2, J8, LOGO1, R2, R3, TP1, TP10, +10 more (DNP); JP1 (excluded from the BOM)
+  BOM value matches the schematic (§1): 48 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+
+FINDINGS
+  FAIL  ERC (§12): 7 errors, 64 warnings on 5 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol J8 Pin 1 [VCC, Power input, Line] @ (224.79, 114.3)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U2 Pin 21 [VBUS, Power input, Line] @ (113.03, 66.04)]
+        pin_to_pin: Pins of type Power output and Power output are connected [Symbol U2 Pin 1 [VOUT1, Power output, Line] @ (184.15, 81.28); Symbol U2 Pin 20 [VSYS, Power output, Line] @ (151.13, 58.42)]
+        pin_to_pin: Pins of type Output and Output are connected [Symbol U2 Pin 31 [LSOUT2/VOUTLDO2, Output, Line] @ (184.15, 116.84); Symbol U2 Pin 29 [LSOUT1/VOUTLDO1, Output, Line] @ (184.15, 109.22)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR06 Pin 1 [Power input, Line] @ (191.77, 99.06)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (238.76, 106.68)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Pin 1 [Power input, Line] @ (243.84, 99.06)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'marbastlib-various' [Symbol J3 [USB_C_Receptacle_USB2.0_16P] @ (74.93, 39.37)]
+        warning: lib_symbol_mismatch: Symbol 'USB_C_Receptacle_USB2.0_16P' doesn't match copy in library 'Connector' [Symbol J3 [USB_C_Receptacle_USB2.0_16P] @ (74.93, 39.37)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C24 [C_Small] @ (88.9, 99.06)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 6.399 mm @ (95.201, 41.91)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 5.031 mm @ (90.17, 41.91)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 5.08 mm @ (95.201, 46.99)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol TP7 Pin 1 [1, Passive, Line] @ (95.201, 46.99)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C25 [C_Small] @ (101.6, 99.06)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C18 [C_Small] @ (135.89, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C20 [C_Small] @ (135.89, 66.04)]
+        warning: lib_symbol_issues: The symbol library 'hlord2000-Device' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/hlord2000-kicad-libraries/symbols/hlord2000-Device.kicad_sym' [Symbol Y2 [Crystal_GND24_Small_EZRoute] @ (144.78, 63.5)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C7 [C_Small] @ (175.26, 26.67)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf52' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf52.kicad_sym' [Symbol U5 [nRF52833-QDXX] @ (185.42, 93.98)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C10 [C_Small] @ (198.12, 26.67)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C15 [C_Small] @ (208.28, 26.67)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C23 [C_Small] @ (210.82, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C16 [C_Small] @ (219.71, 26.67)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C22 [C_Small] @ (220.98, 73.66)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C21 [C_Small] @ (228.6, 66.04)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C17 [C_Small] @ (231.14, 26.67)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C19 [C_Small] @ (238.76, 63.5)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C5 [C_Small] @ (101.6, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C1 [C_Small] @ (140.97, 49.53)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-npm' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-ln7fi_gm/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-npm.kicad_sym' [Symbol U2 [nPM1300-QEXX] @ (148.59, 99.06)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C2 [C_Small] @ (158.75, 49.53)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C3 [C_Small] @ (168.91, 49.53)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C4 [C_Small] @ (179.07, 49.53)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C6 [C_Small] @ (194.31, 69.85)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C11 [C_Small] @ (194.31, 132.08)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C8 [C_Small] @ (214.63, 96.52)]
+        warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Bridged' doesn't match copy in library 'Jumper' [Symbol JP1 [SolderJumper_2_Bridged] @ (224.79, 93.98)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C12 [C_Small] @ (57.15, 82.55)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C13 [C_Small] @ (83.82, 67.31)]
+        ... 31 more (--max-details)
+        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to ignore (KiCad default warning)
+  FAIL  DRC (§12): 240 errors, 46 warnings (drill_out_of_range x183, lib_footprint_mismatch x43, copper_edge_clearance x31, clearance x13, courtyards_overlap x11, annular_width x2, lib_footprint_issues x2, holes_co_located x1); 1 footprints without a courtyard
+        annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
+        annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1914 mm) [Track [GND] on F.Cu, length 0.4425 mm @ (127.91, 105.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Track [Net-(U5-DECUSB)] on F.Cu, length 0.5325 mm @ (138.68, 105.16); Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1975 mm) [Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725); Blind via [GND] on F.Cu - B.Cu @ (127.46, 105.48)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 1 [unconnected-(U3-IO1-Pad1)] of U3 on F.Cu @ (127.8975, 104.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 3 [GND] of U3 on F.Cu @ (127.8975, 105.4725); Pad 2 [/Debugger/D-] of U3 on F.Cu @ (127.8975, 104.9725)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925); Pad 11 [Net-(U5-DECUSB)] of U5 on F.Cu @ (138.68, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 12 [/Debugger/D-] of U5 on F.Cu @ (138.28, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.1500 mm) [Pad 13 [/Debugger/D+] of U5 on F.Cu @ (137.88, 105.6925); Pad 14 [unconnected-(U5-P0.15-Pad14)] of U5 on F.Cu @ (137.48, 105.6925)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad A5 [/Debugger/USB.CC1] of J3 on F.Cu @ (125.405, 103.73); Pad B7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 104.23)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad A6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 104.73); Pad A7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 105.23)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 105.73); Pad A7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 105.23)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 105.73); Pad A8 [unconnected-(J3-SBU1-PadA8)] of J3 on F.Cu @ (125.405, 106.23)]
+        clearance: Clearance violation ( clearance 0.2032 mm; actual 0.2000 mm) [Pad B7 [/Debugger/D-] of J3 on F.Cu @ (125.405, 104.23); Pad A6 [/Debugger/D+] of J3 on F.Cu @ (125.405, 104.73)]
+        courtyards_overlap: Courtyards overlap [Footprint J4 @ (136.88, 98.458); Footprint J2 @ (143.23, 94.82)]
+        courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP11 @ (139.1, 102.38)]
+        courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP10 @ (136.7, 99.98)]
+        courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP11 @ (139.1, 102.38)]
+        courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP10 @ (136.7, 99.98)]
+        courtyards_overlap: Courtyards overlap [Footprint H2 @ (174.98, 96.09); Footprint J2 @ (143.23, 94.82)]
+        courtyards_overlap: Courtyards overlap [Footprint J3 @ (121.36, 104.98); Footprint J5 @ (127.99, 96.633)]
+        courtyards_overlap: Courtyards overlap [Footprint TP6 @ (122.3, 108.58); Footprint TP7 @ (122.4, 106.18)]
+        courtyards_overlap: Courtyards overlap [Footprint TP8 @ (122.4, 103.78); Footprint TP5 @ (122.3, 101.38)]
+        courtyards_overlap: Courtyards overlap [Footprint TP8 @ (122.4, 103.78); Footprint TP7 @ (122.4, 106.18)]
+        courtyards_overlap: Courtyards overlap [Footprint H1 @ (121.64, 96.09); Footprint J5 @ (127.99, 96.633)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1275 mm) [Arc on Edge.Cuts @ (121.64, 96.09); Zone [GND] on F.Cu, B.Cu and 4 more, priority 1 @ (118.06, 91.53)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1800 mm) [Segment on Edge.Cuts @ (121.64, 93.55); Zone [+BATT] on In2.Cu, priority 2 @ (144.26, 95.23)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1275 mm) [Arc on Edge.Cuts @ (121.64, 96.09); Zone [VDD] on In2.Cu and In4.Cu, priority 1 @ (118.06, 91.53)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 1 [+BATT] of J2 @ (143.23, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 2 [/Connectors/ENABLE] of J2 @ (145.77, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 3 [VSYS] of J2 @ (148.31, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 4 [/Connectors/DIG.D13] of J2 @ (150.85, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 5 [/Connectors/DIG.D12] of J2 @ (153.39, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 6 [/Connectors/DIG.D11] of J2 @ (155.93, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 7 [/Connectors/DIG.D10] of J2 @ (158.47, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 8 [/Connectors/DIG.D9] of J2 @ (161.01, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 9 [/Connectors/DIG.D6] of J2 @ (163.55, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 10 [/Connectors/DIG.D5] of J2 @ (166.09, 93.55)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (121.64, 93.55); PTH pad 11 [/Connectors/I2C.SCL] of J2 @ (168.63, 93.55)]
+        ... 246 more (--max-details)
+        note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): text_thickness
+        note: minimums: JLCPCB 1 oz copper, 8 layers; below the fab's in the project, raised in the copy: min_clearance 0.0762 -> 0.09 mm, min_copper_edge_clearance 0.127 -> 0.2 mm, min_track_width 0.0762 -> 0.09 mm
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("RoyalBlue54L-Feather") on a silkscreen layer
+        silk texts: Debugger, SCL, SCK, A1, GND, TX, 5, SDI, 13, RoyalBlue54L, A3, 6
+  FAIL  LCSC code on every BOM line (§1 §12): 2 of 29 lines have no LCSC code (a value and a package is not a part)
+        row 16 J6: Conn_01x05_MountingPin (CONN-SMD_5P-P0.50_HCTL_HC-FPC-05-09-5RLTAG)
+        row 23 U1: BM15x (BM15x-LGA-45_15.8x10mm) [has "C9900148376"]
+  WARN  BOM lines complete (§1 §2): 29 of 29 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C12,C16,C17,C19,C24,C25: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C2,C3,C4,C8: 10uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C5,C6: 1uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C7,C9,C10,C23: 4.7uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C11: 2.2uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C13,C14: 300pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 C15,C22: 1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 C18,C20: 12pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 C21: 100pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 D1: LED_Small (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 D3: LED_ARGB (LED_Wurth_150044M155260): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 J3: USB_C_Receptacle_USB2.0_16P (USB_C_Receptacle_HRO_TYPE-C-31-M-12): missing MPN, Basic/Extended, Stock
+        row 14 J4: Conn_01x02_MountingPin (JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 J5: Conn_01x04_MountingPin (JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 J6: Conn_01x05_MountingPin (CONN-SMD_5P-P0.50_HCTL_HC-FPC-05-09-5RLTAG): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 L1: 2.2uH (L_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 R1,R8: 100kR (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 R4: 330kR (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 R5,R7: 10kR (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 R6: 470R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 SW1,SW2: SW_Push (SW_Push_1P1T_NO_Vertical_Wuerth_434133025816): missing MPN, Basic/Extended, Stock, Datasheet
+        row 23 U1: BM15x (BM15x-LGA-45_15.8x10mm): missing MPN, Basic/Extended, Stock
+        row 24 U2: nPM1300-QEXX (QFN-32-1EP_5x5mm_P0.5mm_EP3.6x3.6mm_ThermalVias): missing MPN, Basic/Extended, Stock
+        row 25 U3: TPD3E001DRLR (SOT-553): missing MPN, Basic/Extended, Stock
+        row 26 U4: W25Q16JVUXIQ (Winbond_USON-8-1EP_3x2mm_P0.5mm_EP0.2x1.6mm): missing MPN, Basic/Extended, Stock
+        row 27 U5: nRF52833-QDXX (QFN-40-1EP_5x5mm_P0.4mm_EP3.6x3.6mm_ThermalVias): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 U6: TXB0106RGY (Texas_RGY_R-PVQFN-N16_EP2.05x2.55mm): missing MPN, Basic/Extended, Stock
+        row 29 Y1: 32.768KHz (Crystal_SMD_3215-2Pin_3.2x1.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 Y2: 32MHz (Crystal_SMD_2016-4Pin_2.0x1.6mm): missing MPN, Basic/Extended, Stock, Datasheet
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
+  DRC (§12): 1 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint LOGO1 @ (130.223897, 101.8175)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 17 polarized or asymmetric parts (J4, U1, D3, U2, J3, U4, Y2, D1, SW1, U6, Y1, SW2, +5 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  3 blocking, 3 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again

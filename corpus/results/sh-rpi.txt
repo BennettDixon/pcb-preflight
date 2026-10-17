@@ -1,0 +1,187 @@
+SH-RPi  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 168 footprints  -  bom.csv: sh-rpi.csv
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 168 of 168 footprints name a symbol in the schematic
+  Copper layers (§9): 4 copper layers
+  Board name and revision on silk (§10): name "SH-RPi", revision "v2.0.1"
+  Connector names on silk (§8): 9 connectors each have a name on silk
+  DNP parts (§12): 1 DNP parts flagged on both schematic and board (R306)
+  Bought parts placed on the board (§5 §12): 152 of 152 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 152 bought references, every one on exactly one BOM line
+        note: not bought: H601, H602, H603, H604, TP201, TP301, TP501, TP502, TP901 (prefix FID/TP/H/MH); R306 (DNP); P601, P602, P603, P604, P605, P606 (excluded from the BOM)
+  BOM value matches the schematic (§1): 152 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+
+FINDINGS
+  WARN  ERC (§12): 0 errors, 21 warnings on 10 sheets
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q301 [MMBT5551L] @ (71.12, 71.12)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q302 [MMBT5551L] @ (83.82, 63.5)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C304 [C_Small] @ (120.65, 147.32)]
+        warning: lib_symbol_mismatch: Symbol 'D_Small' doesn't match copy in library 'Device' [Symbol D302 [D_Small] @ (123.19, 110.49)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C306 [C_Small] @ (124.46, 29.21)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D305 [D] @ (180.34, 64.77)]
+        warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Bridged' doesn't match copy in library 'Jumper' [Symbol JP801 [SolderJumper_2_Bridged] @ (92.71, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C802 [C_Small] @ (100.33, 91.44)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D801 [D] @ (114.3, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'D' doesn't match copy in library 'Device' [Symbol D802 [D] @ (114.3, 80.01)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1001 [MMBT5551L] @ (87.63, 54.61)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1002 [MMBT5551L] @ (87.63, 92.71)]
+        warning: lib_symbol_mismatch: Symbol 'MMBT5551L' doesn't match copy in library 'Transistor_BJT' [Symbol Q1003 [MMBT5551L] @ (87.63, 130.81)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C202 [C_Small] @ (130.81, 154.94)]
+        warning: lib_symbol_mismatch: Symbol 'D_Small' doesn't match copy in library 'Device' [Symbol D201 [D_Small] @ (133.35, 118.11)]
+        warning: lib_symbol_mismatch: Symbol 'Raspberry_Pi_2_3' doesn't match copy in library 'Connector' [Symbol J501 [Raspberry_Pi_2_3] @ (59.69, 76.2)]
+        warning: lib_symbol_mismatch: Symbol 'SolderJumper_2_Open' doesn't match copy in library 'Jumper' [Symbol JP501 [SolderJumper_2_Open] @ (99.06, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D506 [LED] @ (219.71, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D507 [LED] @ (234.95, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D508 [LED] @ (250.19, 60.96)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D509 [LED] @ (265.43, 60.96)]
+  FAIL  DRC (§12): 210 errors, 148 warnings (drill_out_of_range x199, lib_footprint_mismatch x129, silk_over_copper x12, hole_to_hole x8, silk_overlap x5, copper_edge_clearance x2, silk_edge_clearance x2, padstack x1); 6 footprints without a courtyard
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0505 mm) [Segment on Edge.Cuts @ (59.5, 36.0); Zone [+5V] on F.Cu, priority 0 @ (79.3, 43.6)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0506 mm) [Arc on Edge.Cuts @ (118.5, 89.5); Zone [GND] on In1.Cu and In2.Cu, priority 0 @ (122.1, 93.0)]
+        padstack: Padstack is questionable (negative solder paste margin is larger than pad; no solder paste mask will be generated) [Pad 3 [GND] of J801 on B.Cu @ (84.3, 85.6)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 4 [+5V] of J501 @ (67.41, 38.73); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 1 [unconnected-(J501-3V3-Pad1)_1] of J501 @ (64.87, 41.27); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 2 [+5V] of J501 @ (64.87, 38.73); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 3 [/SDA] of J501 @ (67.41, 41.27); NPTH pad of J501 @ (66.14, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 38 [unconnected-(J501-GPIO20/MOSI1-Pad38)_1] of J501 @ (110.59, 38.73)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 40 [unconnected-(J501-GPIO21/SCLK1-Pad40)_2] of J501 @ (113.13, 38.73)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [PTH pad 37 [unconnected-(J501-GPIO26-Pad37)_1] of J501 @ (110.59, 41.27); NPTH pad of J501 @ (111.86, 40.0)]
+        hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2461 mm) [NPTH pad of J501 @ (111.86, 40.0); PTH pad 39 [GND] of J501 @ (113.13, 41.27)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 74.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 75.225)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (114.85, 76.425)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 74.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 75.225)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U301 @ (116.25, 76.425)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 55.625)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 56.825)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (114.25, 58.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 55.625)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 56.825)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U201 @ (115.65, 58.025)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (93.6, 69.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (84.0, 49.1765)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (110.771052, 44.25)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (89.2, 68.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (104.6, 50.9)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (71.07, 46.9)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (97.8, 56.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (75.0, 79.3)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (76.8, 54.6)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (105.2, 69.6)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (116.278946, 44.25)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (89.3, 54.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (87.8, 54.2)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (119.2, 50.0)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (58.55, 75.0)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (58.5, 57.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [Via [GND] on F.Cu - B.Cu @ (80.7, 56.6)]
+        ... 318 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_copper_edge_clearance 0.05 -> 0.2 mm
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 33 warnings across 168 footprints
+        warning: net_conflict: Pad net (/Buck converter stage 2/COMP_) doesn't match net given by schematic (/Buck converter 5V/COMP_) [Pad 2 [/Buck converter stage 2/COMP_] of C202 on F.Cu @ (117.72, 61.1)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of C203 on F.Cu @ (111.95, 51.2)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 2 [/Buck converter stage 2/BOOT_] of C203 on F.Cu @ (110.4, 51.2)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 1 [/Buck converter stage 2/BOOT_] of D201 on F.Cu @ (108.9, 52.4)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of D202 on F.Cu @ (118.25, 52.25)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of L201 on F.Cu @ (117.725, 48.06)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/RT) doesn't match net given by schematic (/Buck converter 5V/RT) [Pad 1 [/Buck converter stage 2/RT] of R201 on F.Cu @ (111.99, 60.15)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/BOOT_) doesn't match net given by schematic (/Buck converter 5V/BOOT_) [Pad 1 [/Buck converter stage 2/BOOT_] of R202 on F.Cu @ (110.35, 52.77)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/BOOT) doesn't match net given by schematic (/Buck converter 5V/BOOT) [Pad 2 [/Buck converter stage 2/BOOT] of R202 on F.Cu @ (112.0, 52.77)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/COMP_) doesn't match net given by schematic (/Buck converter 5V/COMP_) [Pad 1 [/Buck converter stage 2/COMP_] of R203 on F.Cu @ (117.69, 60.1)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/COMP) doesn't match net given by schematic (/Buck converter 5V/COMP) [Pad 2 [/Buck converter stage 2/COMP] of R203 on F.Cu @ (118.71, 60.1)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 2 [/Buck converter stage 2/FB] of R204 on F.Cu @ (114.56, 60.03)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 1 [/Buck converter stage 2/FB] of R205 on F.Cu @ (115.6, 60.04)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/FBB_) doesn't match net given by schematic (/Buck converter 5V/FBB_) [Pad 2 [/Buck converter stage 2/FBB_] of R205 on F.Cu @ (115.6, 61.06)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/FBB_) doesn't match net given by schematic (/Buck converter 5V/FBB_) [Pad 1 [/Buck converter stage 2/FBB_] of R206 on F.Cu @ (116.65, 60.04)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of TP201 on B.Cu @ (118.5, 52.8)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/BOOT) doesn't match net given by schematic (/Buck converter 5V/BOOT) [Pad 1 [/Buck converter stage 2/BOOT] of U201 on F.Cu @ (112.475, 54.92)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/RT) doesn't match net given by schematic (/Buck converter 5V/RT) [Pad 4 [/Buck converter stage 2/RT] of U201 on F.Cu @ (112.475, 58.73)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/FB) doesn't match net given by schematic (/Buck converter 5V/FB) [Pad 5 [/Buck converter stage 2/FB] of U201 on F.Cu @ (117.425, 58.73)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/COMP) doesn't match net given by schematic (/Buck converter 5V/COMP) [Pad 6 [/Buck converter stage 2/COMP] of U201 on F.Cu @ (117.425, 57.46)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 8 [/Buck converter stage 2/SW] of U201 on F.Cu @ (117.425, 54.92)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L1_) doesn't match net given by schematic (/I{slash}O/L1_) [Pad 2 [/I/O/L1_] of D506 on F.Cu @ (58.5, 55.2125)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L2_) doesn't match net given by schematic (/I{slash}O/L2_) [Pad 2 [/I/O/L2_] of D507 on F.Cu @ (58.5, 60.7125)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L3_) doesn't match net given by schematic (/I{slash}O/L3_) [Pad 2 [/I/O/L3_] of D508 on F.Cu @ (58.5, 66.2125)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L4_) doesn't match net given by schematic (/I{slash}O/L4_) [Pad 2 [/I/O/L4_] of D509 on F.Cu @ (58.5, 71.7125)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [PTH pad 7 [/I/O/GPIO4] of J501 @ (72.49, 41.27)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 7 [/I/O/GPIO4] of J501 on B.Cu @ (72.49, 41.82)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 7 [/I/O/GPIO4] of J501 on B.Cu @ (72.49, 42.985)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/GPIO4) doesn't match net given by schematic (/I{slash}O/GPIO4) [Pad 1 [/I/O/GPIO4] of JP501 on B.Cu @ (73.345, 46.2)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L1_) doesn't match net given by schematic (/I{slash}O/L1_) [Pad 2 [/I/O/L1_] of R501 on F.Cu @ (60.19, 51.4)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L2_) doesn't match net given by schematic (/I{slash}O/L2_) [Pad 2 [/I/O/L2_] of R502 on F.Cu @ (60.19, 52.4)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L3_) doesn't match net given by schematic (/I{slash}O/L3_) [Pad 2 [/I/O/L3_] of R503 on F.Cu @ (60.18, 53.4)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+        warning: net_conflict: Pad net (/I/O/L4_) doesn't match net given by schematic (/I{slash}O/L4_) [Pad 2 [/I/O/L4_] of R504 on F.Cu @ (60.19, 54.4)]; the two names differ only in their sheet path (/I/O/ against /I{slash}O/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  FAIL  LCSC code on every BOM line (§1 §12): 3 of 77 lines have no LCSC code (a value and a package is not a part)
+        row 19 C1004,C1005,C1006: CAS SCAP 3.0V20F (CP_Radial_D12.6mm_H26.0mm_P5.30mm_Horizontal)
+        row 38 JP501: Open (SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm)
+        row 39 JP801: Bridged (SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm)
+  WARN  BOM lines complete (§1 §2): 77 of 77 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C201: 4.7uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C202: 3.3nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C203,C308: 100nF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C204,C205: 47uF 6.3V (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C301,C302,C702,C703,C704,C705: 10uF 50V (C_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C303: 1uF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 8 C304: 470pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 C305,C306,C311,C312,C403,C406,C803,C1001,C1002,C1003: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 C307: 220nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 C309,C310: 47uF 16V (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 C401,C402: 33pF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 C404,C405: 33pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 14 C701: 100nF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 C801: 1uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 C802: 22pF C0G (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 C901: 1uF 16V (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 C902: 10uF 6.3V (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 C1004,C1005,C1006: CAS SCAP 3.0V20F (CP_Radial_D12.6mm_H26.0mm_P5.30mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 D201,D302,D305: 1N4148WT (D_SOD-523): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 D202: MSK340A (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 D301,D304: BZT52C3V3S (D_SOD-323): missing MPN, Basic/Extended, Stock, Datasheet
+        row 23 D303: SS56FL (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 24 D401,D402,D501,D503,D505: ESD5451N (D_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 25 D502,D504,D901,D1001,D1002,D1003: 1N5819WS (D_SOD-323_HandSoldering): missing MPN, Basic/Extended, Stock, Datasheet
+        row 26 D506,D507,D508,D509: WHITE LED (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 D701: 5.0SMDJ33CA (D_SMC): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 D702: 10S45SP (SS5U100_TO-277): missing MPN, Basic/Extended, Stock, Datasheet
+        row 29 D801,D802: 1N4148WS (D_SOD-323): missing MPN, Basic/Extended, Stock, Datasheet
+        row 30 F701: 12T.40000063AG12S1B02 (Fuse_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 31 FB401,FB402: GZ2012D601TF (L_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 32 J101,J502: Conn_01x02 (PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 J301: Conn_02x02 (PinHeader_2x02_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 34 J401: Conn_02x02_Top_Bottom (PinHeader_2x02_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 35 J402: Conn_02x06_Odd_Even (PinHeader_2x06_P2.54mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet
+        row 36 J501: Raspberry_Pi_2_3 (PassthroughPinSocket_FH-00339_2x40_P2.54mm_Vertical_Bottom): missing MPN, Basic/Extended, Stock
+        row 37 J801: Conn_01x03 (BatteryHolder_Myoung_MY-1220-03): missing MPN, Basic/Extended, Stock, Datasheet
+        row 38 JP501: Open (SolderJumper-2_P1.3mm_Open_TrianglePad1.0x1.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 39 JP801: Bridged (SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+        row 40 L201,L702: FXL0420-1R0-M (L_MWSA0402): missing MPN, Basic/Extended, Stock, Datasheet
+        row 41 L301: SLO0530H3R3MTT (L_MWSA0503S): missing MPN, Basic/Extended, Stock, Datasheet
+        ... 37 more (--max-details)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
+  DRC (§12): 6 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint P601 @ (60.5, 47.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P604 @ (116.07, 47.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P606 @ (70.67, 55.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P602 @ (102.07, 67.8)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P603 @ (99.8, 85.1)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint P605 @ (60.5, 55.6)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 60 polarized or asymmetric parts (D701, L301, FB401, F701, L702, D305, D303, D505, Q302, FB402, U401, U1002, +48 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

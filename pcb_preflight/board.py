@@ -25,6 +25,7 @@ class Footprint:
     nets: tuple = ()      # net names on its pads
     paste: bool = False   # a pad on a paste layer: the fab solders a part here
     net_tie: bool = False
+    uuid: str = ''        # the footprint's own (uuid ...) / (tstamp ...): kicad-cli's DRC items name footprints by it
 
     @property
     def dnp(self):
@@ -92,6 +93,7 @@ def load(path):
         for a in sexpr.children(fp, 'attr'):
             attrs.update(sexpr.atoms(a))
         path_node = sexpr.child(fp, 'path')
+        uuid_node = sexpr.child(fp, 'uuid') or sexpr.child(fp, 'tstamp')
         nets, paste = set(), False
         pads = sexpr.children(fp, 'pad')
         for pad in pads:
@@ -106,7 +108,8 @@ def load(path):
             x=sexpr.number(at[1]), y=sexpr.number(at[2]), rot=sexpr.number(at[3]) if len(at) > 3 else 0.0,
             attrs=attrs, value_layer=val_layer, value_hidden=bool(hide and len(hide) > 1 and hide[1] == 'yes'),
             pads=len(pads), path=path_node[1] if path_node and len(path_node) > 1 else '',
-            nets=tuple(sorted(nets)), paste=paste, net_tie=bool(sexpr.child(fp, 'net_tie_pad_groups'))))
+            nets=tuple(sorted(nets)), paste=paste, net_tie=bool(sexpr.child(fp, 'net_tie_pad_groups')),
+            uuid=uuid_node[1] if uuid_node and len(uuid_node) > 1 and not isinstance(uuid_node[1], list) else ''))
 
     texts = []
     for t in sexpr.children(root, 'gr_text'):

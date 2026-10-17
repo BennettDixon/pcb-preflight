@@ -62,13 +62,13 @@ Package_SO:HTSSOP-20-1EP_4.4x6.5mm_P0.65mm_EP3.4x6.5mm,TSSOP-20-EP,same,pads,sam
 # small-outline families the names confuse and the pads settle, or the names fold and the library keeps apart
 Package_SO:VSSOP-8_3x3mm_P0.65mm,MSOP-8,same,pads,different,names,C7985 TI LMV393MMX/NOPB lists MSOP-8; KiCad 10.0.7 MSOP-8_3x3mm_P0.65mm.kicad_mod (JEDEC MO-187 AA) and VSSOP-8_3x3mm_P0.65mm.kicad_mod (MO-187) differ in pad width 0.4 vs 0.5 mm only,
 Package_SO:MSOP-8_3x3mm_P0.65mm,VSSOP-8_3x3mm_P0.65mm,same,pads,different,names,KiCad 10.0.7 MSOP-8_3x3mm_P0.65mm.kicad_mod against VSSOP-8_3x3mm_P0.65mm.kicad_mod: pad width 0.4 vs 0.5 mm only,
-Package_SO:MSOP-8_3x3mm_P0.65mm,VSSOP-8,unknown,ambiguous,different,names,"C7851 TI SN74LVC2G74DCUR lists VSSOP-8; KiCad has VSSOP-8_2.3x2mm_P0.5mm and VSSOP-8_3x3mm_P0.65mm (both MO-187), so the pads match one of two and the string does not say which",
-Package_SO:VSSOP-8_3x3mm_P0.65mm,VSSOP-8,unknown,ambiguous,same,names,C7851 TI SN74LVC2G74DCUR lists VSSOP-8; two VSSOP-8 land patterns in KiCad (pitch 0.5 and 0.65 mm),
+Package_SO:MSOP-8_3x3mm_P0.65mm,VSSOP-8,same,pads,different,names,"C7851 TI SN74LVC2G74DCUR lists VSSOP-8; KiCad has VSSOP-8_2.3x2mm_P0.5mm and VSSOP-8_3x3mm_P0.65mm (both MO-187); the string does not say which, the board's own footprint does: its pads match the 3x3 one alone",
+Package_SO:VSSOP-8_3x3mm_P0.65mm,VSSOP-8,same,pads,same,names,C7851 TI SN74LVC2G74DCUR lists VSSOP-8; two VSSOP-8 land patterns in KiCad (pitch 0.5 and 0.65 mm) and the board's own footprint is one of them,
 Package_SO:VSSOP-8_2.3x2mm_P0.5mm,VSSOP-8_3x3mm_P0.65mm,different,pads-differ,different,dims,"KiCad 10.0.7 VSSOP-8_2.3x2mm_P0.5mm.kicad_mod against VSSOP-8_3x3mm_P0.65mm.kicad_mod: pitch 0.5 vs 0.65 mm, body 2.3 vs 3 mm",
 Package_SO:SSOP-8_3.9x5.05mm_P1.27mm,SSOP-8_2.95x2.8mm_P0.65mm,different,pads-differ,different,dims,KiCad 10.0.7 SSOP-8_3.9x5.05mm_P1.27mm.kicad_mod (Fujitsu MB85RS16) against SSOP-8_2.95x2.8mm_P0.65mm.kicad_mod: pitch 1.27 vs 0.65 mm,
 Package_SO:TSSOP-14_4.4x5mm_P0.65mm,TSSOP-14_4.4x3.6mm_P0.4mm,different,pads-differ,different,dims,KiCad 10.0.7 TSSOP-14_4.4x5mm_P0.65mm.kicad_mod (JEDEC MO-153 AB-1) against TSSOP-14_4.4x3.6mm_P0.4mm.kicad_mod (MO-194 AA): pitch 0.65 vs 0.4 mm,
-Package_SO:TSSOP-14_4.4x5mm_P0.65mm,TSSOP-14,unknown,ambiguous,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14; KiCad has TSSOP-14 at 0.65 mm (MO-153) and 0.4 mm (MO-194) pitch, so the string does not say which",
-Package_SO:TSSOP-14_4.4x3.6mm_P0.4mm,TSSOP-14,unknown,ambiguous,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14 (the 0.65 mm part on the 0.4 mm footprint would pass by name alone)",
+Package_SO:TSSOP-14_4.4x5mm_P0.65mm,TSSOP-14,same,pads,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14; KiCad has TSSOP-14 at 0.65 mm (MO-153) and 0.4 mm (MO-194) pitch; the string does not say which, the board's own footprint (one of them) does",
+Package_SO:TSSOP-14_4.4x3.6mm_P0.4mm,TSSOP-14,same,pads,same,names,"C5587 Nexperia 74HC00PW,118 lists TSSOP-14: the 0.65 mm part on the 0.4 mm footprint passes, because the catalogue string states no pitch and the board's footprint is a TSSOP-14 (a stated pitch blocks: the TSSOP-14_4.4x3.6mm_P0.4mm row above)",
 # no-lead packages: the body size is in both names; V/W/T/UQFN are QFN thicknesses (JEDEC MO-220) and the pads confirm it
 Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.45x1.45mm,QFN-16-EP(3x3),same,pads,same,names,C43590 TI TPS62130RGTR,
 Package_DFN_QFN:QFN-16-1EP_4x4mm_P0.65mm_EP2.1x2.1mm,QFN-16-EP(3x3),different,pads-differ,different,names,C43590 TI TPS62130RGTR,
@@ -100,3 +100,41 @@ Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,"Plugin,P=2.5mm",unknown,unr
 Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,SOIC-8-EP,different,pads-differ,different,names,C9864 TI TPS5430DDAR (a name match never overrides different),SOIC-8-EP
 Connector_Dsub:DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm,Push-Pull,unknown,unreadable,unknown,unreadable,C190083 Ckmtw D-DMR025PF-D002,
 Fuse:Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal,Plugin,unknown,unreadable,unknown,unreadable,C151074 Littelfuse 01000056Z,
+# the regression corpus of 2026-10-17 (corpus/RESULTS.md "Fixture rows the corpus justifies"): catalogue strings on the footprints of built boards
+Package_DFN_QFN:QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm,LQFN-56(7x7),same,pads,same,names,"C2040 Raspberry Pi RP2040 (openjbod-rp2040 U1, pocketpd U3; both built): LQFN is a QFN",RP2040
+Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,WQFN4040-24,same,pads,same,names,C5244513 Diodes AP33772DKZ-13 (pocketpd U2): Diodes' W-QFN4040-24 is a 4.0x4.0 mm 24-pin body,AP33772DKZ-13
+Package_SO:SOIC-8_5.23x5.23mm_P1.27mm,SOIC-8-208mil,same,pads,same,names,"C97521 Winbond W25Q128JVSIQ (openjbod-rp2040 U3): KiCad 9's name of the 208 mil body; KiCad 10 names it SOIC-8_5.3x5.3mm_P1.27mm, whose pads are read",W25Q128JVSIQ
+Package_TO_SOT_SMD:SOT-553,SOT-5X3-5,same,pads,same,names,C2999113 TI TPD3E001DRLR-TP (royalblue54l-feather U3): TI DRL with 5 leads,TPD3E001DRLR-TP
+Package_TO_SOT_SMD:SOT-583-8,SOT-5X3,same,pads,same,names,C22399676 TI TPS2117DRLR (openair-max U7): TI DRL with 8 leads,TPS2117DRLR
+SOT-583-8_L2.1-W1.2-P0.50-LS1.6-BL,SOT-5X3,same,pads,same,names,C22399676 TI TPS2117DRLR on openair-max's EasyEDA footprint name (resolves to KiCad's SOT-583-8 by name),TPS2117DRLR
+Package_TO_SOT_SMD:SOT-23-6,SOT-23-Thin-6,same,pads,same,names,"C473912 TI TPL5010DDCR (openair-max U3): TI DDC ""SOT-23-THIN"", the thickness word between family and pin count",TPL5010DDCR
+SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR,SOT-23-Thin-6,same,pads,same,names,C473912 TI TPL5010DDCR on openair-max's EasyEDA footprint name,TPL5010DDCR
+easyeda2kicad:C0402,0402,same,pads,same,names,C1525 Samsung CL05B104KO5NNNC (openair-max C5): EasyEDA puts the reference letter before the chip size,CL05B104KO5NNNC
+easyeda2kicad:C1206,1206,same,pads,same,names,C109464 Yageo CC1206KKX7R7BB106 (openair-max C23),CC1206KKX7R7BB106
+PCM_JLCPCB:R0805,0805,same,pads,same,names,C2683107 ARG05BTC5233 (jlcpcb-example R4): the JLCPCB KiCad Library's name,ARG05BTC5233
+PCM_JLCPCB:L0805,0805,same,pads,same,names,C2885888 MLI2012F-1R5KT (jlcpcb-example L1),MLI2012F-1R5KT
+easyeda2kicad:C0402,0603,different,pads-differ,different,names,C14663 CC0603KRX7R9BB104 (a 0603) must not pass on a C0402,CC0603KRX7R9BB104
+Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,SMD3225-4P,same,pads,same,names,C9010 X322540MPB4SI (canfd-mc X1); C9002 (openjbod-rp2040 Y1); C133334 (pocketpd Y1),X322540MPB4SI
+Crystal:Crystal_SMD_3215-2Pin_3.2x1.5mm,SMD3215-2P,same,pads,same,names,C32346 Epson Q13FC13500004 (royalblue54l-feather Y1),Q13FC13500004
+Crystal:Crystal_SMD_2016-4Pin_2.0x1.6mm,SMD2016-4P,same,pads,same,names,C2682773 X201632MOB4SI (royalblue54l-feather Y2),X201632MOB4SI
+Crystal:Crystal_SMD_2012-2Pin_2.0x1.2mm,SMD2012-2P,same,pads,same,names,C55208 X1A0000610002 (sh-rpi Y801),X1A0000610002
+Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,SMD2520-4P,different,pads-differ,different,names,C669070 OT252048MJBA4SL (soldiercrab Y1): a 2520 oscillator on a 3225 footprint,OT252048MJBA4SL
+SMD3225-4P,SMD3225-4P,same,pads,same,names,C5137262 SX3M25.000E20F30THN (bitaxegt U8): the footprint is named after the catalogue string; both resolve to KiCad's Crystal_SMD_3225-4Pin_3.2x2.5mm,SX3M25.000E20F30THN
+Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A,CASE-A-3216-18(mm),same,pads,same,names,C11366 AVX TAJA226K010RNJ (openjbod-rp2040 C2): the EIA tantalum case code,TAJA226K010RNJ
+Package_SO:TI_SO-PowerPAD-8_ThermalVias,SO-8-EP,same,pads,same,names,"C477928 TI LM5164DDAR (canfd-mc U3): pad 9 is the exposed pad stacked with 8 via-in-pad holes numbered 9, read as one pad (9 pads, not 19)",LM5164DDAR
+Package_SO:TI_SO-PowerPAD-8,ESOP-8,same,pads,same,names,C16581 TP4056-42-ESOP8 (sonatino U4): pad 9 is drawn as four tiles numbered 9 and read as one pad,TP4056-42-ESOP8
+Package_DFN_QFN:DFN-6-1EP_3x2mm_P0.5mm_EP1.65x1.35mm_Dual_MOSFETs,TDFN-6-EP(2x3),same,pads,same,names,"C700968 HSCC8233 (sonatino Q3): the board's KiCad 8 footprint name; KiCad 10 names it DFN-6-1EP_3x2mm_P0.5mm_EP1.65x1.35mm, whose pads are read",HSCC8233
+Package_BGA:BGA-24_5x5_6.0x8.0mm,BGA24_6X8,same,pads,same,names,"C5448342 APS256XXN-OBR-BG (soldiercrab U10): 5x5 is the ball layout, 6.0x8.0mm the body; KiCad 10 names the footprint BGA-24_6x8mm_Layout5x5_P1.0mm",APS256XXN-OBR-BG
+Package_BGA:BGA-24_6x8mm_Layout5x5_P1.0mm,BGA24_6X8,same,pads,same,names,C5448342 APS256XXN-OBR-BG on KiCad 10's name of the same footprint,APS256XXN-OBR-BG
+Diode_SMD:D_SMA,SMAF,different,names,different,names,C122865 SS56FL (sh-rpi D303): SMAF is DO-221AC a smaller land pattern; KiCad has no D_SMAF so the names decide even with the library,SS56FL
+Capacitor_SMD:C_0402_1005Metric,0603,different,pads-differ,different,names,"C92827 Taiyo Yuden TMK107B7105KA-T (bitaxeaura C15, issue #1)",TMK107B7105KA-T
+Resistor_SMD:R_0402_1005Metric,0603,different,pads-differ,different,names,C22980 0603WAF3601T5E (BeyondexLimiter R1 before commit 3256bd86),0603WAF3601T5E
+Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias,ESOP-8,same,pads,same,names,C35634 CN5711 (beyondex-limiter U1),CN5711
+Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm,SOIC-16_3.9x9.9mm_P1.27mm,different,pads-differ,different,names,KiCad 10.0.7 SOIC-16W_7.5x10.3mm_P1.27mm.kicad_mod (the 300 mil body) against SOIC-16_3.9x9.9mm_P1.27mm.kicad_mod (150 mil),
+# an ambiguous catalogue string against the board's own library footprint: its pads pick the land pattern; against a footprint KiCad does not have, the ambiguity stays
+Package_DFN_QFN:VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm,QFN-20-EP(3x3),same,pads,same,names,"C507118 Microchip ATTINY1616-MNR (sh-rpi U401): KiCad has QFN-20 3x3 at 0.4, 0.45 and 0.5 mm pitch; the board's own footprint picks",ATTINY1616-MNR
+Package_SO:TSSOP-16_4.4x5mm_P0.65mm,TSSOP-16,same,pads,same,names,C146242 WM8524CGEDT/R (sonatino U13): KiCad has TSSOP-16 at 0.4 and 0.65 mm pitch; the board's own footprint picks,WM8524CGEDT/R
+Package_SO:SSOP-20_5.3x7.2mm_P0.65mm,SSOP-20,same,pads,same,names,"C323842 WM8782SEDS/RV (sonatino U15): KiCad has SSOP-20 bodies of 3.9, 4.4 and 5.3 mm; the board's own footprint picks",WM8782SEDS/RV
+TSSOP-20_L6.5-W4.4-P0.65-LS6.4-BL,TSSOP-20,unknown,ambiguous,same,names,"C555146 TI BQ7790512PWR (openair-max U4): the board's EasyEDA footprint is not a KiCad footprint, so nothing picks among TSSOP-20's three pitches and two widths",BQ7790512PWR
+DFN2510A-10_L2.5-W1.0-P0.50-BL,DFN2510-10,same,names,same,names,"C478121 Diodes PUSB3F96X (cm5-minima D401-D403, a built board): the EasyEDA footprint carries a variant letter after the body digits; KiCad has no DFN-10 2.5x1 mm footprint, so the names decide even with the library",PUSB3F96X
+Fuse:Fuse_1206_3216Metric,F1206,same,pads,same,names,C2685749 BSMD1206-200-16V (openair-max F1): EasyEDA's fuse chip name,BSMD1206-200-16V

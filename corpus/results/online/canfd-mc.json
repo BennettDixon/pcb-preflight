@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "version": "0.2.0",
+  "project": "canfd-mc",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/canfd-mc",
+  "kicad_version": "10.0.7",
+  "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+  "preset": "jlcpcb-assembly@2026.10",
+  "options": {
+    "online": true,
+    "strict": false,
+    "skip_prefixes": [
+      "FID",
+      "TP",
+      "H",
+      "MH",
+      "#"
+    ],
+    "stock_multiple": 10,
+    "custom_rules_present": false,
+    "footprints": "/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints"
+  },
+  "owned": {
+    "drc": {},
+    "erc": {},
+    "pin_map": 0,
+    "minimums": {},
+    "netclasses": {}
+  },
+  "copper_layers": 4,
+  "footprints": 51,
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/canfd-mc.csv",
+  "checks": [
+    {
+      "id": "erc",
+      "title": "ERC",
+      "pitfall": "\u00a712",
+      "status": "warn",
+      "summary": "0 errors, 2 warnings on 1 sheet",
+      "details": [
+        "warning: same_local_global_label: Local and global labels have same name [Symbol #PWR01 Pin 1 [Power input, Line] @ (224.79, 275.59); Label '+3V3' @ (340.36, 162.56)]",
+        "warning: same_local_global_label: Local and global labels have same name [Symbol #PWR02 Pin 1 [Power input, Line] @ (250.19, 275.59); Label 'GND' @ (234.95, 182.88)]"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "drc",
+      "title": "DRC",
+      "pitfall": "\u00a712",
+      "status": "warn",
+      "summary": "0 errors, 1 warnings (lib_footprint_mismatch x1)",
+      "details": [
+        "warning: lib_footprint_mismatch: Footprint 'ESP32-S3-WROOM-1U' does not match copy in library 'RF_Module' [Footprint U1 @ (60.79, 68.395606)]"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "unrouted",
+      "title": "Unrouted connections",
+      "pitfall": "\u00a711 \u00a712",
+      "status": "pass",
+      "summary": "0 connections still to route",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "parity",
+      "title": "Schematic / PCB parity",
+      "pitfall": "\u00a75",
+      "status": "warn",
+      "summary": "0 mismatches, 1 warnings across 51 footprints",
+      "details": [
+        "warning: net_conflict: Pad missing net given by schematic (unconnected-(U1-IO1-Pad39)) [Pad 39 [<no net>] of U1 on F.Cu @ (53.65, 59.645606)]; the pad has no net and the schematic pin is unconnected: a no-connect, not two nets"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "identity",
+      "title": "Board footprints belong to this schematic",
+      "pitfall": "\u00a75",
+      "status": "pass",
+      "summary": "51 of 51 footprints name a symbol in the schematic",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "fiducials",
+      "title": "Fiducials",
+      "pitfall": "\u00a74",
+      "status": "warn",
+      "summary": "0 on the front, the fab's placement preview wants 3",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "origin",
+      "title": "Placement origin",
+      "pitfall": "\u00a74",
+      "status": "pass",
+      "summary": "aux axis origin at 50, 82 mm",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "layers",
+      "title": "Copper layers",
+      "pitfall": "\u00a79",
+      "status": "pass",
+      "summary": "4 copper layers",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "silk",
+      "title": "Board name and revision on silk",
+      "pitfall": "\u00a710",
+      "status": "pass",
+      "summary": "name \"CANFD-MC v1.0 2026-09\", revision \"CANFD-MC v1.0 2026-09\"",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "connector-names",
+      "title": "Connector names on silk",
+      "pitfall": "\u00a78",
+      "status": "pass",
+      "summary": "0 connectors each have a name on silk",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "dnp",
+      "title": "DNP parts",
+      "pitfall": "\u00a712",
+      "status": "pass",
+      "summary": "3 DNP parts flagged on both schematic and board (CT1, RT1, RT2)",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "placement",
+      "title": "Bought parts placed on the board",
+      "pitfall": "\u00a75 \u00a712",
+      "status": "pass",
+      "summary": "37 of 37 bought references have a footprint on the board",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-columns",
+      "title": "bom.csv columns",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "all 8 columns present",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-lcsc",
+      "title": "LCSC code on every BOM line",
+      "pitfall": "\u00a71 \u00a712",
+      "status": "pass",
+      "summary": "26 lines, each with a C-number",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-fields",
+      "title": "BOM lines complete",
+      "pitfall": "\u00a71 \u00a72",
+      "status": "warn",
+      "summary": "26 of 26 lines are not \"done\" (MPN, package, Basic/Extended, stock, datasheet)",
+      "details": [
+        "row 2 C1,C2: 4.7uF 100V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 3 C3,C4,C12,C13: 22uF 10V (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 4 C5,C6: 2.2nF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 5 C7: 270pF C0G (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 6 C10,C11: 22pF C0G (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 7 C14,C16,C18: 100nF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 8 C15: 10uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 9 C17: 4.7uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 10 C19: 1uF (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 11 D1: SS36 (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 12 D2: SMBJ24CA (D_SMB): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 13 D3: PESD2CAN (SOT-23): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 14 F1: 1A 63V (Fuse_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 15 L1: DLW43SH101XK2L (L_CommonModeChoke_Murata_DLW43SH): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 16 L2: 22uH (L_Changjiang_FNR5040S): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 17 R1: 27.4k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 18 R2,R6: 100k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 19 R3: 57.6k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 20 R4: 150k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 21 R5: 365k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 22 R7,R8,R9: 10k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 23 U1: ESP32-S3-WROOM-1U-N16R8 (ESP32-S3-WROOM-1U): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 24 U2: MCP2518FDT-E/SL (SOIC-14_3.9x8.7mm_P1.27mm): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 25 U3: LM5164DDAR (TI_SO-PowerPAD-8_ThermalVias): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 26 U4: TCAN332GDR (SOIC-8_3.9x4.9mm_P1.27mm): missing MPN, Basic/Extended, Stock, Datasheet",
+        "row 27 X1: 40MHz 15pF (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing MPN, Basic/Extended, Stock, Datasheet"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "bom-refs",
+      "title": "bom.csv matches the schematic",
+      "pitfall": "\u00a71 \u00a75 \u00a712",
+      "status": "pass",
+      "summary": "37 bought references, every one on exactly one BOM line",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "not bought: TP1, TP2, TP3, TP4, TP5, TP6, TP7 (prefix FID/TP/H/MH); CT1, RT1, RT2 (DNP); P1, P2, P3, P4 (excluded from the BOM)"
+      ]
+    },
+    {
+      "id": "bom-value",
+      "title": "BOM value matches the schematic",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "37 references, bom.csv Value equals the schematic Value on each (\u00b5/u, \u03a9/ohm, spaces and case aside)",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "stock",
+      "title": "Catalogue and stock",
+      "pitfall": "\u00a71 \u00a72 \u00a713",
+      "status": "fail",
+      "summary": "26 codes found, 1 blocking, 0 low-stock/mismatch, 26 not checked; 16 Extended part types (one loading fee each)",
+      "details": [
+        "C191010 (U4): out of stock at JLCPCB (TCAN332GDR)",
+        "ok: C123085 (L1): DLW43SH101XK2L, SMD-4P,4.5x3.2mm, Extended, stock 13,617",
+        "ok: C14663 (C14, C16, C18): CC0603KRX7R9BB104, 0603, Basic, stock 31,930,927",
+        "ok: C151135 (F1): 0466001.NRHF, 1206, Extended, stock 55,597",
+        "ok: C15849 (C19): CL10A105KB8NNNC, 0603, Basic, stock 9,284,507",
+        "ok: C16015 (D1): SS36, SMA(DO-214AC), Extended, stock 417,851",
+        "ok: C1604 (C5, C6): 0603B222K500NT, 0603, Basic, stock 991,817",
+        "ok: C1653 (C10, C11): CL10C220JB8NNNC, 0603, Basic, stock 2,162,046",
+        "ok: C1657 (C7): CL10C271JB8NNNC, 0603, Extended, stock 6,177",
+        "ok: C167971 (L2): FNR5040S220MT, SMD,5x5mm, Extended, stock 56,822",
+        "ok: C191010 (U4): TCAN332GDR, SOIC-8, Extended, stock 0",
+        "ok: C19666 (C17): CL10A475KO8NNNC, 0603, Basic, stock 3,540,048",
+        "ok: C19702 (C15): CL10A106KP8NNNC, 0603, Basic, stock 11,163,904",
+        "ok: C22807 (R4): 0603WAF1503T5E, 0603, Basic, stock 1,059,296",
+        "ok: C22964 (R1): 0603WAF2742T5E, 0603, Extended, stock 12,848",
+        "ok: C23031 (R5): 0603WAF3653T5E, 0603, Extended, stock 9,741",
+        "ok: C23082 (R3): 0603WAF5762T5E, 0603, Extended, stock 63,566",
+        "ok: C25803 (R2, R6): 0603WAF1003T5E, 0603, Basic, stock 19,381,788",
+        "ok: C25804 (R7, R8, R9): 0603WAF1002T5E, 0603, Basic, stock 31,151,373",
+        "ok: C3013946 (U1): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,481",
+        "ok: C385986 (C1, C2): HMK325C7475KMHPE, 1210, Extended, stock 98,320",
+        "ok: C45783 (C3, C4, C12, C13): CL21A226MAQNNNE, 0805, Basic, stock 3,780,238",
+        "ok: C477928 (U3): LM5164DDAR, SO-8-EP, Extended, stock 10,953",
+        "ok: C626758 (U2): MCP2518FDT-E/SL, SOIC-14, Extended, stock 23,145",
+        "ok: C75176 (D3): PESD2CAN,215, SOT-23, Extended, stock 34,268",
+        "ok: C83268 (D2): SMBJ24CA, DO-214AA, Extended, stock 44,877",
+        "ok: C9010 (X1): X322540MPB4SI, SMD3225-4P, Extended, stock 45,301"
+      ],
+      "unchecked": [
+        "C123085 (L1): no MPN in bom.csv to compare with the catalogue's DLW43SH101XK2L; the code was not checked against a part",
+        "C14663 (C14, C16, C18): no MPN in bom.csv to compare with the catalogue's CC0603KRX7R9BB104; the code was not checked against a part",
+        "C151135 (F1): no MPN in bom.csv to compare with the catalogue's 0466001.NRHF; the code was not checked against a part",
+        "C15849 (C19): no MPN in bom.csv to compare with the catalogue's CL10A105KB8NNNC; the code was not checked against a part",
+        "C16015 (D1): no MPN in bom.csv to compare with the catalogue's SS36; the code was not checked against a part",
+        "C1604 (C5, C6): no MPN in bom.csv to compare with the catalogue's 0603B222K500NT; the code was not checked against a part",
+        "C1653 (C10, C11): no MPN in bom.csv to compare with the catalogue's CL10C220JB8NNNC; the code was not checked against a part",
+        "C1657 (C7): no MPN in bom.csv to compare with the catalogue's CL10C271JB8NNNC; the code was not checked against a part",
+        "C167971 (L2): no MPN in bom.csv to compare with the catalogue's FNR5040S220MT; the code was not checked against a part",
+        "C191010 (U4): no MPN in bom.csv to compare with the catalogue's TCAN332GDR; the code was not checked against a part",
+        "C19666 (C17): no MPN in bom.csv to compare with the catalogue's CL10A475KO8NNNC; the code was not checked against a part",
+        "C19702 (C15): no MPN in bom.csv to compare with the catalogue's CL10A106KP8NNNC; the code was not checked against a part",
+        "C22807 (R4): no MPN in bom.csv to compare with the catalogue's 0603WAF1503T5E; the code was not checked against a part",
+        "C22964 (R1): no MPN in bom.csv to compare with the catalogue's 0603WAF2742T5E; the code was not checked against a part",
+        "C23031 (R5): no MPN in bom.csv to compare with the catalogue's 0603WAF3653T5E; the code was not checked against a part",
+        "C23082 (R3): no MPN in bom.csv to compare with the catalogue's 0603WAF5762T5E; the code was not checked against a part",
+        "C25803 (R2, R6): no MPN in bom.csv to compare with the catalogue's 0603WAF1003T5E; the code was not checked against a part",
+        "C25804 (R7, R8, R9): no MPN in bom.csv to compare with the catalogue's 0603WAF1002T5E; the code was not checked against a part",
+        "C3013946 (U1): no MPN in bom.csv to compare with the catalogue's ESP32-S3-WROOM-1U-N16R8; the code was not checked against a part",
+        "C385986 (C1, C2): no MPN in bom.csv to compare with the catalogue's HMK325C7475KMHPE; the code was not checked against a part",
+        "C45783 (C3, C4, C12, C13): no MPN in bom.csv to compare with the catalogue's CL21A226MAQNNNE; the code was not checked against a part",
+        "C477928 (U3): no MPN in bom.csv to compare with the catalogue's LM5164DDAR; the code was not checked against a part",
+        "C626758 (U2): no MPN in bom.csv to compare with the catalogue's MCP2518FDT-E/SL; the code was not checked against a part",
+        "C75176 (D3): no MPN in bom.csv to compare with the catalogue's PESD2CAN,215; the code was not checked against a part",
+        "C83268 (D2): no MPN in bom.csv to compare with the catalogue's SMBJ24CA; the code was not checked against a part",
+        "C9010 (X1): no MPN in bom.csv to compare with the catalogue's X322540MPB4SI; the code was not checked against a part"
+      ],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "catalogue-package",
+      "title": "Catalogue package fits the footprint",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "26 agree with their footprint",
+      "details": [
+        "C16015 SS36 (D1; bom.csv row 11): SMA(DO-214AC) on D_SMA: pads match: D_SMA and D_SMA in the KiCad library (2 pads)",
+        "C83268 SMBJ24CA (D2; bom.csv row 12): DO-214AA on D_SMB: pads match: D_SMB and D_SMB in the KiCad library (2 pads)",
+        "C123085 DLW43SH101XK2L (L1; bom.csv row 15): SMD-4P,4.5x3.2mm on L_CommonModeChoke_Murata_DLW43SH: the footprint is drawn for this part (DLW43SH in its name, MPN DLW43SH101XK2L)",
+        "C167971 FNR5040S220MT (L2; bom.csv row 16): SMD,5x5mm on L_Changjiang_FNR5040S: the footprint is drawn for this part (FNR5040S in its name, MPN FNR5040S220MT)",
+        "C3013946 ESP32-S3-WROOM-1U-N16R8 (U1; bom.csv row 23): SMD,19.2x18mm on ESP32-S3-WROOM-1U: the footprint is drawn for this part (ESP32-S3-WROOM-1U in its name, MPN ESP32-S3-WROOM-1U-N16R8)",
+        "C477928 LM5164DDAR (U3; bom.csv row 25): SO-8-EP on TI_SO-PowerPAD-8_ThermalVias: pads match: TI_SO-PowerPAD-8_ThermalVias and TI_SO-PowerPAD-8_ThermalVias in the KiCad library (9 pads)",
+        "C9010 X322540MPB4SI (X1; bom.csv row 27): SMD3225-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: pads match: Crystal_SMD_3225-4Pin_3.2x2.5mm and Crystal_SMD_3225-4Pin_3.2x2.5mm in the KiCad library (4 pads)"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates"
+      ]
+    },
+    {
+      "id": "catalogue-category",
+      "title": "Catalogue category matches the reference prefix",
+      "pitfall": "\u00a71 \u00a72",
+      "status": "fail",
+      "summary": "24 lines filed under the category their reference prefix means, 1 under another, 1 not checked",
+      "details": [
+        "C123085 DLW43SH101XK2L (L1; bom.csv row 15): L is a inductor/ferrite reference but the catalogue files this part under \"Filters / Common Mode Filters\""
+      ],
+      "unchecked": [
+        "C9010 X322540MPB4SI (X1; bom.csv row 27): prefix X has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)"
+      ],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "catalogue-value",
+      "title": "Catalogue description matches the BOM value",
+      "pitfall": "\u00a71 \u00a72",
+      "status": "pass",
+      "summary": "18 lines agree on every figure their value states (F, H, \u03a9, V), 8 state no figure",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    }
+  ],
+  "by_hand": [
+    "Fab assembly preview: rotation of 10 polarized or asymmetric parts (L2, U2, D1, D3, D2, U4, F1, L1, U3, U1) (\u00a74)",
+    "Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (\u00a73)",
+    "Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (\u00a72)",
+    "Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (\u00a77)",
+    "Enclosure: component heights, connector edges, mounting hole pattern (\u00a710)",
+    "Hand-drawn power loops, a human look at every autorouted trace (\u00a711)",
+    "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
+  ],
+  "work_dir": null,
+  "result": "FAIL",
+  "exit_code": 1
+}

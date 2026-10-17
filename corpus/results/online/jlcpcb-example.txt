@@ -1,0 +1,152 @@
+SMPS 12V-5V  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  2 copper layers, 19 footprints  -  bom.csv: jlcpcb-example.csv
+RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Schematic / PCB parity (§5): 0 mismatches across 19 footprints
+  Board footprints belong to this schematic (§5): 19 of 19 footprints name a symbol in the schematic
+  Connector names on silk (§8): 0 connectors each have a name on silk
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 15 of 15 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  LCSC code on every BOM line (§1 §12): 11 lines, each with a C-number
+  bom.csv matches the schematic (§1 §5 §12): 15 bought references, every one on exactly one BOM line
+        note: not bought: H1, H2, H3, H4 (prefix FID/TP/H/MH)
+  BOM value matches the schematic (§1): 15 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue and stock (§1 §2 §13): 11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked; 4 Extended part types (one loading fee each)
+  Catalogue package fits the footprint (§1): 11 agree with their footprint
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  Catalogue category matches the reference prefix (§1 §2): 10 lines filed under the category their reference prefix means, 1 not checked
+  Catalogue description matches the BOM value (§1 §2): 8 lines agree on every figure their value states (F, H, Ω, V), 3 state no figure
+
+FINDINGS
+  FAIL  ERC (§12): 3 errors, 50 warnings on 1 sheet
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Pin 1 [Power input, Line] @ (238.76, 52.07)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN1 Pin 1 [1, Unspecified, Line] @ (52.07, 54.61); Symbol #PWR05 Pin 1 [Power input, Line] @ (52.07, 54.61)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN1 Pin 2 [2, Unspecified, Line] @ (52.07, 57.15); Symbol #PWR06 Pin 1 [Power input, Line] @ (52.07, 57.15)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN2 Pin 1 [1, Unspecified, Line] @ (52.07, 80.01); Symbol #PWR07 Pin 1 [Power input, Line] @ (52.07, 80.01)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN2 Pin 2 [2, Unspecified, Line] @ (52.07, 82.55); Symbol #PWR08 Pin 1 [Power input, Line] @ (52.07, 82.55)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H2 [Mounting Hole, 3mm, Via Stiched] @ (58.42, 119.38)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H2 [Mounting Hole, 3mm, Via Stiched] @ (58.42, 119.38)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H3 [Mounting Hole, 3mm, Via Stiched] @ (71.12, 119.38)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H3 [Mounting Hole, 3mm, Via Stiched] @ (71.12, 119.38)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C2 [0805,22uF] @ (129.54, 71.12)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C2 [0805,22uF] @ (129.54, 71.12)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C3 [0603,10uF,(2)] @ (139.7, 71.12)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C3 [0603,10uF,(2)] @ (139.7, 71.12)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol R1 [0603,10kΩ] @ (146.05, 55.88)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Resistors' [Symbol R1 [0603,10kΩ] @ (146.05, 55.88)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C7 [0402,100nF] @ (152.4, 83.82)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C7 [0402,100nF] @ (152.4, 83.82)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 12 [Vin, Unspecified, Line] @ (158.75, 52.07); Symbol U1 Pin 13 [Vin, Unspecified, Line] @ (158.75, 54.61)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 13 [Vin, Unspecified, Line] @ (158.75, 54.61); Symbol R1 Pin 1 [Passive, Line] @ (146.05, 52.07)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 14 [EN, Unspecified, Line] @ (158.75, 62.23); Symbol R1 Pin 2 [Passive, Line] @ (146.05, 59.69)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 15 [Vsel, Unspecified, Line] @ (158.75, 66.04); Symbol C3 Pin 2 [Passive, Line] @ (139.7, 74.93)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 3 [Vaux, Unspecified, Line] @ (158.75, 72.39); Symbol C7 Pin 1 [Passive, Line] @ (152.4, 80.01)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 1 [PS/SYNC, Unspecified, Line] @ (158.75, 77.47); Symbol U1 Pin 14 [EN, Unspecified, Line] @ (158.75, 62.23)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol L1 Pin 1 [1, Unspecified, Line] @ (168.91, 33.02); Symbol U1 Pin 11 [L1, Unspecified, Line] @ (158.75, 46.99)]
+        warning: lib_symbol_mismatch: Symbol 'TPS63070RNMR' doesn't match copy in library 'EasyEDA' [Symbol U1 [TPS63070RNMR] @ (172.72, 55.88)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol L1 Pin 2 [2, Unspecified, Line] @ (179.07, 33.02); Symbol U1 Pin 9 [L2, Unspecified, Line] @ (186.69, 46.99)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 7 [Vout, Unspecified, Line] @ (186.69, 52.07); Symbol U1 Pin 8 [Vout, Unspecified, Line] @ (186.69, 54.61)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 8 [Vout, Unspecified, Line] @ (186.69, 54.61); Symbol R2 Pin 1 [Passive, Line] @ (212.09, 52.07)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 5 [FB, Unspecified, Line] @ (186.69, 60.96); Symbol R3 Pin 1 [Passive, Line] @ (199.39, 64.77)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 6 [FB2, Unspecified, Line] @ (186.69, 64.77); Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 2 [PG, Unspecified, Line] @ (186.69, 69.85); Symbol R2 Pin 2 [Passive, Line] @ (212.09, 59.69)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93); Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
+        ... 13 more (--max-details)
+  WARN  DRC (§12): 0 errors, 58 warnings (via_dangling x28, hole_to_hole x15, lib_footprint_issues x14, copper_sliver x1); 5 footprints without a courtyard
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (161.25, 75.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (127.25, 90.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (167.0, 84.45)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (138.583333, 83.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (138.583333, 75.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (161.25, 90.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (127.25, 75.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (138.583333, 90.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (149.916667, 83.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (149.916667, 90.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (161.25, 83.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (175.4, 84.4)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (127.25, 83.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (149.916667, 75.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (168.25, 106.15)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (149.866667, 110.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (161.2, 117.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (138.583333, 102.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (177.45, 106.4)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (149.916667, 102.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (138.533333, 117.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (161.25, 102.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (127.2, 117.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (138.533333, 110.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (149.866667, 117.65)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (127.25, 102.25)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (127.2, 110.0)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+5V] on F.Cu - B.Cu @ (161.2, 110.0)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H3 @ (214.0, 57.2); PTH pad 1 [GND] of H3 @ (212.59, 55.79)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H3 @ (212.59, 58.61); PTH pad 1 [GND] of H3 @ (214.0, 57.2)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H3 @ (215.41, 58.61); PTH pad 1 [GND] of H3 @ (214.0, 57.2)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H3 @ (215.41, 55.79); PTH pad 1 [GND] of H3 @ (214.0, 57.2)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H2 @ (119.0, 127.5); PTH pad 1 [GND] of H2 @ (117.59, 126.09)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H2 @ (119.0, 127.5); PTH pad 1 [GND] of H2 @ (117.59, 128.91)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H2 @ (119.0, 127.5); PTH pad 1 [GND] of H2 @ (120.41, 128.91)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H2 @ (119.0, 127.5); PTH pad 1 [GND] of H2 @ (120.41, 126.09)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2370 mm) [PTH pad 1 [GND] of H1 @ (117.59, 55.8); PTH pad 1 [GND] of H1 @ (119.0, 57.2)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2400 mm) [PTH pad 1 [GND] of H1 @ (119.0, 55.21); PTH pad 1 [GND] of H1 @ (119.0, 57.2)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2370 mm) [PTH pad 1 [GND] of H1 @ (119.0, 57.2); PTH pad 1 [GND] of H1 @ (120.41, 55.8)]
+        warning: hole_to_hole: Drilled hole too close to other hole (board setup constraints min 0.2500 mm; actual 0.2440 mm) [PTH pad 1 [GND] of H4 @ (214.0, 127.5); PTH pad 1 [GND] of H4 @ (212.59, 126.09)]
+        ... 18 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 2 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.1 mm, min_track_width 0.0 -> 0.1 mm
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Copper layers (§9): 2 copper layers with 1 inductor(s) (L1): a switching regulator at hobby sizes wants 4
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("SMPS 12V-5V") on a silkscreen layer
+        silk texts: 5V DC\n, -, 12V to 5V DC 500mA Buck Converter, +, -, +, 12V DC\n
+  WARN  BOM lines complete (§1 §2): 11 of 11 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C2: 22uF (C_0805): missing Basic/Extended, Stock
+        row 3 C3,C4: 10uF (C_0603): missing Basic/Extended, Stock
+        row 4 C5: 10uF (C_0805): missing Basic/Extended, Stock
+        row 5 C6: 47uF (C_0805): missing Basic/Extended, Stock
+        row 6 C7: 100nF (C_0402): missing Basic/Extended, Stock
+        row 7 CN1,CN2: DBT10-7.62-2P (CONN-TH_2P-P7.62_DBT10-7.62-2P): missing MPN, Basic/Extended, Stock
+        row 8 L1: MLI2012F-1R5KT (L0805): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 R1: 10kΩ (R_0603): missing Basic/Extended, Stock
+        row 10 R2,R3: 100kΩ (R_0603): missing Basic/Extended, Stock
+        row 11 R4: 523kΩ (R0805): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 U1: TPS63070RNMR (VQFN-HR-15_L3.0-W2.5-P0.50-BL_TPS63070RNMR): missing MPN, Basic/Extended, Stock
+
+NOT CHECKED
+  DRC (§12): 5 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint L1 @ (186.4, 96.43)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint CN2 @ (177.15, 120.99)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint CN1 @ (168.5925, 69.9175)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint U1 @ (177.08, 96.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint R4 @ (174.55, 100.0)]: no courtyard, so courtyards_overlap could not see this footprint
+  Catalogue and stock (§1 §2 §13): 4 not compared
+        C109322 (U1): no MPN in bom.csv to compare with the catalogue's TPS63070RNMR; the code was not checked against a part
+        C2683107 (R4): no MPN in bom.csv to compare with the catalogue's ARG05BTC5233; the code was not checked against a part
+        C2885888 (L1): no MPN in bom.csv to compare with the catalogue's MLI2012F-1R5KT; the code was not checked against a part
+        C395930 (CN1, CN2): no MPN in bom.csv to compare with the catalogue's DBT10-7.62-2P-GN-P; the code was not checked against a part
+  Catalogue category matches the reference prefix (§1 §2): 1 not compared
+        C395930 DBT10-7.62-2P-GN-P (CN1, CN2; bom.csv row 7): prefix CN has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 2 polarized or asymmetric parts (L1, U1) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

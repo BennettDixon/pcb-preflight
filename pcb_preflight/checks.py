@@ -122,25 +122,125 @@ BOARD_ONLY_HINT = ('a footprint meant to live only on the board (mounting hole, 
                    'properties (attr board_only); KiCad then leaves it out of this test')
 
 
-def parity_check(report, cli_output, n_footprints):
+# kicad-cli's parity descriptions (KiCad 10.0.7, pcbnew/drc/drc_test_provider_schematic_parity.cpp), as the corpus
+# reports quote them (corpus/RESULTS.md). The gate parses these exact forms; anything else keeps its type's handling.
+FOOTPRINT_GIVEN = re.compile(r"^(?P<board>.+) doesn't match footprint given by symbol \((?P<symbol>.+)\)$")
+MISSING_FOOTPRINT = re.compile(r'^Missing footprint (?P<ref>\S+)')
+PAD_NET_GIVEN = re.compile(r"^Pad net \((?P<board>.+)\) doesn't match net given by schematic \((?P<symbol>.+)\)$")
+PAD_NET_MISSING = re.compile(r'^Pad missing net given by schematic \((?P<symbol>unconnected-\(.*\))\)$')
+ITEM_FOOTPRINT = re.compile(r'^Footprint (?P<ref>.*)$')
+
+
+def _item_footprints(v, board):
+    """The board footprints a parity violation's items name (by uuid, else reference and position), or None
+    when one of them cannot be found."""
+    by_uuid = {fp.uuid: fp for fp in board.footprints if fp.uuid}
+    by_place = {(fp.ref, round(fp.x, 3), round(fp.y, 3)): fp for fp in board.footprints}
+    found = []
+    for item in v.get('items', []):
+        fp = by_uuid.get(item.get('uuid'))
+        if fp is None:
+            m = ITEM_FOOTPRINT.match(item.get('description', ''))
+            pos = item.get('pos') or {}
+            if m and isinstance(pos.get('x'), (int, float)) and isinstance(pos.get('y'), (int, float)):
+                ref = '' if m.group('ref') == '<no reference designator>' else m.group('ref')
+                fp = by_place.get((ref, round(pos['x'], 3), round(pos['y'], 3)))
+        if fp is None:
+            return None
+        found.append(fp)
+    return found
+
+
+def _parity_demotion(v, board, skip_prefixes):
+    """Why a parity item of an owned type does not block, as ('warn' | 'note' | 'kicad', reason), or None.
+
+    warn: a finding to look at, not a mismatch the fab would build wrong; note: nothing the fab places;
+    kicad: KiCad's own severity stands (the gate neither promotes nor demotes it). Each case is one the
+    corpus proved on a built board (corpus/RESULTS.md "Parity"): the descriptions are parsed, never guessed.
+    """
+    t, desc = v.get('type'), v.get('description', '')
+    if t == 'footprint_symbol_mismatch':
+        m = FOOTPRINT_GIVEN.match(desc)
+        if m and m.group('board') != m.group('symbol') and packages.bare(m.group('board')) == packages.bare(m.group('symbol')):
+            return 'warn', (f'only the library nickname differs ({m.group("board").split(":", 1)[0]} on the board, '
+                            f'{m.group("symbol").split(":", 1)[0]} in the schematic): the same footprint from a project-local copy of the library')
+    elif t in ('extra_footprint', 'duplicate_footprints') and board is not None:
+        fps = _item_footprints(v, board)
+        if fps and all(fp.pads == 0 for fp in fps):
+            return 'note', 'no pads (a logo or text): nothing for the fab to place or solder'
+    elif t == 'missing_footprint':
+        m = MISSING_FOOTPRINT.match(desc)
+        if m and _skip_ref(m.group('ref'), skip_prefixes):
+            return 'kicad', f'{m.group("ref")} is a skipped prefix ({"/".join(p for p in skip_prefixes if p != "#")}): not a bought part, the project\'s own severity stands'
+    elif t == 'net_conflict':
+        m = PAD_NET_MISSING.match(desc)
+        if m and all('[<no net>]' in i.get('description', '') for i in v.get('items', [])) and v.get('items'):
+            return 'warn', 'the pad has no net and the schematic pin is unconnected: a no-connect, not two nets'
+        m = PAD_NET_GIVEN.match(desc)
+        if m:
+            a, b = m.group('board'), m.group('symbol')
+            if a != b and a.startswith('/') and b.startswith('/') and a.rsplit('/', 1)[-1] == b.rsplit('/', 1)[-1]:
+                return 'warn', (f'the two names differ only in their sheet path ({a.rsplit("/", 1)[0]}/ against {b.rsplit("/", 1)[0]}/): '
+                                f'a sheet renamed after routing; Update PCB from Schematic carries the new name over')
+    return None
+
+
+def parity_check(report, cli_output, n_footprints, board=None, skip_prefixes=DEFAULT_SKIP_PREFIXES, owned=None):
     """G4: the five parity checks (preset.PARITY) block whatever severity the project gives them (§5); the
-    field-text and footprint-filter notes kicad-cli files alongside them keep the project's severity."""
+    field-text and footprint-filter notes kicad-cli files alongside them keep the project's severity.
+
+    Four forms the corpus proved harmless on built boards are not blocked (_parity_demotion): a footprint
+    that differs from the symbol's only in its library nickname, a net name that differs only in its sheet
+    path and a no-net pad against an unconnected- schematic pin are warnings; a missing footprint for a
+    skipped reference prefix keeps KiCad's severity; an extra or duplicate footprint with no pads (a logo,
+    text) is a note, not a finding. ``board`` (board.load()) is needed for the pad count; without it every
+    extra footprint blocks. ``owned`` is preset.apply()'s return value: the preset runs the parity checks as
+    errors in the snapshot, so the severity a skipped-prefix missing footprint keeps is the project's own
+    (KiCad's default warning unless the project changed it), read from there; without ``owned`` the
+    violation's own severity stands.
+    """
     if 'Failed to fetch schematic netlist' in cli_output or 'parity tests require' in cli_output:
         reason = next((ln.strip() for ln in cli_output.splitlines() if 'netlist' in ln or 'parity' in ln), cli_output)
         return Check('parity', 'Schematic / PCB parity', '§5', 'skip', f'kicad-cli could not run it: {reason}')
     items = report.get('schematic_parity', [])
-    owned = [v for v in items if v.get('type') in preset.PARITY]
-    o_err, o_warn, _ = kicad.count_severities([v for v in items if v.get('type') not in preset.PARITY])
+    owned_sev, owned = owned, []
+    demoted, padless, kept, blocking_kept = [], [], [], []
+    for v in items:
+        if v.get('type') not in preset.PARITY:
+            kept.append(v)
+            continue
+        why = _parity_demotion(v, board, skip_prefixes)
+        if why is None:
+            owned.append(v)
+        elif why[0] == 'note':
+            padless.append((v, why[1]))
+        elif why[0] == 'kicad':
+            sev = v.get('severity')
+            if owned_sev is not None:
+                sev = owned_sev.get('drc', {}).get(v.get('type'), preset.KICAD_DEFAULT['drc'].get(v.get('type'), 'error'))
+            if sev == 'error':
+                blocking_kept.append((v, why[1]))
+            elif sev != 'ignore':
+                demoted.append((v, why[1]))
+        else:
+            demoted.append((v, why[1]))
+    o_err, o_warn, _ = kicad.count_severities(kept)
     det = []
     for v in owned:
         line = f'{kicad.describe(v)} (blocks under {preset.PRESET}, whatever severity the project gives it)'
         if v.get('type') == 'extra_footprint':
             line += '; ' + BOARD_ONLY_HINT
         det.append(line)
-    det += [kicad.describe(v) for v in o_err] + [f'warning: {kicad.describe(v)}' for v in o_warn]
-    status = 'fail' if owned or o_err else ('warn' if o_warn else 'pass')
-    summary = f'{len(owned) + len(o_err)} mismatches' + (f', {len(o_warn)} field/filter notes' if o_warn else '') + f' across {n_footprints} footprints'
-    return Check('parity', 'Schematic / PCB parity', '§5', status, summary, det)
+    det += [f'{kicad.describe(v)}; {why}' for v, why in blocking_kept]
+    det += [kicad.describe(v) for v in o_err]
+    det += [f'warning: {kicad.describe(v)}; {why}' for v, why in demoted] + [f'warning: {kicad.describe(v)}' for v in o_warn]
+    notes = [f'{len(padless)} extra/duplicate footprint items with no pads (a logo or text) are not findings: '
+             + '; '.join(kicad.describe(v) for v, _ in padless[:12])] if padless else []
+    status = 'fail' if owned or blocking_kept or o_err else ('warn' if demoted or o_warn else 'pass')
+    summary = (f'{len(owned) + len(blocking_kept) + len(o_err)} mismatches' + (f', {len(demoted)} warnings' if demoted else '')
+               + (f', {len(o_warn)} field/filter notes' if o_warn else '') + f' across {n_footprints} footprints'
+               + (f'; {len(padless)} padless footprint items not counted' if padless else ''))
+    return Check('parity', 'Schematic / PCB parity', '§5', status, summary, det, notes=notes)
 
 
 def identity_check(board, symbols):
@@ -149,7 +249,8 @@ def identity_check(board, symbols):
     KiCad's parity test matches footprints by reference, so a schematic regenerated with fresh uuids passes
     it although "Update PCB from Schematic" would replace every routed footprint. A footprint without a
     path is board-only (a hole, a logo) only when the schematic has no symbol with its reference; otherwise
-    it is an unlinked part. ``symbols`` is schematic.load_symbols().
+    it is an unlinked part. ``symbols`` is schematic.load_symbols(). On a sheet placed more than once the
+    footprint's sheet chain picks the instance, and so the reference, it was made from.
     """
     sch_refs = {r for s in symbols.values() for r in s.references}
     orphans, unlinked, renamed, board_only = [], [], [], []
@@ -163,7 +264,9 @@ def identity_check(board, symbols):
         if sym is None:
             orphans.append(fp.ref)
             continue
-        ref = sym.instances.get(sheet or '/', sym.ref)
+        ref = sym.reference_on(sheet)              # the instance this footprint's sheet chain names (schematic.py)
+        if ref is None:
+            ref = sym.ref
         if ref and ref != fp.ref:
             renamed.append(f'{fp.ref} on the board is {ref} in the schematic ({sym.lib_id})')
         else:
@@ -391,7 +494,7 @@ def _fit_gate(cid, title, pairs, library=None, extra_unchecked=(), extra_summary
         what = f'{label}: {package or "(no package)"} on {packages.bare(footprint)}: {f.reason}'
         if f.verdict == packages.SAME:
             same += 1
-            if f.via or f.rule == packages.DRAWN_FOR or (f.rule == packages.PADS and f.by_names != packages.SAME):
+            if f.via or f.rule == packages.DRAWN_FOR or (f.rule == packages.PADS and (f.by_names != packages.SAME or f.picked)):
                 evidence.append(what)             # how a line passed by table or by pads: a detail (JSON), printed when the gate is a finding
         elif f.verdict == packages.DIFFERENT:
             det.append(what + (f'; the "Package verified" note ("{note}") does not apply: a known mismatch is fixed in '

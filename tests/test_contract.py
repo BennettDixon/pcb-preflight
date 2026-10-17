@@ -306,6 +306,99 @@ class KicadGates(unittest.TestCase):
         self.assertEqual(checks.parity_check({'schematic_parity': []}, '', 130).status, 'pass')
         self.assertEqual(checks.parity_check({}, 'Failed to fetch schematic netlist', 130).status, 'skip')
 
+    def parity_board(self, *fps):
+        d = tempfile.mkdtemp()
+        return board.load(write(d, 'demo.kicad_pcb', pcb(*fps)))
+
+    def test_parity_library_nickname_only_is_a_warning(self):
+        """complex-hierarchy and multichannel (KiCad's demos): 181 footprints whose only difference is the nickname."""
+        same = violation('footprint_symbol_mismatch', 'warning',
+                         "complex_hierarchy:CP_Axial_L11.0mm_D6.0mm_P18.00mm_Horizontal doesn't match footprint given by symbol (Capacitor_THT:CP_Axial_L11.0mm_D6.0mm_P18.00mm_Horizontal)")
+        space = violation('footprint_symbol_mismatch', 'warning',
+                          "multichannel_mixer:CAPPRB254-500X840 doesn't match footprint given by symbol (Capacitors THD:CAPPRB254-500X840)")
+        other = violation('footprint_symbol_mismatch', 'warning',
+                          "MountingHole:MountingHole_4.3mm_M4 doesn't match footprint given by symbol (MountingHole:MountingHole_3.2mm_M3)")
+        value = violation('footprint_symbol_mismatch', 'warning', "Value (R5) doesn't match symbol value (715)")
+        c = checks.parity_check({'schematic_parity': [same, space]}, '', 68)
+        self.assertEqual((c.status, c.summary), ('warn', '0 mismatches, 2 warnings across 68 footprints'))
+        self.assertTrue(c.details[0].startswith('warning: footprint_symbol_mismatch: complex_hierarchy:CP_Axial'), c.details[0])
+        self.assertIn('only the library nickname differs (complex_hierarchy on the board, Capacitor_THT in the schematic)', c.details[0])
+        c = checks.parity_check({'schematic_parity': [same, other, value]}, '', 68)
+        self.assertEqual((c.status, c.summary), ('fail', '2 mismatches, 1 warnings across 68 footprints'))
+        self.assertTrue(c.details[0].startswith('footprint_symbol_mismatch: MountingHole:MountingHole_4.3mm_M4'), 'a different footprint still blocks')
+        self.assertTrue(c.details[1].startswith('footprint_symbol_mismatch: Value (R5)'), 'a value mismatch still blocks')
+
+    def test_parity_padless_extra_footprint_is_not_a_finding(self):
+        """openjbod-rp2040's REF** OSHW logo (two copies), openair-max's six <no reference designator> logos."""
+        b = self.parity_board(fp('REF**', 'Symbol:OSHW-Logo2_14.6x12mm_Copper', attrs='smd board_only').replace('(attr', '(uuid "logo-1") (attr'),
+                              fp('REF**', 'Symbol:OSHW-Logo2_14.6x12mm_Copper', attrs='smd board_only').replace('(attr', '(uuid "logo-2") (attr'),
+                              fp('', 'Symbol:Logo', attrs='smd').replace('(attr', '(uuid "logo-3") (attr'),
+                              fp('H9', 'MountingHole:MountingHole_3.2mm_M3_Pad', attrs='through_hole', pads=BARE_PAD).replace('(attr', '(uuid "hole-9") (attr'))
+        self.assertEqual([f.uuid for f in b.footprints], ['logo-1', 'logo-2', 'logo-3', 'hole-9'])
+
+        def extra(uuid, ref='REF**', x=1, y=1):
+            return {'type': 'extra_footprint', 'severity': 'warning', 'description': 'Extra footprint',
+                    'items': [{'description': f'Footprint {ref}', 'pos': {'x': x, 'y': y}, 'uuid': uuid}]}
+        dup = {'type': 'duplicate_footprints', 'severity': 'warning', 'description': 'Duplicate footprints',
+               'items': [{'description': 'Footprint REF**', 'pos': {'x': 1, 'y': 1}, 'uuid': 'logo-1'},
+                         {'description': 'Footprint REF**', 'pos': {'x': 1, 'y': 1}, 'uuid': 'logo-2'}]}
+        rep = {'schematic_parity': [extra('logo-1'), extra('logo-2'), dup, extra('', '<no reference designator>')]}
+        c = checks.parity_check(rep, '', 4, b)
+        self.assertEqual((c.status, c.summary), ('pass', '0 mismatches across 4 footprints; 4 padless footprint items not counted'), c.details)
+        self.assertEqual(c.details, [])
+        self.assertEqual(len(c.notes), 1)
+        self.assertIn('4 extra/duplicate footprint items with no pads (a logo or text) are not findings', c.notes[0])
+        # a footprint with pads, or one the board does not have, blocks as before; so does everything without the board
+        c = checks.parity_check({'schematic_parity': [extra('hole-9', 'H9'), extra('nowhere', 'U99')]}, '', 4, b)
+        self.assertEqual((c.status, c.summary), ('fail', '2 mismatches across 4 footprints'))
+        self.assertIn('Not in schematic', c.details[0])
+        c = checks.parity_check(rep, '', 4)
+        self.assertEqual(c.status, 'fail')
+
+    def test_parity_missing_skipped_reference_keeps_kicads_severity(self):
+        """openjbod-rp2040 TP1/TP2: the placement and BOM gates skip TP by prefix; parity did not."""
+        tp = violation('missing_footprint', 'warning', 'Missing footprint TP1 (TestPoint)')
+        c1 = violation('missing_footprint', 'warning', 'Missing footprint C1 (2.2u/50V)')
+        c = checks.parity_check({'schematic_parity': [tp]}, '', 129)
+        self.assertEqual((c.status, c.summary), ('warn', '0 mismatches, 1 warnings across 129 footprints'))
+        self.assertIn("TP1 is a skipped prefix (FID/TP/H/MH): not a bought part, the project's own severity stands", c.details[0])
+        self.assertTrue(c.details[0].startswith('warning: missing_footprint: Missing footprint TP1'))
+        c = checks.parity_check({'schematic_parity': [tp, c1]}, '', 129)
+        self.assertEqual((c.status, c.summary), ('fail', '1 mismatches, 1 warnings across 129 footprints'))
+        err = violation('missing_footprint', 'error', 'Missing footprint TP1 (TestPoint)')
+        c = checks.parity_check({'schematic_parity': [err]}, '', 129)
+        self.assertEqual(c.status, 'fail', 'without the preset\'s record the violation\'s own severity stands')
+        # under the preset kicad-cli reports every parity check as an error; owned says what the project had
+        c = checks.parity_check({'schematic_parity': [err]}, '', 129, owned={'drc': {}, 'erc': {}})
+        self.assertEqual((c.status, c.summary), ('warn', '0 mismatches, 1 warnings across 129 footprints'), 'KiCad\'s default for missing_footprint is warning')
+        c = checks.parity_check({'schematic_parity': [err]}, '', 129, owned={'drc': {'missing_footprint': 'error'}, 'erc': {}})
+        self.assertEqual(c.status, 'fail', 'a project that made it an error keeps its error')
+        self.assertIn("TP1 is a skipped prefix", c.details[0])
+        c = checks.parity_check({'schematic_parity': [err]}, '', 129, owned={'drc': {'missing_footprint': 'ignore'}, 'erc': {}})
+        self.assertEqual((c.status, c.details), ('pass', []), 'a project that ignores it: nothing to say, as KiCad would')
+        c = checks.parity_check({'schematic_parity': [tp]}, '', 129, skip_prefixes=('FID',))
+        self.assertEqual(c.status, 'fail', 'TP not skipped: blocks')
+
+    def test_parity_net_conflicts_that_are_renames_or_no_connects_are_warnings(self):
+        """sh-rpi: 33 nets on a sheet renamed after routing; canfd-mc: a no-net pad against an unconnected- pin."""
+        rename = violation('net_conflict', 'warning', "Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW)")
+        rename['items'] = [{'description': 'Pad 1 [/Buck converter stage 2/SW] of C203 on F.Cu', 'pos': {'x': 111.95, 'y': 51.2}}]
+        nc = violation('net_conflict', 'warning', 'Pad missing net given by schematic (unconnected-(U1-IO1-Pad39))')
+        nc['items'] = [{'description': 'Pad 39 [<no net>] of U1 on F.Cu', 'pos': {'x': 53.65, 'y': 59.645606}}]
+        c = checks.parity_check({'schematic_parity': [rename, nc]}, '', 51)
+        self.assertEqual((c.status, c.summary), ('warn', '0 mismatches, 2 warnings across 51 footprints'), c.details)
+        self.assertIn('differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/)', c.details[0])
+        self.assertIn('the pad has no net and the schematic pin is unconnected: a no-connect', c.details[1])
+        # real conflicts: another net, a global against a local, an unconnected- pad against a named net, a pin with no pad
+        real = [violation('net_conflict', 'warning', "Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND)"),
+                violation('net_conflict', 'warning', "Pad net (unconnected-(X1-Pin_1-Pad1)) doesn't match net given by schematic (/AI2)"),
+                violation('net_conflict', 'warning', "Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/BOOT_)"),
+                violation('net_conflict', 'warning', "Pad net (SW) doesn't match net given by schematic (/Buck converter 5V/SW)"),
+                violation('net_conflict', 'warning', 'No pad found for pin S1 (GND) in schematic'),
+                violation('net_conflict', 'warning', 'Pad missing net given by schematic (GND)')]
+        c = checks.parity_check({'schematic_parity': real}, '', 51)
+        self.assertEqual((c.status, c.summary), ('fail', '6 mismatches across 51 footprints'), c.details)
+
     def test_parity_field_and_filter_notes_keep_the_projects_severity(self):
         rep = {'schematic_parity': [violation('footprint_symbol_field_mismatch', 'warning', "Field 'Datasheet' differs"),
                                     violation('footprint_filters_mismatch', 'warning', 'does not match filters')]}
@@ -395,6 +488,50 @@ class Identity(unittest.TestCase):
         c = checks.identity_check(b, self.symbols)
         self.assertEqual(c.status, 'fail')
         self.assertIn('R7 on the board is R1 in the schematic (Device:R)', c.details)
+
+    def test_footprint_paths_leave_the_root_sheet_out(self):
+        """KiCad 8-10 write ``(path "/<symbol uuid>")`` for a root-sheet symbol and ``/<sub-sheet uuid>/<symbol uuid>``
+        below it, while the symbol instances carry the root uuid in front (the complex_hierarchy and multichannel demos)."""
+        b = self.board(fp('R1', 'Resistor_SMD:R_0603_1608Metric', '/sym-r1'),
+                       fp('L1', 'Inductor_SMD:L_Bourns_SRP1245A', '/sheet-pwr/sym-l1'))
+        c = checks.identity_check(b, self.symbols)
+        self.assertEqual((c.status, c.summary), ('pass', '2 of 2 footprints name a symbol in the schematic'), c.details)
+        self.assertEqual(self.symbols['sym-l1'].reference_on('/sheet-pwr'), 'L1')
+        self.assertEqual(self.symbols['sym-l1'].reference_on('/root-0000/sheet-pwr'), 'L1', 'a path with the root is taken as it is')
+        self.assertIsNone(self.symbols['sym-l1'].reference_on('/other-sheet'))
+        self.assertEqual(self.symbols['sym-r1'].reference_on(''), 'R1')
+
+    def test_a_sheet_placed_twice_gives_each_footprint_its_own_reference(self):
+        """One sheet file placed under two sheet symbols: every symbol in it has two instances and two references;
+        the footprint's sheet chain says which one it is (RESULTS.md: 29 and 78 false "renamed" before this)."""
+        write(self.dir, 'twice.kicad_sch', ROOT_SCH.replace(
+            '(sheet (at 50 50) (size 20 10) (uuid "sheet-pwr")',
+            '(sheet (at 50 70) (size 20 10) (uuid "sheet-b")\n'
+            '    (property "Sheetname" "channel B" (at 0 0 0)) (property "Sheetfile" "channel.kicad_sch" (at 0 0 0))\n'
+            '    (instances (project "demo" (path "/root-0000" (page "3"))))\n  )\n'
+            '  (sheet (at 50 50) (size 20 10) (uuid "sheet-a")').replace('power.kicad_sch', 'channel.kicad_sch'))
+        write(self.dir, 'channel.kicad_sch', '''(kicad_sch (version 20250114) (generator "eeschema") (generator_version "9.0")
+  (uuid "channel-0000")
+  (symbol (lib_id "Device:R") (at 10 10 0) (unit 1) (uuid "sym-rx")
+    (property "Reference" "R10" (at 0 0 0)) (property "Value" "1k" (at 0 0 0))
+    (instances (project "demo" (path "/root-0000/sheet-a" (reference "R10") (unit 1))
+                              (path "/root-0000/sheet-b" (reference "R20") (unit 1))))
+  )
+)''')
+        symbols = schematic.load_symbols(os.path.join(self.dir, 'twice.kicad_sch'))
+        self.assertEqual(symbols['sym-rx'].instances, {'/root-0000/sheet-a': 'R10', '/root-0000/sheet-b': 'R20'})
+        self.assertEqual(sorted(symbols['sym-rx'].references), ['R10', 'R20'])
+        b = self.board(fp('R1', 'Resistor_SMD:R_0603_1608Metric', '/sym-r1'),
+                       fp('R10', 'Resistor_SMD:R_0603_1608Metric', '/sheet-a/sym-rx'),
+                       fp('R20', 'Resistor_SMD:R_0603_1608Metric', '/sheet-b/sym-rx'))
+        c = checks.identity_check(b, symbols)
+        self.assertEqual((c.status, c.summary), ('pass', '3 of 3 footprints name a symbol in the schematic'), c.details)
+        # the same symbol on the wrong instance is still a rename
+        b = self.board(fp('R1', 'Resistor_SMD:R_0603_1608Metric', '/sym-r1'),
+                       fp('R20', 'Resistor_SMD:R_0603_1608Metric', '/sheet-a/sym-rx'))
+        c = checks.identity_check(b, symbols)
+        self.assertEqual(c.status, 'fail')
+        self.assertEqual(c.details, ['R20 on the board is R10 in the schematic (Device:R)'])
 
 
 class Placement(unittest.TestCase):

@@ -1,0 +1,44 @@
+Ref,Value,Package,MPN,LCSC,Basic/Extended,Stock,Datasheet
+"C101,C102,C501,C502,C503,C706,C712",100n,C_0402_1005Metric,,,,,https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM155R71C104KA88-01.pdf
+C401,100n,0402,CC0402KRX7R7BB104,,,,
+C601,4u7,0805,C0805C475M3PAC,,,,
+"C701,C703,C704,C705,C708,C709,C710,C711",10u,C_0805_2012Metric,,,,,https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71A106KA73-01.pdf
+C702,100uF,CP_EIA-3528-21_Kemet-B,,,,,
+C707,4.7nF,C_0402_1005Metric,,,,,
+CN1,SM02B-SRSS-TB (LF)(SN),CONN-SMD_2P-P1.00_SM02B-SRSS-TB-LF-SN,,C160402,,,https://lcsc.com/product-detail/Others_JST-Sales-America__JST-Sales-America-SM02B-SRSS-TB-LF-SN_C160402.html
+"D101,D502,D701",RCLAMP0502BA,SOT-416,,,,,https://www.semtech.com/products/circuit-protection/low-capacitance/rclamp0502ba
+"D401,D402,D403",PUSB3F96X,DFN2510A-10_L2.5-W1.0-P0.50-BL,,C478121,,,https://lcsc.com/product-detail/Diodes-ESD_Nexperia-PUSB3F96_C478121.html
+"D605,D606,D702",GREEN,0603,,,,,
+J1,GLPLX-SMT-188S7,GLPLXSMT188S7QQYG,GLPLX-SMT-188S7-QQ-Y/G,,,,https://www.kycon.com/Pub_Eng_Draw/GLPLX-SMT-188S7-QQ-YG.pdf
+J101,TYPEC-305-ACP16H458,USB-C-SMD_TYPEC-305-ACP16H458,,,,,https://www.usb.org/sites/default/files/documents/usb_type-c.zip
+J501,GT-HD001B-CNNG1,EDAC 690-019-298-412,,,,,https://www.tme.eu/Document/f15dffbcfad8545e17826f72d36911c8/206A-SEAN-R03.pdf
+J502,I2C,JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical,,,,,
+J503,SPI,JST_SUR_BM10B-SURS-TF_1x10-1MP_P0.80mm_Vertical,,,,,
+J601,JST_SHBM04B-SRSS-TB,JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical,,,,,
+J701,Bus_M.2_Socket_M,M.2 M Key socket_2230_2242,,,,,
+J802,Conn_01x22_Female,Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal,,,,,https://www.hirose.com/product/document?clcode=&productname=&series=FH12&documenttype=Catalog&lang=en&documentid=D31648_en
+L701,2.2uH,L_Coilcraft_XAL5030-XXX,,,,,https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2311161804_Coilcraft-XAL5030-222MEC_C920280.pdf
+M702,M.2 Solder Nut,MountingHole_3mm_Pad,,,,,
+M705,M.2 Screw,,,,,,https://www.lcsc.com/product-detail/Cross-slot-countersunk-machine-screw_AOFENG-GB819-M2-0-4X3-304-A2-70-B_C5138758.html
+Module301,ComputeModule5-CM5,Raspberry-Pi-5-Compute-Module_GPIO,,,,,
+Module302,ComputeModule5-CM5,Raspberry-Pi-5-Compute-Module_HSS,,,,,
+"R101,R501,R502,R706,R707",2k2,R_0402_1005Metric,,,,,
+R102,0R,R_0402_1005Metric,,,,,
+"R104,R107,R108",10k,0402,,,,,
+"R401,R402",470R,0402,,,,,
+R403,0R,0402,,,,,
+"R605,R606",2k2,0402,,,,,
+R701,15k,R_0402_1005Metric,,,,,
+"R702,R703",22k,0402,,,,,
+R704,100k,R_0402_1005Metric,,,,,
+R705,10k,R_0402_1005Metric,,,,,
+SW101,MK-11C04-G013,SW-SMD_MK-11C04-G013,,C778185,,,https://lcsc.com/product-detail/Toggle-Switches_G-Switch-MK-11C04-G013_C778185.html
+SW501,TS-1010A-B,SW-SMD_TS-1010A-B,,C381059,,,https://lcsc.com/product-detail/Tactile-Switches_XKB-Enterprise-TS-1010A-B_C381059.html
+U1,LIS3DH,LGA-16_3x3mm_P0.5mm_LayoutBorder3x5y,,,,,https://www.st.com/resource/en/datasheet/cd00274221.pdf
+"U401,U402",TPD4EUSB30,USON-10_2.5x1.0mm_P0.5mm,TPD4EUSB30,,,,
+U405,STMPS2151STR,SOT-23-5,,C135998,,,https://lcsc.com/product-detail/PMIC-Power-Distribution-Switches_STMicroelectronics_STMPS2151STR_STMPS2151STR_C135998.html
+U602,SN74LVC1G14DBVR,SOT-353_SC-70-5,SN74LVC1G14DBVR,,,,https://www.lcsc.com/datasheet/lcsc_datasheet_2405141143_UMW-Youtai-Semiconductor-Co---Ltd--SN74LVC1G14DBVR_C434069.pdf
+U701,AP22653W6,SOT-23-6,,,,,https://www.diodes.com/assets/Datasheets/AP255x.pdf
+U702,AP3441SHE-7B,DFN-8-1EP_2x2mm_P0.5mm_EP1.05x1.75mm,,,,,https://www.diodes.com/assets/Datasheets/AP3441-L.pdf
+U703,ASEK-32.768KHZ-L-R-T,Crystal_SMD_3225-4Pin_3.2x2.5mm,,,,,https://abracon.com/Oscillators/ASEK.pdf
+USB701,TYPEC-305-ACP16H458,USB-C-SMD_TYPEC-305-ACP16H458,,C5454943,,,

@@ -1,0 +1,291 @@
+PicoPDSupply  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  2 copper layers, 90 footprints  -  bom.csv: pocketpd.csv
+RESULT: FAIL  -  4 blocking, 4 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Unrouted connections (§11 §12): 0 connections still to route
+  Board footprints belong to this schematic (§5): 89 of 90 footprints name a symbol in the schematic, 1 board-only
+        note: 1 board-only footprints (no path, reference not in the schematic): G***
+  Placement origin (§4): aux axis origin at 35.56, 83.9 mm
+  Copper layers (§9): 2 copper layers
+  Connector names on silk (§8): 8 connectors each have a name on silk
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 81 of 81 bought references have a footprint on the board
+  bom.csv columns (§1): all 8 columns present
+  bom.csv matches the schematic (§1 §5 §12): 81 bought references, every one on exactly one BOM line
+        note: not bought: H1, H2, H3, H5 (prefix FID/TP/H/MH); G***, J2, J3, J5, J9 (excluded from the BOM)
+  BOM value matches the schematic (§1): 81 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Catalogue package fits the footprint (§1): 23 agree with their footprint, 9 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
+        note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+  Catalogue category matches the reference prefix (§1 §2): 32 lines filed under the category their reference prefix means, 1 not checked
+  Catalogue description matches the BOM value (§1 §2): 9 lines agree on every figure their value states (F, H, Ω, V), 24 state no figure
+
+FINDINGS
+  FAIL  ERC (§12): 2 errors, 44 warnings on 4 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR063 Pin 1 [Power input, Line] @ (33.02, 96.52)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (278.0126, 68.58)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol U5 [W25Q16JVUXIQ_TR] @ (39.37, 58.42)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol U5 [W25Q16JVUXIQ_TR] @ (39.37, 58.42)]
+        warning: lib_symbol_mismatch: Symbol 'Crystal_GND24' doesn't match copy in library 'Device' [Symbol Y1 [Crystal_GND24] @ (128.27, 161.29)]
+        warning: lib_symbol_mismatch: Symbol 'RP2040' doesn't match copy in library 'MCU_RaspberryPi' [Symbol U3 [RP2040] @ (165.1, 148.59)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol SW2 [Button_6x6_12mm] @ (297.18, 99.06)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol SW2 [Button_6x6_12mm] @ (297.18, 99.06)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol SW4 [Button_6x6_12mm] @ (297.18, 132.08)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol SW4 [Button_6x6_12mm] @ (297.18, 132.08)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol SW5 [Button_Side_TS24CA] @ (298.45, 156.21)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol SW5 [Button_Side_TS24CA] @ (298.45, 156.21)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Connector_USBC' [Symbol J1 [USB_C_Receptacle_USB2.0_16P] @ (40.64, 46.99)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Connector_USBC' [Symbol J1 [USB_C_Receptacle_USB2.0_16P] @ (40.64, 46.99)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Diode_TVS' [Symbol D1 [TPD4E05U06DQAR] @ (106.68, 66.04)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Diode_TVS' [Symbol D1 [TPD4E05U06DQAR] @ (106.68, 66.04)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Interface_USBC' [Symbol U2 [AP33772] @ (135.89, 54.61)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Interface_USBC' [Symbol U2 [AP33772] @ (135.89, 54.61)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol U1 [LM73100] @ (138.43, 144.78)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol U1 [LM73100] @ (138.43, 144.78)]
+        warning: lib_symbol_mismatch: Symbol 'Thermistor_NTC' doesn't match copy in library 'Device' [Symbol TH1 [Thermistor_NTC] @ (148.59, 74.93)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol U6 [LM73100] @ (176.53, 165.1)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol U6 [LM73100] @ (176.53, 165.1)]
+        warning: footprint_link_issues: Footprint 'VSSOP-10_3x3mm_P0.5mm' not found in library 'Package_SO' [Symbol U7 [INA226] @ (265.43, 73.66)]
+        warning: lib_symbol_mismatch: Symbol 'INA226' doesn't match copy in library 'Sensor_Energy' [Symbol U7 [INA226] @ (265.43, 73.66)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR01 Pin 1 [Power input, Line] @ (278.0126, 68.58)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.423 mm @ (275.59, 68.58)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 0.117 mm @ (278.0126, 68.58)]
+        warning: lib_symbol_mismatch: Symbol 'LED' doesn't match copy in library 'Device' [Symbol D5 [LED] @ (320.04, 41.91)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol J4 [Conn_01x04_Pin] @ (74.93, 53.34)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol J2 [Conn_ASMPR45-1X2-RK] @ (92.71, 115.57)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol J2 [Conn_ASMPR45-1X2-RK] @ (92.71, 115.57)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol SW1 [RotaryEncoder_SW_EC11B] @ (199.39, 62.23)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol SW1 [RotaryEncoder_SW_EC11B] @ (199.39, 62.23)]
+        warning: multiple_net_names: Both USB_D+ and D+ are attached to the same items; USB_D+ will be used in the netlist [Label 'USB_D+' @ (106.68, 118.11); Hierarchical Label 'D+' @ (105.41, 118.11)]
+        warning: multiple_net_names: Both USB_D- and D- are attached to the same items; USB_D- will be used in the netlist [Label 'USB_D-' @ (106.68, 120.65); Hierarchical Label 'D-' @ (105.41, 120.65)]
+        warning: multiple_net_names: Both GPIO18 and Encoder_SW are attached to the same items; GPIO18 will be used in the netlist [Label 'GPIO18' @ (193.04, 156.21); Hierarchical Label 'Encoder_SW' @ (193.04, 156.21)]
+        warning: multiple_net_names: Both GPIO19 and Encoder_A are attached to the same items; GPIO19 will be used in the netlist [Label 'GPIO19' @ (193.04, 158.75); Hierarchical Label 'Encoder_A' @ (193.04, 158.75)]
+        warning: multiple_net_names: Both GPIO20 and Encoder_B are attached to the same items; GPIO20 will be used in the netlist [Label 'GPIO20' @ (193.04, 161.29); Hierarchical Label 'Encoder_B' @ (193.04, 161.29)]
+        warning: multiple_net_names: Both USB_D- and D- are attached to the same items; USB_D- will be used in the netlist [Label 'USB_D-' @ (91.44, 66.04); Hierarchical Label 'D-' @ (63.5, 45.72)]
+        ... 6 more (--max-details)
+  FAIL  DRC (§12): 49 errors, 106 warnings (lib_footprint_mismatch x67, clearance x21, starved_thermal x16, lib_footprint_issues x14, silk_overlap x11, courtyards_overlap x10, silk_edge_clearance x10, silk_over_copper x3, copper_edge_clearance x2, via_dangling x1); 7 footprints without a courtyard
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101); Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 5.0194 mm @ (51.379378, 70.05)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372)]
+        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint D2 @ (73.66, 51.6)]
+        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint J5 @ (74.81, 72.0)]
+        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint J2 @ (70.61, 71.65)]
+        courtyards_overlap: Courtyards overlap [Footprint D2 @ (73.66, 51.6); Footprint J8 @ (75.5, 41.9)]
+        courtyards_overlap: Courtyards overlap [Footprint J5 @ (74.81, 72.0); Footprint J9 @ (80.0275, 78.7)]
+        courtyards_overlap: Courtyards overlap [Footprint J5 @ (74.81, 72.0); Footprint J2 @ (70.61, 71.65)]
+        courtyards_overlap: Courtyards overlap [Footprint U3 @ (56.56, 56.8); Footprint R9 @ (51.66, 52.3)]
+        courtyards_overlap: Courtyards overlap [Footprint C21 @ (67.86, 67.15); Footprint J2 @ (70.61, 71.65)]
+        courtyards_overlap: Courtyards overlap [Footprint J9 @ (80.0275, 78.7); Footprint J2 @ (70.61, 71.65)]
+        courtyards_overlap: Courtyards overlap [Footprint J2 @ (70.61, 71.65); Footprint H1 @ (66.5, 79.9)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 1 [GND] of SW5 on F.Cu @ (53.835, 34.841217)]
+        copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 2 [unconnected-(SW5-Pad2)] of SW5 on F.Cu @ (58.085, 34.841217)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of U4 on F.Cu @ (48.06, 46.3625)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer B.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on B.Cu, priority 0 @ (93.96, 85.0); PTH pad 2 [GND] of J3 @ (47.76, 35.4)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 19 [GND] of U3 on F.Cu @ (57.56, 53.3625)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C8 on F.Cu @ (50.58, 55.8)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C19 on F.Cu @ (61.965, 64.363)]
+        ... 115 more (--max-details)
+  WARN  Schematic / PCB parity (§5): 0 mismatches, 73 field/filter notes across 90 footprints
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C4 @ (54.76, 50.9)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C5 @ (57.46, 63.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C6 @ (53.36, 63.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C7 @ (55.776, 50.9)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C8 @ (51.06, 55.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C9 @ (56.444, 63.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C10 @ (62.16, 60.0)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C11 @ (62.66, 55.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C12 @ (51.46, 59.549)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C13 @ (51.46, 60.5)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C16 @ (62.66, 53.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C19 @ (61.965, 64.843)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C20 @ (62.56, 48.2)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C24 @ (67.96, 47.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C26 @ (65.55, 47.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R2 @ (64.56, 56.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R3 @ (64.56, 55.8)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R6 @ (61.965, 62.811)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R7 @ (67.96, 46.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R9 @ (51.66, 52.3)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R10 @ (55.46, 63.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R11 @ (54.402, 63.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R12 @ (59.86, 50.2)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R17 @ (65.56, 46.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R18 @ (65.55, 48.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R20 @ (68.16, 55.9)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint R27 @ (67.95, 48.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint Y1 @ (62.66, 51.0)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C1 @ (64.96, 65.9)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C2 @ (47.406, 65.326)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C3 @ (51.16, 65.9)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C14 @ (44.36, 63.432)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C15 @ (44.56, 47.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C17 @ (46.06, 78.7)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C18 @ (49.56, 50.15)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C21 @ (67.86, 67.15)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C22 @ (51.66, 73.4)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C23 @ (77.06, 51.6)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C27 @ (52.46, 81.075)]
+        warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C28 @ (50.56, 81.075)]
+        ... 33 more (--max-details)
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("PicoPDSupply") on a silkscreen layer
+        silk texts: BOOT, C, PocketPD HW1.3, -, -, +, -, +, D, ON/OFF, VOLT/AMP, STATUS
+  FAIL  LCSC code on every BOM line (§1 §12): 1 of 34 lines have no LCSC code (a value and a package is not a part)
+        row 23 SW1: RotaryEncoder_Switch (RotaryEncoder_EC11B_SW_Horizontal) [has "C9900176956"]
+  WARN  BOM lines complete (§1 §2): 34 of 34 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 2 C1,C2,C4,C5,C7,C8,C9,C10,C11,C12,C14,C19,C21,C24,C26: 100nF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 3 C3,C27: 1u (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 4 C6,C13,C18: 2.2uF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 5 C15,C22,C23: 10u (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 6 C16,C20: 30pF (C_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 7 C17: 100u (CP_Elec_6.3x7.7): missing Basic/Extended, Stock, Datasheet
+        row 8 C28,C30: 100n (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 9 D1: TPD4E05U06DQAR (SON50P100X255X50-10N): missing MPN, Basic/Extended, Stock, Datasheet
+        row 10 D2: D_Schottky (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 11 D3,D6: D_TVS (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 12 D5: RED (LED_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 13 J1: USB_C_Receptacle (USB_C_GSwitch): missing MPN, Basic/Extended, Stock
+        row 14 J4: OLED (Conn_OLED_PocketPD): missing MPN, Basic/Extended, Stock, Datasheet
+        row 15 J6: BananaP (Banana_Cliff_FCR7350R_S16N-PC_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 16 J8: BananaN (Banana_Cliff_FCR7350B_S16N-PC_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 17 R1: 5mR (R_1206_3216Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 18 R2,R3,R4,R5,R8,R21,R23,R24: 5.1k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 19 R6,R7,R9,R15,R16,R17,R19,R22,R28: 10k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 20 R10,R11: 27R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 21 R12,R18,R20,R26,R27,R29,R30: 1k (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 22 R13,R14,R25: 10R (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 23 SW1: RotaryEncoder_Switch (RotaryEncoder_EC11B_SW_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet
+        row 24 SW2: SW_Select (Button_6.2x6.2x12mm): missing MPN, Basic/Extended, Stock
+        row 25 SW4: SW_OutPut (Button_6.2x6.2x12mm): missing MPN, Basic/Extended, Stock
+        row 26 SW5:  (Button-SMD_TS24CA): missing MPN, Basic/Extended, Stock, Datasheet
+        row 27 TH1: Thermistor_NTC (R_0402_1005Metric): missing MPN, Basic/Extended, Stock, Datasheet
+        row 28 U1,U6: LM73100 (VQFN-HR-16): missing MPN, Basic/Extended, Stock
+        row 29 U2: AP33772 (QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm): missing MPN, Basic/Extended, Stock
+        row 30 U3: RP2040 (QFN-56-1EP_7x7mm_P0.4mm_EP3.2x3.2mm): missing MPN, Basic/Extended, Stock
+        row 31 U4: AP2204K-3.3 (SOT-23-5): missing MPN, Basic/Extended, Stock
+        row 32 U5: W25Q16JVUXIQ_TR (8-USON): missing MPN, Basic/Extended, Stock, Datasheet
+        row 33 U7: INA226 (VSSOP-10_3x3mm_P0.5mm): missing MPN, Basic/Extended, Stock
+        row 34 U8: 74LVC1G17 (SOT-353_SC-70-5): missing MPN, Basic/Extended, Stock
+        row 35 Y1: 12MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing MPN, Basic/Extended, Stock, Datasheet
+  FAIL  Catalogue and stock (§1 §2 §13): 32 codes found, 2 blocking, 0 low-stock/mismatch, 32 not checked; 22 Extended part types (one loading fee each)
+        C2843335 (U5): out of stock at JLCPCB (W25Q16JVUXIQ)
+        C3210761 (U1, U6): out of stock at JLCPCB (LM73100RPWR)
+        ok: C10425 (U8): SN74LVC1G17DCKR, SC-70-5, Extended, stock 73,975
+        ok: C112032 (U4): AP2204K-3.3TRG1, SOT-23-5, Extended, stock 7,746
+        ok: C11702 (R12, R18, R20, R26, R27, R29, R30): 0402WGF1001TCE, 0402, Basic, stock 13,764,087
+        ok: C12530 (C6, C13, C18): CL05A225MQ5NSNC, 0402, Basic, stock 4,365,637
+        ok: C133334 (Y1): TAXM12M4RLBDDT2T, SMD3225-4P, Extended, stock 118,738
+        ok: C138021 (R10, R11): RC0402FR-0727RL, 0402, Extended, stock 58,382
+        ok: C138687 (C15, C22, C23): CL32B106KBJNNNE, 1210, Extended, stock 79,029
+        ok: C138714 (D1): TPD4E05U06DQAR, USON-10(1x2.5), Extended, stock 215,967
+        ok: C14663 (C28, C30): CC0603KRX7R9BB104, 0603, Basic, stock 31,929,967
+        ok: C1525 (C1, C2, C4, C5, C7, C8, C9, C10, C11, C12, C14, C19, C21, C24, C26): CL05B104KO5NNNC, 0402, Basic, stock 24,774,238
+        ok: C1570 (C16, C20): 0402CG300J500NT, 0402, Extended, stock 166,045
+        ok: C178560 (C17): EEEFK1V101XP, SMD,D6.3xL7.7mm, Extended, stock 7,174
+        ok: C19077540 (D3, D6): SMAJ20CA, DO-214AC(SMA), Extended, stock 23,199
+        ok: C20071191 (J4): F136-1104S3CMUB2, SMD,P=2.54mm(Staggered pins), Extended, stock 1,444
+        ok: C2040 (U3): RP2040, LQFN-56(7x7), Extended, stock 51,938
+        ok: C2286 (D5): KT-0603R, 0603, Basic, stock 7,577,217
+        ok: C25077 (R13, R14, R25): 0402WGF100JTCE, 0402, Basic, stock 3,890,997
+        ok: C25744 (R6, R7, R9, R15, R16, R17, R19, R22, R28): 0402WGF1002TCE, 0402, Basic, stock 20,311,173
+        ok: C25905 (R2, R3, R4, R5, R8, R21, R23, R24): 0402WGF5101TCE, 0402, Basic, stock 5,097,414
+        ok: C2762973 (SW2, SW4): GT-TC120A-H120-L1, SMD-4P,6.2x6.2mm, Extended, stock 830
+        ok: C28323 (C3, C27): CL21B105KBFNNNE, 0805, Basic, stock 2,347,240
+        ok: C2843335 (U5): W25Q16JVUXIQ, USON-8-EP(2x3), Extended, stock 0
+        ok: C2988648 (R1): HoLLR1206-1W-5mR-1%, 1206, Extended, stock 83,955
+        ok: C3210761 (U1, U6): LM73100RPWR, VQFN-10-HR(2x2), Extended, stock 0
+        ok: C49851 (U7): INA226AIDGSR, VSSOP-10, Extended, stock 40,379
+        ok: C5244513 (U2): AP33772DKZ-13, WQFN4040-24, Extended, stock 64
+        ok: C692458 (SW5): TS-1010-C-A, SMD,4.7x2.3mm, Extended, stock 30,618
+        ok: C7437326 (J6): 24.245.1, Plugin, Extended, stock 4,387
+        ok: C7437327 (J8): 24.245.2, Plugin, Extended, stock 9,014
+        ok: C77131 (TH1): NCP15XH103F03RC, 0402, Extended, stock 301,729
+        ok: C8678 (D2): SS34, SMA(DO-214AC), Basic, stock 3,876,551
+        ok: C963411 (J1): GT-USB-7010AW, SMD, Extended, stock 1,099
+
+NOT CHECKED
+  DRC (§12): 7 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW5 @ (55.96, 35.816217)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint D1 @ (44.9596, 69.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW2 @ (48.59, 39.6)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J1 @ (42.26, 69.7)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint J4 @ (56.0, 47.5)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint SW4 @ (63.36, 39.6)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint G*** @ (53.66, 80.0)]: no courtyard, so courtyards_overlap could not see this footprint
+  Catalogue and stock (§1 §2 §13): 32 not compared
+        C10425 (U8): no MPN in bom.csv to compare with the catalogue's SN74LVC1G17DCKR; the code was not checked against a part
+        C112032 (U4): no MPN in bom.csv to compare with the catalogue's AP2204K-3.3TRG1; the code was not checked against a part
+        C11702 (R12, R18, R20, R26, R27, R29, R30): no MPN in bom.csv to compare with the catalogue's 0402WGF1001TCE; the code was not checked against a part
+        C12530 (C6, C13, C18): no MPN in bom.csv to compare with the catalogue's CL05A225MQ5NSNC; the code was not checked against a part
+        C133334 (Y1): no MPN in bom.csv to compare with the catalogue's TAXM12M4RLBDDT2T; the code was not checked against a part
+        C138021 (R10, R11): no MPN in bom.csv to compare with the catalogue's RC0402FR-0727RL; the code was not checked against a part
+        C138687 (C15, C22, C23): no MPN in bom.csv to compare with the catalogue's CL32B106KBJNNNE; the code was not checked against a part
+        C138714 (D1): no MPN in bom.csv to compare with the catalogue's TPD4E05U06DQAR; the code was not checked against a part
+        C14663 (C28, C30): no MPN in bom.csv to compare with the catalogue's CC0603KRX7R9BB104; the code was not checked against a part
+        C1525 (C1, C2, C4, C5, C7, C8, C9, C10, C11, C12, C14, C19, C21, C24, C26): no MPN in bom.csv to compare with the catalogue's CL05B104KO5NNNC; the code was not checked against a part
+        C1570 (C16, C20): no MPN in bom.csv to compare with the catalogue's 0402CG300J500NT; the code was not checked against a part
+        C19077540 (D3, D6): no MPN in bom.csv to compare with the catalogue's SMAJ20CA; the code was not checked against a part
+        C20071191 (J4): no MPN in bom.csv to compare with the catalogue's F136-1104S3CMUB2; the code was not checked against a part
+        C2040 (U3): no MPN in bom.csv to compare with the catalogue's RP2040; the code was not checked against a part
+        C2286 (D5): no MPN in bom.csv to compare with the catalogue's KT-0603R; the code was not checked against a part
+        C25077 (R13, R14, R25): no MPN in bom.csv to compare with the catalogue's 0402WGF100JTCE; the code was not checked against a part
+        C25744 (R6, R7, R9, R15, R16, R17, R19, R22, R28): no MPN in bom.csv to compare with the catalogue's 0402WGF1002TCE; the code was not checked against a part
+        C25905 (R2, R3, R4, R5, R8, R21, R23, R24): no MPN in bom.csv to compare with the catalogue's 0402WGF5101TCE; the code was not checked against a part
+        C2762973 (SW2, SW4): no MPN in bom.csv to compare with the catalogue's GT-TC120A-H120-L1; the code was not checked against a part
+        C2762973 (SW2, SW4): no MPN in bom.csv to compare with the catalogue's GT-TC120A-H120-L1; the code was not checked against a part
+        C28323 (C3, C27): no MPN in bom.csv to compare with the catalogue's CL21B105KBFNNNE; the code was not checked against a part
+        C2843335 (U5): no MPN in bom.csv to compare with the catalogue's W25Q16JVUXIQ; the code was not checked against a part
+        C2988648 (R1): no MPN in bom.csv to compare with the catalogue's HoLLR1206-1W-5mR-1%; the code was not checked against a part
+        C3210761 (U1, U6): no MPN in bom.csv to compare with the catalogue's LM73100RPWR; the code was not checked against a part
+        C49851 (U7): no MPN in bom.csv to compare with the catalogue's INA226AIDGSR; the code was not checked against a part
+        C5244513 (U2): no MPN in bom.csv to compare with the catalogue's AP33772DKZ-13; the code was not checked against a part
+        C692458 (SW5): no MPN in bom.csv to compare with the catalogue's TS-1010-C-A; the code was not checked against a part
+        C7437326 (J6): no MPN in bom.csv to compare with the catalogue's 24.245.1; the code was not checked against a part
+        C7437327 (J8): no MPN in bom.csv to compare with the catalogue's 24.245.2; the code was not checked against a part
+        C77131 (TH1): no MPN in bom.csv to compare with the catalogue's NCP15XH103F03RC; the code was not checked against a part
+        C8678 (D2): no MPN in bom.csv to compare with the catalogue's SS34; the code was not checked against a part
+        C963411 (J1): no MPN in bom.csv to compare with the catalogue's GT-USB-7010AW; the code was not checked against a part
+  Catalogue package fits the footprint (§1): 9 not compared
+        C138714 TPD4E05U06DQAR (D1; bom.csv row 9): USON-10(1x2.5) on SON50P100X255X50-10N: "USON-10(1x2.5)" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C963411 GT-USB-7010AW (J1; bom.csv row 13): SMD on USB_C_GSwitch: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C20071191 F136-1104S3CMUB2 (J4; bom.csv row 14): SMD,P=2.54mm(Staggered pins) on Conn_OLED_PocketPD: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C7437326 24.245.1 (J6; bom.csv row 15): Plugin on Banana_Cliff_FCR7350R_S16N-PC_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C7437327 24.245.2 (J8; bom.csv row 16): Plugin on Banana_Cliff_FCR7350B_S16N-PC_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2762973 GT-TC120A-H120-L1 (SW2, SW4; bom.csv row 24, 25): SMD-4P,6.2x6.2mm on Button_6.2x6.2x12mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C692458 TS-1010-C-A (SW5; bom.csv row 26): SMD,4.7x2.3mm on Button-SMD_TS24CA: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C3210761 LM73100RPWR (U1, U6; bom.csv row 28): VQFN-10-HR(2x2) on VQFN-HR-16: "VQFN-HR-16" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C2843335 W25Q16JVUXIQ (U5; bom.csv row 32): USON-8-EP(2x3) on 8-USON: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+  Catalogue category matches the reference prefix (§1 §2): 1 not compared
+        C77131 NCP15XH103F03RC (TH1; bom.csv row 27): prefix TH has no category rule (known: C, D, F, FB, J, L, LED, Q, R, SW, U, Y)
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 27 polarized or asymmetric parts (J6, U4, D2, SW1, J5, U3, SW5, U1, U6, U8, U2, U5, +15 more) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  4 blocking, 4 warnings, 4 not checked  -  exit 1
+  4 findings block the order (FAIL lines under FINDINGS); fix them and run again

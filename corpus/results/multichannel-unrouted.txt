@@ -1,0 +1,174 @@
+multichannel_mixer  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 114 footprints  -  bom.csv: none
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
+
+CHECKED AND LEFT ALONE
+  Board footprints belong to this schematic (§5): 114 of 114 footprints name a symbol in the schematic
+  Copper layers (§9): 2 copper layers
+  DNP parts (§12): 0 DNP parts flagged on both schematic and board
+  Bought parts placed on the board (§5 §12): 114 of 114 bought references have a footprint on the board
+
+FINDINGS
+  FAIL  ERC (§12): 4 errors, 32 warnings on 5 sheets
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+12V, Power input, Line] @ (86.36, 115.57)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (86.36, 146.05)]
+        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Hidden pin 1 [+1V1, Power input, Line] @ (143.51, 83.82)]
+        pin_not_connected: Pin not connected [Symbol J6 Pin R [Passive, Line] @ (193.04, 76.2)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R1 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 130.81)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R2 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 143.51)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C1 [CTEB_2.2UF_35V_10%_254-500X840] @ (97.79, 138.43)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (110.49, 127.0)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C2 [CTEB_2.2UF_35V_10%_254-500X840] @ (143.51, 138.43)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C3 [CC1206_100NF_50V_10%_X7R] @ (144.78, 50.8)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (149.86, 68.58)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R3 [R1206_10K_1%_0.25W_100PPM] @ (162.56, 62.23)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C4 [CTEB_2.2UF_35V_10%_254-500X840] @ (177.8, 73.66)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Miscellaneous THD' [Symbol J5 [CLIFF_FC68148(DC-10A)] @ (194.31, 36.83)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C32 [CTEB_2.2UF_35V_10%_254-500X840] @ (102.87, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R37 [R1206_10K_1%_0.25W_100PPM] @ (110.49, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R38 [R1206_10K_1%_0.25W_100PPM] @ (121.92, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C33 [CC1206_100NF_50V_10%_X7R] @ (125.73, 68.58)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC5 [TL072CD] @ (127.0, 87.63)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R39 [R1206_10K_1%_0.25W_100PPM] @ (151.13, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R40 [R1206_10K_1%_0.25W_100PPM] @ (152.4, 52.07)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R41 [R1206_10K_1%_0.25W_100PPM] @ (161.29, 105.41)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C34 [CC1206_100NF_50V_10%_X7R] @ (162.56, 69.85)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C35 [CC1206_100NF_50V_10%_X7R] @ (163.83, 40.64)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R42 [R1206_10K_1%_0.25W_100PPM] @ (175.26, 81.28)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C36 [CC1206_100NF_50V_10%_X7R] @ (175.26, 90.17)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C37 [CC1206_100NF_50V_10%_X7R] @ (175.26, 96.52)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R43 [R1206_10K_1%_0.25W_100PPM] @ (176.53, 52.07)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R44 [R1206_10K_1%_0.25W_100PPM] @ (176.53, 60.96)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R45 [R1206_10K_1%_0.25W_100PPM] @ (185.42, 105.41)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R46 [R1206_10K_1%_0.25W_100PPM] @ (193.04, 106.68)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C38 [CC1206_100NF_50V_10%_X7R] @ (193.04, 118.11)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C39 [CC1206_100NF_50V_10%_X7R] @ (208.28, 67.31)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC5 [TL072CD] @ (213.36, 73.66)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R47 [R1206_10K_1%_0.25W_100PPM] @ (254.0, 78.74)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C40 [CTEB_2.2UF_35V_10%_254-500X840] @ (262.89, 78.74)]
+  FAIL  DRC (§12): 6 errors, 115 warnings (lib_footprint_issues x93, via_dangling x8, clearance x6, track_dangling x4, connection_width x4, silk_over_copper x3, silk_edge_clearance x1, holes_co_located x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4); Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (127.8, 86.8)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (105.8, 86.8)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (147.0, 83.000002)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (149.8, 86.8)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (103.0, 83.000002)]
+        warning: track_dangling: Track has unconnected end [Track [+12V] on F.Cu, length 6.0953 mm @ (121.15, 89.35)]
+        warning: track_dangling: Track has unconnected end [Track [+12V] on F.Cu, length 6.0953 mm @ (143.15, 89.35)]
+        warning: track_dangling: Track has unconnected end [Track [+12V] on F.Cu, length 6.0953 mm @ (99.15, 89.35)]
+        warning: track_dangling: Track has unconnected end [Track [+12V] on F.Cu, length 19.0000 mm @ (18.675, 91.225)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (120.6, 86.2)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (142.6, 86.2)]
+        warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (89.46, 154.66); Reference field of J9 @ (89.785, 59.285)]
+        warning: holes_co_located: Drilled holes co-located [Via [GND] on F.Cu - B.Cu @ (136.96, 80.66); Via [GND] on F.Cu - B.Cu @ (136.96, 80.66)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Miscellaneous THD' [Footprint J5 @ (191.285, 87.385)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C1 @ (181.73, 110.06)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C2 @ (186.46, 101.73)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C23 @ (162.0, 79.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C40 @ (106.5, 76.4)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C13 @ (150.5, 76.4)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C22 @ (128.5, 76.4)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C5 @ (140.0, 79.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C4 @ (193.87, 101.91)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C14 @ (118.0, 79.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C31 @ (172.5, 76.4)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Capacitors THD' [Footprint C32 @ (96.0, 79.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R39 @ (104.4, 102.8)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R34 @ (163.0, 135.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R14 @ (144.95, 147.4)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R16 @ (38.215, 73.965)]
+        ... 81 more (--max-details)
+  FAIL  Unrouted connections (§11 §12): 148 connections still to route
+        unconnected_items: Missing connection between items [Pad 1 [GND] of C21 on B.Cu @ (31.715, 81.965); Pad 4 [GND] of IC3 on B.Cu @ (41.485, 78.965)]
+        unconnected_items: Missing connection between items [Pad 1 [GND] of C21 on B.Cu @ (31.715, 81.965); Pad 1 [GND] of C20 on B.Cu @ (43.615, 111.865)]
+        unconnected_items: Missing connection between items [Pad 4 [GND] of IC3 on B.Cu @ (41.485, 78.965); Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        unconnected_items: Missing connection between items [PTH pad 2 [GND] of C1 @ (180.46, 110.06); Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
+        unconnected_items: Missing connection between items [Pad 1 [Net-(IC1B-IN+)] of R1 on B.Cu @ (181.01, 106.335); PTH pad 1 [Net-(IC1B-IN+)] of C1 @ (183.0, 110.06)]
+        unconnected_items: Missing connection between items [PTH pad 1 [Net-(IC1B-IN+)] of C1 @ (183.0, 110.06); Pad 5 [Net-(IC1B-IN+)] of IC1 on B.Cu @ (187.635, 110.145)]
+        unconnected_items: Missing connection between items [Pad 2 [Net-(IC1B-IN+)] of R2 on B.Cu @ (188.77, 112.76); Pad 5 [Net-(IC1B-IN+)] of IC1 on B.Cu @ (187.635, 110.145)]
+        unconnected_items: Missing connection between items [Pad 3 [vbias] of IC3 on B.Cu @ (40.215, 78.965); Pad 5 [vbias] of IC3 on B.Cu @ (41.485, 84.365)]
+        unconnected_items: Missing connection between items [Track [vbias] on B.Cu, length 1.6000 mm @ (103.0, 81.4); Pad 5 [vbias] of IC3 on B.Cu @ (41.485, 84.365)]
+        unconnected_items: Missing connection between items [Pad 5 [vbias] of IC5 on B.Cu @ (104.27, 86.8); Track [vbias] on B.Cu, length 1.6000 mm @ (103.0, 81.4)]
+        unconnected_items: Missing connection between items [Track [vbias] on B.Cu, length 1.5300 mm @ (104.27, 86.8); Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]
+        unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (127.8, 86.8); Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]
+        unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (147.0, 83.000002); Pad 3 [vbias] of IC2 on B.Cu @ (147.0, 81.4)]
+        unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (147.0, 83.000002); Via [vbias] on F.Cu - B.Cu @ (127.8, 86.8)]
+        unconnected_items: Missing connection between items [Pad 5 [vbias] of IC2 on B.Cu @ (148.27, 86.8); Via [vbias] on F.Cu - B.Cu @ (149.8, 86.8)]
+        unconnected_items: Missing connection between items [Pad 5 [vbias] of IC2 on B.Cu @ (148.27, 86.8); Via [vbias] on F.Cu - B.Cu @ (147.0, 83.000002)]
+        unconnected_items: Missing connection between items [Via [vbias] on F.Cu - B.Cu @ (149.8, 86.8); Pad 3 [vbias] of IC4 on B.Cu @ (169.0, 81.4)]
+        unconnected_items: Missing connection between items [Pad 5 [vbias] of IC4 on B.Cu @ (170.27, 86.8); Pad 3 [vbias] of IC4 on B.Cu @ (169.0, 81.4)]
+        unconnected_items: Missing connection between items [Pad 5 [vbias] of IC4 on B.Cu @ (170.27, 86.8); PTH pad 1 [vbias] of C2 @ (187.73, 101.73)]
+        unconnected_items: Missing connection between items [Pad 7 [vbias] of IC1 on B.Cu @ (187.635, 107.605); PTH pad 1 [vbias] of C2 @ (187.73, 101.73)]
+        unconnected_items: Missing connection between items [Pad 6 [vbias] of IC1 on B.Cu @ (187.635, 108.875); Pad 7 [vbias] of IC1 on B.Cu @ (187.635, 107.605)]
+        unconnected_items: Missing connection between items [Pad 6 [vbias] of IC1 on B.Cu @ (187.635, 108.875); Pad 3 [vbias] of IC1 on B.Cu @ (193.035, 108.875)]
+        unconnected_items: Missing connection between items [Pad 2 [+12V] of C21 on B.Cu @ (34.715, 81.965); Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365)]
+        unconnected_items: Missing connection between items [Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365); Pad 2 [+12V] of C39 on B.Cu @ (97.5, 84.4)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 19.0000 mm @ (18.675, 91.225); Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (121.15, 86.75); Track [+12V] on F.Cu, length 6.0953 mm @ (99.15, 89.35)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 0.7778 mm @ (142.6, 86.2); Pad 2 [+12V] of C12 on B.Cu @ (141.5, 84.4)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 0.7778 mm @ (142.6, 86.2); Pad 8 [+12V] of IC2 on B.Cu @ (144.46, 86.8)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (143.15, 86.75); Track [+12V] on F.Cu, length 6.0953 mm @ (121.15, 89.35)]
+        unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 6.0953 mm @ (143.15, 89.35); Pad 2 [+12V] of C30 on B.Cu @ (163.5, 84.4)]
+        unconnected_items: Missing connection between items [Pad 2 [+12V] of C30 on B.Cu @ (163.5, 84.4); Pad 8 [+12V] of IC4 on B.Cu @ (166.46, 86.8)]
+        unconnected_items: Missing connection between items [Pad 8 [+12V] of IC4 on B.Cu @ (166.46, 86.8); PTH pad 1 [+12V] of J5 @ (185.085, 87.385)]
+        unconnected_items: Missing connection between items [Pad 2 [+12V] of R1 on B.Cu @ (183.91, 106.335); Pad 8 [+12V] of IC1 on B.Cu @ (187.635, 106.335)]
+        unconnected_items: Missing connection between items [Pad 2 [+12V] of C3 on B.Cu @ (183.96, 103.66); Pad 2 [+12V] of R1 on B.Cu @ (183.91, 106.335)]
+        unconnected_items: Missing connection between items [PTH pad 1 [+12V] of J5 @ (185.085, 87.385); Pad 2 [+12V] of C3 on B.Cu @ (183.96, 103.66)]
+        unconnected_items: Missing connection between items [Pad 1 [Net-(IC1A-OUT)] of IC1 on B.Cu @ (193.035, 106.335); Pad 2 [Net-(IC1A-OUT)] of R3 on B.Cu @ (195.5, 106.34)]
+        unconnected_items: Missing connection between items [PTH pad 1 [Net-(IC1A-OUT)] of C4 @ (193.87, 103.18); Pad 1 [Net-(IC1A-OUT)] of IC1 on B.Cu @ (193.035, 106.335)]
+        unconnected_items: Missing connection between items [PTH pad T [Net-(C4-Pad2)] of J6 @ (180.585, 65.585); PTH pad 2 [Net-(C4-Pad2)] of C4 @ (193.87, 100.64)]
+        unconnected_items: Missing connection between items [Pad 1 [Net-(C5-Pad1)] of R4 on B.Cu @ (138.55, 76.4); PTH pad 1 [Net-(C5-Pad1)] of C5 @ (141.27, 79.9)]
+        unconnected_items: Missing connection between items [PTH pad T [Net-(C5-Pad2)] of J1 @ (136.785, 65.635); PTH pad 2 [Net-(C5-Pad2)] of C5 @ (138.73, 79.9)]
+        ... 108 more (--max-details)
+  FAIL  Schematic / PCB parity (§5): 1 mismatches across 114 footprints
+        footprint_symbol_mismatch: Value (J6) doesn't match symbol value (CH1) [Footprint J6 @ (180.585, 65.585)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
+  WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
+  WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
+  WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("multichannel_mixer") on a silkscreen layer
+        silk texts: KiCad Multichannel Tool\nDemo Board\nTW 2024
+  WARN  Connector names on silk (§8): 6 of 6 connectors have neither a visible value nor silk text within 15 mm
+        J5 Power at 191.285, 87.385
+        J9 CH1 at 92.785, 65.635
+        J6 CH1 at 180.585, 65.585
+        J7 CH1 at 114.785, 65.635
+        J8 CH1 at 158.785, 65.635
+        J1 CH1 at 136.785, 65.635
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/multichannel-unrouted.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+
+NOT CHECKED
+  Catalogue and stock (§1 §2 §13): no readable bom.csv
+  DRC (§12): 12 not compared
+        missing_courtyard: Footprint has no courtyard defined [Footprint J5 @ (191.285, 87.385)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C1 @ (181.73, 110.06)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C2 @ (186.46, 101.73)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C23 @ (162.0, 79.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C40 @ (106.5, 76.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C13 @ (150.5, 76.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C22 @ (128.5, 76.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C5 @ (140.0, 79.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C4 @ (193.87, 101.91)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C14 @ (118.0, 79.9)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C31 @ (172.5, 76.4)]: no courtyard, so courtyards_overlap could not see this footprint
+        missing_courtyard: Footprint has no courtyard defined [Footprint C32 @ (96.0, 79.9)]: no courtyard, so courtyards_overlap could not see this footprint
+
+BY HAND BEFORE ORDERING
+  - Fab assembly preview: rotation of 11 polarized or asymmetric parts (J5, J9, J6, J7, J8, J1, IC1, IC5, IC4, IC2, IC3) (§4)
+  - Every footprint pin map against the datasheet drawing: SOT-23 pin order, diode cathode, connector pin 1 and entry side (§3)
+  - Every MPN opened on the supplier page, pin tables and absolute maximums copied from the datasheet (§2)
+  - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
+  - Enclosure: component heights, connector edges, mounting hole pattern (§10)
+  - Hand-drawn power loops, a human look at every autorouted trace (§11)
+  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+
+RESULT: FAIL  -  5 blocking, 4 warnings, 2 not checked  -  exit 1
+  5 findings block the order (FAIL lines under FINDINGS); fix them and run again
