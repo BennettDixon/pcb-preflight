@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BeyondexLimiter",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/beyondex-limiter",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/beyondex-limiter",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -23,26 +23,43 @@
   "owned": {
     "drc": {},
     "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
+    },
     "pin_map": 0,
     "minimums": {},
     "netclasses": {}
   },
   "copper_layers": 2,
   "footprints": 9,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/beyondex-limiter.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/beyondex-limiter.csv",
   "checks": [
     {
       "id": "erc",
       "title": "ERC",
       "pitfall": "\u00a712",
-      "status": "fail",
-      "summary": "1 errors, 0 warnings on 1 sheet",
+      "status": "warn",
+      "summary": "0 errors, 1 warnings on 1 sheet",
       "details": [
-        "power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]"
+        "warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]"
       ],
       "unchecked": [],
       "verified": [],
-      "notes": []
+      "notes": [
+        "1 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x1"
+      ]
     },
     {
       "id": "drc",

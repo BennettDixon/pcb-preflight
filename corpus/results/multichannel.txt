@@ -1,6 +1,6 @@
 multichannel_mixer  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 114 footprints  -  bom.csv: none
-RESULT: FAIL  -  4 blocking, 4 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 5 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -10,20 +10,20 @@ CHECKED AND LEFT ALONE
   Bought parts placed on the board (§5 §12): 114 of 114 bought references have a footprint on the board
 
 FINDINGS
-  FAIL  ERC (§12): 4 errors, 32 warnings on 5 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+12V, Power input, Line] @ (86.36, 115.57)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (86.36, 146.05)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Hidden pin 1 [+1V1, Power input, Line] @ (143.51, 83.82)]
-        pin_not_connected: Pin not connected [Symbol J6 Pin R [Passive, Line] @ (193.04, 76.2)]
+  WARN  ERC (§12): 0 errors, 36 warnings on 5 sheets
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+12V, Power input, Line] @ (86.36, 115.57)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R1 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 130.81)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R2 [R1206_10K_1%_0.25W_100PPM] @ (86.36, 143.51)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Hidden pin 1 [GND, Power input, Line] @ (86.36, 146.05)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C1 [CTEB_2.2UF_35V_10%_254-500X840] @ (97.79, 138.43)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (110.49, 127.0)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Hidden pin 1 [+1V1, Power input, Line] @ (143.51, 83.82)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C2 [CTEB_2.2UF_35V_10%_254-500X840] @ (143.51, 138.43)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors SMD' [Symbol C3 [CC1206_100NF_50V_10%_X7R] @ (144.78, 50.8)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC1 [TL072CD] @ (149.86, 68.58)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R3 [R1206_10K_1%_0.25W_100PPM] @ (162.56, 62.23)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C4 [CTEB_2.2UF_35V_10%_254-500X840] @ (177.8, 73.66)]
+        warning: pin_not_connected: Pin not connected [Symbol J6 Pin R [Passive, Line] @ (193.04, 76.2)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Miscellaneous THD' [Symbol J5 [CLIFF_FC68148(DC-10A)] @ (194.31, 36.83)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C32 [CTEB_2.2UF_35V_10%_254-500X840] @ (102.87, 81.28)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R37 [R1206_10K_1%_0.25W_100PPM] @ (110.49, 81.28)]
@@ -47,31 +47,32 @@ FINDINGS
         warning: footprint_link_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Symbol IC5 [TL072CD] @ (213.36, 73.66)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R47 [R1206_10K_1%_0.25W_100PPM] @ (254.0, 78.74)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C40 [CTEB_2.2UF_35V_10%_254-500X840] @ (262.89, 78.74)]
+        note: 4 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x3, pin_not_connected x1
   FAIL  DRC (§12): 24 errors, 91 warnings (lib_footprint_mismatch x81, clearance x24, connection_width x4, silk_over_copper x4, silk_edge_clearance x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C8-Pad1)] of RV2 @ (147.5, 97.4); Track [Net-(IC2B-IN-)] on B.Cu, length 4.0000 mm @ (148.85, 94.85)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C11 on B.Cu @ (150.4, 114.3); Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC2B-IN-)] on B.Cu, length 3.1820 mm @ (146.8, 112.790811); PTH pad 3 [Net-(C7-Pad1)] of RV1 @ (147.5, 115.4)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C7-Pad1)] of C7 on B.Cu @ (148.0, 117.9); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C11 on B.Cu @ (150.4, 114.3); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C11-Pad2)] of C11 on B.Cu @ (150.4, 117.3); Track [Net-(IC2B-IN-)] on B.Cu, length 4.4592 mm @ (149.05, 115.040811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C8-Pad1)] of RV2 @ (147.5, 97.4); Track [Net-(IC2B-IN-)] on B.Cu, length 4.0000 mm @ (148.85, 94.85)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811); Pad 1 [GND] of C20 on B.Cu @ (128.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811); Pad 2 [Net-(C20-Pad2)] of C20 on B.Cu @ (128.4, 117.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C16-Pad1)] of C16 on B.Cu @ (126.0, 117.9); Track [Net-(IC3B-IN-)] on B.Cu, length 4.4592 mm @ (127.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C17-Pad1)] of RV6 @ (125.5, 97.4); Track [Net-(IC3B-IN-)] on B.Cu, length 4.0000 mm @ (126.85, 94.85)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C16-Pad1)] of RV5 @ (125.5, 115.4); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Pad 1 [GND] of C20 on B.Cu @ (128.4, 114.3); Track [Net-(IC3B-IN-)] on B.Cu, length 3.1820 mm @ (124.8, 112.790811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [Net-(C25-Pad1)] of C25 on B.Cu @ (170.0, 117.9)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C25-Pad1)] of RV9 @ (169.5, 115.4); Track [Net-(IC4B-IN-)] on B.Cu, length 3.1820 mm @ (168.8, 112.790811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 3.1820 mm @ (168.8, 112.790811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [Net-(C25-Pad1)] of C25 on B.Cu @ (170.0, 117.9)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811); Pad 1 [GND] of C29 on B.Cu @ (172.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C29-Pad2)] of C29 on B.Cu @ (172.4, 117.3); Track [Net-(IC4B-IN-)] on B.Cu, length 4.4592 mm @ (171.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C26-Pad1)] of RV10 @ (169.5, 97.4); Track [Net-(IC4B-IN-)] on B.Cu, length 4.0000 mm @ (170.85, 94.85)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85); PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
         clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85); PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4)]
+        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
         warning: connection_width: Copper connection too narrow (board setup constraints minimum connection width 0.3000 mm; actual 0.2490 mm) (B.Cu) [Zone [GND] on F.Cu and B.Cu, priority 1 @ (199.46, 154.66)]
@@ -142,7 +143,7 @@ FINDINGS
         J7 CH1 at 114.785, 65.635
         J8 CH1 at 158.785, 65.635
         J1 CH1 at 136.785, 65.635
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/multichannel.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/multichannel.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv
@@ -169,5 +170,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  4 blocking, 4 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 5 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again

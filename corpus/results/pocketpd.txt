@@ -1,6 +1,6 @@
 PicoPDSupply  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 90 footprints  -  bom.csv: pocketpd.csv
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -17,9 +17,7 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 81 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 2 errors, 44 warnings on 4 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR063 Pin 1 [Power input, Line] @ (33.02, 96.52)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (278.0126, 68.58)]
+  WARN  ERC (§12): 0 errors, 46 warnings on 4 sheets
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Centy_Miscellaneous' [Symbol U5 [W25Q16JVUXIQ_TR] @ (39.37, 58.42)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'Centy_Miscellaneous' [Symbol U5 [W25Q16JVUXIQ_TR] @ (39.37, 58.42)]
         warning: lib_symbol_mismatch: Symbol 'Crystal_GND24' doesn't match copy in library 'Device' [Symbol Y1 [Crystal_GND24] @ (128.27, 161.29)]
@@ -57,22 +55,25 @@ FINDINGS
         warning: multiple_net_names: Both GPIO18 and Encoder_SW are attached to the same items; GPIO18 will be used in the netlist [Label 'GPIO18' @ (193.04, 156.21); Hierarchical Label 'Encoder_SW' @ (193.04, 156.21)]
         warning: multiple_net_names: Both GPIO19 and Encoder_A are attached to the same items; GPIO19 will be used in the netlist [Label 'GPIO19' @ (193.04, 158.75); Hierarchical Label 'Encoder_A' @ (193.04, 158.75)]
         warning: multiple_net_names: Both GPIO20 and Encoder_B are attached to the same items; GPIO20 will be used in the netlist [Label 'GPIO20' @ (193.04, 161.29); Hierarchical Label 'Encoder_B' @ (193.04, 161.29)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR063 Pin 1 [Power input, Line] @ (33.02, 96.52)]
         warning: multiple_net_names: Both USB_D- and D- are attached to the same items; USB_D- will be used in the netlist [Label 'USB_D-' @ (91.44, 66.04); Hierarchical Label 'D-' @ (63.5, 45.72)]
+        warning: multiple_net_names: Both USB_D+ and D+ are attached to the same items; USB_D+ will be used in the netlist [Label 'USB_D+' @ (63.5, 50.8); Hierarchical Label 'D+' @ (63.5, 50.8)]
         ... 6 more (--max-details)
-  FAIL  DRC (§12): 49 errors, 106 warnings (lib_footprint_mismatch x67, clearance x21, starved_thermal x16, lib_footprint_issues x14, silk_overlap x11, courtyards_overlap x10, silk_edge_clearance x10, silk_over_copper x3, copper_edge_clearance x2, via_dangling x1); 7 footprints without a courtyard
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
+        note: 2 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x2
+  FAIL  DRC (§12): 39 errors, 116 warnings (lib_footprint_mismatch x67, clearance x21, starved_thermal x16, lib_footprint_issues x14, silk_overlap x11, courtyards_overlap x10, silk_edge_clearance x10, silk_over_copper x3, copper_edge_clearance x2, via_dangling x1); 7 footprints without a courtyard
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101); Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal-] on F.Cu, length 0.4983 mm @ (54.75435, 62.257649); Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.4983 mm @ (55.10765, 62.257649); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.0330 mm @ (55.56, 60.893751); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
-        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.2555 mm @ (55.10765, 62.002172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6067 mm @ (55.53665, 61.573172); Track [/MicroController/D_Internal-] on F.Cu, length 0.4018 mm @ (54.75435, 61.855828)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.5097 mm @ (55.18335, 60.917101)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.0330 mm @ (55.16, 60.893751)]
+        clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/D_Internal+] on F.Cu, length 0.6561 mm @ (55.53665, 60.917101); Track [/MicroController/D_Internal-] on F.Cu, length 0.6067 mm @ (55.18335, 61.426828)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 5.0194 mm @ (51.379378, 70.05)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372); Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 4.7729 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
@@ -81,26 +82,27 @@ FINDINGS
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 1.7327 mm @ (54.75435, 66.675028); Track [/MicroController/USB_D+] on F.Cu, length 5.1317 mm @ (55.10765, 66.821372)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 1.8790 mm @ (55.10765, 64.942351)]
         clearance: Clearance violation (netclass 'Default' clearance 0.1500 mm; actual 0.1270 mm) [Track [/MicroController/USB_D-] on F.Cu, length 0.4983 mm @ (54.402, 64.590001); Track [/MicroController/USB_D+] on F.Cu, length 0.4983 mm @ (55.46, 64.590001)]
-        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint D2 @ (73.66, 51.6)]
-        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint J5 @ (74.81, 72.0)]
-        courtyards_overlap: Courtyards overlap [Footprint J6 @ (75.5, 61.4); Footprint J2 @ (70.61, 71.65)]
-        courtyards_overlap: Courtyards overlap [Footprint D2 @ (73.66, 51.6); Footprint J8 @ (75.5, 41.9)]
-        courtyards_overlap: Courtyards overlap [Footprint J5 @ (74.81, 72.0); Footprint J9 @ (80.0275, 78.7)]
-        courtyards_overlap: Courtyards overlap [Footprint J5 @ (74.81, 72.0); Footprint J2 @ (70.61, 71.65)]
-        courtyards_overlap: Courtyards overlap [Footprint U3 @ (56.56, 56.8); Footprint R9 @ (51.66, 52.3)]
-        courtyards_overlap: Courtyards overlap [Footprint C21 @ (67.86, 67.15); Footprint J2 @ (70.61, 71.65)]
-        courtyards_overlap: Courtyards overlap [Footprint J9 @ (80.0275, 78.7); Footprint J2 @ (70.61, 71.65)]
-        courtyards_overlap: Courtyards overlap [Footprint J2 @ (70.61, 71.65); Footprint H1 @ (66.5, 79.9)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 1 [GND] of SW5 on F.Cu @ (53.835, 34.841217)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.3000 mm; actual 0.2912 mm) [Segment on Edge.Cuts @ (39.06, 33.9); Pad 2 [unconnected-(SW5-Pad2)] of SW5 on F.Cu @ (58.085, 34.841217)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
-        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of U4 on F.Cu @ (48.06, 46.3625)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer B.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on B.Cu, priority 0 @ (93.96, 85.0); PTH pad 2 [GND] of J3 @ (47.76, 35.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 19 [GND] of U3 on F.Cu @ (57.56, 53.3625)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C8 on F.Cu @ (50.58, 55.8)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C19 on F.Cu @ (61.965, 64.363)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 1 [GND] of R30 on F.Cu @ (44.95, 57.2)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 7 [GND] of U7 on F.Cu @ (66.76, 65.6)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C4 on F.Cu @ (54.76, 50.42)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad A1 [GND] of J1 on F.Cu @ (42.006, 66.35)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad B12 [GND] of J1 on F.Cu @ (42.006, 66.6475)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C16 on F.Cu @ (62.18, 53.6)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of Y1 on F.Cu @ (61.81, 52.1)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C2 on F.Cu @ (47.406, 65.806)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C11 on F.Cu @ (63.14, 55.8)]
+        warning: via_dangling: Via is not connected or connected on only one layer [Via [+3.3V] on F.Cu - B.Cu @ (61.26, 55.8)]
         ... 115 more (--max-details)
+        note: 10 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x10
   WARN  Schematic / PCB parity (§5): 0 mismatches, 73 field/filter notes across 90 footprints
         warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C4 @ (54.76, 50.9)]
         warning: footprint_symbol_field_mismatch: Field 'Datasheet' differs (PCB: '~', Schematic: '') [Footprint C5 @ (57.46, 63.6)]
@@ -204,5 +206,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

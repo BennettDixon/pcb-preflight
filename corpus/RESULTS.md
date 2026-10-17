@@ -59,6 +59,30 @@ reports. Counts of 199 for one violation type are kicad-cli's per-type cap, not 
 * **ERC `power_pin_not_driven` blocks 15 of 21 boards**, 11 of them fab-ready. It is KiCad's missing
   PWR_FLAG error; nothing about it decides whether the fab can build the board.
 
+## Policy decisions applied (2026-10-17, after the triage)
+
+Two of the nine rule changes below were decided and applied the same day; the headline and the per-board
+tables describe the run *before* them, and tests/test_corpus.py freezes the run *after*.
+
+* **KiCad's electrical-intent ERC errors run as warnings** (`preset.ERC_DEMOTED`: pin_not_connected,
+  pin_not_driven, power_pin_not_driven, pin_to_pin with the pin matrix capped at warning, missing_power_pin,
+  label_dangling, wire_dangling, hier_label_mismatch). The protected ERC set keeps what decides whether the
+  fab gets one unambiguous part per reference: duplicate references, unannotated symbols, unit/value/footprint
+  mismatches between units, sheet-name and bus conflicts, unresolved variables.
+* **courtyards_overlap and solder_mask_bridge run as warnings** (`preset.DRC_DEMOTED`). `--strict` promotes
+  both groups.
+
+Offline, after the two decisions (kicad-cli 10.0.7, `sh corpus/run.sh`):
+
+| | Triage run | After the gate fixes | After the policy decisions |
+|:--|:--|:--|:--|
+| Boards blocked by ERC | 15 of 21 | 15 of 21 | 0 of 21 |
+| Boards failing offline | 21 of 21 | 20 of 21 | 18 of 21 (canfd-mc, jlcpcb-example, soldiercrab are NOT VERIFIED) |
+
+What still blocks the fab-ready boards is DRC, mostly rule-change item 4 (the project's own stricter
+constraints counted as the fab's: `drill_out_of_range` x199 on four boards, `clearance` on three) and the
+true items the headline names; item 4 is not decided.
+
 ## How the blocking findings sort
 
 Every blocking item in the 21 offline reports and the 15 online ones, by the rule that produced it

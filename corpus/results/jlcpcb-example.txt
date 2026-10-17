@@ -1,6 +1,6 @@
 SMPS 12V-5V  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 19 footprints  -  bom.csv: jlcpcb-example.csv
-RESULT: FAIL  -  1 blocking, 6 warnings, 2 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 2 not checked  -  exit 3
+  2 gates could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -16,10 +16,7 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 15 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 3 errors, 50 warnings on 1 sheet
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Pin 1 [Power input, Line] @ (238.76, 52.07)]
+  WARN  ERC (§12): 0 errors, 53 warnings on 1 sheet
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN1 Pin 1 [1, Unspecified, Line] @ (52.07, 54.61); Symbol #PWR05 Pin 1 [Power input, Line] @ (52.07, 54.61)]
@@ -32,6 +29,7 @@ FINDINGS
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H3 [Mounting Hole, 3mm, Via Stiched] @ (71.12, 119.38)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C2 [0805,22uF] @ (129.54, 71.12)]
@@ -57,7 +55,10 @@ FINDINGS
         warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 6 [FB2, Unspecified, Line] @ (186.69, 64.77); Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93)]
         warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 2 [PG, Unspecified, Line] @ (186.69, 69.85); Symbol R2 Pin 2 [Passive, Line] @ (212.09, 59.69)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93); Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 4 [GND, Unspecified, Line] @ (186.69, 78.74); Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol R4 Pin 2 [2, Unspecified, Line] @ (199.39, 52.07); Symbol R2 Pin 1 [Passive, Line] @ (212.09, 52.07)]
         ... 13 more (--max-details)
+        note: 24 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x21, power_pin_not_driven x3
   WARN  DRC (§12): 0 errors, 58 warnings (via_dangling x28, hole_to_hole x15, lib_footprint_issues x14, copper_sliver x1); 5 footprints without a courtyard
         warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (161.25, 75.65)]
         warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (127.25, 90.0)]
@@ -137,5 +138,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 6 warnings, 2 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 2 not checked  -  exit 3
+  2 gates could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue

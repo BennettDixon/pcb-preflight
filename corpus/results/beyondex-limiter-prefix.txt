@@ -1,6 +1,6 @@
 BeyondexLimiter  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 9 footprints  -  bom.csv: beyondex-limiter-prefix.csv
-RESULT: FAIL  -  2 blocking, 4 warnings, 1 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  1 blocking, 5 warnings, 1 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -17,8 +17,9 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 7 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 1 errors, 0 warnings on 1 sheet
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]
+  WARN  ERC (§12): 0 errors, 1 warnings on 1 sheet
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (100.33, 92.71)]
+        note: 1 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x1
   FAIL  DRC (§12): 8 errors, 29 warnings (text_height x14, text_thickness x7, drill_out_of_range x6, silk_edge_clearance x4, clearance x2, lib_footprint_mismatch x2, silk_overlap x1, silk_over_copper x1)
         clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1099 mm) [Track [/VIN] on F.Cu, length 2.1213 mm @ (173.6, 95.1); Pad B5 [unconnected-(USB1-CC2-PadB5)] of USB1 on F.Cu @ (173.1625, 95.75)]
         clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]
@@ -86,5 +87,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  2 blocking, 4 warnings, 1 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  1 blocking, 5 warnings, 1 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

@@ -15,10 +15,15 @@ DRC, and the project is the thing under review; so before running them the gate 
 copy of the .kicad_pro (never in the user's file):
 
 * the severity of the protected checks, to "error": a check the project set to "warning" or "ignore"
-  still runs and still blocks. The protected set is KiCad's own default errors that decide whether the fab
+  still runs and still blocks. The protected set is the KiCad default errors that decide whether the fab
   can make and assemble the board as drawn, plus the parity checks (KiCad ships them as warnings) and
   missing_courtyard (KiCad ignores it; courtyards_overlap can only see footprints that have one). A
-  protected violation the project excluded blocks too. Every other check keeps the project's choice.
+  protected violation the project excluded blocks too.
+* the severity of the demoted checks, to "warning": KiCad's electrical-intent ERC errors (ERC_DEMOTED) and
+  the courtyard-overlap and solder-mask-bridge DRC checks (DRC_DEMOTED). They still run and are listed;
+  they do not block, because none decides whether the fab can build the board (--strict promotes them).
+  The corpus of public boards (corpus/RESULTS.md) is the evidence: they blocked most of the boards that
+  had been ordered and built. Every other check keeps the project's choice.
 * the ERC pin-conflict matrix, cell by cell, to no weaker than KiCad's default.
 * the board's minimum constraints and netclass clearances, to no lower than the fab's published
   capability, so a project with min_track_width 0 does not pass a 0.05 mm track.
@@ -47,18 +52,32 @@ DRC_PROTECTED = frozenset({
     'unconnected_items', 'shorting_items', 'tracks_crossing', 'zones_intersect',
     # the fab's manufacturing limits
     'clearance', 'hole_clearance', 'copper_edge_clearance', 'track_width', 'annular_width',
-    'drill_out_of_range', 'microvia_drill_out_of_range', 'solder_mask_bridge', 'through_hole_pad_without_hole',
-    'invalid_outline', 'text_on_edge_cuts', 'items_not_allowed', 'item_on_disabled_layer', 'courtyards_overlap',
+    'drill_out_of_range', 'microvia_drill_out_of_range', 'through_hole_pad_without_hole',
+    'invalid_outline', 'text_on_edge_cuts', 'items_not_allowed', 'item_on_disabled_layer',
     'missing_courtyard', 'unresolved_variable',
 }) | PARITY
 
-# ERC checks the gate owns. KiCad's erc.rule_severities keys. pin_to_pin is the on/off switch for the pin
-# matrix below (KiCad ships the key as "warning"; the matrix decides warning or error per pair).
+# DRC checks the gate runs as warnings whatever the project says: the designer wants to see them, but the fab
+# builds and places the board regardless (the corpus, 2026-10-17: 10 of 21 public boards blocked on them, 7
+# of those ordered and sold). --strict blocks them.
+DRC_DEMOTED = frozenset({'courtyards_overlap', 'solder_mask_bridge'})
+
+# ERC checks the gate owns: the ones that decide whether the fab gets one unambiguous part per reference.
+# KiCad's erc.rule_severities keys.
 ERC_PROTECTED = frozenset({
-    'pin_not_connected', 'pin_not_driven', 'power_pin_not_driven', 'pin_to_pin', 'duplicate_reference', 'unannotated',
-    'different_unit_net', 'different_unit_footprint', 'unit_value_mismatch', 'extra_units', 'missing_power_pin',
-    'label_dangling', 'wire_dangling', 'hier_label_mismatch', 'duplicate_sheet_names', 'unresolved_variable',
+    'duplicate_reference', 'unannotated', 'different_unit_net', 'different_unit_footprint', 'unit_value_mismatch',
+    'extra_units', 'duplicate_sheet_names', 'unresolved_variable',
     'bus_definition_conflict', 'bus_to_bus_conflict', 'bus_to_net_conflict',
+})
+
+# KiCad's electrical-intent errors, run as warnings whatever the project says: an unconnected pin, an undriven
+# power pin (the missing PWR_FLAG, which blocked 15 of the corpus's 21 boards, 11 of them built), two outputs
+# tied together, a dangling label. They are about whether the circuit is what the designer meant, not about
+# whether the fab can build it, and --strict blocks them. pin_to_pin is the on/off switch for the pin matrix
+# below; the matrix decides warning or error per pair, so its cells are capped at warning as well.
+ERC_DEMOTED = frozenset({
+    'pin_not_connected', 'pin_not_driven', 'power_pin_not_driven', 'pin_to_pin', 'missing_power_pin',
+    'label_dangling', 'wire_dangling', 'hier_label_mismatch',
 })
 
 # KiCad's own non-error defaults, so the report only says "the project had X" when the project changed X.
@@ -159,20 +178,25 @@ def apply(pro_path, copper_layers=2):
 
     Returns what the project had that the gate changed, so the report can say so:
     {"drc": {check: project severity}, "erc": {...}      protected checks the project had weaker than KiCad's default
+     "demoted": {"drc": [check, ...], "erc": [...]}      demoted checks the project did not already have as warnings
      "pin_map": n                                        pin-matrix cells weaker than KiCad's default (0: none)
      "minimums": {key: (project value, floor)}           board minimums below the fab's
      "netclasses": {name: (project clearance, floor)}}   netclass clearances below the fab's
     """
     pro = _load(pro_path)
-    changed = {'drc': {}, 'erc': {}, 'pin_map': 0, 'minimums': {}, 'netclasses': {}}
+    changed = {'drc': {}, 'erc': {}, 'demoted': {'drc': [], 'erc': []}, 'pin_map': 0, 'minimums': {}, 'netclasses': {}}
     ds = pro.setdefault('board', {}).setdefault('design_settings', {})
-    for kind, protected, sev in (('drc', DRC_PROTECTED, ds.setdefault('rule_severities', {})),
-                                 ('erc', ERC_PROTECTED, pro.setdefault('erc', {}).setdefault('rule_severities', {}))):
+    for kind, protected, demoted, sev in (('drc', DRC_PROTECTED, DRC_DEMOTED, ds.setdefault('rule_severities', {})),
+                                          ('erc', ERC_PROTECTED, ERC_DEMOTED, pro.setdefault('erc', {}).setdefault('rule_severities', {}))):
         for key in sorted(protected):
             default = KICAD_DEFAULT[kind].get(key, 'error')
             if sev.get(key, default) != default:
                 changed[kind][key] = sev[key]
             sev[key] = 'error'
+        for key in sorted(demoted):
+            if sev.get(key, KICAD_DEFAULT[kind].get(key, 'error')) != 'warning':
+                changed['demoted'][kind].append(key)
+            sev[key] = 'warning'
 
     erc = pro['erc']
     pin_map = erc.get('pin_map')
@@ -182,6 +206,7 @@ def apply(pro_path, copper_layers=2):
                 if not isinstance(pin_map[i][j], int) or pin_map[i][j] < DEFAULT_PIN_MAP[i][j]:
                     changed['pin_map'] += 1
                     pin_map[i][j] = DEFAULT_PIN_MAP[i][j]
+                pin_map[i][j] = min(pin_map[i][j], 1)          # pin conflicts are demoted: warnings, never errors
     elif pin_map is not None:                       # malformed: kicad-cli then uses its built-in default
         erc.pop('pin_map')
         changed['pin_map'] = 144

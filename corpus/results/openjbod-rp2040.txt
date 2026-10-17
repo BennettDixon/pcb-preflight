@@ -1,6 +1,6 @@
 OpenJBOD-RP2040  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 129 footprints  -  bom.csv: openjbod-rp2040.csv
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 6 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Board footprints belong to this schematic (§5): 125 of 129 footprints name a symbol in the schematic, 4 board-only
@@ -15,12 +15,8 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 121 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 5 errors, 99 warnings on 5 sheets
-        label_dangling: Label not connected [Label '+5vSB' @ (91.44, 55.88)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U2 Pin 3 [VI, Power input, Line] @ (100.33, 25.4)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol U1 Pin 24 [SWCLK, Input, Line] @ (52.07, 134.62)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol U4 Pin 4 [AVDD, Power input, Line] @ (142.24, 74.93)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR034 Pin 1 [Power input, Line] @ (212.09, 99.06)]
+  WARN  ERC (§12): 0 errors, 104 warnings on 5 sheets
+        warning: label_dangling: Label not connected [Label '+5vSB' @ (91.44, 55.88)]
         warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol SW3 Pin 1 [1, Unspecified, Line] @ (198.12, 152.4); Symbol SW3 Pin 3 [SH, Unspecified, Line] @ (198.12, 154.94)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW3 Hidden pin 4 [SH, Unspecified, Line] @ (198.12, 154.94); Symbol #PWR08 Hidden pin 1 [GND, Power input, Line] @ (196.85, 156.21)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol SW3 Pin 3 [SH, Unspecified, Line] @ (198.12, 154.94); Symbol #PWR08 Hidden pin 1 [GND, Power input, Line] @ (196.85, 156.21)]
@@ -56,8 +52,12 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C24 [C_Small] @ (31.75, 22.86)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (41.275, 19.05)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 9.525 mm @ (31.75, 19.05)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 10.795 mm @ (41.275, 19.05)]
+        warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C25 [C_Small] @ (41.275, 22.86)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol C25 Pin 2 [Passive, Line] @ (41.275, 25.4)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 1.27 mm @ (41.275, 25.4)]
         ... 64 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+        note: 17 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x12, power_pin_not_driven x3, label_dangling x1, pin_not_driven x1
   FAIL  DRC (§12): 11 errors, 121 warnings (lib_footprint_mismatch x112, hole_clearance x9, silk_edge_clearance x6, annular_width x2, padstack x2, lib_footprint_issues x1); 8 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 103.51)]
         annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 109.29)]
@@ -184,5 +184,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 6 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again

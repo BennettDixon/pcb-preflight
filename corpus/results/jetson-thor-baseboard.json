@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "jetson-agx-thor-baseboard",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boards/jetson-thor-baseboard",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/jetson-thor-baseboard",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -24,8 +24,22 @@
     "drc": {
       "missing_courtyard": "warning"
     },
-    "erc": {
-      "pin_to_pin": "error"
+    "erc": {},
+    "demoted": {
+      "drc": [
+        "courtyards_overlap",
+        "solder_mask_bridge"
+      ],
+      "erc": [
+        "hier_label_mismatch",
+        "label_dangling",
+        "missing_power_pin",
+        "pin_not_connected",
+        "pin_not_driven",
+        "pin_to_pin",
+        "power_pin_not_driven",
+        "wire_dangling"
+      ]
     },
     "pin_map": 0,
     "minimums": {
@@ -44,14 +58,9 @@
       "id": "erc",
       "title": "ERC",
       "pitfall": "\u00a712",
-      "status": "fail",
-      "summary": "5 errors, 3007 warnings on 15 sheets",
+      "status": "warn",
+      "summary": "0 errors, 3012 warnings on 15 sheets",
       "details": [
-        "pin_to_pin: Pins of type Output and Output are connected [Symbol U44 Pin 3 [FLG, Output, Line] @ (119.38, 213.36); Symbol U45 Pin 3 [FLG, Output, Line] @ (119.38, 246.38)]",
-        "pin_to_pin: Pins of type Output and Output are connected [Symbol U46 Pin 3 [FLG, Output, Line] @ (228.6, 213.36); Symbol U47 Pin 3 [FLG, Output, Line] @ (228.6, 246.38)]",
-        "pin_not_connected: Pin not connected [Symbol J18 Pin B24 [B24, Passive, Line] @ (330.2, 87.63)]",
-        "pin_not_connected: Pin not connected [Symbol J18 Pin B25 [B25, Passive, Line] @ (330.2, 90.17)]",
-        "pin_to_pin: Pins of type Output and Output are connected [Symbol U11 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 50.8); Symbol U75 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 182.88)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR01 [GND] @ (381.0, 246.38)]",
         "warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]",
         "warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]",
@@ -3058,12 +3067,17 @@
         "warning: pin_to_pin: Pins of type Bidirectional and Power output are connected [Symbol U30 Pin 1 [PP_HV2, Bidirectional, Line] @ (201.93, 110.49); Symbol #FLG08 Pin 1 [pwr, Power output, Line] @ (247.65, 78.74)]",
         "warning: pin_to_pin: Pins of type Bidirectional and Power output are connected [Symbol U30 Pin 3 [VBUS2, Bidirectional, Line] @ (233.68, 110.49); Symbol U35 Pin 1 [OUT, Power output, Line] @ (223.52, 63.5)]",
         "warning: pin_to_pin: Pins of type Bidirectional and Power output are connected [Symbol U30 Pin 11 [PP_HV1, Bidirectional, Line] @ (224.79, 66.04); Symbol #FLG013 Pin 1 [pwr, Power output, Line] @ (247.65, 115.57)]",
-        "warning: pin_to_pin: Pins of type Bidirectional and Power output are connected [Symbol U30 Pin 13 [VBUS1, Bidirectional, Line] @ (256.54, 66.04); Symbol U40 Pin 1 [OUT, Power output, Line] @ (302.26, 31.75)]"
+        "warning: pin_to_pin: Pins of type Bidirectional and Power output are connected [Symbol U30 Pin 13 [VBUS1, Bidirectional, Line] @ (256.54, 66.04); Symbol U40 Pin 1 [OUT, Power output, Line] @ (302.26, 31.75)]",
+        "warning: pin_to_pin: Pins of type Output and Output are connected [Symbol U44 Pin 3 [FLG, Output, Line] @ (119.38, 213.36); Symbol U45 Pin 3 [FLG, Output, Line] @ (119.38, 246.38)]",
+        "warning: pin_to_pin: Pins of type Output and Output are connected [Symbol U46 Pin 3 [FLG, Output, Line] @ (228.6, 213.36); Symbol U47 Pin 3 [FLG, Output, Line] @ (228.6, 246.38)]",
+        "warning: pin_not_connected: Pin not connected [Symbol J18 Pin B24 [B24, Passive, Line] @ (330.2, 87.63)]",
+        "warning: pin_not_connected: Pin not connected [Symbol J18 Pin B25 [B25, Passive, Line] @ (330.2, 90.17)]",
+        "warning: pin_to_pin: Pins of type Output and Output are connected [Symbol U11 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 50.8); Symbol U75 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 182.88)]"
       ],
       "unchecked": [],
       "verified": [],
       "notes": [
-        "severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)"
+        "14 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x12, pin_not_connected x2"
       ]
     },
     {
@@ -3071,11 +3085,8 @@
       "title": "DRC",
       "pitfall": "\u00a712",
       "status": "fail",
-      "summary": "202 errors, 218 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)",
+      "summary": "199 errors, 221 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)",
       "details": [
-        "courtyards_overlap: Courtyards overlap [Footprint J7 @ (235.485532, 76.21); Footprint D24 @ (238.25, 71.6)]",
-        "courtyards_overlap: Courtyards overlap [Footprint D24 @ (238.25, 71.6); Footprint J2 @ (226.96, 59.49)]",
-        "courtyards_overlap: Courtyards overlap [Footprint J19 @ (198.6, 144.9); Footprint J12 @ (198.6, 144.9)]",
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_5] of U30 @ (202.95, 80.807)]",
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_3] of U30 @ (202.95, 79.93)]",
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_7] of U30 @ (202.95, 79.056)]",
@@ -3275,8 +3286,11 @@
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (92.5, 107.1)]",
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (62.8, 104.8)]",
         "drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (128.030532, 78.15)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J7 @ (235.485532, 76.21); Footprint D24 @ (238.25, 71.6)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint D24 @ (238.25, 71.6); Footprint J2 @ (226.96, 59.49)]",
         "warning: pth_inside_courtyard: PTH inside courtyard [PTH pad 4 [GND] of J2 @ (221.46, 59.49); Footprint J10 @ (205.908, 56.24)]",
         "warning: pth_inside_courtyard: PTH inside courtyard [PTH pad 1 [GND] of H4 @ (222.430532, 143.71); Footprint J19 @ (198.6, 144.9)]",
+        "warning: courtyards_overlap: Courtyards overlap [Footprint J19 @ (198.6, 144.9); Footprint J12 @ (198.6, 144.9)]",
         "warning: npth_inside_courtyard: NPTH inside courtyard [NPTH pad of J12 @ (198.6, 149.7); Footprint J19 @ (198.6, 144.9)]",
         "warning: npth_inside_courtyard: NPTH inside courtyard [NPTH pad of J12 @ (198.6, 140.1); Footprint J19 @ (198.6, 144.9)]",
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (239.930532, 136.71); Segment of J2 on F.Silkscreen @ (227.96, 56.79)]",
@@ -3499,6 +3513,7 @@
       "notes": [
         "severities: jlcpcb-assembly@2026.10; the project had lowered missing_courtyard to warning (KiCad default ignore)",
         "ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): lib_footprint_mismatch",
+        "3 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x3",
         "minimums: JLCPCB 1 oz copper, 10 layers; below the fab's in the project, raised in the copy: min_through_hole_diameter 0.1 -> 0.15 mm",
         "custom design rules jetson-agx-thor-baseboard.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)"
       ]
@@ -3743,7 +3758,7 @@
       "title": "bom.csv",
       "pitfall": "\u00a71",
       "status": "fail",
-      "summary": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
+      "summary": "/Users/bennett/projects/pcb-preflight/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
       "details": [],
       "unchecked": [],
       "verified": [],

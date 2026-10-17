@@ -1,6 +1,6 @@
 jetson-agx-thor-baseboard  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  10 copper layers, 1125 footprints  -  bom.csv: none
-RESULT: FAIL  -  3 blocking, 5 warnings, 1 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 6 warnings, 1 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -11,12 +11,7 @@ CHECKED AND LEFT ALONE
   Bought parts placed on the board (§5 §12): 857 of 857 bought references have a footprint on the board
 
 FINDINGS
-  FAIL  ERC (§12): 5 errors, 3007 warnings on 15 sheets
-        pin_to_pin: Pins of type Output and Output are connected [Symbol U44 Pin 3 [FLG, Output, Line] @ (119.38, 213.36); Symbol U45 Pin 3 [FLG, Output, Line] @ (119.38, 246.38)]
-        pin_to_pin: Pins of type Output and Output are connected [Symbol U46 Pin 3 [FLG, Output, Line] @ (228.6, 213.36); Symbol U47 Pin 3 [FLG, Output, Line] @ (228.6, 246.38)]
-        pin_not_connected: Pin not connected [Symbol J18 Pin B24 [B24, Passive, Line] @ (330.2, 87.63)]
-        pin_not_connected: Pin not connected [Symbol J18 Pin B25 [B25, Passive, Line] @ (330.2, 90.17)]
-        pin_to_pin: Pins of type Output and Output are connected [Symbol U11 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 50.8); Symbol U75 Pin 14 [P_{GOOD}, Output, Line] @ (92.71, 182.88)]
+  WARN  ERC (§12): 0 errors, 3012 warnings on 15 sheets
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR01 [GND] @ (381.0, 246.38)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroMechanicalParts' [Symbol H1 [Spacer_Drill3.7mm_H6.5mm_9774065151R] @ (382.27, 207.01)]
@@ -52,12 +47,14 @@ FINDINGS
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R389 [R_2k2_0402] @ (91.44, 151.13)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0291 [+3V3] @ (92.71, 200.66)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R165 [R_10k_0402] @ (92.71, 208.28)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R165 [R_10k_0402] @ (92.71, 208.28)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicropower' [Symbol #PWR0293 [+1V8] @ (93.98, 80.01)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R167 [R_10k_0402] @ (93.98, 82.55)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'antmicroResistors0402' [Symbol R167 [R_10k_0402] @ (93.98, 82.55)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R164 [R_2k2_0402] @ (93.98, 151.13)]
         ... 2972 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
-  FAIL  DRC (§12): 202 errors, 218 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)
-        courtyards_overlap: Courtyards overlap [Footprint J7 @ (235.485532, 76.21); Footprint D24 @ (238.25, 71.6)]
-        courtyards_overlap: Courtyards overlap [Footprint D24 @ (238.25, 71.6); Footprint J2 @ (226.96, 59.49)]
-        courtyards_overlap: Courtyards overlap [Footprint J19 @ (198.6, 144.9); Footprint J12 @ (198.6, 144.9)]
+        note: 14 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x12, pin_not_connected x2
+  FAIL  DRC (§12): 199 errors, 221 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_5] of U30 @ (202.95, 80.807)]
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_3] of U30 @ (202.95, 79.93)]
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_7] of U30 @ (202.95, 79.056)]
@@ -95,9 +92,13 @@ FINDINGS
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (229.0, 73.8)]
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (95.530532, 84.15)]
         drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (173.05, 143.92)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (121.530532, 73.65)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (170.9, 137.5)]
+        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (230.1, 95.1)]
         ... 380 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered missing_courtyard to warning (KiCad default ignore)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): lib_footprint_mismatch
+        note: 3 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x3
         note: minimums: JLCPCB 1 oz copper, 10 layers; below the fab's in the project, raised in the copy: min_through_hole_diameter 0.1 -> 0.15 mm
         note: custom design rules jetson-agx-thor-baseboard.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)
   WARN  Schematic / PCB parity (§5): 0 mismatches, 113 field/filter notes across 1125 footprints
@@ -153,7 +154,7 @@ FINDINGS
         J18 ASP-218650-01_mounting_holes at 77.6805, 103.71
         J11 Conn_FFC_WE_68715014522 at 62.44, 103.71
         J8 Plug_Samtec_UMPT_1x6_UMPT-06-06.5-G-V-S-TR at 93.9305, 134.21
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/blissful-williams-cf4441/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv
@@ -167,5 +168,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  3 blocking, 5 warnings, 1 not checked  -  exit 1
-  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 6 warnings, 1 not checked  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

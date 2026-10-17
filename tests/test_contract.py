@@ -169,7 +169,9 @@ class OwnedSeverities(unittest.TestCase):
         changed = preset.apply(self.pro)
         self.assertEqual(changed['drc'], {'unconnected_items': 'ignore', 'text_on_edge_cuts': 'warning'},
                          'missing_courtyard: ignore and missing_footprint: warning are KiCad defaults, not the project\'s doing')
-        self.assertEqual(changed['erc'], {'pin_not_connected': 'ignore'})
+        self.assertEqual(changed['erc'], {}, 'pin_not_connected is demoted, not protected')
+        self.assertIn('pin_not_connected', changed['demoted']['erc'])
+        self.assertEqual(changed['demoted']['drc'], ['courtyards_overlap', 'solder_mask_bridge'])
         self.assertEqual(changed['pin_map'], 2)
         self.assertEqual(changed['minimums'], {'min_track_width': (0.0, 0.10)})
         self.assertEqual(changed['netclasses'], {'Default': (0.05, 0.10)})
@@ -185,9 +187,12 @@ class OwnedSeverities(unittest.TestCase):
         for key in preset.ERC_PROTECTED:
             self.assertEqual(erc['rule_severities'][key], 'error', key)
         self.assertEqual(erc['rule_severities']['similar_labels'], 'warning')
-        self.assertEqual(erc['pin_map'][8][8], 2)
-        self.assertEqual(erc['pin_map'][1][1], 2)
-        self.assertEqual(erc['pin_map'][4][4], preset.DEFAULT_PIN_MAP[4][4])
+        self.assertEqual(erc['pin_map'][8][8], 1, 'raised to the default, then capped at warning')
+        self.assertEqual(erc['pin_map'][1][1], 1)
+        self.assertEqual(erc['pin_map'][4][4], min(preset.DEFAULT_PIN_MAP[4][4], 1))
+        self.assertEqual(erc['rule_severities']['pin_not_connected'], 'warning')
+        self.assertEqual(drc['courtyards_overlap'], 'warning')
+        self.assertEqual(drc['solder_mask_bridge'], 'warning')
         rules = pro['board']['design_settings']['rules']
         self.assertEqual((rules['min_track_width'], rules['min_clearance'], rules['min_via_diameter']), (0.10, 0.2, 0.4))
         self.assertEqual([c['clearance'] for c in pro['net_settings']['classes']], [0.10, 0.25])
@@ -218,12 +223,16 @@ class OwnedSeverities(unittest.TestCase):
     def test_protected_sets_are_kicads_default_errors_plus_the_named_exceptions(self):
         self.assertTrue(preset.PARITY <= preset.DRC_PROTECTED)
         self.assertIn('missing_courtyard', preset.DRC_PROTECTED)
-        self.assertIn('pin_to_pin', preset.ERC_PROTECTED)
+        self.assertIn('pin_to_pin', preset.ERC_DEMOTED)
+        self.assertIn('power_pin_not_driven', preset.ERC_DEMOTED)
+        self.assertTrue(preset.ERC_DEMOTED.isdisjoint(preset.ERC_PROTECTED))
+        self.assertEqual(preset.DRC_DEMOTED, {'courtyards_overlap', 'solder_mask_bridge'})
+        self.assertTrue(preset.DRC_DEMOTED.isdisjoint(preset.DRC_PROTECTED))
         self.assertNotIn('lib_symbol_issues', preset.ERC_PROTECTED, 'a library-lookup warning must not block a CI runner')
         self.assertNotIn('silk_edge_clearance', preset.DRC_PROTECTED)
         for key in preset.DRC_PROTECTED - preset.PARITY - {'missing_courtyard'}:
             self.assertEqual(preset.KICAD_DEFAULT['drc'].get(key, 'error'), 'error', key)
-        for key in preset.ERC_PROTECTED - {'pin_to_pin'}:
+        for key in preset.ERC_PROTECTED:
             self.assertEqual(preset.KICAD_DEFAULT['erc'].get(key, 'error'), 'error', key)
         self.assertEqual(len(preset.DEFAULT_PIN_MAP), 12)
         self.assertTrue(all(len(r) == 12 and all(c in (0, 1, 2) for c in r) for r in preset.DEFAULT_PIN_MAP))
@@ -287,8 +296,12 @@ class KicadGates(unittest.TestCase):
         self.assertEqual(report.verdict([c]), 'NOT VERIFIED')
 
     def test_erc(self):
-        rep = {'sheets': [{'violations': []}], 'ignored_checks': [{'key': 'pin_not_connected'}]}
+        rep = {'sheets': [{'violations': []}], 'ignored_checks': [{'key': 'duplicate_reference'}]}
         self.assertEqual(checks.erc_check(rep, owned={}).status, 'fail')
+        rep = {'sheets': [{'violations': [violation('power_pin_not_driven', 'warning')]}], 'ignored_checks': []}
+        c = checks.erc_check(rep, owned={})
+        self.assertEqual(c.status, 'warn', 'a demoted check is a warning under the preset')
+        self.assertTrue(any("runs as warnings instead of KiCad's errors" in n and 'power_pin_not_driven x1' in n for n in c.notes), c.notes)
         rep = {'sheets': [{'violations': [violation('pin_not_connected', 'error')]}], 'ignored_checks': []}
         c = checks.erc_check(rep, owned={'drc': {}, 'erc': {}, 'pin_map': 3, 'minimums': {}, 'netclasses': {}})
         self.assertEqual(c.status, 'fail')

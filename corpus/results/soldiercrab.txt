@@ -1,6 +1,6 @@
 soldiercrab  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  6 copper layers, 77 footprints  -  bom.csv: soldiercrab.csv
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 2 not checked  -  exit 3
+  2 gates could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -17,13 +17,9 @@ CHECKED AND LEFT ALONE
   BOM value matches the schematic (§1): 70 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
 
 FINDINGS
-  FAIL  ERC (§12): 5 errors, 73 warnings on 8 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR028 Hidden pin 1 [VCCRAM, Power input, Line] @ (231.14, 48.26)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+3V3, Power input, Line] @ (90.17, 148.59)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR012 Hidden pin 1 [+1V1, Power input, Line] @ (25.4, 30.48)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (66.675, 173.99)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR026 Hidden pin 1 [+2V5, Power input, Line] @ (107.95, 30.48)]
+  WARN  ERC (§12): 0 errors, 78 warnings on 8 sheets
         warning: lib_symbol_mismatch: Symbol 'MICROMOD-2222' doesn't match copy in library 'micromod' [Symbol J1 [MICROMOD-2222] @ (66.04, 90.17)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR028 Hidden pin 1 [VCCRAM, Power input, Line] @ (231.14, 48.26)]
         warning: lib_symbol_issues: Symbol 'DSC60xx' not found in symbol library 'support_hardware' [Symbol Y1 [DSC60xx] @ (255.27, 107.95)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'OLIMEX_RCL' [Symbol R11 [R] @ (232.41, 107.95)]
         warning: lib_symbol_mismatch: Symbol 'LED_Small_Filled' doesn't match copy in library 'Device' [Symbol D1 [LED_Small_Filled] @ (232.41, 114.3)]
@@ -58,53 +54,57 @@ FINDINGS
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR016 Pin 1 [Power input, Line] @ (126.365, 113.03)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (133.985, 101.6)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 12.70 mm @ (133.985, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol U1 Pin 1 [FB, Input, Line] @ (133.985, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 8.89 mm @ (136.525, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol L1 Pin 1 [Passive, Line] @ (139.065, 92.71)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (139.065, 92.71)]
         ... 38 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+        note: 5 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x5
         note: pin-conflict matrix: KiCad's default; the project had weakened 2 of its 144 cells
-  FAIL  DRC (§12): 209 errors, 71 warnings (solder_mask_bridge x199, lib_footprint_mismatch x68, courtyards_overlap x10, text_thickness x2, silk_over_copper x1); 5 footprints without a courtyard
-        courtyards_overlap: Courtyards overlap [Footprint U7 @ (142.437052, 87.536957); Footprint C5 @ (140.623469, 90.7271)]
-        courtyards_overlap: Courtyards overlap [Footprint C2 @ (125.0, 96.5); Footprint U1 @ (126.399552, 94.1528)]
-        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint R108 @ (144.546153, 99.501036)]
-        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint C65 @ (142.842812, 92.60789); Footprint R16 @ (141.254552, 93.3028)]
-        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint R10 @ (144.649552, 89.1528)]
-        courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
-        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 33 [GND] of J1 on F.Cu @ (136.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 35 [ECP5_B5] of J1 on F.Cu @ (135.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 37 [ECP5_A5] of J1 on F.Cu @ (135.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B15] on F.Cu, length 0.9218 mm @ (128.85, 101.753248)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 0.8512 mm @ (142.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 39 [GND] of J1 on F.Cu @ (134.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_C15] on F.Cu, length 0.9218 mm @ (127.85, 101.753248)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.6968 mm @ (136.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 41 [ECP5_B6] of J1 on F.Cu @ (134.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 1 [GND] of J1 on F.Cu @ (144.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 43 [ECP5_A6] of J1 on F.Cu @ (133.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_T11_TMS] on F.Cu, length 2.4092 mm @ (139.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 3 [USB0_DP] of J1 on F.Cu @ (143.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 45 [GND] of J1 on F.Cu @ (133.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [GND] on F.Cu, length 2.4726 mm @ (134.85, 100.202352)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 5 [USB0_DM] of J1 on F.Cu @ (143.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 0.0643 mm @ (134.3955, 102.6295)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 47 [ECP5_B7] of J1 on F.Cu @ (132.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_B6] on F.Cu, length 5.0340 mm @ (134.3955, 97.5955)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 7 [GND] of J1 on F.Cu @ (142.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A15] on F.Cu, length 0.9218 mm @ (128.35, 101.753248)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A9] on F.Cu, length 2.8226 mm @ (130.85, 99.852352)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 49 [unconnected-(J1-BATT_VIN/3-Pad49)] of J1 on F.Cu @ (132.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 9 [USB0_VBUS] of J1 on F.Cu @ (142.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 51 [ECP5_A7] of J1 on F.Cu @ (131.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 11 [ECP5_A3] of J1 on F.Cu @ (141.85, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A10] on F.Cu, length 2.8034 mm @ (129.85, 99.871571)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 13 [ECP5_A2] of J1 on F.Cu @ (141.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Pad 53 [ECP5_B8] of J1 on F.Cu @ (131.35, 102.675)]
-        solder_mask_bridge: Front solder mask aperture bridges items with different nets [Rectangle on F.Mask @ (125.171735, 101.947132); Track [ECP5_A2] on F.Cu, length 2.2988 mm @ (141.35, 100.376197)]
+  WARN  DRC (§12): 0 errors, 280 warnings (solder_mask_bridge x199, lib_footprint_mismatch x68, courtyards_overlap x10, text_thickness x2, silk_over_copper x1); 5 footprints without a courtyard
+        warning: courtyards_overlap: Courtyards overlap [Footprint U7 @ (142.437052, 87.536957); Footprint C5 @ (140.623469, 90.7271)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint C2 @ (125.0, 96.5); Footprint U1 @ (126.399552, 94.1528)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint R108 @ (144.546153, 99.501036)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint C65 @ (142.842812, 92.60789); Footprint R16 @ (141.254552, 93.3028)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint R10 @ (144.649552, 89.1528)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm' does not match copy in library 'Package_DFN_QFN' [Footprint U3 @ (141.736393, 87.271879)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R108 @ (144.546153, 99.501036)]
+        warning: lib_footprint_mismatch: Footprint 'LED_0402_1005Metric' does not match copy in library 'LED_SMD' [Footprint D1 @ (126.399552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C34 @ (142.349552, 83.2028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R11 @ (126.397508, 82.956424)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R7 @ (143.899552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R9 @ (145.096888, 88.053399)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R8 @ (145.199552, 84.8028)]
+        warning: lib_footprint_mismatch: Footprint 'LED_0402_1005Metric' does not match copy in library 'LED_SMD' [Footprint D2 @ (128.514552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C36 @ (145.091352, 87.348971)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R10 @ (144.649552, 89.1528)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C37 @ (145.049552, 83.4028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R15 @ (128.51595, 82.958707)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C22 @ (135.1, 87.7)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R5 @ (127.423551, 83.962809)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R6 @ (128.85, 82.7028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C9 @ (132.6, 93.1)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C16 @ (129.5, 91.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C8 @ (129.3, 89.6)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C31 @ (144.224552, 91.9278)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C12 @ (135.599552, 90.422748)]
+        warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint C1 @ (125.9, 83.7)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C33 @ (135.6, 89.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C7 @ (132.7, 90.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C11 @ (131.2, 89.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C26 @ (133.8, 88.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C32 @ (140.624552, 91.6528)]
+        warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint C4 @ (140.5, 97.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C18 @ (133.8, 94.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C14 @ (131.6, 94.5)]
         ... 240 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered courtyards_overlap to warning (KiCad default error)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_overlap
+        note: 209 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x199, courtyards_overlap x10
   WARN  Schematic / PCB parity (§5): 0 mismatches, 5 field/filter notes across 77 footprints; 1 padless footprint items not counted
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C1521614', Schematic: 'C1550826') [Footprint IC1 @ (132.0, 92.0)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D1 @ (126.399552, 83.9028)]
@@ -165,5 +165,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 2 not checked  -  exit 3
+  2 gates could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
