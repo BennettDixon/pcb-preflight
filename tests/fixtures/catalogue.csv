@@ -1,0 +1,66 @@
+lcsc,mpn,package,category,description,ref,value,expect,note
+# Records copied from JLCPCB getComponentDetail on 2026-10-16/17 (category = firstSortName / secondSortName, description = describe);
+# an empty category is the jlcsearch fallback record, which carries only a description. ref + value is a bom.csv line against the
+# record; expect is what the two online gates say: ok | category (prefix mismatch blocks) | value (figure mismatch blocks) |
+# unchecked-category | unchecked-value | unchecked-both (listed under NOT CHECKED).
+# capacitors
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C90,100nF 50V,ok,
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C14,100nF 16V boot,ok,16 V asked of a 50 V part: the rating reaches the value
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,D4,100nF 50V,category,a capacitor's code on an LED line (the gap the 2026-10-16 review named)
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,U9,100nF 50V,category,a capacitor on a U reference
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C90,1uF 50V,value,"1 uF asked, 100 nF part"
+C14663,CC0603KRX7R9BB104,0603,Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C90,100nF 100V,value,100 V asked of a 50 V part
+C14663,CC0603KRX7R9BB104,0603,,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,C90,100nF 50V,ok,"jlcsearch record: no category, the description ends with the category words"
+C14663,CC0603KRX7R9BB104,0603,,100nF 50V X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS,U9,100nF 50V,unchecked-category,jlcsearch record: an IC is told from the category alone
+C14663,CC0603KRX7R9BB104,0603,,,C90,100nF 50V,unchecked-both,jlcsearch answers some codes with an empty description (C28310463 RCLAMP0524P on 2026-10-17)
+C72477,RVT1E101M0607,"SMD,D6.3xL7.7mm",Capacitors / Aluminum Electrolytic Capacitors - SMD,"-40℃~+105℃ 100uF 2000hrs@105℃ 25V 6.3mm 7.7mm 93mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS",C4,100uF 25V,ok,
+C72477,RVT1E101M0607,"SMD,D6.3xL7.7mm",Capacitors / Aluminum Electrolytic Capacitors - SMD,"-40℃~+105℃ 100uF 2000hrs@105℃ 25V 6.3mm 7.7mm 93mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS",C5,100uF 16V,ok,the example board: C5 asks 16 V of the 25 V part C4 uses
+C72477,RVT1E101M0607,"SMD,D6.3xL7.7mm",Capacitors / Aluminum Electrolytic Capacitors - SMD,"-40℃~+105℃ 100uF 2000hrs@105℃ 25V 6.3mm 7.7mm 93mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS",C3,100uF 35V,value,35 V asked of a 25 V part
+C3344,RVT1V470M0605,"SMD,D6.3xL5.4mm",Capacitors / Aluminum Electrolytic Capacitors - SMD,"-55℃~+105℃ 2000hrs@105℃ 35V 47uF 5.4mm 6.3mm ±20% SMD,D6.3xL5.4mm Aluminum Electrolytic Capacitors - SMD ROHS",C6,47uF 35V,ok,the description puts the voltage before the capacitance
+C3344,RVT1V470M0605,"SMD,D6.3xL5.4mm",Capacitors / Aluminum Electrolytic Capacitors - SMD,"-55℃~+105℃ 2000hrs@105℃ 35V 47uF 5.4mm 6.3mm ±20% SMD,D6.3xL5.4mm Aluminum Electrolytic Capacitors - SMD ROHS",C6,22uF 35V,value,
+# resistors: a figure with k or M and no unit is ohms on an R line
+C25804,0603WAF1002T5E,0603,Resistors / Chip Resistor - Surface Mount,-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS,R12,10k 1%,ok,
+C25804,0603WAF1002T5E,0603,Resistors / Chip Resistor - Surface Mount,-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS,R12,10kΩ,ok,
+C25804,0603WAF1002T5E,0603,Resistors / Chip Resistor - Surface Mount,-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS,R12,4k7,value,"RKM spelling read, 4.7 k asked of a 10 k part"
+C25804,0603WAF1002T5E,0603,,-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS,R12,10k,ok,jlcsearch record
+C25804,0603WAF1002T5E,0603,Resistors / Chip Resistor - Surface Mount,-55℃~+155℃ 100mW 10kΩ 75V Thick Film Resistor ±1% ±100ppm/℃ 0603 Chip Resistor - Surface Mount ROHS,C1,10k,category,
+# diodes, LEDs, TVS
+C8678,SS34,SMA(DO-214AC),Diodes / Schottky Diodes,-55℃~+125℃ 3A 40V 500uA@40V 550mV@3A Independent SMA(DO-214AC) Schottky Diodes ROHS,D2,SS34,ok,"a part number as the value: nothing to compare, nothing unchecked"
+C8678,SS34,SMA(DO-214AC),Diodes / Schottky Diodes,-55℃~+125℃ 3A 40V 500uA@40V 550mV@3A Independent SMA(DO-214AC) Schottky Diodes ROHS,D2,SS34 40V,ok,
+C8678,SS34,SMA(DO-214AC),Diodes / Schottky Diodes,-55℃~+125℃ 3A 40V 500uA@40V 550mV@3A Independent SMA(DO-214AC) Schottky Diodes ROHS,R1,SS34,category,
+C2297,KT-0805G,0805,Optoelectronics / LED Indication - Discrete,-40℃~+85℃ 100mW 120° 2.6V~3.1V 430mcd 513nm~528nm 525nm 5mA Discrete Diode Emerald Green Water Clear 0805 LED Indication - Discrete ROHS,D4,green VIN_F,ok,D is an LED too
+C2297,KT-0805G,0805,Optoelectronics / LED Indication - Discrete,-40℃~+85℃ 100mW 120° 2.6V~3.1V 430mcd 513nm~528nm 525nm 5mA Discrete Diode Emerald Green Water Clear 0805 LED Indication - Discrete ROHS,LED1,green,ok,
+C2297,KT-0805G,0805,Optoelectronics / LED Indication - Discrete,-40℃~+85℃ 100mW 120° 2.6V~3.1V 430mcd 513nm~528nm 525nm 5mA Discrete Diode Emerald Green Water Clear 0805 LED Indication - Discrete ROHS,C9,green,category,
+C315992,SMBJ26A,DO-214AA,Circuit Protection / ESD and Surge Protection (TVS/ESD),-65℃~+150℃ 14.3A 1uA 26V 28.9V 42.1V 600W IEC 61000-4-2、IEC 61000-4-4 TVS Unidirectional DO-214AA ESD and Surge Protection (TVS/ESD) ROHS,D1,SMBJ26A TVS,ok,"a TVS is filed under Circuit Protection, not Diodes"
+C315992,SMBJ26A,DO-214AA,,-65℃~+150℃ 14.3A 1uA 26V 28.9V 42.1V 600W IEC 61000-4-2、IEC 61000-4-4 TVS Unidirectional DO-214AA ESD and Surge Protection (TVS/ESD) ROHS,D1,SMBJ26A TVS,ok,jlcsearch record: TVS in the description
+# inductors and ferrites
+C2042471,SRP1245A-100M,"SMD,13.5x12.5mm","Inductors, Coils, Chokes / Power Inductors","10uH 16A 21.4mΩ 9A ±20% SMD,13.5x12.5mm Power Inductors ROHS",L1,10uH SRP1245A-100M,ok,the part number -100M is not 100 megahenries
+C2042471,SRP1245A-100M,"SMD,13.5x12.5mm","Inductors, Coils, Chokes / Power Inductors","10uH 16A 21.4mΩ 9A ±20% SMD,13.5x12.5mm Power Inductors ROHS",L3,15uH SRP1245A-150M,value,the 10 uH part on the 15 uH line
+C2042471,SRP1245A-100M,"SMD,13.5x12.5mm","Inductors, Coils, Chokes / Power Inductors","10uH 16A 21.4mΩ 9A ±20% SMD,13.5x12.5mm Power Inductors ROHS",U7,10uH,category,JLCPCB's own designator for this part is U; the category says inductor
+C85844,BLM41PG600SN1L,1806,Filters / Ferrite Beads,1 60Ω@100MHz 6A 9mΩ ±25% 1806 Ferrite Beads ROHS,FB1,BLM41PG600SN1L 60R 6A,ok,"60 R is the 60Ω@100MHz figure, not the 9mΩ one"
+C85844,BLM41PG600SN1L,1806,Filters / Ferrite Beads,1 60Ω@100MHz 6A 9mΩ ±25% 1806 Ferrite Beads ROHS,L5,60R,ok,L may be a ferrite
+C85844,BLM41PG600SN1L,1806,Filters / Ferrite Beads,1 60Ω@100MHz 6A 9mΩ ±25% 1806 Ferrite Beads ROHS,FB1,BLM41PG600SN1L 100R,value,
+# ICs, transistors
+C841384,LMR33630ADDAR,ESOP-8,Power Management (PMIC) / DC-DC Converters,-40℃~+125℃@(TJ) 1 1V~24V 24uA 3.8V~36V 3A 400kHz Adjustable Buck Buck Built-in Yes ESOP-8 DC-DC Converters ROHS,U1,LMR33630ADDAR 5.1 V,ok,5.1 V is an output setting; the part is rated to 36 V
+C841384,LMR33630ADDAR,ESOP-8,Power Management (PMIC) / DC-DC Converters,-40℃~+125℃@(TJ) 1 1V~24V 24uA 3.8V~36V 3A 400kHz Adjustable Buck Buck Built-in Yes ESOP-8 DC-DC Converters ROHS,Q1,LMR33630,category,a PMIC on a Q reference
+C51118,AP2112K-3.3TRG1,SOT-25-5,"Power Management (PMIC) / Voltage Regulators - Linear, Low Drop Out (LDO) Regulators","-40℃~+85℃@(Ta) 1 250mV@(600mA) 3.3V 50uVrms 55uA 600mA 65dB@(1kHz) 6V Fixed Over Current Protection、Thermal Shutdown、Enable control Positive SOT-25-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",U4,AP2112K-3.3,ok,-3.3 is not a figure
+C7985,LMV393MMX/NOPB,MSOP-8,Amplifiers/Comparators / Comparators,-40℃~+85℃ 100uA 10nA 2 2.7V~5V 200ns 5nA 5uV/℃ 7mV Open Collector TTL、CMOS MSOP-8 Comparators ROHS,U5,LMV393,ok,
+C7851,SN74LVC2G74DCUR,VSSOP-8,Logic / Flip Flops,"-40℃~+125℃ 1 1 1.1ns 1.65V~5.5V 10uA 200MHz 32mA 32mA 4.4ns@5V,50pF 500ps 5pF 74LVC Series Asynchronous Complementary D-Type Rising Edge Set and Reset VSSOP-8 Flip Flops ROHS",U6,SN74LVC2G74,ok,
+C5587,"74HC00PW,118",TSSOP-14,Logic / Logic Gates,"-40℃~+125℃ 2V~6V 4 40uA 5.2mA 5.2mA 74HC Series 7ns@6V,50pF NAND Gate Overvoltage-tolerant input TSSOP-14 Logic Gates ROHS",U2,74HC00,ok,
+C8512,MMBT2222A 1P,SOT-23,Transistors/Thyristors / Bipolar (BJT),-55℃~+150℃ 1 NPN 100 10nA 300MHz 300mW 40V 600mA 6V NPN SOT-23 Bipolar (BJT) ROHS,Q2,MMBT2222A,ok,
+C8512,MMBT2222A 1P,SOT-23,,-55℃~+150℃ 1 NPN 100 10nA 300MHz 300mW 40V 600mA 6V NPN SOT-23 Bipolar (BJT) ROHS,Q2,MMBT2222A,ok,jlcsearch record: BJT in the description
+C8512,MMBT2222A 1P,SOT-23,Transistors/Thyristors / Bipolar (BJT),-55℃~+150℃ 1 NPN 100 10nA 300MHz 300mW 40V 600mA 6V NPN SOT-23 Bipolar (BJT) ROHS,D3,MMBT2222A,category,
+C2620,IRF4905STRLPBF,D2PAK,Transistors/Thyristors / MOSFETs,-55℃~+150℃ 1 P-Channel 1.25nF 170W 180nC@10V 20mΩ@10V 3.5nF 450pF 4V 55V 70A D2PAK MOSFETs ROHS,Q1,IRF4905S,ok,"JLCPCB's designator says U, the category says MOSFET"
+C2620,IRF4905STRLPBF,D2PAK,,-55℃~+150℃ 1 P-Channel 1.25nF 170W 180nC@10V 20mΩ@10V 3.5nF 450pF 4V 55V 70A D2PAK MOSFETs ROHS,Q1,IRF4905S,ok,jlcsearch record: MOSFETs in the description
+C2620,IRF4905STRLPBF,D2PAK,Transistors/Thyristors / MOSFETs,-55℃~+150℃ 1 P-Channel 1.25nF 170W 180nC@10V 20mΩ@10V 3.5nF 450pF 4V 55V 70A D2PAK MOSFETs ROHS,U8,IRF4905S,category,
+# connectors, fuses, crystals, switches
+C144397,B6B-XH-A(LF)(SN),"Plugin,P=2.5mm",Connectors / Wire To Board Connector,"-25℃~+85℃ 1 17.4mm 1x6P 2.5mm 250V 3A 5.75mm 6 6P 7mm Brass K Pin PA66 Through Hole Tin UL94V-0 White XH 插件,P=2.5mm Wire To Board Connector ROHS",J6,J_PI,ok,
+C144397,B6B-XH-A(LF)(SN),"Plugin,P=2.5mm",Connectors / Wire To Board Connector,"-25℃~+85℃ 1 17.4mm 1x6P 2.5mm 250V 3A 5.75mm 6 6P 7mm Brass K Pin PA66 Through Hole Tin UL94V-0 White XH 插件,P=2.5mm Wire To Board Connector ROHS",U6,J_PI,category,a connector on a U reference
+C151074,01000056Z,Plugin,Circuit Protection / Fuseholders,15A 250V 插件 Fuseholders ROHS,F1,5A T 5x20,ok,amperes and a size are not read
+C151074,01000056Z,Plugin,Circuit Protection / Fuseholders,15A 250V 插件 Fuseholders ROHS,F1,5A 250V,ok,
+C3761525,MF-SM100/33-2,"SMD,7.3x5.4mm",Circuit Protection / Resettable Fuses,"-40℃~+85℃ 1.7W 120mΩ 33V 40A 410mΩ 5.4mm 7.3mm SMD,7.3x5.4mm Resettable Fuses ROHS",F2,MF-SM100/33-2 1.1A 33V,ok,
+C9002,X322512MSB4SI,SMD3225-4P,"Crystals, Oscillators, Resonators / Crystals",-40℃~+85℃ 12MHz 20pF 80Ω Crystal Oscillator ±10ppm ±20ppm SMD3225-4P Crystals ROHS,Y1,12MHz 20pF,ok,MHz is not henries; 20 pF is the load capacitance
+C9002,X322512MSB4SI,SMD3225-4P,"Crystals, Oscillators, Resonators / Crystals",-40℃~+85℃ 12MHz 20pF 80Ω Crystal Oscillator ±10ppm ±20ppm SMD3225-4P Crystals ROHS,Y1,12MHz 18pF,value,load capacitance 18 pF asked of a 20 pF crystal
+C9002,X322512MSB4SI,SMD3225-4P,"Crystals, Oscillators, Resonators / Crystals",-40℃~+85℃ 12MHz 20pF 80Ω Crystal Oscillator ±10ppm ±20ppm SMD3225-4P Crystals ROHS,X1,12MHz,unchecked-category,no rule for the prefix X
+C55213946,TS6635PA 250gf tactile switch,"SMD-4P,6x6mm",Switches / Tactile Switches,"-25℃~+70℃ 12V 2.5N 3.5mm 300,000 cycles 50mA 6.25mm 6.4mm Blue Gull Wing IP67 No Round Button SPST Surface Mount,Vertical Without Bracket SMD-4P,6x6mm Tactile Switches ROHS",SW1,RESET,ok,
+C55213946,TS6635PA 250gf tactile switch,"SMD-4P,6x6mm",Switches / Tactile Switches,"-25℃~+70℃ 12V 2.5N 3.5mm 300,000 cycles 50mA 6.25mm 6.4mm Blue Gull Wing IP67 No Round Button SPST Surface Mount,Vertical Without Bracket SMD-4P,6x6mm Tactile Switches ROHS",K1,RESET,unchecked-category,no rule for the prefix K (relays)

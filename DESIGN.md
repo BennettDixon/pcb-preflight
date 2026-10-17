@@ -48,8 +48,11 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 | G7 | Every BOM line has an LCSC code (`C` + digits) | §1 step 5, §12 | `bom.csv` | yes |
 | G8 | Every BOM line is "done": MPN, package, Basic/Extended, stock-at-selection, datasheet | §1 (the done/not-done table), §2 | `bom.csv` | warns |
 | G9 | bom.csv references equal the schematic's bought references: none missing, none unknown, none twice, no DNP. What is not bought (DNP, excluded from the BOM, FID/TP/H/MH by prefix) is printed every run, and an excluded or prefix-skipped reference whose footprint has paste pads blocks: the fab would solder a part there, so it is bought or DNP, not a name that starts with TP | §1 §5 §12 | `bom.csv` + the schematic BOM export + the board's pads | yes |
-| G10 | Package fits the footprint, twice: the bom.csv `Package` against the footprint each reference has in the schematic (`bom-package`), and with `--online` the catalogue's package for each code against that footprint (`catalogue-package`). Verdicts same / different / unknown, see "Package names" below: *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand" | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record; `packages.fits()` | yes |
+| G9b | bom.csv `Value` equals the schematic `Value` of every reference, spelling aside (µ/u, Ω/ohm/R, 4k7/4.7k, spaces, case; `values.normalize()`). Nothing else is inferred: 100nF and 0.1uF are two spellings and the files use one | §1 | `bom.csv` + schematic BOM export | yes |
+| G10 | Package fits the footprint, twice: the bom.csv `Package` against the footprint each reference has in the schematic (`bom-package`), and with `--online` the catalogue's package for each code against that footprint (`catalogue-package`). Verdicts same / different / unknown, see "Package names" below: names pick the candidates and, where both sides are footprints in KiCad's library, the pads decide; *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand". A `Package` that repeats the footprint name compares nothing and is listed as such | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library; `packages.fits()` | yes |
 | G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); count of Extended part types (fee) | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked* and makes the result NOT VERIFIED, never a pass | yes / warns |
+| G11c | Catalogue category matches the reference prefix (`--online`): C a capacitor, R a resistor, D a diode, TVS or LED, L an inductor or ferrite, FB a ferrite, Q a transistor, J a connector, F a fuse, Y a crystal, SW a switch, U none of those (`values.PREFIXES`, `values.CLASSES`, each keyword with the record it was seen in). A capacitor's code on an LED line blocks; a prefix without a rule, or a jlcsearch record (no category) under a U, is *not checked* | §1 §2 | the record's `firstSortName / secondSortName`, else its description | yes |
+| G11d | Catalogue description matches the BOM value (`--online`): every F, H and Ω figure the bom.csv `Value` states is within 1 % of one in the record's description, and the part's voltage rating reaches the value's (a 25 V part on a `100uF 16V` line fits, a 16 V part on a `100uF 25V` line does not). A figure the description lacks is *not checked*; a value without figures (a part number) has nothing to compare | §1 §2 | the record's description; `values.compare()` | yes |
 | G12 | Three fiducials on the front and an aux-axis origin set | §4 | the board file: footprints whose library id contains "Fiducial" or whose reference starts FID; `(setup (aux_axis_origin x y))` | warns |
 | G13 | Board name and a revision on a silkscreen layer; a name beside every connector (visible Value on silk, or silk text within 15 mm) | §8 §10 | the board file: `gr_text` on `F.SilkS`/`B.SilkS`, the `Value` property's layer and `hide` flag | warns |
 | G14 | Two copper layers with an inductor on the board | §9 | the board file: `(layers ...)` entries ending `.Cu`, references `L*` | warns |
@@ -108,43 +111,117 @@ TPS5430; Diodes Inc. calls SOT-23-5 `SOT25` and JLCPCB prints `SOT-25-5`. The fi
 tokens and treated anything it could not read as "not compared", silently. That hid two kinds of error at
 once: real mismatches it could not see (an exposed pad dropped from `SOIC-8-1EP`, so a padless SOIC-8 passed
 on the LMR33630's footprint; `SOD-123F` read as `SOD-123`) and false failures on correct parts (the genuine
-AP2112K rejected for `SOT-25-5`). The pattern that replaced it, in `pcb_preflight/packages.py`:
+AP2112K rejected for `SOT-25-5`). The second cut read names into canonical packages, and its review found
+the names still deciding too much: KiCad's `TSOT-23-6` and `SOT-23-6` have identical pads and were called
+different, `MSOP-8` and `VSSOP-8` 3x3 differ in pad width by 0.1 mm and were called different, two `SSOP-8`
+footprints at 1.27 and 0.65 mm pitch were called the same. The pattern now, in `pcb_preflight/packages.py`
+with `pcb_preflight/footprints.py`:
 
-1. **Three verdicts.** `fits(footprint, part, mpn=None)` returns *same*, *different* or *unknown*, with the
-   canonical names it read on each side and a reason. *Different* blocks the order. *Unknown* is never a
-   pass: the gate prints its count in its own line and lists every unknown item under NOT CHECKED. A gate
-   where nothing at all could be compared is a skip.
-2. **Canonical names carry what changes the land pattern.** Chip sizes (`0603`); leaded families with pin
-   count, exposed pad and SOIC body width (`SOIC-8-EP`, `SOIC-8-208MIL`); no-lead and QFP families with the
-   body size when the name gives one (`QFN-16(3x3)`; JLCPCB writes it in brackets, KiCad in the name);
-   SOT, SOD and TO with non-default pin counts and suffixes (`SOT-23-5`, `SOD-123F`, `TO-263-7`); diode
-   outlines (`SMA`); electrolytic cans with mount, diameter and height (`CAN-SMD-D6.3xL7.7`, so a
-   through-hole can on an SMD footprint is *different*). A string may name several packages
-   (`SC-70(SOT-323)`); two strings fit when their sets meet. Not compared: pitch, exposed-pad size, TSSOP
-   width, and everything without a standard name (connectors, inductor bodies, fuse clips).
-3. **Spellings are data with a source.** `SYNONYMS` (whole spellings: `SOT-25-5`, `D2PAK`, `DO-214AA`) and
-   `FAMILIES` (spellings that take a pin count: `SOP`, `ESOP`, `HTSSOP`) map vendor names to canonical ones,
-   and every entry names the catalogue record or datasheet it was seen in. Nothing is added from memory:
-   two entries carried over from the first cut (`DO-214AB`, `DPAK`) stayed only once a record was found
-   for each (C224045, C10663).
-4. **A fixture of real strings.** `tests/fixtures/packages.csv` pairs KiCad library footprint names with
-   package strings copied from catalogue records, with the expected verdict and the record. The tests run
-   every row in both directions and fail for a table entry that no row uses, so a new spelling cannot land
-   without the record that justifies it. The file is the regression corpus: when a run trips over a vendor
-   string, the string goes in as a row first.
-5. **The part's own name.** Many KiCad footprints are drawn for one part and named after it
+1. **Three verdicts.** `fits(footprint, part, mpn=None, library=None)` returns *same*, *different* or
+   *unknown*, with the canonical names it read on each side, a reason and the rule that decided
+   (`Fit.rule`, one of `RULES`). *Different* blocks the order. *Unknown* is never a pass: the gate prints its
+   count in its own line and lists every unknown item under NOT CHECKED. A gate where nothing at all could
+   be compared is a skip.
+2. **Names pick the candidates, pads decide.** Each string is read into canonical names (point 3). The
+   names alone give a verdict: *same* when the sets meet and nothing they state about pitch or body width
+   disagrees, *different* when they do not meet or a stated pitch or width differs (`P2.54mm` against
+   SOIC's 1.27 mm; `4.4x5mm` against `6.1x...`), *unknown* when one side says less than the other
+   (`QFN-16` against `QFN-16(3x3)`). Given KiCad's footprint library (`--footprints`,
+   `$KICAD_FOOTPRINT_DIR`, or the install the `kicad-cli` in use belongs to; `packages.Library` indexes
+   the package libraries by canonical name), each side is then resolved to library footprints: the one
+   footprint the string names, else every footprint that reads as the same canonical name at the same
+   pitch and width where the string gives them. Where both sides resolve, `footprints.same_pads()`
+   compares copper pads (SMD or through-hole, position within 0.1 mm, size within 0.15 mm, drill, paste,
+   in any of four rotations; pad numbers and shapes are not compared, the pin map is §3): a pad set that
+   matches one on the other side is *same* whatever the names said (TSOT-23-6 on SOT-23-6, VSSOP-8 on
+   MSOP-8 3x3, a 6.3x7.7 can on `CP_Elec_6.3x5.8`, whose height is §10); pads that match nothing are
+   *different* when the names also disagree and *unknown* when the names agreed (two QFN-20 4x4 footprints
+   with 2.6 and 2.1 mm exposed pads). A string without dimensions that resolves to more than one land
+   pattern in the library (`TSSOP-14` at 0.65 and 0.4 mm pitch, `VSSOP-8` at 3x3 and 2.3x2, `SSOP-8` at
+   0.65 and 1.27 mm) is *unknown*: the name does not say which, and a pad match to one of them does not
+   settle it. Without a library the names alone decide and the gate's note says so. The library is read,
+   never written, and the index of 4,400 footprints is built in well under a second.
+3. **Canonical names carry what changes the land pattern.** Chip sizes (`0603`); leaded families with pin
+   count, exposed pad and SOIC body width (`SOIC-8-EP`, `SOIC-8-208MIL`), plus the pitch and body width
+   where the name states them; no-lead and QFP families with the body size when the name gives one
+   (`QFN-16(3x3)`; JLCPCB writes it in brackets, KiCad in the name); SOT, SOD and TO with non-default pin
+   counts and suffixes (`SOT-23-5`, `SOD-123F`, `TO-263-7`); diode outlines (`SMA`); electrolytic cans with
+   mount, diameter and height (`CAN-SMD-D6.3xL7.7`, so a through-hole can on an SMD footprint is
+   *different*; two heights at one diameter are left to the pads, since KiCad draws some alike and some
+   not). Thickness designators fold into their family with a source: TSOT is SOT (JEDEC MO-193 keeps the
+   MO-178 land pattern), VQFN, WQFN, TQFN and UQFN are QFN (JEDEC MO-220). A SOIC without a stated pitch
+   is taken at JEDEC MS-012's 1.27 mm (`STANDARD_PITCH`), which tells the 2.54 mm SOPs KiCad files under
+   the same family name apart. A string may name several packages (`SC-70(SOT-323)`); two strings fit when
+   their sets meet. Not compared by name: exposed-pad size (the pads catch it), can height, and everything
+   without a standard name (connectors, inductor bodies, fuse clips).
+4. **Spellings are data with a source.** `SYNONYMS` (whole spellings: `SOT-25-5`, `D2PAK`, `DO-214AA`) and
+   `FAMILIES` (spellings that take a pin count: `SOP`, `ESOP`, `HTSSOP`, `TSOT`, `VQFN`) map vendor names to
+   canonical ones, and every entry names the catalogue record, datasheet or `.kicad_mod` file it was seen
+   in. Nothing is added from memory: two entries carried over from the first cut (`DO-214AB`, `DPAK`)
+   stayed only once a record was found for each (C224045, C10663).
+5. **A fixture of real strings.** `tests/fixtures/packages.csv` pairs KiCad library footprint names with
+   package strings copied from catalogue records, or with other KiCad footprint names for the pairs the
+   review named, each with the record or the `.kicad_mod` files it came from and two expectations: the
+   verdict and rule with the footprint library (pads decide) and the verdict and rule from names alone, as
+   on a machine without KiCad. The tests run every row in both directions and both modes (the library
+   mode where KiCad is installed), and fail for a table entry, a standard pitch or a rule that no row
+   exercises, so a new spelling cannot land without the record that justifies it. The file is the
+   regression corpus: when a run trips over a vendor string, the string goes in as a row first.
+6. **The part's own name.** Many KiCad footprints are drawn for one part and named after it
    (`JST_XH_B6B-XH-A_...`, `L_Bourns_SRP1245A`). When the package strings are *unknown* and the catalogue
    MPN starts with such a name token, the verdict is *same*, with that reason. It never overrides
    *different*, and a token must hold letters and digits and be five characters or more.
-6. **A human's word, labelled as such.** An optional bom.csv column, `Package verified`, holds a note
+7. **A copied name is not a comparison.** `bom-template` writes the footprint name into the `Package`
+   column as a placeholder. The offline gate treats a `Package` that repeats its footprint name (case and
+   library prefix aside) as nothing compared: those references are listed once under NOT CHECKED with
+   what to write instead (the package as the catalogue record prints it), never counted as agreeing, and
+   the gate is a skip when no line holds anything else. The first cut printed "110 of 110 same name" on
+   the example board, a comparison of a column with its own source. With `--online` the catalogue's own
+   string is compared for every code, which is the comparison that matters.
+8. **A human's word, labelled as such.** An optional bom.csv column, `Package verified`, holds a note
    ("2026-10-16 BD: 1935161 drawing against the PT 1,5/2 footprint"). A line with a note turns *unknown*
    into "verified by hand: <note>", printed under the gate, never counted as the tool's own pass. It never
    turns *different* into anything: a mismatch the tool can see is fixed in bom.csv or on the board, and
    the report says the note does not apply. It is meant for parts no table can cover; a vocabulary gap is
    fixed in the table instead.
-7. **One function for the gate and the assistant.** `fits()` and `read()` take strings and return plain
+9. **One function for the gate and the assistant.** `fits()` and `read()` take strings and return plain
    data (`Fit.as_dict()`), so the MCP milestone (§8) exposes the same call an assistant drafting a BOM can
    ask: "does LCSC part X fit footprint Y?"
+
+### Values: the schematic, the BOM and the catalogue agree on what the part is
+
+A BOM line whose code points at the wrong kind of part passed every gate above: the package fits (an 0805
+capacitor on an 0805 LED footprint), the MPN matches the code, stock is fine. Three checks in
+`pcb_preflight/values.py` close that, each small and each with its fixture:
+
+1. **bom.csv against the schematic** (`bom-value`, always). `normalize()` folds the spellings that mean one
+   value (µ and u, Ω and ohm and R, `4k7` and `4.7k`, spaces, case) and the two strings must then be equal.
+   Nothing else is inferred, so `100nF` and `0.1uF` differ and the designer picks one spelling for both
+   files. The example board's 110 references pass.
+2. **Reference prefix against the catalogue's category** (`catalogue-category`, `--online`). JLCPCB's record
+   carries `firstSortName / secondSortName` ("Capacitors / Multilayer Ceramic Capacitors MLCC - SMD/SMT");
+   its `componentDesignator` is not used, since JLCPCB files inductors, connectors, fuses and MOSFETs under
+   "U". `PREFIXES` maps C, R, D, LED, L, FB, Q, J, F, Y and SW to classes and `CLASSES` maps each class to the
+   category keywords it was seen under, every keyword with its record. U is the one negative rule: its
+   category must not be a passive, discrete or electromechanical class, with "array", "driver" and "module"
+   categories exempt from the diode and transistor test (a Darlington array and an LED driver are ICs).
+   A jlcsearch record has no category, so its description (which ends in the category words) is searched
+   instead, except under U, which is then *not checked*. A prefix without a rule (K, T, X, ...) is *not
+   checked* and says so.
+3. **Value figures against the catalogue description** (`catalogue-value`, `--online`). `quantities()` reads
+   the F, H, Ω and V figures a value or a description states ("100nF 50V X7R" -> 100 nF, 50 V; "60Ω@100MHz
+   6A 9mΩ" -> 60 Ω, 9 mΩ), reading a unitless `22k` or `4k7` as ohms on a resistor line only and skipping
+   figures glued to a sign or an identifier (`+12V` in an LED's "green +12V" is the net it shows; `-100M`
+   in SRP1245A-100M is a part number; the first run blocked three LEDs on exactly that before the rule).
+   `compare()` then requires every F, H or Ω figure the value states to be within 1 % of one in the
+   description, and the description's highest voltage to reach the value's: the rating is a floor, so the
+   example board's C5 (`100uF 16V` on the 25 V part C4 uses) passes and a 16 V part on a 25 V line blocks.
+   A figure the description lacks is *not checked*; a value without figures (a part number) has nothing
+   to compare and is counted as such. Tolerance, current and power are not compared.
+
+`tests/fixtures/catalogue.csv` holds the records these rules were read from (20 JLCPCB records fetched on
+2026-10-16/17, description and category verbatim) paired with bom.csv lines and the verdict each gate must
+give; the tests fail for a prefix or a category keyword that no row exercises.
 
 ## 4. Prior art (verified 2026-10-16)
 
@@ -179,13 +256,21 @@ wrong part. Result: G7 blocks on L3 alone, G8 warns on the same line, DRC warns 
 the board edge), G4b finds all 130 footprints naming a symbol in the schematic (the same board with every
 schematic uuid regenerated fails it with 130 orphaned, while kicad-cli's parity test still reports 0
 mismatches), G5b finds every bought reference placed, the preset raises the project's `min_clearance 0`
-to 0.09 mm and says so in a note, G11 finds all 45 codes in stock at 10× or more. G10 compares 110 references offline and
-45 code/footprint pairs online: 40 fit (U4's `SOT-25-5` through its table entry, the LMR33630's `ESOP-8` as
-the exposed-pad SOIC-8, the JST and Bourns parts because their footprints are named for them), and 5 are
-listed as not compared: the fuse clip, the 2920 polyfuse, the two Phoenix terminal blocks and the D-sub,
-whose catalogue strings ("Plugin,P=5mm", "Push-Pull") name no package.
-Those wait for a human's `Package verified` note. Wall time about 7 s plus about 0.3 s per catalogue
-lookup.
+to 0.09 mm and says so in a note, G9b finds every bom.csv Value equal to the schematic's, G11 finds all 45
+codes in stock at 10× or more, G11c files all 66 lines under the category their prefix means, G11d finds
+the 35 lines that state a figure agreeing with their description and 31 stating none. G10 offline compares
+the `Package` column, filled with the string each JLCPCB record prints, against the footprint of each of
+the 110 references: 100 agree (by the same table and pad rules as online), the 8 references behind the
+five unreadable catalogue strings below are listed as not compared, and one more NOT CHECKED entry names
+the 2 whose `Package` repeats the footprint name and so compares nothing: L3, whose line has no part and
+still carries the `bom-template` placeholder, and Q2, whose catalogue string `SOT-23` is also its
+footprint's name, which the repeat rule cannot tell from a copied placeholder. Online it compares 45
+code/footprint pairs: 40 fit (U4's `SOT-25-5` through its table entry, the LMR33630's `ESOP-8` as the
+exposed-pad SOIC-8, the JST and Bourns parts because their footprints are named for them, the rest by pads
+against KiCad's library), and 5 are listed as not compared: the fuse clip, the 2920 polyfuse, the two
+Phoenix terminal blocks and the D-sub, whose catalogue strings ("Plugin,P=5mm", "Push-Pull") name no
+package. Those wait for a human's `Package verified` note. Wall time about 7 s plus about 0.3 s per
+catalogue lookup; reading the footprint library adds a few tenths of a second.
 
 ## 6. Stock lookup: endpoints found
 
@@ -223,14 +308,19 @@ one-function change and the unit test exercises the gate with a fake catalogue.
 * A `--fab pcbway` switch; the BOM columns are the same, the catalogue is not.
 * Hierarchical sheets are covered: kicad-cli reads them for ERC, parity and the BOM export, and G4b follows
   `Sheetfile` references; variants are not.
-* Left from the 2026-10-16 review of the first cut: the offline `bom-package` gate compares the Package
-  column with the footprint name it was generated from (110 of 110 "same name" on the example board), so
-  it proves little until the column holds the catalogue's string; *unknown* items should block rather than
-  make the result NOT VERIFIED once a `Package verified` note is keyed to (reference, code, footprint);
-  *same* and *different* should be decided from pad geometry rather than names where both sides resolve to
-  library footprints (KiCad's SOT-23-6 and TSOT-23-6 have identical pads; VQFN/WQFN are QFN thicknesses;
-  electrolytic can height is §10, not §1); bom.csv values should be compared with the schematic and the
-  catalogue description (a capacitor's code on an LED line passes today).
+* Left from the 2026-10-16 review of the first cut, after the package and value work of 2026-10-17 closed
+  the rest (pad geometry decides where both sides are library footprints, a copied `Package` compares
+  nothing, values are compared with the schematic and the catalogue): *unknown* items should block rather
+  than make the result NOT VERIFIED once a `Package verified` note is keyed to (reference, code,
+  footprint). Still open around those gates: a catalogue string that is also the footprint's name (Q2's
+  `SOT-23` on `SOT-23` in the example BOM) is taken for a copied placeholder and not compared; prefixes K,
+  T, X, BT, RV and RN have no category rule (no record was fetched for them); a jlcsearch
+  record carries no category, so a U under the fallback is not checked; JLCPCB spellings seen but not yet
+  in the table because no fixture pair needed them: `MLF-16` (Microchip's QFN), `DHVQFN-20`, `SOP-4-2.54mm`;
+  through-hole radial cans (`CP_Radial_D10.0mm_P5.00mm`) are not read, so `Plugin,D10xL12.5mm` on one is
+  unknown; `SOT-23W` reads as SOT-23 by name and only the pads tell it apart; tolerance, current and power
+  figures are not compared; the footprint library is KiCad's own, so a project-local copy of a library
+  footprint resolves only when it keeps the library's name.
 * Left from the second review (2026-10-16, after the contract): JLCPCB's limits for 2 oz copper and for pad
   (not via) hole-to-hole spacing are not modelled, since the files do not say the copper weight; silkscreen
   text minimums are not raised (not fab-blocking); `preset.KICAD_DEFAULT` is KiCad 10.0's and needs a row
@@ -244,8 +334,7 @@ orders. The three tools named in the brief are different in kind. *Parts lookup*
 is a natural MCP tool: an assistant drafting a BOM can call it per line and write back the verified MPN,
 package, library type, stock and datasheet URL, which is exactly the "the AI proposes, the catalogue
 confirms" loop of §2, and it costs nothing beyond exposing an existing function. *Footprint pad-map read*
-is also cheap and already half-built (`board.py` reads pads; a `kicad_mod` reader is the same s-expression
-code), and pairs with *datasheet pin-table extraction*, which is the hard one: pin tables in PDFs are
+is also cheap and now built (`footprints.read_pads()` reads a `.kicad_mod`; `board.py` reads a board's pads), and pairs with *datasheet pin-table extraction*, which is the hard one: pin tables in PDFs are
 irregular, extraction needs a PDF text layer or OCR plus a model to read the table, and a wrong extraction
 presented confidently is worse than none. So the sensible shape is: milestone 2 exposes `preflight_check`,
 `part_lookup` and `footprint_pads` as MCP tools with the same read-only guarantee, and treats pin-table
