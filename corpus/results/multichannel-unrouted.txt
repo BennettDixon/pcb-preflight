@@ -1,6 +1,6 @@
 multichannel_mixer  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 114 footprints  -  bom.csv: none
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 6 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Board footprints belong to this schematic (§5): 114 of 114 footprints name a symbol in the schematic
@@ -47,13 +47,7 @@ FINDINGS
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Resistors SMD' [Symbol R47 [R1206_10K_1%_0.25W_100PPM] @ (254.0, 78.74)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'Capacitors THD' [Symbol C40 [CTEB_2.2UF_35V_10%_254-500X840] @ (262.89, 78.74)]
         note: 4 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x3, pin_not_connected x1
-  FAIL  DRC (§12): 6 errors, 115 warnings (lib_footprint_issues x93, via_dangling x8, clearance x6, track_dangling x4, connection_width x4, silk_over_copper x3, silk_edge_clearance x1, holes_co_located x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4); Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]
-        clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]
+  WARN  DRC (§12): 0 errors, 121 warnings (lib_footprint_issues x93, via_dangling x8, clearance x6, track_dangling x4, connection_width x4, silk_over_copper x3, silk_edge_clearance x1, holes_co_located x1, nonmirrored_text_on_back_layer x1); 12 footprints without a courtyard
         warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (125.0, 83.000002)]
         warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (127.8, 86.8)]
         warning: via_dangling: Via is not connected or connected on only one layer [Via [vbias] on F.Cu - B.Cu @ (105.8, 86.8)]
@@ -88,7 +82,14 @@ FINDINGS
         warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R34 @ (163.0, 135.9)]
         warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R14 @ (144.95, 147.4)]
         warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R16 @ (38.215, 73.965)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R41 @ (105.0, 135.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Footprint IC1 @ (190.335, 108.24)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R35 @ (171.0, 121.0)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R44 @ (101.0, 93.0)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'ICs And Semiconductors SMD' [Footprint IC5 @ (102.365, 84.1)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'Resistors SMD' [Footprint R36 @ (166.95, 147.4)]
         ... 81 more (--max-details)
+        note: 6 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x6, floor 0.1 mm); reported as warnings, --strict blocks them
   FAIL  Unrouted connections (§11 §12): 148 connections still to route
         unconnected_items: Missing connection between items [Pad 1 [GND] of C21 on B.Cu @ (31.715, 81.965); Pad 4 [GND] of IC3 on B.Cu @ (41.485, 78.965)]
         unconnected_items: Missing connection between items [Pad 1 [GND] of C21 on B.Cu @ (31.715, 81.965); Pad 1 [GND] of C20 on B.Cu @ (43.615, 111.865)]
@@ -171,5 +172,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  3 blocking, 6 warnings, 2 not checked  -  exit 1
+  3 findings block the order (FAIL lines under FINDINGS); fix them and run again

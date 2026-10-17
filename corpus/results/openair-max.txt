@@ -58,15 +58,12 @@ FINDINGS
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol I2C1 Pin 1 [1, Unspecified, Line] @ (41.91, 177.8); Symbol #PWR028 Pin 1 [Power input, Line] @ (38.1, 176.53)]
         ... 803 more (--max-details)
         note: 439 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x390, pin_not_driven x41, power_pin_not_driven x7, wire_dangling x1
-  FAIL  DRC (§12): 223 errors, 260 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
+  FAIL  DRC (§12): 21 errors, 462 warnings (lib_footprint_issues x199, drill_out_of_range x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of BAT1 @ (109.81, 59.97)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (131.43, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 8.0070 mm @ (169.84, 63.64705)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631); Track [/Solar_module/VBAT] on PWR, length 1.5429 mm @ (169.181, 66.781)]
         clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
@@ -83,27 +80,31 @@ FINDINGS
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 4 [PGND] of U6 on B.Cu @ (186.26, 81.12)]
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 7 [Net-(U6-MODE/S-CONF)] of U6 on B.Cu @ (186.26, 79.22)]
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 9 [/Solar_module/FB/VSET] of U6 on B.Cu @ (187.84, 79.22)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (167.96, 76.67)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (160.16, 109.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (119.56, 58.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (98.485, 111.845)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (122.76, 58.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (144.91, 80.32)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (169.135, 106.17)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (147.36, 107.82)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (109.66, 121.92)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (178.26, 85.07)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (152.56, 51.72)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (130.435, 92.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (124.26, 69.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (126.06, 89.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (110.56, 77.22)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (129.56, 85.22)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (141.9131, 114.6445); Segment of BAT1 on F.Silkscreen @ (184.61, 114.22)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.98, 122.82); Segment of USB1 on F.Silkscreen @ (129.83, 124.05)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.98, 122.82); Segment of USB1 on F.Silkscreen @ (138.83, 124.05)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Segment of LED2 on F.Silkscreen @ (126.87, 120.54)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Segment of LED2 on F.Silkscreen @ (127.13, 120.29)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Arc of LED2 on F.Silkscreen @ (126.2, 119.13)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (145.113553, 57.22); Segment of U1 on B.Silkscreen @ (111.91, 57.84)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (145.113553, 57.22); Segment of U1 on B.Silkscreen @ (129.91, 57.84)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of BAT1 @ (109.81, 59.97)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB1 @ (131.43, 117.74)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint Solarpower1 @ (181.28, 116.62)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint I2C2 @ (160.3, 118.22)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint BAT1 @ (145.81, 85.82)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint C13 @ (155.96, 115.52)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint SW1 @ (118.49, 118.175)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'clipboard' [Footprint <no reference designator> @ (193.26, 86.445)]
         ... 443 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered duplicate_footprints to ignore (KiCad default warning), extra_footprint to ignore (KiCad default warning), missing_footprint to ignore (KiCad default warning)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): via_dangling, track_dangling, lib_footprint_mismatch
         note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x11
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_hole_to_hole 0.0 -> 0.2 mm, min_track_width 0.0 -> 0.09 mm, min_via_annular_width 0.0 -> 0.05 mm
+        note: 202 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.15 mm, clearance x3, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Schematic / PCB parity (§5): 3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted
         net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Battery1 @ (191.56, 61.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)

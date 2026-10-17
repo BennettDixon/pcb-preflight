@@ -115,7 +115,7 @@
         "warning: pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]",
         "warning: pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]",
         "warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U5 [W25Q32JVSS] @ (50.8, 180.34)]",
-        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (43.18, 30.48); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
+        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (35.56, 71.12); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -128,19 +128,11 @@
       "title": "DRC",
       "pitfall": "\u00a712",
       "status": "fail",
-      "summary": "13 errors, 731 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard",
+      "summary": "5 errors, 739 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard",
       "details": [
-        "clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]",
-        "clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]",
-        "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]",
-        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
         "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
-        "clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]",
+        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
         "shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]",
-        "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]",
-        "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B1_A12 [GND] of J15 on F.Cu @ (81.55, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]",
-        "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B5 [/CC2] of J15 on F.Cu @ (83.0, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]",
-        "clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]",
         "clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]",
         "footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]",
         "warning: via_dangling: Via is not connected or connected on only one layer [Via [+3V3] on F.Cu - B.Cu @ (118.01, 121.957019)]",
@@ -873,7 +865,15 @@
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Segment of U1 on F.Silkscreen @ (147.05, 117.5); Pad 3 [GND] of U1 on F.Cu @ (146.55, 116.95)]",
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Segment of U1 on F.Silkscreen @ (147.05, 117.5); Pad 4 [Net-(U1-C)] of U1 on F.Cu @ (148.05, 116.95)]",
         "warning: silk_overlap: Silkscreen clearance [Segment on B.Silkscreen @ (104.55, 134.295); PCB text 'bi7' on B.Silkscreen @ (104.5, 134.245)]",
-        "warning: silk_overlap: Silkscreen clearance [Segment on B.Silkscreen @ (101.9, 134.295); PCB text 'bi7' on B.Silkscreen @ (104.5, 134.245)]"
+        "warning: silk_overlap: Silkscreen clearance [Segment on B.Silkscreen @ (101.9, 134.295); PCB text 'bi7' on B.Silkscreen @ (104.5, 134.245)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'Default' clearance 0.2000 mm; actual 0.1824 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Track [/CC1] on F.Cu, length 0.3889 mm @ (86.0, 61.521142)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'usbdiff' clearance 0.2000 mm; actual 0.1889 mm) [Pad A5 [/CC1] of J15 on F.Cu @ (86.0, 60.95); Track [usb_d-] on F.Cu, length 0.5374 mm @ (85.5, 61.579756)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1450 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.0035 mm @ (100.075, 86.6)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'ioout' clearance 0.2000 mm; actual 0.1250 mm) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 14.0681 mm @ (100.0725, 86.6025)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad A1_B12 [GND] of J15 on F.Cu @ (87.95, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B1_A12 [GND] of J15 on F.Cu @ (81.55, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B5 [/CC2] of J15 on F.Cu @ (83.0, 60.95); Pad B4_A9 [VBUS] of J15 on F.Cu @ (82.35, 60.95)]",
+        "warning (project's own rule): clearance: Clearance violation (netclass 'pwrhi' clearance 0.2500 mm; actual 0.2000 mm) [Pad B8 [unconnected-(J15-SBU2-PadB8)] of J15 on F.Cu @ (86.5, 60.95); Pad A4_B9 [VBUS] of J15 on F.Cu @ (87.15, 60.95)]"
       ],
       "unchecked": [
         "missing_courtyard: Footprint has no courtyard defined [Footprint STITCH1 @ (84.2, 115.7)]: no courtyard, so courtyards_overlap could not see this footprint",
@@ -1040,7 +1040,8 @@
       "verified": [],
       "notes": [
         "8 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x8",
-        "minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm"
+        "minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm",
+        "8 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x8, floor 0.09 mm); reported as warnings, --strict blocks them"
       ]
     },
     {
@@ -1050,7 +1051,7 @@
       "status": "fail",
       "summary": "1 connections still to route",
       "details": [
-        "unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]"
+        "unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]"
       ],
       "unchecked": [],
       "verified": [],

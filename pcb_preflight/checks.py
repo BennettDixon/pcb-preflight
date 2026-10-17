@@ -95,11 +95,37 @@ def erc_check(report, owned=None):
     return Check('erc', 'ERC', '§12', status, summary, det, notes=notes)
 
 
+# DRC checks whose constraint the preset floors (preset.minimums()), and the key of the floor. KiCad's message
+# carries the resolved constraint and the measured figure ("...min width 0.2000 mm; actual 0.1500 mm"); a
+# violation whose figure still clears the fab's floor is the project's own stricter rule, not the fab's.
+FLOORED = {'track_width': 'min_track_width', 'clearance': 'min_clearance', 'copper_edge_clearance': 'min_copper_edge_clearance',
+           'drill_out_of_range': 'min_through_hole_diameter', 'annular_width': 'min_via_annular_width', 'hole_to_hole': 'min_hole_to_hole'}
+ACTUAL = re.compile(r'actual\s+([0-9]+(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?)\s*mm')
+
+
+def _actual_mm(v):
+    m = ACTUAL.search(v.get('description', ''))
+    return float(m.group(1)) if m else None
+
+
+def _whose_rule(errors, copper_layers):
+    """Split floored-type errors into the fab's (figure below the floor, or unreadable) and the project's own."""
+    floors = preset.minimums(copper_layers)
+    fabs, own = [], []
+    for v in errors:
+        key = FLOORED.get(v.get('type'))
+        a = _actual_mm(v) if key else None
+        (own if a is not None and a >= floors[key] - 1e-9 else fabs).append(v)
+    return fabs, own
+
+
 def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
     errors, warnings, excluded = kicad.count_severities(report.get('violations', []))
     no_courtyard = [v for v in errors if v.get('type') == 'missing_courtyard']
     errors = [v for v in errors if v.get('type') != 'missing_courtyard']
     unchecked = [f'{kicad.describe(v)}: no courtyard, so courtyards_overlap could not see this footprint' for v in no_courtyard]
+    errors, own_rule = _whose_rule(errors, copper_layers)
+    warnings = warnings + own_rule
     types = Counter(v.get('type') for v in errors + warnings)
     kinds = ', '.join(f'{t} x{c}' for t, c in types.most_common())
     blocked, notes = _owned_notes(report, 'drc', owned, excluded, warnings)
@@ -110,7 +136,14 @@ def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
     if custom_rules:
         notes.append(f'custom design rules {os.path.basename(custom_rules)} are in the project and were not applied: '
                      f"the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)")
-    det = [kicad.describe(v) for v in errors] + blocked + [f'warning: {kicad.describe(v)}' for v in warnings]
+    if own_rule:
+        kinds_own = Counter(v.get('type') for v in own_rule)
+        floors = preset.minimums(copper_layers)
+        notes.append(f"{len(own_rule)} errors are the project's own constraints, stricter than JLCPCB's floor "
+                     f"({', '.join(f'{t} x{c}, floor {floors[FLOORED[t]]} mm' for t, c in kinds_own.most_common())}); "
+                     f'reported as warnings, --strict blocks them')
+    det = ([kicad.describe(v) for v in errors] + blocked
+           + [f"warning (project's own rule): {kicad.describe(v)}" if v in own_rule else f'warning: {kicad.describe(v)}' for v in warnings])
     status = 'fail' if errors or blocked else ('warn' if warnings else 'pass')
     summary = (f'{len(errors)} errors, {len(warnings)} warnings' + (f', {len(excluded)} excluded by the project' if excluded else '')
                + (f' ({kinds})' if kinds else '') + (f'; {len(unchecked)} footprints without a courtyard' if unchecked else ''))
