@@ -9,8 +9,9 @@ repo), written from two board families and referred to below by section (`§1` .
 A command-line gate. Given a KiCad project directory it answers one question: **may this board be
 ordered?** It runs KiCad's own checks through `kicad-cli`, reads the project's `bom.csv`, reads the board
 file for the few things the fab will trip over, optionally asks the fab's catalogue about every part, and
-prints a report with three parts: checked and left alone, findings, not checked. Exit 1 on a blocking
-finding.
+prints a report with three parts: checked and left alone, findings, not checked. The result is one of four
+verdicts, each with its exit code (see "Four verdicts" below): PASS 0, FAIL 1, ERROR 2 (a core gate did not
+run), NOT VERIFIED 3 (something could not be checked).
 
 The thesis: the funded tools in this space (Flux, JITX, Quilter, atopile) compete on *generation*: a
 netlist, a placement, a route. The failures Bennett's boards actually had were not generation failures.
@@ -36,17 +37,19 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 
 | # | Gate | Pitfall | Reads / runs | Blocks |
 |:--|:--|:--|:--|:--|
-| G1 | ERC: zero errors (warnings listed) | §12 | `kicad-cli sch erc --format json --output erc.json <sch>`; `sheets[].violations[]` with `severity` | yes |
-| G2 | DRC: zero errors (warnings listed by type) | §12 | `kicad-cli pcb drc --format json --all-track-errors --schematic-parity --output drc.json <pcb>`; `violations[]` | yes |
+| G1 | ERC: zero errors (warnings listed). The checks the gate owns run as errors whatever the project says, the pin-conflict matrix is no weaker than KiCad's default, and a protected violation the project excluded blocks (see "Tool-owned severities") | §12 | `kicad-cli sch erc --format json --severity-all --output erc.json <sch>`; `sheets[].violations[]` with `severity` and KiCad's `excluded` flag, `ignored_checks[]` | yes |
+| G2 | DRC: zero errors (warnings listed by type); same ownership, plus the board's minimum constraints raised to the fab's. A footprint without a courtyard is *not checked* (courtyards_overlap cannot see it) | §12 | `kicad-cli pcb drc --format json --severity-all --all-track-errors --schematic-parity --output drc.json <pcb>`; `violations[]`, `ignored_checks[]` | yes |
 | G3 | Unrouted connections: none | §11 §12 | same report, `unconnected_items[]` (KiCad's connectivity, not the router's log) | yes |
-| G4 | Schematic / PCB parity: no missing, extra or mismatched footprints, no net conflicts | §5 | same run; `schematic_parity[]`. If kicad-cli prints "Failed to fetch schematic netlist" the gate is reported as *not checked*, never as passed | yes |
-| G5 | DNP parts: flagged DNP in the schematic *and* on the board, footprint still on the board, absent from bom.csv | §12 | `kicad-cli sch export bom --fields 'Reference,Value,Footprint,${DNP},${EXCLUDE_FROM_BOM}'` (one row per symbol) + the board's `(attr ... dnp)` | yes |
+| G4 | Schematic / PCB parity: no missing, extra or duplicate footprints, no net conflicts, footprint attributes and value as in the schematic (`preset.PARITY`). Those five block whatever severity the project gives them (KiCad ships them as warnings); the field-text and footprint-filter notes kicad-cli files alongside them keep the project's severity. If kicad-cli prints "Failed to fetch schematic netlist" the gate is *not checked* and the result is ERROR | §5 | same run; `schematic_parity[]` | yes |
+| G4b | Board footprints belong to this schematic: every footprint's `(path "/<sheet uuid>/<symbol uuid>")` names a symbol that exists in the schematic (all sheets), under the same reference. KiCad's parity test matches by reference and passes a schematic regenerated with fresh uuids, the §5 incident itself; this gate reads the uuids. A footprint without a path is board-only (a hole, a logo) only when no symbol carries its reference; otherwise it is an unlinked part and blocks, so stripping the paths is no escape | §5 | `.kicad_pcb` footprints' `path`, `.kicad_sch` symbols' `uuid`, `instances` and `on_board` via `schematic.load_symbols()` | yes |
+| G5 | DNP parts: flagged DNP in the schematic *and* on the board, footprint still on the board, absent from bom.csv | §12 | `kicad-cli sch export bom --fields 'Reference,Value,Footprint,${DNP},${EXCLUDE_FROM_BOM},${EXCLUDE_FROM_BOARD}'` (one row per symbol) + the board's `(attr ... dnp)` | yes |
+| G5b | Bought parts placed: every reference that is in the BOM (not DNP, not excluded, not a FID/TP/H/MH) has a footprint on the board, and none is marked "exclude from board" in the schematic. KiCad's parity test skips an excluded symbol, so one schematic flag could take a bought part off the board while bom.csv kept its line | §5 §12 | the schematic BOM export + the board file | yes |
 | G6 | `bom.csv` exists with columns Ref, Value, Package, MPN, LCSC, Basic/Extended, Stock, Datasheet | §1 | `bom.csv` (header names matched loosely) | yes |
 | G7 | Every BOM line has an LCSC code (`C` + digits) | §1 step 5, §12 | `bom.csv` | yes |
 | G8 | Every BOM line is "done": MPN, package, Basic/Extended, stock-at-selection, datasheet | §1 (the done/not-done table), §2 | `bom.csv` | warns |
-| G9 | bom.csv references equal the schematic's purchasable references: none missing, none unknown, none twice, no DNP; FID/TP/H/MH never expected | §1 §5 §12 | `bom.csv` + the schematic BOM export | yes |
-| G10 | The BOM line's package agrees with the footprint assigned in the schematic (0805 vs 1210, SOT-23 vs SOT-23-5, SMA vs SMB, SOIC-8 vs TSSOP-8); packages without a standard short name (connectors, electrolytics, inductors) are not compared | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export; `bom.package_token()` | yes |
-| G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; catalogue package agrees; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); count of Extended part types (fee) | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked*, not a pass | yes / warns |
+| G9 | bom.csv references equal the schematic's bought references: none missing, none unknown, none twice, no DNP. What is not bought (DNP, excluded from the BOM, FID/TP/H/MH by prefix) is printed every run, and an excluded or prefix-skipped reference whose footprint has paste pads blocks: the fab would solder a part there, so it is bought or DNP, not a name that starts with TP | §1 §5 §12 | `bom.csv` + the schematic BOM export + the board's pads | yes |
+| G10 | Package fits the footprint, twice: the bom.csv `Package` against the footprint each reference has in the schematic (`bom-package`), and with `--online` the catalogue's package for each code against that footprint (`catalogue-package`). Verdicts same / different / unknown, see "Package names" below: *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand" | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record; `packages.fits()` | yes |
+| G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); count of Extended part types (fee) | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked* and makes the result NOT VERIFIED, never a pass | yes / warns |
 | G12 | Three fiducials on the front and an aux-axis origin set | §4 | the board file: footprints whose library id contains "Fiducial" or whose reference starts FID; `(setup (aux_axis_origin x y))` | warns |
 | G13 | Board name and a revision on a silkscreen layer; a name beside every connector (visible Value on silk, or silk text within 15 mm) | §8 §10 | the board file: `gr_text` on `F.SilkS`/`B.SilkS`, the `Value` property's layer and `hide` flag | warns |
 | G14 | Two copper layers with an inductor on the board | §9 | the board file: `(layers ...)` entries ending `.Cu`, references `L*` | warns |
@@ -59,17 +62,89 @@ can see; printing them every time is what the "checked and left alone" style ask
 ### Design decisions
 
 * **Refuse, don't warn.** Everything in the "Blocks" column exits 1. `--strict` promotes the warnings.
+* **Four verdicts, and PASS is a contract** (`preset.py`). PASS (exit 0): every gate ran under the named
+  preset and judged every item it saw. FAIL (1): a finding blocks. ERROR (2): a core gate (ERC, DRC,
+  unrouted, parity, identity, the schematic BOM export) did not run; nothing in the report is a pass.
+  NOT VERIFIED (3): nothing blocks, but the catalogue was not asked (no `--online`) or did not answer, or a
+  package could not be compared and nobody signed for it. The first cut printed PASS in all three of those
+  cases: with kicad-cli failing, with the network down under `--online`, and offline with a made-up code.
+* **Tool-owned severities, matrix and minimums.** kicad-cli applies the project's own settings, and the
+  project is the thing under review: a check set to "ignore" in `.kicad_pro` is simply not run (in the
+  first cut one such line hid 199 unrouted connections behind "0 connections still to route"); a zeroed
+  `erc.pin_map` makes 224 output-to-output conflicts vanish; `min_track_width 0` passes a 0.05 mm track; a
+  rule in `<name>.kicad_dru` with `(constraint track_width (min 0mm))` or `(severity ignore)` does the same
+  under the board's own minimums. So, in the snapshot copy's `.kicad_pro` and before kicad-cli runs, the
+  gate rewrites its protected checks to "error", raises every cell of the pin matrix to no weaker than
+  KiCad's default, raises the board minimums and netclass clearances to no lower than JLCPCB's published
+  capability for 1 oz copper (`preset.MINIMUMS_*`, source and date in the file), and leaves `.kicad_dru`
+  out of the copy; the report prints what the project had set whenever it differed from KiCad's own
+  defaults (`preset.KICAD_DEFAULT`, read from KiCad 10.0's source and its 19 templates), and says when a
+  custom-rules file was present. Exclusions are read from the `excluded` flag kicad-cli puts on a violation
+  (it keeps the original severity; the `exclusion` severity string never appears): an excluded protected
+  violation blocks, any other exclusion is honoured and counted. The protected set is KiCad's default errors
+  that decide whether the fab can make and assemble the board as drawn, plus the five parity checks (KiCad:
+  warnings), `pin_to_pin` (the matrix's on/off switch) and `missing_courtyard` (KiCad: ignore; a footprint
+  without a courtyard is listed as *not checked* rather than blocked). Not owned on purpose:
+  `lib_symbol_issues`, a library-lookup warning that would fail every CI runner without the libraries.
 * **Read-only, verified.** `kicad-cli pcb drc` writes a `<board>.kicad_prl` beside a board that has none
-  (observed on KiCad 10.0.7). So the default is to copy the project to a temporary directory (minus
-  backups, `fab/`, lock files) and run there. The run against `sorter_pdb_v0` was checked with a
+  (observed on KiCad 10.0.7). So the gate always copies the project to a temporary directory (minus
+  backups, `fab/`, lock files and `<name>.kicad_dru`, see the next bullets) and runs there; there is no
+  in-place mode. The run against `sorter_pdb_v0` was checked with a
   before/after `stat` of every file: unchanged.
 * **The BOM is a file beside the project, not symbol fields.** §1 step 5 asks for `<board>/bom.csv` so the
   parts list is reviewed and diffed like code. The tool therefore reconciles that file against the
   schematic (G9) rather than reading LCSC fields off symbols; a later version can accept both.
 * **Standard library only.** Parsing `.kicad_pcb` is a 40-line s-expression reader; `pcbnew` Python is not
   required, so the tool runs under any Python, in CI, without KiCad's bundled interpreter.
-* **Short, stable check ids** (`erc`, `bom-lcsc`, `stock`, ...) in the JSON output, for a CI step or a
-  later MCP wrapper to key on.
+* **Short, stable check ids** (`erc`, `bom-lcsc`, `stock`, `catalogue-package`, ...) in the JSON output,
+  for a CI step or a later MCP wrapper to key on. Each check carries `details`, `unchecked` (items it ran
+  on but could not judge) and `verified` (items a human vouched for).
+
+### Package names: same, different or unknown
+
+A footprint name and a catalogue package string name the same land pattern in different words: KiCad's
+`SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm` is JLCPCB's `ESOP-8` for TI's LMR33630 and `SOIC-8-EP` for TI's
+TPS5430; Diodes Inc. calls SOT-23-5 `SOT25` and JLCPCB prints `SOT-25-5`. The first cut compared short
+tokens and treated anything it could not read as "not compared", silently. That hid two kinds of error at
+once: real mismatches it could not see (an exposed pad dropped from `SOIC-8-1EP`, so a padless SOIC-8 passed
+on the LMR33630's footprint; `SOD-123F` read as `SOD-123`) and false failures on correct parts (the genuine
+AP2112K rejected for `SOT-25-5`). The pattern that replaced it, in `pcb_preflight/packages.py`:
+
+1. **Three verdicts.** `fits(footprint, part, mpn=None)` returns *same*, *different* or *unknown*, with the
+   canonical names it read on each side and a reason. *Different* blocks the order. *Unknown* is never a
+   pass: the gate prints its count in its own line and lists every unknown item under NOT CHECKED. A gate
+   where nothing at all could be compared is a skip.
+2. **Canonical names carry what changes the land pattern.** Chip sizes (`0603`); leaded families with pin
+   count, exposed pad and SOIC body width (`SOIC-8-EP`, `SOIC-8-208MIL`); no-lead and QFP families with the
+   body size when the name gives one (`QFN-16(3x3)`; JLCPCB writes it in brackets, KiCad in the name);
+   SOT, SOD and TO with non-default pin counts and suffixes (`SOT-23-5`, `SOD-123F`, `TO-263-7`); diode
+   outlines (`SMA`); electrolytic cans with mount, diameter and height (`CAN-SMD-D6.3xL7.7`, so a
+   through-hole can on an SMD footprint is *different*). A string may name several packages
+   (`SC-70(SOT-323)`); two strings fit when their sets meet. Not compared: pitch, exposed-pad size, TSSOP
+   width, and everything without a standard name (connectors, inductor bodies, fuse clips).
+3. **Spellings are data with a source.** `SYNONYMS` (whole spellings: `SOT-25-5`, `D2PAK`, `DO-214AA`) and
+   `FAMILIES` (spellings that take a pin count: `SOP`, `ESOP`, `HTSSOP`) map vendor names to canonical ones,
+   and every entry names the catalogue record or datasheet it was seen in. Nothing is added from memory:
+   two entries carried over from the first cut (`DO-214AB`, `DPAK`) stayed only once a record was found
+   for each (C224045, C10663).
+4. **A fixture of real strings.** `tests/fixtures/packages.csv` pairs KiCad library footprint names with
+   package strings copied from catalogue records, with the expected verdict and the record. The tests run
+   every row in both directions and fail for a table entry that no row uses, so a new spelling cannot land
+   without the record that justifies it. The file is the regression corpus: when a run trips over a vendor
+   string, the string goes in as a row first.
+5. **The part's own name.** Many KiCad footprints are drawn for one part and named after it
+   (`JST_XH_B6B-XH-A_...`, `L_Bourns_SRP1245A`). When the package strings are *unknown* and the catalogue
+   MPN starts with such a name token, the verdict is *same*, with that reason. It never overrides
+   *different*, and a token must hold letters and digits and be five characters or more.
+6. **A human's word, labelled as such.** An optional bom.csv column, `Package verified`, holds a note
+   ("2026-10-16 BD: 1935161 drawing against the PT 1,5/2 footprint"). A line with a note turns *unknown*
+   into "verified by hand: <note>", printed under the gate, never counted as the tool's own pass. It never
+   turns *different* into anything: a mismatch the tool can see is fixed in bom.csv or on the board, and
+   the report says the note does not apply. It is meant for parts no table can cover; a vocabulary gap is
+   fixed in the table instead.
+7. **One function for the gate and the assistant.** `fits()` and `read()` take strings and return plain
+   data (`Fit.as_dict()`), so the MCP milestone (§8) exposes the same call an assistant drafting a BOM can
+   ask: "does LCSC part X fit footprint Y?"
 
 ## 4. Prior art (verified 2026-10-16)
 
@@ -95,12 +170,22 @@ the only one of these that is read-only by construction and runs without pcbnew'
 
 ## 5. The test run
 
-`examples/sorter_pdb_v0/` holds the BOM used (the board's real state: values chosen, parts not, with the
-two lines whose codes were verified live filled in) and the resulting `report.txt` / `report.json`.
-Result: 13 gates pass, DRC warns twice (J17 silk clipped by the board edge), G7 blocks with 65 of 67 lines
-lacking an LCSC code, G8 warns on the same lines, G11 confirms the two codes against the catalogue. That is
-the honest state of the board: routed and clean, not orderable. Wall time about 7 s, of which kicad-cli is
-about 5 s.
+`examples/sorter_pdb_v0/` holds the BOM used and the resulting `report.txt` / `report.json`. The first
+run had values chosen and parts not (65 of 67 lines without an LCSC code). The BOM now has a catalogue part
+on 66 of 67 lines, each filled from the JLCPCB record (MPN, code, Basic/Extended, stock, datasheet URL).
+The open line is L3, 15 µH SRP1245A-150M: JLCPCB does not carry it, and the in-stock alternatives are
+other makers' bodies the footprint was not drawn for, so the line stays empty rather than holding a
+wrong part. Result: G7 blocks on L3 alone, G8 warns on the same line, DRC warns twice (J17 silk clipped by
+the board edge), G4b finds all 130 footprints naming a symbol in the schematic (the same board with every
+schematic uuid regenerated fails it with 130 orphaned, while kicad-cli's parity test still reports 0
+mismatches), G5b finds every bought reference placed, the preset raises the project's `min_clearance 0`
+to 0.09 mm and says so in a note, G11 finds all 45 codes in stock at 10× or more. G10 compares 110 references offline and
+45 code/footprint pairs online: 40 fit (U4's `SOT-25-5` through its table entry, the LMR33630's `ESOP-8` as
+the exposed-pad SOIC-8, the JST and Bourns parts because their footprints are named for them), and 5 are
+listed as not compared: the fuse clip, the 2920 polyfuse, the two Phoenix terminal blocks and the D-sub,
+whose catalogue strings ("Plugin,P=5mm", "Push-Pull") name no package.
+Those wait for a human's `Package verified` note. Wall time about 7 s plus about 0.3 s per catalogue
+lookup.
 
 ## 6. Stock lookup: endpoints found
 
@@ -136,7 +221,21 @@ one-function change and the unit test exercises the gate with a fake catalogue.
 * Pin-map evidence: a per-footprint "checked against datasheet on <date>" column in bom.csv that G8 can
   require (§3), which turns a by-hand item into a recorded one.
 * A `--fab pcbway` switch; the BOM columns are the same, the catalogue is not.
-* Hierarchical sheets are already covered by kicad-cli; variants are not.
+* Hierarchical sheets are covered: kicad-cli reads them for ERC, parity and the BOM export, and G4b follows
+  `Sheetfile` references; variants are not.
+* Left from the 2026-10-16 review of the first cut: the offline `bom-package` gate compares the Package
+  column with the footprint name it was generated from (110 of 110 "same name" on the example board), so
+  it proves little until the column holds the catalogue's string; *unknown* items should block rather than
+  make the result NOT VERIFIED once a `Package verified` note is keyed to (reference, code, footprint);
+  *same* and *different* should be decided from pad geometry rather than names where both sides resolve to
+  library footprints (KiCad's SOT-23-6 and TSOT-23-6 have identical pads; VQFN/WQFN are QFN thicknesses;
+  electrolytic can height is §10, not §1); bom.csv values should be compared with the schematic and the
+  catalogue description (a capacitor's code on an LED line passes today).
+* Left from the second review (2026-10-16, after the contract): JLCPCB's limits for 2 oz copper and for pad
+  (not via) hole-to-hole spacing are not modelled, since the files do not say the copper weight; silkscreen
+  text minimums are not raised (not fab-blocking); `preset.KICAD_DEFAULT` is KiCad 10.0's and needs a row
+  per KiCad release; a `--verbose` flag for the per-item pass notes the JSON already carries; a
+  `Package verified` note keyed to (reference, code, footprint) so it goes stale when the part changes.
 
 ## 8. Is an MCP server wrapper a sensible second milestone?
 

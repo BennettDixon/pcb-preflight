@@ -1,43 +1,43 @@
-sorter_pdb_v0  -  KiCad 10.0.7  -  4 copper layers, 130 footprints  -  bom.csv: ./examples/sorter_pdb_v0/bom.csv
+sorter_pdb_v0  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 130 footprints  -  bom.csv: bom.csv
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   ERC (§12): 0 errors, 0 warnings on 1 sheet
   Unrouted connections (§11 §12): 0 connections still to route
-  Schematic / PCB parity (§5): 0 mismatches, 0 warnings across 130 footprints
+  Schematic / PCB parity (§5): 0 mismatches across 130 footprints
+  Board footprints belong to this schematic (§5): 130 of 130 footprints name a symbol in the schematic
   Fiducials (§4): 3 on the front (FID2, FID1, FID3)
   Placement origin (§4): aux axis origin at 20, 95 mm
   Copper layers (§9): 4 copper layers
   Board name and revision on silk (§10): name "sorter_pdb_v0 v0.6", revision "sorter_pdb_v0 v0.6"
   Connector names on silk (§8): 17 connectors each have a name on silk
   DNP parts (§12): 6 DNP parts flagged on both schematic and board (D11, D12, D13, D14, D15, D16)
+  Bought parts placed on the board (§5 §12): 110 of 110 bought references have a footprint on the board
   bom.csv columns (§1): all 8 columns present
-  bom.csv matches the schematic (§1 §5 §12): 110 purchasable references, every one on exactly one BOM line
-  BOM package matches the footprint (§1): 85 references with a comparable package name agree with their footprint
-  Catalogue and stock (§1 §2 §13): 2 codes found, 0 blocking, 0 low-stock/mismatch, 0 not reachable; 0 Extended part types (one loading fee each)
+  bom.csv matches the schematic (§1 §5 §12): 110 bought references, every one on exactly one BOM line
+        note: not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)
+  BOM package matches the footprint (§1): 110 agree with their footprint
+  Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; 23 Extended part types (one loading fee each)
+  Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (no readable package name; sign each under NOT CHECKED with a "Package verified" note on its bom.csv line)
 
 FINDINGS
   WARN  DRC (§12): 0 errors, 2 warnings (silk_edge_clearance x2)
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (17.22, 32.87)]
         warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (31.76, 86.09)]
-  FAIL  LCSC code on every BOM line (§1 §12): 65 of 67 lines have no LCSC code (a value and a package is not a part)
-        row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric)
-        row 3 C2: 470uF 35V (CP_Elec_10x12.5)
-        row 4 C3: 100uF 35V (CP_Elec_10x10)
-        row 5 C4: 100uF 25V (CP_Elec_6.3x7.7)
-        row 6 C5: 100uF 16V (CP_Elec_6.3x7.7)
-        row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric)
-        ... 59 more (--max-details)
-  WARN  BOM lines complete (§1 §2): 65 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
-        row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet
-        row 3 C2: 470uF 35V (CP_Elec_10x12.5): missing MPN, Basic/Extended, Stock, Datasheet
-        row 4 C3: 100uF 35V (CP_Elec_10x10): missing MPN, Basic/Extended, Stock, Datasheet
-        row 5 C4: 100uF 25V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet
-        row 6 C5: 100uF 16V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet
-        row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet
-        ... 59 more (--max-details)
+        note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
+  FAIL  LCSC code on every BOM line (§1 §12): 1 of 67 lines have no LCSC code (a value and a package is not a part)
+        row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A)
+  WARN  BOM lines complete (§1 §2): 1 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
+        row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet
 
 NOT CHECKED
-  nothing: every gate ran
+  Catalogue package fits the footprint (§1): 5 not compared
+        C151074 01000056Z (F1; bom.csv row 26): Plugin on Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C3761525 MF-SM100/33-2 (F2; bom.csv row 27): SMD,7.3x5.4mm on Fuse_2920_7451Metric: "SMD,7.3x5.4mm" is not in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C3819953 1935161 (J1, J2, J3, J4; bom.csv row 29, 30, 31, 32): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C6072908 1935200 (J5; bom.csv row 33): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
+        C190083 D-DMR025PF-D002 (J17; bom.csv row 45): Push-Pull on DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm: neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
 
 BY HAND BEFORE ORDERING
   - Fab assembly preview: rotation of 45 polarized or asymmetric parts (D5, D2, J5, C2, J16, L1, J2, D9, J15, J13, J11, U2, +33 more) (§4)
@@ -48,4 +48,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
 
-RESULT: FAIL  -  1 blocking, 2 warnings, 0 not checked
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

@@ -1,10 +1,39 @@
 {
+  "schema": 1,
+  "version": "0.2.0",
   "project": "sorter_pdb_v0",
-  "project_dir": "~/projects/card-sorter/electronics/sorter_pdb_v0",
+  "project_dir": "/Users/bennett/projects/card-sorter/electronics/sorter_pdb_v0",
   "kicad_version": "10.0.7",
+  "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+  "preset": "jlcpcb-assembly@2026.10",
+  "options": {
+    "online": true,
+    "strict": false,
+    "skip_prefixes": [
+      "FID",
+      "TP",
+      "H",
+      "MH",
+      "#"
+    ],
+    "stock_multiple": 10,
+    "custom_rules_present": false
+  },
+  "owned": {
+    "drc": {},
+    "erc": {},
+    "pin_map": 0,
+    "minimums": {
+      "min_clearance": [
+        0.0,
+        0.09
+      ]
+    },
+    "netclasses": {}
+  },
   "copper_layers": 4,
   "footprints": 130,
-  "bom_path": "./examples/sorter_pdb_v0/bom.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/examples/sorter_pdb_v0/bom.csv",
   "checks": [
     {
       "id": "erc",
@@ -12,7 +41,10 @@
       "pitfall": "\u00a712",
       "status": "pass",
       "summary": "0 errors, 0 warnings on 1 sheet",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "drc",
@@ -23,6 +55,11 @@
       "details": [
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (17.22, 32.87)]",
         "warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (20.0, 20.0); Segment of J17 on F.Silkscreen @ (31.76, 86.09)]"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm"
       ]
     },
     {
@@ -31,15 +68,32 @@
       "pitfall": "\u00a711 \u00a712",
       "status": "pass",
       "summary": "0 connections still to route",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "parity",
       "title": "Schematic / PCB parity",
       "pitfall": "\u00a75",
       "status": "pass",
-      "summary": "0 mismatches, 0 warnings across 130 footprints",
-      "details": []
+      "summary": "0 mismatches across 130 footprints",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "identity",
+      "title": "Board footprints belong to this schematic",
+      "pitfall": "\u00a75",
+      "status": "pass",
+      "summary": "130 of 130 footprints name a symbol in the schematic",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "fiducials",
@@ -47,7 +101,10 @@
       "pitfall": "\u00a74",
       "status": "pass",
       "summary": "3 on the front (FID2, FID1, FID3)",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "origin",
@@ -55,7 +112,10 @@
       "pitfall": "\u00a74",
       "status": "pass",
       "summary": "aux axis origin at 20, 95 mm",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "layers",
@@ -63,7 +123,10 @@
       "pitfall": "\u00a79",
       "status": "pass",
       "summary": "4 copper layers",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "silk",
@@ -71,7 +134,10 @@
       "pitfall": "\u00a710",
       "status": "pass",
       "summary": "name \"sorter_pdb_v0 v0.6\", revision \"sorter_pdb_v0 v0.6\"",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "connector-names",
@@ -79,7 +145,10 @@
       "pitfall": "\u00a78",
       "status": "pass",
       "summary": "17 connectors each have a name on silk",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "dnp",
@@ -87,7 +156,21 @@
       "pitfall": "\u00a712",
       "status": "pass",
       "summary": "6 DNP parts flagged on both schematic and board (D11, D12, D13, D14, D15, D16)",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "placement",
+      "title": "Bought parts placed on the board",
+      "pitfall": "\u00a75 \u00a712",
+      "status": "pass",
+      "summary": "110 of 110 bought references have a footprint on the board",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "bom-columns",
@@ -95,182 +178,146 @@
       "pitfall": "\u00a71",
       "status": "pass",
       "summary": "all 8 columns present",
-      "details": []
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "bom-lcsc",
       "title": "LCSC code on every BOM line",
       "pitfall": "\u00a71 \u00a712",
       "status": "fail",
-      "summary": "65 of 67 lines have no LCSC code (a value and a package is not a part)",
+      "summary": "1 of 67 lines have no LCSC code (a value and a package is not a part)",
       "details": [
-        "row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric)",
-        "row 3 C2: 470uF 35V (CP_Elec_10x12.5)",
-        "row 4 C3: 100uF 35V (CP_Elec_10x10)",
-        "row 5 C4: 100uF 25V (CP_Elec_6.3x7.7)",
-        "row 6 C5: 100uF 16V (CP_Elec_6.3x7.7)",
-        "row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric)",
-        "row 8 C13,C23,C33: 220nF 50V X7R (C_0603_1608Metric)",
-        "row 9 C14,C24,C34: 100nF 16V boot (C_0603_1608Metric)",
-        "row 10 C15,C25,C35: 1uF 16V VCC (C_0603_1608Metric)",
-        "row 11 C16,C17,C18,C19,C26,C27,C28,C29,C36,C37,C38,C39: 22uF 25V X7R (C_1210_3225Metric)",
-        "row 12 C41,C42: 1uF 10V (C_0603_1608Metric)",
-        "row 13 C61,C62,C63,C64,C66,C71: 10nF 50V (C_0603_1608Metric)",
-        "row 14 C65: 1nF 50V (C_0603_1608Metric)",
-        "row 17 D1: SMBJ26A TVS (D_SMB)",
-        "row 18 D2,D3: SS34 (D_SMA)",
-        "row 19 D4: green VIN_F (LED_0805_2012Metric)",
-        "row 20 D5: green VBUS (LED_0805_2012Metric)",
-        "row 21 D6: green +12V (LED_0805_2012Metric)",
-        "row 22 D7: green +6V_SERVO (LED_0805_2012Metric)",
-        "row 23 D8: green +5V_PI (LED_0805_2012Metric)",
-        "row 24 D9: green +3V3_PROBE (LED_0805_2012Metric)",
-        "row 25 D20,D21: 1N4148W (D_SOD-123)",
-        "row 26 F1: 5A T 5x20 (Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal)",
-        "row 27 F2: MF-SM100/33-2 1.1A 33V (Fuse_2920_7451Metric)",
-        "row 28 FB1: BLM41PG600SN1L 60R 6A (L_1806_4516Metric)",
-        "row 29 J1: J_IN (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal)",
-        "row 30 J2: J_PICO (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal)",
-        "row 31 J3: J_HE (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal)",
-        "row 32 J4: J_HB (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal)",
-        "row 33 J5: J_PNEU (TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal)",
-        "row 34 J6: J_PI (JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical)",
-        "row 35 J7: J_SW (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical)",
-        "row 36 J8: J_ESTOP (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical)",
-        "row 37 J9: J_PROBE (JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical)",
-        "row 38 J10: J_SERVO (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical)",
-        "row 39 J11: J_XS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical)",
-        "row 40 J12: J_TH0 (JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical)",
-        "row 41 J13: J_ZM (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical)",
-        "row 42 J14: J_EM (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical)",
-        "row 43 J15: J_ZS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical)",
-        "row 44 J16: J_CS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical)",
-        "row 45 J17: J_DB25 (DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm)",
-        "row 46 L1,L2: 10uH SRP1245A-100M (L_Bourns_SRP1245A)",
-        "row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A)",
-        "row 48 Q1: IRF4905S (TO-263-2)",
-        "row 49 Q2: MMBT2222A (SOT-23)",
-        "row 50 R1,R2: 22k (R_0603_1608Metric)",
-        "row 51 R11: 41.2k 1% (R_0603_1608Metric)",
-        "row 52 R12,R22,R32: 10k 1% (R_0603_1608Metric)",
-        "row 53 R21: 49.9k 1% (R_0603_1608Metric)",
-        "row 54 R31: 110k 1% (R_0603_1608Metric)",
-        "row 55 R51,R52: 10k (R_0805_2012Metric)",
-        "row 56 R53: 4.7k (R_0805_2012Metric)",
-        "row 57 R54: 2.2k (R_0805_2012Metric)",
-        "row 58 R55: 1.5k (R_0805_2012Metric)",
-        "row 59 R56: 1k (R_0805_2012Metric)",
-        "row 60 R61,R62,R63,R64,R65,R66: 100R (R_0603_1608Metric)",
-        "row 61 R71: 100k (R_0603_1608Metric)",
-        "row 62 R72: 13k (R_0603_1608Metric)",
-        "row 63 R90,R92: 10k (R_0603_1608Metric)",
-        "row 64 R91: 47k (R_0603_1608Metric)",
-        "row 65 U1: LMR33630ADDAR 5.1 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm)",
-        "row 66 U2: LMR33630ADDAR 6.0 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm)",
-        "row 67 U3: LMR33630ADDAR 12 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm)",
-        "row 68 U4: AP2112K-3.3 (SOT-23-5)"
-      ]
+        "row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A)"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "bom-fields",
       "title": "BOM lines complete",
       "pitfall": "\u00a71 \u00a72",
       "status": "warn",
-      "summary": "65 of 67 lines are not \"done\" (MPN, package, Basic/Extended, stock, datasheet)",
+      "summary": "1 of 67 lines are not \"done\" (MPN, package, Basic/Extended, stock, datasheet)",
       "details": [
-        "row 2 C1,C7,C8: 1uF 50V X7R (C_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 3 C2: 470uF 35V (CP_Elec_10x12.5): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 4 C3: 100uF 35V (CP_Elec_10x10): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 5 C4: 100uF 25V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 6 C5: 100uF 16V (CP_Elec_6.3x7.7): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 7 C11,C12,C21,C22,C31,C32: 10uF 50V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 8 C13,C23,C33: 220nF 50V X7R (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 9 C14,C24,C34: 100nF 16V boot (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 10 C15,C25,C35: 1uF 16V VCC (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 11 C16,C17,C18,C19,C26,C27,C28,C29,C36,C37,C38,C39: 22uF 25V X7R (C_1210_3225Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 12 C41,C42: 1uF 10V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 13 C61,C62,C63,C64,C66,C71: 10nF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 14 C65: 1nF 50V (C_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 17 D1: SMBJ26A TVS (D_SMB): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 18 D2,D3: SS34 (D_SMA): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 19 D4: green VIN_F (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 20 D5: green VBUS (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 21 D6: green +12V (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 22 D7: green +6V_SERVO (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 23 D8: green +5V_PI (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 24 D9: green +3V3_PROBE (LED_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 25 D20,D21: 1N4148W (D_SOD-123): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 26 F1: 5A T 5x20 (Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 27 F2: MF-SM100/33-2 1.1A 33V (Fuse_2920_7451Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 28 FB1: BLM41PG600SN1L 60R 6A (L_1806_4516Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 29 J1: J_IN (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 30 J2: J_PICO (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 31 J3: J_HE (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 32 J4: J_HB (TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 33 J5: J_PNEU (TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 34 J6: J_PI (JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 35 J7: J_SW (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 36 J8: J_ESTOP (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 37 J9: J_PROBE (JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 38 J10: J_SERVO (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 39 J11: J_XS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 40 J12: J_TH0 (JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 41 J13: J_ZM (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 42 J14: J_EM (JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 43 J15: J_ZS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 44 J16: J_CS (JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 45 J17: J_DB25 (DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 46 L1,L2: 10uH SRP1245A-100M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 48 Q1: IRF4905S (TO-263-2): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 49 Q2: MMBT2222A (SOT-23): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 50 R1,R2: 22k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 51 R11: 41.2k 1% (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 52 R12,R22,R32: 10k 1% (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 53 R21: 49.9k 1% (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 54 R31: 110k 1% (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 55 R51,R52: 10k (R_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 56 R53: 4.7k (R_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 57 R54: 2.2k (R_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 58 R55: 1.5k (R_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 59 R56: 1k (R_0805_2012Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 60 R61,R62,R63,R64,R65,R66: 100R (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 61 R71: 100k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 62 R72: 13k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 63 R90,R92: 10k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 64 R91: 47k (R_0603_1608Metric): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 65 U1: LMR33630ADDAR 5.1 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 66 U2: LMR33630ADDAR 6.0 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 67 U3: LMR33630ADDAR 12 V (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm): missing MPN, Basic/Extended, Stock, Datasheet",
-        "row 68 U4: AP2112K-3.3 (SOT-23-5): missing MPN, Basic/Extended, Stock, Datasheet"
-      ]
+        "row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "bom-refs",
       "title": "bom.csv matches the schematic",
       "pitfall": "\u00a71 \u00a75 \u00a712",
       "status": "pass",
-      "summary": "110 purchasable references, every one on exactly one BOM line",
-      "details": []
+      "summary": "110 bought references, every one on exactly one BOM line",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)"
+      ]
     },
     {
       "id": "bom-package",
       "title": "BOM package matches the footprint",
       "pitfall": "\u00a71",
       "status": "pass",
-      "summary": "85 references with a comparable package name agree with their footprint",
-      "details": []
+      "summary": "110 agree with their footprint",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
     },
     {
       "id": "stock",
       "title": "Catalogue and stock",
       "pitfall": "\u00a71 \u00a72 \u00a713",
       "status": "pass",
-      "summary": "2 codes found, 0 blocking, 0 low-stock/mismatch, 0 not reachable; 0 Extended part types (one loading fee each)",
+      "summary": "45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; 23 Extended part types (one loading fee each)",
       "details": [
-        "ok: C14663 (C90): CC0603KRX7R9BB104, 0603, Basic, stock 49,459,197",
-        "ok: C22452 (D0): SS54, SMA(DO-214AC), Basic, stock 2,129,260"
-      ]
+        "ok: C107083 (C13, C23, C33): CC0603KRX7R9BB224, 0603, Extended, stock 383,999",
+        "ok: C134838 (C2): VZH471M1VTR-1013, SMD,D10xL12.5mm, Extended, stock 11,911",
+        "ok: C144394 (J10, J11, J15, J16): B3B-XH-A(LF)(SN), Plugin,P=2.5mm, Extended, stock 152,010",
+        "ok: C144395 (J7, J8, J13, J14): B4B-XH-A(LF)(SN), Plugin,P=2.5mm, Extended, stock 477,993",
+        "ok: C144397 (J6): B6B-XH-A(LF)(SN), Plugin,P=2.5mm, Extended, stock 26,863",
+        "ok: C14663 (C14, C24, C34, C90): CC0603KRX7R9BB104, 0603, Basic, stock 49,254,754",
+        "ok: C151074 (F1): 01000056Z, Plugin, Extended, stock 3,010",
+        "ok: C158012 (J9, J12): B2B-XH-A(LF)(SN), Plugin,P=2.5mm, Extended, stock 241,597",
+        "ok: C15849 (C15, C25, C35, C41, C42): CL10A105KB8NNNC, 0603, Basic, stock 9,398,086",
+        "ok: C1588 (C65): CL10B102KB8NNNC, 0603, Basic, stock 6,210,502",
+        "ok: C17414 (R51, R52): 0805W8F1002T5E, 0805, Basic, stock 56,477,129",
+        "ok: C17513 (R56): 0805W8F1001T5E, 0805, Basic, stock 44,387,962",
+        "ok: C17520 (R54): 0805W8F2201T5E, 0805, Basic, stock 3,671,434",
+        "ok: C17673 (R53): 0805W8F4701T5E, 0805, Basic, stock 4,193,095",
+        "ok: C190083 (J17): D-DMR025PF-D002, Push-Pull, Extended, stock 17,061",
+        "ok: C2042471 (L1, L2): SRP1245A-100M, SMD,13.5x12.5mm, Extended, stock 20",
+        "ok: C22452 (D0): SS54, SMA(DO-214AC), Basic, stock 2,127,620",
+        "ok: C22775 (R61, R62, R63, R64, R65, R66): 0603WAF1000T5E, 0603, Basic, stock 10,829,200",
+        "ok: C22797 (R72): 0603WAF1302T5E, 0603, Basic, stock 348,406",
+        "ok: C2297 (D4, D5, D6, D7, D8, D9): KT-0805G, 0805, Basic, stock 2,669,705",
+        "ok: C23184 (R21): 0603WAF4992T5E, 0603, Basic, stock 1,679,688",
+        "ok: C249591 (C3): VEJ101M1VTR-1010, SMD,D10xL10mm, Extended, stock 970",
+        "ok: C25803 (R71): 0603WAF1003T5E, 0603, Basic, stock 19,441,546",
+        "ok: C25804 (R12, R22, R32, R90, R92): 0603WAF1002T5E, 0603, Basic, stock 31,276,319",
+        "ok: C25805 (R31): 0603WAF1103T5E, 0603, Extended, stock 211,293",
+        "ok: C25819 (R91): 0603WAF4702T5E, 0603, Basic, stock 1,907,273",
+        "ok: C2620 (Q1): IRF4905STRLPBF, D2PAK, Extended, stock 15,940",
+        "ok: C28323 (C1, C7, C8): CL21B105KBFNNNE, 0805, Basic, stock 2,012,445",
+        "ok: C2930101 (R11): FRC0603F4122TS, 0603, Extended, stock 785,672",
+        "ok: C309062 (C16, C17, C18, C19, C26, C27, C28, C29, C36, C37, C38, C39): CL32B226KAJNNNE, 1210, Extended, stock 86,254",
+        "ok: C315992 (D1): SMBJ26A, DO-214AA, Extended, stock 12,676",
+        "ok: C31850 (R1, R2): 0603WAF2202T5E, 0603, Basic, stock 3,409,045",
+        "ok: C337485 (C11, C12, C21, C22, C31, C32): UMK325AB7106KM-P, 1210, Extended, stock 216,283",
+        "ok: C3761525 (F2): MF-SM100/33-2, SMD,7.3x5.4mm, Extended, stock 1,095",
+        "ok: C3819953 (J1, J2, J3, J4): 1935161, Plugin,P=5mm, Extended, stock 468",
+        "ok: C4310 (R55): 0805W8F1501T5E, 0805, Basic, stock 1,018,826",
+        "ok: C51118 (U4): AP2112K-3.3TRG1, SOT-25-5, Extended, stock 7,896",
+        "ok: C57112 (C61, C62, C63, C64, C66, C71): 0603B103K500NT, 0603, Basic, stock 5,593,327",
+        "ok: C6072908 (J5): 1935200, Plugin,P=5mm, Extended, stock 168",
+        "ok: C72477 (C4, C5): RVT1E101M0607, SMD,D6.3xL7.7mm, Extended, stock 105,512",
+        "ok: C81598 (D20, D21): 1N4148W, SOD-123, Basic, stock 4,494,687",
+        "ok: C841384 (U1, U2, U3): LMR33630ADDAR, ESOP-8, Extended, stock 35,546",
+        "ok: C8512 (Q2): MMBT2222A 1P, SOT-23, Basic, stock 615,049",
+        "ok: C85844 (FB1): BLM41PG600SN1L, 1806, Extended, stock 20,835",
+        "ok: C8678 (D2, D3): SS34, SMA(DO-214AC), Basic, stock 3,876,392"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": []
+    },
+    {
+      "id": "catalogue-package",
+      "title": "Catalogue package fits the footprint",
+      "pitfall": "\u00a71",
+      "status": "pass",
+      "summary": "40 agree with their footprint, 5 not compared (no readable package name; sign each under NOT CHECKED with a \"Package verified\" note on its bom.csv line)",
+      "details": [
+        "C22452 SS54 (D0; bom.csv row 16): SMA(DO-214AC) on D_SMA: both are SMA; DO-214AC read as SMA (JEDEC outline of SMA; JLCPCB C8678 (SS34) lists SMA(DO-214AC))",
+        "C315992 SMBJ26A (D1; bom.csv row 17): DO-214AA on D_SMB: both are SMB; DO-214AA read as SMB (JEDEC outline of SMB; JLCPCB C315992 (Littelfuse SMBJ26A) lists DO-214AA)",
+        "C8678 SS34 (D2, D3; bom.csv row 18): SMA(DO-214AC) on D_SMA: both are SMA; DO-214AC read as SMA (JEDEC outline of SMA; JLCPCB C8678 (SS34) lists SMA(DO-214AC))",
+        "C144397 B6B-XH-A(LF)(SN) (J6; bom.csv row 34): Plugin,P=2.5mm on JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical: the footprint is drawn for this part (B6B-XH-A in its name, MPN B6B-XH-A(LF)(SN))",
+        "C144395 B4B-XH-A(LF)(SN) (J7, J8, J13, J14; bom.csv row 35, 36, 41, 42): Plugin,P=2.5mm on JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical: the footprint is drawn for this part (B4B-XH-A in its name, MPN B4B-XH-A(LF)(SN))",
+        "C158012 B2B-XH-A(LF)(SN) (J9, J12; bom.csv row 37, 40): Plugin,P=2.5mm on JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical: the footprint is drawn for this part (B2B-XH-A in its name, MPN B2B-XH-A(LF)(SN))",
+        "C144394 B3B-XH-A(LF)(SN) (J10, J11, J15, J16; bom.csv row 38, 39, 43, 44): Plugin,P=2.5mm on JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical: the footprint is drawn for this part (B3B-XH-A in its name, MPN B3B-XH-A(LF)(SN))",
+        "C2042471 SRP1245A-100M (L1, L2; bom.csv row 46): SMD,13.5x12.5mm on L_Bourns_SRP1245A: the footprint is drawn for this part (SRP1245A in its name, MPN SRP1245A-100M)",
+        "C2620 IRF4905STRLPBF (Q1; bom.csv row 48): D2PAK on TO-263-2: both are TO-263; D2PAK read as TO-263 (JEDEC TO-263; JLCPCB C2620 (Infineon IRF4905STRLPBF) lists D2PAK)",
+        "C841384 LMR33630ADDAR (U1, U2, U3; bom.csv row 65, 66, 67): ESOP-8 on SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm: both are SOIC-8-EP; ESOP-8 read as SOIC-8 (JLCPCB C841384 (TI LMR33630ADDAR, TI package DDA \"SO PowerPAD\") lists ESOP-8)",
+        "C51118 AP2112K-3.3TRG1 (U4; bom.csv row 68): SOT-25-5 on SOT-23-5: both are SOT-23-5; SOT-25-5 read as SOT-23-5 (JLCPCB C51118 (Diodes AP2112K-3.3TRG1) lists SOT-25-5; Diodes calls SOT-23-5 \"SOT25\")"
+      ],
+      "unchecked": [
+        "C151074 01000056Z (F1; bom.csv row 26): Plugin on Fuseholder_Clip-5x20mm_Littelfuse_100_Inline_P20.50x4.60mm_D1.30mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
+        "C3761525 MF-SM100/33-2 (F2; bom.csv row 27): SMD,7.3x5.4mm on Fuse_2920_7451Metric: \"SMD,7.3x5.4mm\" is not in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
+        "C3819953 1935161 (J1, J2, J3, J4; bom.csv row 29, 30, 31, 32): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
+        "C6072908 1935200 (J5; bom.csv row 33): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-6-5.0-H_1x06_P5.00mm_Horizontal: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line",
+        "C190083 D-DMR025PF-D002 (J17; bom.csv row 45): Push-Pull on DSUB-25_Socket_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_MountingHolesOffset11.32mm: neither name is in the package table; to clear it, compare the drawing and add a \"Package verified\" note (date, initials, what was compared) on that bom.csv line"
+      ],
+      "verified": [],
+      "notes": []
     }
   ],
   "by_hand": [
@@ -283,5 +330,6 @@
     "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
   ],
   "work_dir": null,
-  "result": "FAIL"
+  "result": "FAIL",
+  "exit_code": 1
 }
