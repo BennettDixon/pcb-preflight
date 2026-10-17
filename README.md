@@ -87,7 +87,7 @@ and `--online` (full output in [examples/sorter_pdb_v0/report.txt](examples/sort
 
 ```
 sorter_pdb_v0  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 130 footprints  -  bom.csv: bom.csv
-RESULT: FAIL  -  1 blocking, 2 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -100,7 +100,6 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 110 bought references, every one on exactly one BOM line
         note: not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)
   BOM value matches the schematic (§1): 110 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
-  BOM package matches the footprint (§1): 100 agree with their footprint, 9 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names), 2 repeat the footprint name (not compared)
   Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; 23 Extended part types (one loading fee each)
   Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
@@ -116,10 +115,6 @@ FINDINGS
   WARN  BOM lines complete (§1 §2): 1 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
 
 NOT CHECKED
-  BOM package matches the footprint (§1): 9 not compared
-        2 references (L3, Q2; bom.csv rows 47, 49): the Package column repeats the footprint name, so nothing was compared; write the package as the catalogue record prints it ("0805", "SOT-23-5", "SMD,D6.3xL7.7mm"), or run with --online, where the catalogue's own string is compared
-        J1 (bom.csv row 29): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal: neither name is in the package table; [...]
-        ...
   Catalogue package fits the footprint (§1): 5 not compared
         C3819953 1935161 (J1, J2, J3, J4; bom.csv row 29, 30, 31, 32): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal:
             neither name is in the package table; to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line
@@ -129,7 +124,7 @@ BY HAND BEFORE ORDERING
   - Fab assembly preview: rotation of 45 polarized or asymmetric parts (D5, D2, J5, C2, J16, L1, J2, D9, J15, J13, J11, U2, +33 more) (§4)
   ...
 
-RESULT: FAIL  -  1 blocking, 2 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
 ```
 
 L3's 15 µH SRP1245A-150M is not in JLCPCB's catalogue, so the line stays open rather than holding a part
@@ -172,7 +167,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 | BOM lines "done": MPN, package, Basic/Extended, stock, datasheet | warn | `bom.csv` |
 | bom.csv references match the schematic (none missing, unknown, duplicated or DNP); what is not bought is printed; a part with paste pads cannot hide behind a TP/H/FID name or an exclusion | yes | `bom.csv` + schematic BOM export + the board's pads |
 | bom.csv Value equals the schematic Value of every reference, spelling aside (`10uF` = `10 µF` = `10µF`, `100R` = `100Ω`, `4k7` = `4.7k`) | yes | `bom.csv` + schematic BOM export |
-| Package fits the footprint: bom.csv package, and with `--online` the catalogue's package, against the footprint on the board. Names pick the candidates (0805 vs 1210, SOIC-8 vs SOIC-8 with exposed pad, SMD vs through-hole can, a stated pitch against SOIC's 1.27 mm) and, where both sides are footprints in KiCad's library, pad geometry decides (TSOT-23-6 fits SOT-23-6, VSSOP-8 fits MSOP-8 3x3, a 2.1 mm exposed pad on a 2.6 mm one is unknown, `TSSOP-14` alone is unknown because the library has it at two pitches). Same / different / unknown; unknown is listed as not checked and makes the result NOT VERIFIED unless a person signed for it; a `Package` that repeats the footprint name compares nothing | yes | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library |
+| Package fits the footprint (`--online`): the catalogue's package for each code against the footprint on the board. The bom.csv `Package` column records the chosen part's package but is not compared: offline it is a copy of the footprint name or of the catalogue string, and a column compared with its own source proves nothing. Names pick the candidates (0805 vs 1210, SOIC-8 vs SOIC-8 with exposed pad, SMD vs through-hole can, a stated pitch against SOIC's 1.27 mm) and, where both sides are footprints in KiCad's library, pad geometry decides (TSOT-23-6 fits SOT-23-6, VSSOP-8 fits MSOP-8 3x3, a 2.1 mm exposed pad on a 2.6 mm one is unknown, `TSSOP-14` alone is unknown because the library has it at two pitches). Same / different / unknown; unknown is listed as not checked and makes the result NOT VERIFIED unless a person signed for it; a `Package` that repeats the footprint name compares nothing | yes | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library |
 | Catalogue cross-check (`--online`): code exists, MPN matches, stock ≥ 10× quantity, Basic/Extended as recorded; a code the catalogue could not be asked about, or a line with no MPN to compare, is not checked, never passed | yes / warn | JLCPCB cart endpoint, jlcsearch fallback |
 | Catalogue category matches the reference prefix (`--online`): C capacitor, R resistor, D diode/TVS/LED, L inductor or ferrite, FB ferrite, Q transistor, J connector, F fuse, Y crystal, SW switch, U none of those; a capacitor's code on an LED line blocks; a prefix without a rule is not checked | yes | the record's category (JLCPCB), else its description |
 | Catalogue description matches the BOM value (`--online`): every capacitance, inductance and resistance figure the value states within 1 % of the description's, and the part's voltage rating at least the value's (a 25 V part on a `100uF 16V` line fits); a figure the description lacks is not checked | yes | the record's description |
@@ -190,7 +185,7 @@ datasheet, transients, enclosure fit.
 python3 -m unittest discover -s tests -v
 ```
 
-106 tests cover the BOM reader, the s-expression reader, the board gates, the stock gate against a fake
+105 tests cover the BOM reader, the s-expression reader, the board gates, the stock gate against a fake
 catalogue, the contract (verdicts and exit codes, what the gate owns and what the project may not switch
 off, KiCad's `excluded` flag, parity, footprint identity across hierarchical sheets, placement, what is not
 bought, the limits of a `Package verified` note, tool failures as ERROR with a JSON written), package

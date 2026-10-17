@@ -124,7 +124,6 @@ def run_check(a):
             if sch_rows is not None:
                 results.append(checks.bom_refs_check(lines, sch_rows, skip_prefixes, board))
                 results.append(checks.bom_value_check(lines, sch_rows))
-                results.append(checks.bom_package_check(lines, sch_rows, library))
             if a.online:
                 records = {}
                 results.append(checks.stock_check(lines, multiple=a.stock_multiple, records=records))
