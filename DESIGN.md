@@ -17,7 +17,10 @@ The thesis: the funded tools in this space (Flux, JITX, Quilter, atopile) compet
 netlist, a placement, a route. The failures Bennett's boards actually had were not generation failures.
 They were a made-up part number, a package assumed instead of chosen, a schematic regenerated under a
 routed board, a BOM exported with every part-number column empty. Each is a verification failure, and each
-is cheap to detect once someone writes the check down and makes it refuse rather than warn (§12).
+is cheap to detect once someone writes the check down and makes it refuse rather than warn (§12). The
+corpus of public boards (§9) sharpened the second half: refusing on the wrong things is this product's
+main failure mode, so the gate refuses only on what stops the fab building or placing the board as drawn,
+or leaves the order ambiguous, and reports everything else.
 
 ## 2. What it is not
 
@@ -352,3 +355,38 @@ presented confidently is worse than none. So the sensible shape is: milestone 2 
 extraction as a research item whose output is always shown to the human beside the datasheet drawing,
 never asserted as a pass. The gate stays the product; the MCP server is how an assistant is made to run
 it before it says "ready to order".
+
+## 9. Principles, after the corpus (2026-10-17)
+
+The first corpus run (`corpus/RESULTS.md`, 21 public KiCad boards, 8 of them ordered, built and sold)
+failed every board, mostly on checks a fab does not care about. What that taught, written down so the next
+rule change is measured against it:
+
+* **Refuse only on what the fab or the order needs.** A check blocks when a violation would stop the fab
+  building or placing the board as drawn (connectivity, the fab's own minimums, the outline, parity between
+  schematic and board) or would leave the order ambiguous (which part, which footprint, which reference).
+  Everything KiCad reports about whether the circuit is what the designer meant is reported as a warning;
+  `--strict` is for the designer who wants those to block too. The protected and demoted sets in
+  `preset.py` are that line, and every change to them cites a corpus board.
+* **Nothing unrun is a pass.** The four verdicts stay as they are: ERROR when a core gate did not run,
+  NOT VERIFIED when anything could not be judged, PASS only when every gate ran and judged every item.
+* **The project under review does not configure the gate.** Severities, the pin matrix, the fab minimums
+  and custom rules are the preset's in the snapshot copy; the report says what the project had set.
+* **Geometry over names, and names over nothing.** Where both sides resolve to KiCad library footprints the
+  pads decide; the string tables exist for catalogue spellings that resolve to nothing, and a new entry
+  needs a corpus board that needs it, not a guess about what a vendor might write.
+* **Facts are filled in, never chosen.** The planned `preflight init` reads the part a person or an agent
+  already put in the symbol fields and fills bom.csv from the catalogue record; it never proposes a part.
+  The MCP server exposes the checks and lookups, never a sign-off.
+* **The corpus is the regression suite for rules.** `tests/test_corpus.py` freezes the triaged state; a
+  rule change that moves a board is expected to break it and is accepted with the new triaged number, and
+  a change that only moves the author's own board is not evidence.
+* **What is not added:** part suggestion; an offline gate that cannot tell a copied value from a real one
+  (the offline Package comparison was removed for this); new flags, since policy lives in the named, dated
+  preset; a model in the verdict path; a warning tier nobody is required to act on.
+
+The open item the corpus leaves is the one it calls "whose rule is it": DRC counts the project's own
+stricter constraints as if they were the fab's (`drill_out_of_range` on four boards whose designers set a
+0.3 mm minimum hole). The fix reads the constraint figure from KiCad's message against `preset.minimums()`
+and blocks only on the fab's floor; it is the next decision, and the one that decides whether file-level
+checks can gate a real order at all.
