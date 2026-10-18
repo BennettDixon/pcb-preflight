@@ -173,6 +173,7 @@ TIERS_SOURCES = {
     'dimensions': ('https://jlcpcb.com/help/article/pcb-dimensions', '2026-10-18'),
     'castellated': ('https://jlcpcb.com/help/article/what-is-castellated-holes', '2026-10-18'),
     'blog-pcba-cost': ('https://jlcpcb.com/blog/reduce-pcb-assembly-cost-prototype', '2026-10-18'),  # published 2026-10-13, prices read there 2026-10-09
+    'hdi-launch': ('https://jlcpcb.com/help/article/hdi-pcb-capabilities-faq', '2026-10-18'),  # served as "HDI High-Density Interconnect PCBs Officially Launched", last updated Sep 07, 2026
 }
 
 # Via tiers: the quote page's "Min via hole size/diameter" options, hole/(minimum diameter/preferred diameter)
@@ -280,6 +281,27 @@ NOT_IN_FILES = ('copper weight', 'surface finish (HASL, ENIG, OSP)', 'board thic
                 'quantity', 'via covering and plating method', 'gold fingers', 'press-fit holes', 'blind slots', 'backdrill',
                 'outline tolerance', 'panelisation (mouse bites, V-cut)')
 
+# Blind, buried and micro vias: JLCPCB's HDI process, ordered through the quote page's stack-up structure
+# option (the help centre article names an 8-layer code, "JLCH081611Y2-1078A"). Capabilities page, HDI section:
+# "Currently support (1-step / 2-step / 3-step)"; blind vias "0.075mm-0.15 mm (fabricated by laser drilling and
+# copper-filled electroplating process)"; buried vias "0.15 mm – 0.55 mm (fabricated by mechanical drilling with
+# Epoxy Filled & Capped)", "Minimum buried via down to 0.10 mm, applicable only when the dielectric thickness
+# penetrated by mechanical buried via ≤ 1.0 mm"; trace/space "3 mil / 3 mil; Extreme capability: 2.7 mil / 2.7
+# mil"; HASL excluded for "FR-4/HDI boards with 6 or more layers". The article: "The default laser-drilled hole
+# diameter is 0.1 mm", "The blind-via thickness-to-diameter ratio must be <= 1:1", boards up to 2.4 mm thick,
+# and on price only that the process is complex, "the price is higher" and the lead time longer; the
+# capabilities FAQ: "blind/buried vias, HDI (laser vias) ... may increase both cost and production time". No
+# surcharge figure is published, so none is stored.
+HDI_TIERS = [
+    {'structure': 'through vias only', 'standard': True, 'condition': ''},
+    {'structure': 'blind, buried or micro vias (HDI, 1st to 3rd order)', 'standard': False,
+     'laser_hole': (0.075, 0.15), 'default_laser_hole': 0.10, 'buried_hole': (0.15, 0.55),
+     'condition': 'JLCPCB\'s HDI process, ordered through the quote page\'s stack-up structure option; "the price is higher" '
+                  'and the lead time longer, no figure published; laser blind vias 0.075-0.15 mm, copper-filled, '
+                  'thickness-to-diameter <= 1:1; buried vias 0.15-0.55 mm, epoxy filled and capped; HASL not offered on HDI '
+                  'boards of 6 or more layers'},
+]
+
 TIERS = {
     'via': {'unit': 'mm', 'source': ('quote', 'capabilities'), 'rows': VIA_TIERS},
     'hole': {'unit': 'mm', 'source': ('capabilities', 'quote'), 'rows': HOLE_TIERS},
@@ -287,6 +309,7 @@ TIERS = {
     'size': {'unit': 'mm', 'source': ('quote', 'production-time', 'dimensions'), 'rows': SIZE_TIERS},
     'assembly': {'unit': 'driver', 'source': ('pcba-capabilities', 'pcba-price', 'pcba-faqs', 'blog-pcba-cost', 'castellated'), 'rows': ASSEMBLY_TIERS},
     'copper_weight': {'unit': 'oz', 'source': ('quote', 'capabilities'), 'rows': COPPER_WEIGHT_TIERS},
+    'hdi': {'unit': 'structure', 'source': ('capabilities', 'hdi-launch'), 'rows': HDI_TIERS},
 }
 
 # What could not be read from a JLCPCB page on 2026-10-18 and is therefore not in the tables (never guessed).
@@ -295,7 +318,7 @@ TIERS_NOT_SOURCED = (
     'the quote page\'s assembly options (they need a Gerber upload); the assembly rows come from the PCBA capabilities and price pages',
     'a surcharge for impedance control (Specify Stackup)',
     'the castellated-hole surcharge line (the quote page wants an edge count first; the help centre states the charge)',
-    'blind and buried vias (HDI): the process is priced but its tiers were not read',
+    'an HDI surcharge figure (the help centre says only that the price is higher and the lead time longer)',
 )
 
 

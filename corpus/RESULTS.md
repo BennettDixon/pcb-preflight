@@ -417,8 +417,8 @@ block is the missing bom.csv). royalblue54l-feather kept its own at first: its 1
 `(via blind ... (drill 0.00001) (layers "F.Cu" "B.Cu"))`, and the gate read the 0.00001 as a hole below
 every tier. That figure is KiCad's sentinel for a via with no through drill, not a measurement, so since
 the blind-via reading (same day) the gate classifies a via by its `blind`/`micro` keyword and its two
-layers, never by its drill: royalblue's 183 are blind vias, an HDI line in ORDER (a process JLCPCB prices,
-tier not yet sourced) and a DRC warning with a note instead of 183 `drill_out_of_range` blocks. Its DRC
+layers, never by its drill: royalblue's 183 are blind vias, an HDI line in ORDER (JLCPCB's HDI process, sourced
+2026-10-18: laser blind vias 0.075-0.15 mm, "the price is higher", no figure published) and a DRC warning with a note instead of 183 `drill_out_of_range` blocks. Its DRC
 still has copper_edge_clearance, clearance and annular_width errors, so the board still fails on `drc`
 and `bom-lcsc`; the blocking set lost nothing else. No other verdict or blocking set moved.
 
@@ -446,7 +446,7 @@ and online adds the one line the README leaves out (4 Extended part types, one l
 | openair-max | 4 | 99.45 × 72 | 0.3 / 0.5 | placement (174 on B.Cu); layers (4 layers); through-hole (17 parts) | 78 |
 | openjbod-rp2040 | 4 | 72.61 × 170 | 0.3 / 0.5 | layers; size (170 mm); through-hole (14 parts) | 24 |
 | pocketpd | 2 | 50 × 50 | 0.3 / 0.5 | through-hole (3 parts) | 22 |
-| royalblue54l-feather | 8 | 58.42 × 22.86 | none through (183 blind, 0.35 mm diameter); smallest pad hole 0.2 | HDI (183 blind/buried vias: JLCPCB's own process, tier not yet sourced); assembly class (8 layers: Standard PCBA); castellated holes (`castellated_pads yes`: Standard PCBA, "extra cost will be charged"); layers (High Precision) | 15 |
+| royalblue54l-feather | 8 | 58.42 × 22.86 | none through (183 blind, 0.35 mm diameter); smallest pad hole 0.2 | HDI (183 blind/buried vias: JLCPCB's HDI process, 1st to 3rd order); assembly class (8 layers: Standard PCBA); castellated holes (`castellated_pads yes`: Standard PCBA, "extra cost will be charged"); layers (High Precision) | 15 |
 | sh-rpi | 4 | 65 × 56.5 | 0.2 / 0.5 | vias (295 of 364 at 0.2 mm: the 0.2 mm option); placement (J501, J801 through-hole on the back); layers; through-hole (9 parts) | 39 |
 | smarthome-metering, -prefix | 2 | 120.5 × 86.5 | none | size; through-hole (X1, X2) | not run |
 | soldiercrab | 6 | 22.2 × 22 | 0.15 / 0.41 | vias (189 of 191 at 0.15 mm: the 0.15mm/(0.25/0.3mm) option); placement (55 on B.Cu); layers (High Precision) | 21 |
