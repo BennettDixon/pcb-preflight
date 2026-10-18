@@ -148,12 +148,15 @@ class ViaKinds(unittest.TestCase):
         self.assertEqual(b.holes, [0.3], 'the sentinel is not a hole')
         c = checks.order_check(b)
         self.assertEqual([d['name'] for d in c.drivers], ['HDI', 'layers'])
-        self.assertEqual(c.details[0], 'HDI: 1 blind/buried via; not on the standard tier; JLCPCB prices blind and buried vias as its own process; '
-                                       'tier not yet sourced (preset.TIERS_NOT_SOURCED)')
+        self.assertTrue(c.details[0].startswith('HDI: 1 blind/buried via; the standard is through vias only; lands in blind, buried or micro vias '
+                                                '(HDI, 1st to 3rd order): JLCPCB\'s HDI process'), c.details[0])
+        self.assertIn('"the price is higher"', c.details[0])
+        self.assertIn('source: capabilities, hdi-launch, read 2026-10-18', c.details[0])
         self.assertIn('vias smallest via 0.3 mm hole, 0.45 mm diameter (0.3mm/(0.4/0.45mm))', c.notes[0], 'the via figure is the through vias\'')
         self.assertIn('smallest hole 0.3 mm', c.notes[0])
         self.assertNotRegex('\n'.join(c.details), r'1e-05|0\.00001', 'the sentinel is never printed as a figure')
-        self.assertIn('blind and buried vias (HDI): the process is priced but its tiers were not read', preset.TIERS_NOT_SOURCED)
+        self.assertIn('hdi', preset.TIERS)
+        self.assertTrue(any('HDI surcharge' in s for s in preset.TIERS_NOT_SOURCED), 'the figure stays unsourced; the tier does not')
         # KiCad's own drill_out_of_range item on it is a warning with a note, never a block
         c = self.drc('Blind via [GND] on F.Cu - In1.Cu')
         self.assertEqual(c.status, 'warn', c.details)
@@ -171,7 +174,7 @@ class ViaKinds(unittest.TestCase):
         self.assertEqual((b.through_vias, b.holes), ([], []))
         c = checks.order_check(b)
         self.assertEqual([d['name'] for d in c.drivers], ['HDI', 'layers'])
-        self.assertTrue(c.details[0].startswith('HDI: 3 blind/buried vias (1 blind, 1 micro, 1 buried); not on the standard tier'), c.details[0])
+        self.assertTrue(c.details[0].startswith('HDI: 3 blind/buried vias (1 blind, 1 micro, 1 buried); the standard is through vias only'), c.details[0])
         self.assertNotIn('vias', c.notes[0], 'no through via, so no via figure')
         self.assertNotIn('smallest hole', c.notes[0])
 

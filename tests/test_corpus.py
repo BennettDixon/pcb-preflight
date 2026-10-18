@@ -236,7 +236,7 @@ class CorpusBaseline(unittest.TestCase):
         """Spot checks a reader can repeat with grep on the board file (corpus/RESULTS.md "ORDER on the corpus")."""
         wanted = {'jetson-thor-baseboard': ('vias', '0.1 mm hole', '3235 of 3235 vias'),
                   'jlcpcb-example': ('vias', '0.2 mm hole', '30 of 101 vias'),
-                  'royalblue54l-feather': ('HDI', '183 blind/buried vias', 'tier not yet sourced'),
+                  'royalblue54l-feather': ('HDI', '183 blind/buried vias', 'HDI, 1st to 3rd order'),
                   'soldiercrab': ('vias', '0.15 mm hole', '0.15mm/(0.25/0.3mm)'),
                   'openjbod-rp2040': ('size', '72.61 × 170 mm', 'larger than 100 × 100 mm')}      # a chosen driver: the class, no condition text
         for name, (driver, *texts) in wanted.items():

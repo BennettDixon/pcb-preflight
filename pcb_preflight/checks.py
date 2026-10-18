@@ -865,8 +865,9 @@ def order_check(board, lines=None, records=None):
     if hdi:
         kinds = Counter(v.kind for v in hdi)
         mix = f' ({", ".join(f"{c} {k}" for k, c in kinds.most_common())})' if len(kinds) > 1 else ''
-        driver('HDI', f'HDI: {_n(len(hdi), "blind/buried via")}{mix}; not on the standard tier; JLCPCB prices blind and buried vias as its own '
-                      f'process; tier not yet sourced (preset.TIERS_NOT_SOURCED)')
+        rows = preset.TIERS['hdi']['rows']
+        driver('HDI', f'HDI: {_n(len(hdi), "blind/buried via")}{mix}; the standard is {rows[0]["structure"]}; lands in '
+                      f'{rows[-1]["structure"]}: {rows[-1]["condition"]} ({_tier_source("hdi")})')
 
     # copper layers
     rows = tiers['layers']['rows']
