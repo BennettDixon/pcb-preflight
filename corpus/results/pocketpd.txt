@@ -1,5 +1,5 @@
 PicoPDSupply  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 90 footprints  -  bom.csv: pocketpd.csv
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 1 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -61,11 +61,11 @@ FINDINGS
         ... 6 more (--max-details)
         note: 2 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x2
   FAIL  DRC (§12): 16 errors, 139 warnings (lib_footprint_mismatch x67, clearance x21, starved_thermal x16, lib_footprint_issues x14, silk_overlap x11, courtyards_overlap x10, silk_edge_clearance x10, silk_over_copper x3, copper_edge_clearance x2, via_dangling x1); 7 footprints without a courtyard
-        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
-        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of U4 on F.Cu @ (48.06, 46.3625)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U1 on F.Cu @ (56.885, 73.9)]
         starved_thermal: Thermal relief connection to zone incomplete (layer B.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on B.Cu, priority 0 @ (93.96, 85.0); PTH pad 2 [GND] of J3 @ (47.76, 35.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 19 [GND] of U3 on F.Cu @ (57.56, 53.3625)]
+        starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 1 @ (58.56, 82.1); Pad 2 [GND] of U6 on F.Cu @ (56.885, 79.4)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C8 on F.Cu @ (50.58, 55.8)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 2 [GND] of C19 on F.Cu @ (61.965, 64.363)]
         starved_thermal: Thermal relief connection to zone incomplete (layer F.Cu; zone min spoke count 2; actual 1) [Zone 'GND' [GND] on F.Cu, priority 0 @ (72.776, 85.2048); Pad 1 [GND] of R30 on F.Cu @ (44.95, 57.2)]
@@ -187,6 +187,13 @@ FINDINGS
         row 34 U8: 74LVC1G17 (SOT-353_SC-70-5): missing MPN, Basic/Extended, Stock
         row 35 Y1: 12MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing MPN, Basic/Extended, Stock, Datasheet
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 1 driver off JLCPCB's standard tier (through-hole)
+        through-hole: 3 through-hole parts to assemble (J6, J4, J8; 6 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 50 × 50 mm (100 × 100 mm or smaller); single-sided placement (79 parts on F.Cu); 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
   DRC (§12): 7 not compared
@@ -205,7 +212,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 1 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again

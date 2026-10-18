@@ -2,7 +2,8 @@
 
 Status: pass = checked and left alone; fail = finding that blocks the order; warn = finding to look at;
 skip = could not be checked, never counted as a pass: a core gate's skip makes the result ERROR, any other
-skip NOT VERIFIED (preset.py). A gate that ran but could not judge every item lists those items in
+skip NOT VERIFIED (preset.py); cost = nothing stops the order, but a figure read from the files lands on a
+priced tier of the fab's (the ORDER section; never the verdict or the exit code, and --strict leaves it). A gate that ran but could not judge every item lists those items in
 ``unchecked`` (printed under NOT CHECKED; the result is then NOT VERIFIED); items a human vouched for in
 bom.csv go in ``verified`` (printed as "by hand", never folded into the tool's own count); what the gate
 did and under which settings goes in ``notes``, which is never a finding.
@@ -703,7 +704,6 @@ def stock_check(lines, multiple=10, lookup=stock.lookup, records=None):
     if not by_code:
         return Check('stock', 'Catalogue and stock', '§1 §2 §13', 'skip', 'no line has an LCSC code to look up')
     fails, warns, skips, ok = [], [], [], []
-    extended = set()
     for code, lns in sorted(by_code.items()):
         qty = sum(len(ln.refs) for ln in lns)
         label = f'{code} ({", ".join(r for ln in lns for r in ln.refs)})'
@@ -735,12 +735,157 @@ def stock_check(lines, multiple=10, lookup=stock.lookup, records=None):
             lib = bomlib.library_type(ln.library)
             if lib and rec.get('library') and lib != rec['library'] and not (lib == 'Basic' and rec['library'] == 'Preferred'):
                 warns.append(f'{label}: bom.csv says {lib} but the catalogue says {rec["library"]}')
-        if rec.get('library') == 'Extended':
-            extended.add(code)
         ok.append(f'{label}: {rec["mpn"]}, {rec.get("package", "?")}, {rec.get("library", "?")}, stock {n:,}' if isinstance(n, int) else f'{label}: {rec["mpn"]}')
     status = 'fail' if fails else ('warn' if warns else ('skip' if skips and not ok else 'pass'))
-    summary = f'{len(ok)} codes found, {len(fails)} blocking, {len(warns)} low-stock/mismatch, {len(skips)} not checked; {len(extended)} Extended part types (one loading fee each)'
+    summary = f'{len(ok)} codes found, {len(fails)} blocking, {len(warns)} low-stock/mismatch, {len(skips)} not checked'
     return Check('stock', 'Catalogue and stock', '§1 §2 §13', status, summary, fails + warns + [f'ok: {o}' for o in ok], unchecked=skips)
+
+
+# ---------------------------------------------------------------- the order (what moves the price)
+
+def _tier_source(name):
+    t = preset.TIERS[name]
+    return f'source: {", ".join(t["source"])}, read {preset.TIERS_READ}'
+
+
+def _assembly_row(driver):
+    return next(r for r in preset.TIERS['assembly']['rows'] if r['driver'] == driver)
+
+
+def _mm(x):
+    return f'{x:g} mm'
+
+
+def _lands(row):
+    """"lands in <tier>: <condition>", unless the condition already opens with the tier's name."""
+    return row['condition'] if row['condition'].startswith(row['tier']) else f'lands in {row["tier"]}: {row["condition"]}'
+
+
+def _n(n, word):
+    return f'{n} {word}{"s" if n != 1 else ""}'
+
+
+def order_check(board, lines=None, records=None):
+    """G15: what the files show that lands on a priced tier of JLCPCB's (preset.TIERS), as one line per driver
+    with the figure found, the fab's standard, the tier and its condition, the source and the read date (§13).
+
+    Status ``cost`` when a driver is off the standard tier, ``pass`` otherwise; neither moves the verdict.
+    Every figure is read, never inferred: via and hole sizes, copper layers, the outline's bounding box,
+    which sides carry placed parts, through-hole parts in the BOM (``lines``, when given), the catalogue's
+    Basic/Extended per code (``records``, when the catalogue was asked), thickness and the stackup's
+    castellated, edge-plating and impedance flags. Package sizes and pitches are not guessed from pads.
+    """
+    det, on_standard = [], []
+    tiers = preset.TIERS
+
+    # vias: the quote page's "Min via hole size/diameter" option, picked by the smallest hole
+    rows = tiers['via']['rows']
+    std = rows[0]
+    if board.vias:
+        drill = min(d for _, d in board.vias)
+        size = min(s for s, _ in board.vias)
+        below = sum(1 for s, d in board.vias if d < std['min_hole'] - 1e-9 or s < std['min_diameter'] - 1e-9)
+        row = next((r for r in rows if drill >= r['min_hole'] - 1e-9), None)
+        figure = f'smallest via {_mm(drill)} hole, {_mm(size)} diameter'
+        if below:
+            where = (f'lands in the {row["option"]} option: {row["condition"]}' if row
+                     else f'below every option (the smallest is {rows[-1]["option"]}); DRC blocks it')
+            det.append(f'vias: {figure}; {below} of {len(board.vias)} vias are below the standard {std["option"]} option; {where} ({_tier_source("via")})')
+        else:
+            on_standard.append(f'vias {figure} ({std["option"]})')
+
+    # the smallest drilled hole, vias and pads alike
+    rows = tiers['hole']['rows']
+    std = rows[0]
+    holes = board.holes
+    if holes:
+        hole = min(holes)
+        low = sum(1 for h in holes if h < std['min_drill'] - 1e-9)
+        row = next((r for r in rows if hole >= r['min_drill'] - 1e-9), None)
+        if low:
+            where = (f'lands in the {_mm(row["min_drill"])} hole tier: {row["condition"]}' if row
+                     else f'below every tier (the smallest is {_mm(rows[-1]["min_drill"])}); DRC blocks it')
+            det.append(f'holes: smallest drilled hole {_mm(hole)}; {low} of {len(holes)} holes are below the standard {_mm(std["min_drill"])} drill; {where} ({_tier_source("hole")})')
+        else:
+            on_standard.append(f'smallest hole {_mm(hole)} ({_mm(std["min_drill"])} is the smallest standard drill)')
+
+    # copper layers
+    rows = tiers['layers']['rows']
+    n = board.copper_layers
+    row = next((r for r in rows if n <= r['max_layers']), rows[-1])
+    if row['standard']:
+        on_standard.append(f'{n} copper layers ({row["label"]})')
+    else:
+        det.append(f'layers: {n} copper layers; the standard class is {rows[0]["label"]}; lands in {row["label"]}: {row["condition"]} ({_tier_source("layers")})')
+
+    # outline size
+    rows = tiers['size']['rows']
+    std = rows[0]
+    if board.outline:
+        w, h = (round(x, 2) for x in board.outline)
+        fits = w <= std['max_x'] + 1e-9 and h <= std['max_y'] + 1e-9 or h <= std['max_x'] + 1e-9 and w <= std['max_y'] + 1e-9
+        if fits:
+            on_standard.append(f'outline {w:g} × {h:g} mm ({std["label"]})')
+        else:
+            row = rows[-1]
+            det.append(f'size: outline {w:g} × {h:g} mm; the standard class is {std["label"]}; lands in {row["label"]}: {row["condition"]} ({_tier_source("size")})')
+    else:
+        on_standard.append('outline: no Edge.Cuts graphics, so the size was not read')
+
+    # placement on both sides: solder-paste pads front and back, or a through-hole part on the back
+    placed = [fp for fp in board.footprints if not fp.dnp and not fp.excluded_from_bom and fp.nets]
+    front = [fp for fp in placed if fp.layer == 'F.Cu' and (fp.paste or 'through_hole' in fp.attrs)]
+    back = [fp for fp in placed if fp.layer == 'B.Cu' and (fp.paste or 'through_hole' in fp.attrs)]
+    if front and back:
+        row = _assembly_row('double-sided placement')
+        det.append(f'placement: parts to place on both sides ({len(front)} on F.Cu, {len(back)} on B.Cu: {_refs([fp.ref for fp in back], 8)} on the back); '
+                   f'the standard is {_assembly_row("single-sided placement")["condition"]}; {_lands(row)} ({_tier_source("assembly")})')
+    else:
+        on_standard.append(f'single-sided placement ({len(front) + len(back)} parts on {"B.Cu" if back else "F.Cu"})' if front or back else 'no parts to place')
+
+    # through-hole parts to assemble
+    in_bom = {ref for ln in lines for ref in ln.refs} if lines is not None else None
+    tht = [fp for fp in placed if 'through_hole' in fp.attrs and (in_bom is None or fp.ref in in_bom)]
+    if tht:
+        row = _assembly_row('through-hole parts')
+        joints = sum(len(fp.drills) for fp in tht)
+        det.append(f'through-hole: {_n(len(tht), "through-hole part")} to assemble ({_refs([fp.ref for fp in tht], 12)}; {_n(joints, "plated hole")}); '
+                   f'the standard is surface mount only; {row["tier"]}: {row["condition"]} ({_tier_source("assembly")})')
+    else:
+        on_standard.append('no through-hole parts to assemble')
+
+    # Extended part types (the catalogue's word, when it was asked)
+    if records:
+        ext = sorted(code for code, rec in records.items() if rec and rec.get('library') == 'Extended')
+        if ext:
+            row = _assembly_row('Extended part')
+            det.append(f'parts: {_n(len(ext), "Extended part type")} (one loading fee each: {_refs(ext, 12)}); the standard is Basic and Preferred Extended parts; '
+                       f'{row["tier"]}: {row["condition"]} ({_tier_source("assembly")})')
+        else:
+            on_standard.append('every catalogue part is Basic or Preferred Extended')
+
+    # layer count or thickness outside Economic PCBA. The file's thickness is the stackup's sum (1.6062 on a corpus board
+    # whose quote-page thickness is 1.6), so it is read to the nearest 0.1 mm, the step of the quote page's thickness list.
+    t = board.thickness
+    if n not in (2, 4, 6) or not 0.8 <= round(t, 1) <= 1.6:
+        row = _assembly_row('layer count other than 2, 4 or 6, or thickness outside 0.8-1.6 mm')
+        det.append(f'assembly class: {n} copper layers, {_mm(t)} thick; the standard is 2, 4 or 6 layers at 0.8-1.6 mm; {_lands(row)} ({_tier_source("assembly")})')
+    else:
+        on_standard.append(f'{_mm(t)} thick')
+
+    for flag, driver in ((board.castellated, 'castellated holes'), (board.edge_plating, 'edge plating'), (board.impedance, 'impedance control')):
+        if flag:
+            row = _assembly_row(driver)
+            det.append(f'{driver}: set in the stackup; the standard is without; {_lands(row)} ({_tier_source("assembly")})')
+
+    notes = [f'on the standard tier: {"; ".join(on_standard)}'] if on_standard else []
+    notes += [f'not in the files: {", ".join(preset.NOT_IN_FILES)}; the quote page prices those',
+              f'JLCPCB assembles a minimum of {preset.ASSEMBLY_MIN} boards; order spares (§13)']
+    title = 'Order: what moves the price'
+    if det:
+        names = ', '.join(d.split(':', 1)[0] for d in det)
+        return Check('order', title, '§13', 'cost', f'{_n(len(det), "driver")} off JLCPCB\'s standard tier ({names})', det, notes=notes)
+    return Check('order', title, '§13', 'pass', 'every driver the files can show is on JLCPCB\'s standard tier', notes=notes)
 
 
 # ---------------------------------------------------------------- what no tool checks
@@ -755,5 +900,5 @@ def by_hand(board):
         'Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)',
         'Enclosure: component heights, connector edges, mounting hole pattern (§10)',
         'Hand-drawn power loops, a human look at every autorouted trace (§11)',
-        'Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)',
+        'Review doc for this revision with "checked and left alone" (§6)',
     ]

@@ -1,5 +1,5 @@
 """Print the gate's result the way a review doc reads: the verdict first, then checked and left alone,
-findings, not checked, by hand, and the verdict again at the end for a log's tail.
+findings, order, not checked, by hand, and the verdict again at the end for a log's tail.
 
 A gate that ran but could not judge some items prints its line where its status puts it and lists those
 items again under NOT CHECKED; items a human vouched for print under the gate as "by hand"; what a gate did
@@ -11,14 +11,16 @@ import os
 
 from . import preset
 
-MARK = {'fail': 'FAIL', 'warn': 'WARN', 'skip': 'SKIP', 'pass': 'ok'}
+STATUSES = ('pass', 'warn', 'fail', 'skip', 'cost')
+MARK = {'fail': 'FAIL', 'warn': 'WARN', 'skip': 'SKIP', 'pass': 'ok', 'cost': 'COST'}
 
 
 def verdict(checks, strict=False):
     """PASS, FAIL, ERROR or NOT VERIFIED. ERROR outranks FAIL, which outranks NOT VERIFIED (preset.py).
 
     A skipped core gate is ERROR. Any other skipped gate, and any gate with items it could not judge, is
-    NOT VERIFIED: something was not checked, so the result is not a pass.
+    NOT VERIFIED: something was not checked, so the result is not a pass. A ``cost`` gate is ignored here:
+    what moves the price does not stop the order, and --strict does not promote it.
     """
     if any(c.status == 'skip' and c.id in preset.CORE for c in checks):
         return preset.ERROR
@@ -45,12 +47,17 @@ def _meaning(v, checks, online):
             + ('' if online else '  -  run with --online to ask the catalogue'))
 
 
+def cost_drivers(checks):
+    """How many lines the ORDER section carries: one per driver off the standard tier."""
+    return sum(len(c.details) for c in checks if c.status == 'cost')
+
+
 def _result_lines(checks, strict, online):
     n_fail = sum(1 for c in checks if c.status == 'fail')
     n_warn = sum(1 for c in checks if c.status == 'warn')
     n_unv = sum(1 for c in checks if c.status == 'skip' or c.unchecked)
     v = verdict(checks, strict)
-    lines = [f"RESULT: {v}  -  {n_fail} blocking, {n_warn} warnings, {n_unv} not checked  -  exit {preset.EXIT[v]}"
+    lines = [f"RESULT: {v}  -  {n_fail} blocking, {n_warn} warnings, {n_unv} not checked, {cost_drivers(checks)} cost drivers  -  exit {preset.EXIT[v]}"
              + ('  (--strict: warnings block)' if strict else ''),
              f'  {_meaning(v, checks, online)}']
     if v == preset.ERROR:
@@ -69,6 +76,7 @@ def render(result, max_details=15, strict=False):
     out.append('')
     passed = [c for c in checks if c.status == 'pass']
     found = [c for c in checks if c.status in ('fail', 'warn')]
+    cost = [c for c in checks if c.status == 'cost']
     skipped = [c for c in checks if c.status == 'skip']
     partial = [c for c in checks if c.status != 'skip' and c.unchecked]
 
@@ -95,6 +103,17 @@ def render(result, max_details=15, strict=False):
         notes_and_verified(c)
     if not found:
         out.append('  none')
+    out.append('')
+    out.append("ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)")
+    for c in cost:
+        out.append(f'  {MARK[c.status]}  {c.title} ({c.pitfall}): {c.summary}')
+        for d in c.details[:max_details]:
+            out.append(f'        {d}')
+        if len(c.details) > max_details:
+            out.append(f'        ... {len(c.details) - max_details} more (--max-details)')
+        notes_and_verified(c)
+    if not cost:
+        out.append('  nothing: every driver the files can show is on the standard tier' if any(c.id == 'order' for c in checks) else '  none')
     out.append('')
     out.append('NOT CHECKED')
     for c in skipped:

@@ -1,5 +1,5 @@
 SH-RPi  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 168 footprints  -  bom.csv: sh-rpi.csv
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 4 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -81,7 +81,7 @@ FINDINGS
         warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint R701 @ (91.1, 84.5)]
         ... 318 more (--max-details)
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_copper_edge_clearance 0.05 -> 0.2 mm
-        note: 207 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.15 mm, hole_to_hole x8, floor 0.2 mm); reported as warnings, --strict blocks them
+        note: 207 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.1 mm, hole_to_hole x8, floor 0.2 mm); reported as warnings, --strict blocks them
   WARN  Schematic / PCB parity (§5): 0 mismatches, 33 warnings across 168 footprints
         warning: net_conflict: Pad net (/Buck converter stage 2/COMP_) doesn't match net given by schematic (/Buck converter 5V/COMP_) [Pad 2 [/Buck converter stage 2/COMP_] of C202 on F.Cu @ (117.72, 61.1)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
         warning: net_conflict: Pad net (/Buck converter stage 2/SW) doesn't match net given by schematic (/Buck converter 5V/SW) [Pad 1 [/Buck converter stage 2/SW] of C203 on F.Cu @ (111.95, 51.2)]; the two names differ only in their sheet path (/Buck converter stage 2/ against /Buck converter 5V/): a sheet renamed after routing; Update PCB from Schematic carries the new name over
@@ -165,6 +165,16 @@ FINDINGS
         row 41 L301: SLO0530H3R3MTT (L_MWSA0503S): missing MPN, Basic/Extended, Stock, Datasheet
         ... 37 more (--max-details)
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (vias, layers, placement, through-hole)
+        vias: smallest via 0.2 mm hole, 0.5 mm diameter; 295 of 364 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.2mm/(0.3/0.35mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself (source: quote, capabilities, read 2026-10-18)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        placement: parts to place on both sides (148 on F.Cu, 2 on B.Cu: J501, J801 on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        through-hole: 9 through-hole parts to assemble (C1006, J402, J502, J301, J401, C1004, J101, C1005, J501; 70 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); outline 65 × 56.5 mm (100 × 100 mm or smaller); 1.5896 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
   DRC (§12): 6 not compared
@@ -182,7 +192,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 4 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again

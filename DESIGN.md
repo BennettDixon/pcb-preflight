@@ -53,23 +53,26 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 | G9 | bom.csv references equal the schematic's bought references: none missing, none unknown, none twice, no DNP. What is not bought (DNP, excluded from the BOM, FID/TP/H/MH by prefix) is printed every run, and an excluded or prefix-skipped reference whose footprint has paste pads blocks: the fab would solder a part there, so it is bought or DNP, not a name that starts with TP | §1 §5 §12 | `bom.csv` + the schematic BOM export + the board's pads | yes |
 | G9b | bom.csv `Value` equals the schematic `Value` of every reference, spelling aside (µ/u, Ω/ohm/R, 4k7/4.7k, spaces, case; `values.normalize()`). Nothing else is inferred: 100nF and 0.1uF are two spellings and the files use one | §1 | `bom.csv` + schematic BOM export | yes |
 | G10 | Package fits the footprint (`--online`): the catalogue's package for each code against the footprint each reference has in the schematic (`catalogue-package`). The bom.csv `Package` column is not compared: offline it is a copy of the footprint name or of the catalogue string, and comparing a column with its own source proved nothing (the first cut printed "110 of 110 same name"; the offline gate was removed on 2026-10-17). Verdicts same / different / unknown, see "Package names" below: names pick the candidates and, where both sides are footprints in KiCad's library, the pads decide; *different* blocks and a `Package verified` note never changes that; *unknown* is listed under NOT CHECKED and makes the result NOT VERIFIED, unless the line carries a `Package verified` note, printed as "by hand". | §1 (the 10 µF 1210 story) | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library; `packages.fits()` | yes |
-| G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); count of Extended part types (fee) | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked* and makes the result NOT VERIFIED, never a pass | yes / warns |
+| G11 | Catalogue cross-check (`--online`): the code exists; catalogue MPN contains the BOM MPN; stock ≥ 10 × quantity (warn) and > 0 (block); Basic/Extended as recorded (warn); the count of Extended part types is G15's line | §1 step 3, §2, §13 | JLCPCB `getComponentDetail`, jlcsearch fallback (see §6); a lookup failure is *not checked* and makes the result NOT VERIFIED, never a pass | yes / warns |
 | G11c | Catalogue category matches the reference prefix (`--online`): C a capacitor, R a resistor, D a diode, TVS or LED, L an inductor or ferrite, FB a ferrite, Q a transistor, J a connector, F a fuse, Y a crystal, SW a switch, U none of those (`values.PREFIXES`, `values.CLASSES`, each keyword with the record it was seen in). A capacitor's code on an LED line blocks; a prefix without a rule, or a jlcsearch record (no category) under a U, is *not checked* | §1 §2 | the record's `firstSortName / secondSortName`, else its description | yes |
 | G11d | Catalogue description matches the BOM value (`--online`): every F, H and Ω figure the bom.csv `Value` states is within 1 % of one in the record's description, and the part's voltage rating reaches the value's (a 25 V part on a `100uF 16V` line fits, a 16 V part on a `100uF 25V` line does not). A figure the description lacks is *not checked*; a value without figures (a part number) has nothing to compare | §1 §2 | the record's description; `values.compare()` | yes |
 | G12 | Three fiducials on the front and an aux-axis origin set | §4 | the board file: footprints whose library id contains "Fiducial" or whose reference starts FID; `(setup (aux_axis_origin x y))` | warns |
 | G13 | Board name and a revision on a silkscreen layer; a name beside every connector (visible Value on silk, or silk text within 15 mm) | §8 §10 | the board file: `gr_text` on `F.SilkS`/`B.SilkS`, the `Value` property's layer and `hide` flag | warns |
 | G14 | Two copper layers with an inductor on the board | §9 | the board file: `(layers ...)` entries ending `.Cu`, references `L*` | warns |
+| G15 | Order: what moves the price off JLCPCB's standard tier, one line per driver with the figure read from the files, the fab's standard, the sourced tier it lands in and its condition (`preset.TIERS`, read 2026-10-18). Drivers: the smallest via hole and diameter against the quote page's via options (how many vias are below the standard one); the smallest drilled hole, vias and pads alike; copper layers (1-2, 4, "High Precision" 6+); the outline's bounding box against the 100 × 100 mm class; parts to place on both sides (paste pads front and back, or a through-hole part on the back); through-hole parts to assemble (on a BOM line when bom.csv is read); Extended part types (`--online`; Preferred exempt); a layer count other than 2/4/6 or a thickness outside 0.8-1.6 mm; the stackup's castellated, edge-plating and impedance flags. Nothing inferred: no package or pitch from pads. Two fixed notes name what the quote page prices that no file states (`preset.NOT_IN_FILES`) and the assembly minimum (`ASSEMBLY_MIN`) | §13 | the board file: `(via (size) (drill))`, pads' `(drill)` (an oval's smaller figure), Edge.Cuts graphics, `(general (thickness))`, `(setup (stackup ...))` flags; `bom.csv`; the catalogue records | no: status `cost`, the ORDER section, counted on the RESULT line, never the verdict or exit code, not promoted by `--strict` |
 
 Every run ends with a fixed "by hand before ordering" list with the §4 rotation preview (naming the
 polarized and asymmetric parts on this board), the §3 pin maps, §2 datasheet checks, §7 transients, §10
-enclosure, §11 autorouter review, §6 review doc and §13 spares. These are the pitfalls no file-level check
-can see; printing them every time is what the "checked and left alone" style asks for.
+enclosure, §11 autorouter review and §6 review doc. These are the pitfalls no file-level check can see;
+printing them every time is what the "checked and left alone" style asks for. The §13 spares reminder is
+the order gate's note, beside the fab's assembly minimum.
 
 ### Design decisions
 
 * **Refuse, don't warn.** Everything in the "Blocks" column exits 1. `--strict` promotes the warnings.
-* **Four verdicts, and PASS is a contract** (`preset.py`). PASS (exit 0): every gate ran under the named
-  preset and judged every item it saw. FAIL (1): a finding blocks. ERROR (2): a core gate (ERC, DRC,
+* **Four verdicts, and PASS is a contract** (`preset.py`). PASS means every gate ran and nothing stops the
+  order; ORDER says what moves the price. PASS (exit 0): every gate ran under the named preset and judged
+  every item it saw. FAIL (1): a finding blocks. ERROR (2): a core gate (ERC, DRC,
   unrouted, parity, identity, the schematic BOM export) did not run; nothing in the report is a pass.
   NOT VERIFIED (3): nothing blocks, but the catalogue was not asked (no `--online`) or did not answer, or a
   package could not be compared and nobody signed for it. The first cut printed PASS in all three of those
@@ -390,3 +393,24 @@ stricter constraints as if they were the fab's (`drill_out_of_range` on four boa
 0.3 mm minimum hole). The gate now reads the measured figure from KiCad's message and blocks only when it
 is under `preset.minimums()`; a figure that clears the fab's floor is a warning. What still fails in the
 corpus after that is the list of true findings and the fab's own edge-clearance figure.
+
+The ORDER leg (2026-10-18) draws the last line: **the floor is the fab's absolute buildable minimum, and
+everything above it that the fab prices is a cost tier, not a finding.** JLCPCB's 0.1 mm hole is "more
+costly!" and conditional (1.0 mm or thinner, ENIG or OSP), not unbuildable, so `min_through_hole_diameter`
+moved from the smallest standard drill (0.15) to the smallest tier (0.10); jetson-thor-baseboard and
+royalblue54l-feather, both built, stopped failing on it and gained an ORDER line instead. The rules of
+that section, so the next driver is measured against them:
+
+* **A fifth status, `cost`, that never reaches the verdict.** Not `--strict` either: a user who wants
+  "standard tier only" gets a preset variant when one is asked for, not a flag.
+* **One line per driver: the figure found, the fab's standard, the sourced tier, its condition, the source
+  key and the read date.** Never a dollar amount or a multiplier (they move with exchange rates and
+  promotions), never a suggestion, never a live read of the quote page; the tiers are dated data in the
+  preset, fab-specific by design, so a second fab is a second table.
+* **A driver is listed only when it is read from the files** (a via's `(drill)`, a pad's, the outline, the
+  stackup flags, the BOM), has a sourced tier, is the fab's rather than the gate's, and needs no catalogue
+  lookup beyond the Basic/Extended word the stock gate already fetched. A package size inferred from pads
+  would be a guess, so the 0402-and-finer row is not a driver, and the quote-page options no file states
+  (copper weight, finish, colour, quantity) are named once as not in the files.
+* **Evidence first.** `corpus/RESULTS.md` "ORDER on the corpus" says, per board, which drivers the files
+  show and whether the built boards' drivers match what their repositories say was ordered.

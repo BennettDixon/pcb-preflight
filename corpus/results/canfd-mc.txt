@@ -1,5 +1,5 @@
 canfd-mc  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 51 footprints  -  bom.csv: canfd-mc.csv
-RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked  -  exit 3
+RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked, 1 cost drivers  -  exit 3
   1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
@@ -54,6 +54,13 @@ FINDINGS
         row 26 U4: TCAN332GDR (SOIC-8_3.9x4.9mm_P1.27mm): missing MPN, Basic/Extended, Stock, Datasheet
         row 27 X1: 40MHz 15pF (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing MPN, Basic/Extended, Stock, Datasheet
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 1 driver off JLCPCB's standard tier (layers)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 55 × 32 mm (100 × 100 mm or smaller); single-sided placement (37 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
 
@@ -64,7 +71,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked  -  exit 3
+RESULT: NOT VERIFIED  -  0 blocking, 5 warnings, 1 not checked, 1 cost drivers  -  exit 3
   1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue

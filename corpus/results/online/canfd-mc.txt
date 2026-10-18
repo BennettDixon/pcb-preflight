@@ -1,5 +1,5 @@
 canfd-mc  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 51 footprints  -  bom.csv: canfd-mc.csv
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 2 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -56,36 +56,44 @@ FINDINGS
         row 25 U3: LM5164DDAR (TI_SO-PowerPAD-8_ThermalVias): missing MPN, Basic/Extended, Stock, Datasheet
         row 26 U4: TCAN332GDR (SOIC-8_3.9x4.9mm_P1.27mm): missing MPN, Basic/Extended, Stock, Datasheet
         row 27 X1: 40MHz 15pF (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing MPN, Basic/Extended, Stock, Datasheet
-  FAIL  Catalogue and stock (§1 §2 §13): 26 codes found, 1 blocking, 0 low-stock/mismatch, 26 not checked; 16 Extended part types (one loading fee each)
+  FAIL  Catalogue and stock (§1 §2 §13): 26 codes found, 1 blocking, 0 low-stock/mismatch, 26 not checked
         C191010 (U4): out of stock at JLCPCB (TCAN332GDR)
         ok: C123085 (L1): DLW43SH101XK2L, SMD-4P,4.5x3.2mm, Extended, stock 13,617
-        ok: C14663 (C14, C16, C18): CC0603KRX7R9BB104, 0603, Basic, stock 31,930,927
-        ok: C151135 (F1): 0466001.NRHF, 1206, Extended, stock 55,597
-        ok: C15849 (C19): CL10A105KB8NNNC, 0603, Basic, stock 9,284,507
-        ok: C16015 (D1): SS36, SMA(DO-214AC), Extended, stock 417,851
-        ok: C1604 (C5, C6): 0603B222K500NT, 0603, Basic, stock 991,817
-        ok: C1653 (C10, C11): CL10C220JB8NNNC, 0603, Basic, stock 2,162,046
+        ok: C14663 (C14, C16, C18): CC0603KRX7R9BB104, 0603, Basic, stock 31,735,997
+        ok: C151135 (F1): 0466001.NRHF, 1206, Extended, stock 55,592
+        ok: C15849 (C19): CL10A105KB8NNNC, 0603, Basic, stock 9,243,433
+        ok: C16015 (D1): SS36, SMA(DO-214AC), Extended, stock 417,844
+        ok: C1604 (C5, C6): 0603B222K500NT, 0603, Basic, stock 987,004
+        ok: C1653 (C10, C11): CL10C220JB8NNNC, 0603, Basic, stock 2,156,804
         ok: C1657 (C7): CL10C271JB8NNNC, 0603, Extended, stock 6,177
-        ok: C167971 (L2): FNR5040S220MT, SMD,5x5mm, Extended, stock 56,822
+        ok: C167971 (L2): FNR5040S220MT, SMD,5x5mm, Extended, stock 86,822
         ok: C191010 (U4): TCAN332GDR, SOIC-8, Extended, stock 0
-        ok: C19666 (C17): CL10A475KO8NNNC, 0603, Basic, stock 3,540,048
-        ok: C19702 (C15): CL10A106KP8NNNC, 0603, Basic, stock 11,163,904
-        ok: C22807 (R4): 0603WAF1503T5E, 0603, Basic, stock 1,059,296
-        ok: C22964 (R1): 0603WAF2742T5E, 0603, Extended, stock 12,848
+        ok: C19666 (C17): CL10A475KO8NNNC, 0603, Basic, stock 3,526,309
+        ok: C19702 (C15): CL10A106KP8NNNC, 0603, Basic, stock 11,139,675
+        ok: C22807 (R4): 0603WAF1503T5E, 0603, Basic, stock 1,056,349
+        ok: C22964 (R1): 0603WAF2742T5E, 0603, Extended, stock 12,847
         ok: C23031 (R5): 0603WAF3653T5E, 0603, Extended, stock 9,741
-        ok: C23082 (R3): 0603WAF5762T5E, 0603, Extended, stock 63,566
-        ok: C25803 (R2, R6): 0603WAF1003T5E, 0603, Basic, stock 19,381,788
-        ok: C25804 (R7, R8, R9): 0603WAF1002T5E, 0603, Basic, stock 31,151,373
-        ok: C3013946 (U1): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,481
+        ok: C23082 (R3): 0603WAF5762T5E, 0603, Extended, stock 63,546
+        ok: C25803 (R2, R6): 0603WAF1003T5E, 0603, Basic, stock 19,334,680
+        ok: C25804 (R7, R8, R9): 0603WAF1002T5E, 0603, Basic, stock 39,947,655
+        ok: C3013946 (U1): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,163
         ok: C385986 (C1, C2): HMK325C7475KMHPE, 1210, Extended, stock 98,320
-        ok: C45783 (C3, C4, C12, C13): CL21A226MAQNNNE, 0805, Basic, stock 3,780,238
-        ok: C477928 (U3): LM5164DDAR, SO-8-EP, Extended, stock 10,953
-        ok: C626758 (U2): MCP2518FDT-E/SL, SOIC-14, Extended, stock 23,145
-        ok: C75176 (D3): PESD2CAN,215, SOT-23, Extended, stock 34,268
-        ok: C83268 (D2): SMBJ24CA, DO-214AA, Extended, stock 44,877
-        ok: C9010 (X1): X322540MPB4SI, SMD3225-4P, Extended, stock 45,301
+        ok: C45783 (C3, C4, C12, C13): CL21A226MAQNNNE, 0805, Basic, stock 3,755,428
+        ok: C477928 (U3): LM5164DDAR, SO-8-EP, Extended, stock 10,913
+        ok: C626758 (U2): MCP2518FDT-E/SL, SOIC-14, Extended, stock 23,120
+        ok: C75176 (D3): PESD2CAN,215, SOT-23, Extended, stock 34,503
+        ok: C83268 (D2): SMBJ24CA, DO-214AA, Extended, stock 44,850
+        ok: C9010 (X1): X322540MPB4SI, SMD3225-4P, Extended, stock 44,212
   FAIL  Catalogue category matches the reference prefix (§1 §2): 24 lines filed under the category their reference prefix means, 1 under another, 1 not checked
         C123085 DLW43SH101XK2L (L1; bom.csv row 15): L is a inductor/ferrite reference but the catalogue files this part under "Filters / Common Mode Filters"
+
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 2 drivers off JLCPCB's standard tier (layers, parts)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        parts: 16 Extended part types (one loading fee each: C123085, C151135, C16015, C1657, C167971, C191010, C22964, C23031, C23082, C3013946, C385986, C477928, +4 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 55 × 32 mm (100 × 100 mm or smaller); single-sided placement (37 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): 26 not compared
@@ -125,7 +133,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  2 blocking, 5 warnings, 2 not checked, 2 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again

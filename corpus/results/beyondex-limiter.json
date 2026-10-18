@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BeyondexLimiter",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/beyondex-limiter",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/beyondex-limiter",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -44,7 +44,7 @@
   },
   "copper_layers": 2,
   "footprints": 9,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/beyondex-limiter.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/beyondex-limiter.csv",
   "checks": [
     {
       "id": "erc",
@@ -109,7 +109,7 @@
       "verified": [],
       "notes": [
         "custom design rules BeyondexLimiter.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)",
-        "8 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x6, floor 0.15 mm, clearance x2, floor 0.1 mm); reported as warnings, --strict blocks them"
+        "8 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x6, floor 0.1 mm, clearance x2, floor 0.1 mm); reported as warnings, --strict blocks them"
       ]
     },
     {
@@ -298,6 +298,21 @@
       "unchecked": [],
       "verified": [],
       "notes": []
+    },
+    {
+      "id": "order",
+      "title": "Order: what moves the price",
+      "pitfall": "\u00a713",
+      "status": "pass",
+      "summary": "every driver the files can show is on JLCPCB's standard tier",
+      "details": [],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 22.5 \u00d7 13 mm (100 \u00d7 100 mm or smaller); single-sided placement (7 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick",
+        "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
+        "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ]
     }
   ],
   "by_hand": [
@@ -307,7 +322,7 @@
     "Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (\u00a77)",
     "Enclosure: component heights, connector edges, mounting hole pattern (\u00a710)",
     "Hand-drawn power loops, a human look at every autorouted trace (\u00a711)",
-    "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
+    "Review doc for this revision with \"checked and left alone\" (\u00a76)"
   ],
   "work_dir": null,
   "result": "NOT VERIFIED",

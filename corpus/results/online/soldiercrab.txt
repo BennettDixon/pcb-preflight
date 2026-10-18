@@ -1,6 +1,6 @@
 soldiercrab  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  6 copper layers, 77 footprints  -  bom.csv: soldiercrab.csv
-RESULT: FAIL  -  4 blocking, 5 warnings, 4 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 7 warnings, 4 not checked, 4 cost drivers  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -19,13 +19,9 @@ CHECKED AND LEFT ALONE
   Catalogue description matches the BOM value (§1 §2): 18 lines agree on every figure their value states (F, H, Ω, V), 11 state no figure
 
 FINDINGS
-  FAIL  ERC (§12): 5 errors, 73 warnings on 8 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR028 Hidden pin 1 [VCCRAM, Power input, Line] @ (231.14, 48.26)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR02 Hidden pin 1 [+3V3, Power input, Line] @ (90.17, 148.59)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR012 Hidden pin 1 [+1V1, Power input, Line] @ (25.4, 30.48)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (66.675, 173.99)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR026 Hidden pin 1 [+2V5, Power input, Line] @ (107.95, 30.48)]
+  WARN  ERC (§12): 0 errors, 78 warnings on 8 sheets
         warning: lib_symbol_mismatch: Symbol 'MICROMOD-2222' doesn't match copy in library 'micromod' [Symbol J1 [MICROMOD-2222] @ (66.04, 90.17)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR028 Hidden pin 1 [VCCRAM, Power input, Line] @ (231.14, 48.26)]
         warning: lib_symbol_issues: Symbol 'DSC60xx' not found in symbol library 'support_hardware' [Symbol Y1 [DSC60xx] @ (255.27, 107.95)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'OLIMEX_RCL' [Symbol R11 [R] @ (232.41, 107.95)]
         warning: lib_symbol_mismatch: Symbol 'LED_Small_Filled' doesn't match copy in library 'Device' [Symbol D1 [LED_Small_Filled] @ (232.41, 114.3)]
@@ -60,53 +56,57 @@ FINDINGS
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol #PWR016 Pin 1 [Power input, Line] @ (126.365, 113.03)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (133.985, 101.6)]
         warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 12.70 mm @ (133.985, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol U1 Pin 1 [FB, Input, Line] @ (133.985, 104.14)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Vertical Wire, length 8.89 mm @ (136.525, 101.6)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Symbol L1 Pin 1 [Passive, Line] @ (139.065, 92.71)]
+        warning: endpoint_off_grid: Symbol pin or wire end off connection grid [Horizontal Wire, length 2.54 mm @ (139.065, 92.71)]
         ... 38 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered pin_to_pin to error (KiCad default warning)
+        note: 5 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x5
         note: pin-conflict matrix: KiCad's default; the project had weakened 2 of its 144 cells
-  FAIL  DRC (§12): 209 errors, 71 warnings (solder_mask_bridge x199, lib_footprint_mismatch x68, courtyards_overlap x10, text_thickness x2, silk_over_copper x1); 5 footprints without a courtyard
-        courtyards_overlap: Courtyards overlap [Footprint U7 @ (142.437052, 87.536957); Footprint C5 @ (140.623469, 90.7271)]
-        courtyards_overlap: Courtyards overlap [Footprint C2 @ (125.0, 96.5); Footprint U1 @ (126.399552, 94.1528)]
-        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint R108 @ (144.546153, 99.501036)]
-        courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint C65 @ (142.842812, 92.60789); Footprint R16 @ (141.254552, 93.3028)]
-        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint R10 @ (144.649552, 89.1528)]
-        courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
-        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
-        courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_A13] on B.Cu, length 3.0441 mm @ (129.1, 99.380878)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C6] on B.Cu, length 1.4810 mm @ (135.1, 100.944038)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 34 [ECP5_C5] of J1 on B.Cu @ (136.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D13] on B.Cu, length 2.4218 mm @ (141.099552, 102.424552)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 36 [GND] of J1 on B.Cu @ (135.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D13] on B.Cu, length 0.0006 mm @ (141.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_B14] on B.Cu, length 3.2657 mm @ (128.1, 99.159322)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_E4] on B.Cu, length 1.9226 mm @ (139.6, 100.502352)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C7] on B.Cu, length 1.6218 mm @ (134.6, 100.803248)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 38 [ECP5_C6] of J1 on B.Cu @ (135.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 40 [ECP5_C7] of J1 on B.Cu @ (134.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D8] on B.Cu, length 1.8250 mm @ (133.6, 100.6)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C13] on B.Cu, length 2.7625 mm @ (130.1, 99.662458)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 2 [+3V3] of J1 on B.Cu @ (144.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 42 [ECP5_D7] of J1 on B.Cu @ (134.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 4 [unconnected-(J1-3.3V_EN-Pad4)] of J1 on B.Cu @ (143.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 6 [ECP5_C4] of J1 on B.Cu @ (143.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 8 [ECP5_D5] of J1 on B.Cu @ (142.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C12] on B.Cu, length 2.6218 mm @ (130.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 10 [ECP5_T10_TCK] of J1 on B.Cu @ (142.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 44 [ECP5_D8] of J1 on B.Cu @ (133.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C9] on B.Cu, length 1.9658 mm @ (133.1, 100.45921)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_D6] on B.Cu, length 1.4588 mm @ (136.6, 100.966184)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 46 [ECP5_C9] of J1 on B.Cu @ (133.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_A14] on B.Cu, length 3.1218 mm @ (128.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 14 [ECP5_D13] of J1 on B.Cu @ (141.1, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 16 [USB0_ID] of J1 on B.Cu @ (140.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Pad 48 [ECP5_C10] of J1 on B.Cu @ (132.6, 102.425)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_C14] on B.Cu, length 3.4065 mm @ (127.6, 99.018532)]
-        solder_mask_bridge: Rear solder mask aperture bridges items with different nets [Rectangle on B.Mask @ (125.171735, 101.447132); Track [ECP5_R11_TDI] on B.Cu, length 2.1608 mm @ (140.1, 100.264203)]
+  WARN  DRC (§12): 0 errors, 280 warnings (solder_mask_bridge x199, lib_footprint_mismatch x68, courtyards_overlap x10, text_thickness x2, silk_over_copper x1); 5 footprints without a courtyard
+        warning: courtyards_overlap: Courtyards overlap [Footprint U7 @ (142.437052, 87.536957); Footprint C5 @ (140.623469, 90.7271)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint C2 @ (125.0, 96.5); Footprint U1 @ (126.399552, 94.1528)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint R108 @ (144.546153, 99.501036)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U10 @ (142.599552, 94.9028); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint C65 @ (142.842812, 92.60789); Footprint R16 @ (141.254552, 93.3028)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint U3 @ (141.736393, 87.271879); Footprint R10 @ (144.649552, 89.1528)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint D1 @ (126.399552, 83.9028); Footprint IC1 @ (132.0, 92.0)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint J1 @ (135.1, 103.95)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint IC1 @ (132.0, 92.0); Footprint D2 @ (128.514552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm' does not match copy in library 'Package_DFN_QFN' [Footprint U3 @ (141.736393, 87.271879)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R108 @ (144.546153, 99.501036)]
+        warning: lib_footprint_mismatch: Footprint 'LED_0402_1005Metric' does not match copy in library 'LED_SMD' [Footprint D1 @ (126.399552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C34 @ (142.349552, 83.2028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R11 @ (126.397508, 82.956424)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R7 @ (143.899552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R9 @ (145.096888, 88.053399)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R8 @ (145.199552, 84.8028)]
+        warning: lib_footprint_mismatch: Footprint 'LED_0402_1005Metric' does not match copy in library 'LED_SMD' [Footprint D2 @ (128.514552, 83.9028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C36 @ (145.091352, 87.348971)]
+        warning: lib_footprint_mismatch: Footprint 'R_0201_0603Metric' does not match copy in library 'Resistor_SMD' [Footprint R10 @ (144.649552, 89.1528)]
+        warning: lib_footprint_mismatch: Footprint 'C_0201_0603Metric' does not match copy in library 'Capacitor_SMD' [Footprint C37 @ (145.049552, 83.4028)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R15 @ (128.51595, 82.958707)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C22 @ (135.1, 87.7)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R5 @ (127.423551, 83.962809)]
+        warning: lib_footprint_mismatch: Footprint 'R_0402_1005Metric' does not match copy in library 'Resistor_SMD' [Footprint R6 @ (128.85, 82.7028)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C9 @ (132.6, 93.1)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C16 @ (129.5, 91.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C8 @ (129.3, 89.6)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C31 @ (144.224552, 91.9278)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C12 @ (135.599552, 90.422748)]
+        warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint C1 @ (125.9, 83.7)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C33 @ (135.6, 89.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C7 @ (132.7, 90.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C11 @ (131.2, 89.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C26 @ (133.8, 88.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C32 @ (140.624552, 91.6528)]
+        warning: lib_footprint_mismatch: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD' [Footprint C4 @ (140.5, 97.0)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C18 @ (133.8, 94.5)]
+        warning: lib_footprint_mismatch: Footprint 'C_0402_1005Metric' does not match copy in library 'Capacitor_SMD' [Footprint C14 @ (131.6, 94.5)]
         ... 240 more (--max-details)
-        note: severities: jlcpcb-assembly@2026.10; the project had lowered courtyards_overlap to warning (KiCad default error)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_overlap
+        note: 209 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x199, courtyards_overlap x10
   WARN  Schematic / PCB parity (§5): 0 mismatches, 5 field/filter notes across 77 footprints; 1 padless footprint items not counted
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C1521614', Schematic: 'C1550826') [Footprint IC1 @ (132.0, 92.0)]
         warning: footprint_symbol_field_mismatch: Field 'lcsc#' differs (PCB: 'C965794', Schematic: 'C965790') [Footprint D1 @ (126.399552, 83.9028)]
@@ -148,7 +148,7 @@ FINDINGS
         row 28 U7: W25Q128JVP (WSON-8-1EP_6x5mm_P1.27mm_EP3.4x4mm): missing Basic/Extended, Stock, Datasheet
         row 29 U10: PSRAM (oSPI /HyperRAM) (BGA-24_5x5_6.0x8.0mm): missing MPN, Basic/Extended, Stock, Datasheet
         row 30 Y1: Osc48MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing Basic/Extended, Stock, Datasheet
-  FAIL  Catalogue and stock (§1 §2 §13): 28 codes found, 17 blocking, 2 low-stock/mismatch, 8 not checked; 21 Extended part types (one loading fee each)
+  FAIL  Catalogue and stock (§1 §2 §13): 28 codes found, 17 blocking, 2 low-stock/mismatch, 8 not checked
         C105884 (C6, C28, C29): bom.csv says MPN "GRM155R60J106ME15D" but the catalogue says "CC0402MRX5R5BB106" (10uF 6.3V X5R ±20% 0402 Multilayer Ceramic Capacitors MLCC -)
         C1525 (C7, C9, C10, C11, C12, C14, C15, C24, C26, C31, C32, C33, C35, C65): bom.csv says MPN "CL05A104KA5NNNC" but the catalogue says "CL05B104KO5NNNC" (100nF 16V X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC -)
         C1550826 (IC1): bom.csv says MPN "LFE5U-12F-6BG256C" but the catalogue says "LFE5U-45F-7BG256I" (-40℃~+100℃ 11000 1990656bit 44000 CABGA-256 Programmable Log)
@@ -169,31 +169,41 @@ FINDINGS
         C1550826 (IC1): stock 1 is under 10x the 1 needed (LFE5U-45F-7BG256I)
         C603501 (U4): stock 7 is under 10x the 1 needed (NCP115AMX180TCG)
         ok: C105884 (C6, C28, C29): CC0402MRX5R5BB106, 0402, Extended, stock 1,193
-        ok: C106224 (R2): RC0201FR-07100KL, 0201, Extended, stock 913,649
-        ok: C106225 (R1): RC0201FR-0710KL, 0201, Extended, stock 1,789,130
-        ok: C1525 (C7, C9, C10, C11, C12, C14, C15, C24, C26, C31, C32, C33, C35, C65): CL05B104KO5NNNC, 0402, Basic, stock 24,773,583
+        ok: C106224 (R2): RC0201FR-07100KL, 0201, Extended, stock 903,504
+        ok: C106225 (R1): RC0201FR-0710KL, 0201, Extended, stock 1,778,951
+        ok: C1525 (C7, C9, C10, C11, C12, C14, C15, C24, C26, C31, C32, C33, C35, C65): CL05B104KO5NNNC, 0402, Basic, stock 29,489,857
         ok: C1550826 (IC1): LFE5U-45F-7BG256I, CABGA-256, Extended, stock 1
-        ok: C190862 (U7): W25Q128JVPIQ, WSON-8-EP(5x6), Extended, stock 16,141
-        ok: C216156 (L1): SLM20122R2MIT, 0805, Extended, stock 39,864
-        ok: C23630 (C1, C2, C3, C4, C23): CL10A225KO8NNNC, 0603, Basic, stock 3,396,064
-        ok: C25104 (R11, R15, R12, R14): 0402WGF3300TCE, 0402, Basic, stock 1,898,287
-        ok: C25744 (R110): 0402WGF1002TCE, 0402, Basic, stock 20,311,058
-        ok: C25879 (R5): 0402WGF2201TCE, 0402, Basic, stock 2,130,190
-        ok: C25905 (R6, R13, R109): 0402WGF5101TCE, 0402, Basic, stock 5,097,459
+        ok: C190862 (U7): W25Q128JVPIQ, WSON-8-EP(5x6), Extended, stock 16,131
+        ok: C216156 (L1): SLM20122R2MIT, 0805, Extended, stock 39,844
+        ok: C23630 (C1, C2, C3, C4, C23): CL10A225KO8NNNC, 0603, Basic, stock 3,403,268
+        ok: C25104 (R11, R15, R12, R14): 0402WGF3300TCE, 0402, Basic, stock 2,250,188
+        ok: C25744 (R110): 0402WGF1002TCE, 0402, Basic, stock 21,232,689
+        ok: C25879 (R5): 0402WGF2201TCE, 0402, Basic, stock 4,386,907
+        ok: C25905 (R6, R13, R109): 0402WGF5101TCE, 0402, Basic, stock 5,087,610
         ok: C270320 (R9, R10): 0201WMJ0270TEE, 0201, Extended, stock 8,123
         ok: C274344 (R3): RC0201FR-07120KL, 0201, Extended, stock 132,303
-        ok: C274872 (R108): RC0201FR-07330RL, 0201, Extended, stock 1,352,807
-        ok: C326586 (C20, C27): CC0402KRX5R6BB475, 0402, Extended, stock 10,175
-        ok: C398367 (U1): TLV62569ADRLR, SOT-563, Extended, stock 11,966
+        ok: C274872 (R108): RC0201FR-07330RL, 0201, Extended, stock 1,352,787
+        ok: C326586 (C20, C27): CC0402KRX5R6BB475, 0402, Extended, stock 10,147
+        ok: C398367 (U1): TLV62569ADRLR, SOT-563, Extended, stock 11,961
         ok: C516470 (R7): 0201WMF8061TEE, 0201, Extended, stock 0
         ok: C526922 (C25): CC0201DRNPO8BN100, 0201, Extended, stock 20,313
-        ok: C52923 (C5, C8, C13, C16, C17, C18, C19, C21, C22, C79, C80, C81, C82, C83): CL05A105KA5NQNC, 0402, Basic, stock 9,121,360
+        ok: C52923 (C5, C8, C13, C16, C17, C18, C19, C21, C22, C79, C80, C81, C82, C83): CL05A105KA5NQNC, 0402, Basic, stock 9,027,946
         ok: C5448342 (U10): APS256XXN-OBR-BG, BGA24_6X8, Extended, stock 0
         ... 7 more (--max-details)
   FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 24 agree with their footprint, 3 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
         C669070 OT252048MJBA4SL (Y1; bom.csv row 30): SMD2520-4P on Crystal_SMD_3225-4Pin_3.2x2.5mm: footprint is SMD-3225-4P, part is SMD-2520-4P; the pads differ too (Crystal_SMD_3225-4Pin_3.2x2.5mm against Crystal_SMD_2520-4Pin_2.5x2.0mm: no pad near (-1.1, 0.85))
         C5448342 APS256XXN-OBR-BG (U10; bom.csv row 29): BGA24_6X8 on BGA-24_5x5_6.0x8.0mm: pads match: BGA-24_6x8mm_Layout5x5_P1.0mm and BGA-24_6x8mm_Layout5x5_P1.0mm in the KiCad library (24 pads)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
+
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (vias, layers, placement, parts)
+        vias: smallest via 0.15 mm hole, 0.41 mm diameter; 189 of 191 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.15mm/(0.25/0.3mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself (source: quote, capabilities, read 2026-10-18)
+        layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
+        placement: parts to place on both sides (15 on F.Cu, 55 on B.Cu: C22, R5, R6, C9, C16, C8, C31, C12, +47 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        parts: 21 Extended part types (one loading fee each: C105884, C106224, C106225, C1550826, C190862, C216156, C270320, C274344, C274872, C326586, C398367, C516470, +9 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: smallest hole 0.15 mm (0.15 mm is the smallest standard drill); outline 22.2 × 22 mm (100 × 100 mm or smaller); no through-hole parts to assemble; 0.8464 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
 NOT CHECKED
   DRC (§12): 5 not compared
@@ -225,7 +235,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  4 blocking, 5 warnings, 4 not checked  -  exit 1
-  4 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  2 blocking, 7 warnings, 4 not checked, 4 cost drivers  -  exit 1
+  2 findings block the order (FAIL lines under FINDINGS); fix them and run again

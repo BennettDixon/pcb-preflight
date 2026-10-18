@@ -343,7 +343,7 @@ class Gates(unittest.TestCase):
                               'bom_path': 'bom.csv', 'checks': [partial], 'by_hand': []})
         self.assertIn('        by hand: C3819953 (J1)', text)
         self.assertIn('Catalogue package fits the footprint (§1): 1 not compared', text)
-        self.assertIn('0 blocking, 0 warnings, 1 not checked  -  exit 3', text)
+        self.assertIn('0 blocking, 0 warnings, 1 not checked, 0 cost drivers  -  exit 3', text)
         self.assertEqual(report.verdict([partial]), 'NOT VERIFIED')     # an item nobody compared is not a pass
 
 

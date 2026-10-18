@@ -104,7 +104,7 @@ class Gates(unittest.TestCase):
         self.assertNotIn('C4 (R2)', joined, 'a failed lookup is not a detail of the gate: it goes under NOT CHECKED')
         self.assertEqual(len(c.unchecked), 1)
         self.assertIn('C4 (R2): lookup failed (offline)', c.unchecked[0])
-        self.assertIn('1 Extended part types', c.summary)
+        self.assertNotIn('Extended part types', c.summary, 'the loading fee is the order gate\'s line now')
 
 
 if __name__ == '__main__':

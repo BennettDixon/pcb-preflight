@@ -62,11 +62,14 @@ class Vias(unittest.TestCase):
         self.assertIn('1.0 mm or less', rows[-1]['condition'])
         self.assertIn('ENIG or OSP', rows[-1]['condition'])
 
-    def test_hole_tiers_keep_todays_floor_and_record_the_priced_hole_below_it(self):
+    def test_the_floor_is_the_smallest_tier_not_the_standard_drill(self):
         rows = preset.TIERS['hole']['rows']
         self.assertEqual([r['min_drill'] for r in rows], [0.15, 0.10])
-        self.assertEqual(rows[0]['min_drill'], preset.MINIMUMS_COMMON['min_through_hole_diameter'], 'the floor is still the standard drill in this commit')
+        self.assertEqual(rows[-1]['min_drill'], preset.MINIMUMS_COMMON['min_through_hole_diameter'], 'a 0.1 mm hole is an ORDER line, not a FAIL')
         self.assertEqual(rows[-1]['min_drill'], preset.TIERS['via']['rows'][-1]['min_hole'])
+        via = preset.TIERS['via']['rows'][-1]
+        self.assertEqual(via['min_diameter'], preset.MINIMUMS_COMMON['min_via_diameter'])
+        self.assertAlmostEqual((via['min_diameter'] - via['min_hole']) / 2, preset.MINIMUMS_COMMON['min_via_annular_width'])
         self.assertIn('more costly', rows[-1]['condition'])
 
 
