@@ -150,6 +150,150 @@ MINIMUMS_BY_LAYERS = {
     4: {'min_track_width': 0.09, 'min_clearance': 0.09},     # multilayer: 0.09 / 0.09 mm (3.5 / 3.5 mil)
 }
 
+# ---- Price tiers: the data behind the ORDER section ----------------------------------------------------
+# What in the files moves the order off JLCPCB's standard (cheapest) option, as sourced tables: the figure
+# the gate finds lands in a tier, and the report names the tier and its condition, never a dollar amount.
+# Dollar amounts are deliberately not stored (they move with exchange rates); every table runs from the
+# standard option downward; nothing here is read live. Every table names its sources in TIERS_SOURCES.
+# The quote page was probed on 2026-10-18 on its defaults (FR-4, 2 layers, 100 × 100 mm, 5 pieces, 1.6 mm,
+# green, HASL, 1 oz), one option changed at a time, reading the option list, the greyed-out options'
+# messages and the "Charge Details" panel after each change. The gate change that uses these tables is a
+# later task; MINIMUMS_COMMON above is still the floor until then.
+TIERS_READ = '2026-10-18'
+TIERS_SOURCES = {
+    'quote': ('https://cart.jlcpcb.com/quote', '2026-10-18'),
+    'capabilities': ('https://jlcpcb.com/capabilities/pcb-capabilities', '2026-10-18'),
+    'pcba-capabilities': ('https://jlcpcb.com/capabilities/pcb-assembly-capabilities', '2026-10-18'),
+    'pcba-price': ('https://jlcpcb.com/help/article/pcb-assembly-price', '2026-10-18'),        # "Last updated on Sep 09, 2026"
+    'pcba-faqs': ('https://jlcpcb.com/help/article/pcb-assembly-faqs', '2026-10-18'),          # "Last updated on Sep 09, 2026"
+    'production-time': ('https://jlcpcb.com/help/article/pcb-fabrication-services-and-production-time', '2026-10-18'),
+    'dimensions': ('https://jlcpcb.com/help/article/pcb-dimensions', '2026-10-18'),
+    'castellated': ('https://jlcpcb.com/help/article/what-is-castellated-holes', '2026-10-18'),
+    'blog-pcba-cost': ('https://jlcpcb.com/blog/reduce-pcb-assembly-cost-prototype', '2026-10-18'),  # published 2026-10-13, prices read there 2026-10-09
+}
+
+# Via tiers: the quote page's "Min via hole size/diameter" options, hole/(minimum diameter/preferred diameter)
+# in mm, standard first. The capabilities page: "Via diameter should be 0.1mm(0.15mm preferred) larger than
+# Via hole size", "Preferred Min. Via hole size: 0.2mm", and "0.1mm or 0.15mm hole size with any size via
+# diameter, and 0.2mm or 0.25mm hole size with via diameter less than 0.45mm, will cost more. Please select
+# corresponding via size option when placing order." The figure the gate reads is the board's smallest via
+# hole; the tier it lands in is the first row whose min_hole it is not below.
+_SMALL_VIA = 'priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself'
+VIA_TIERS = [
+    {'option': '0.3mm/(0.4/0.45mm)', 'min_hole': 0.30, 'min_diameter': 0.40, 'preferred_diameter': 0.45, 'standard': True, 'condition': ''},
+    {'option': '0.25mm/(0.35/0.4mm)', 'min_hole': 0.25, 'min_diameter': 0.35, 'preferred_diameter': 0.40, 'standard': False, 'condition': _SMALL_VIA},
+    {'option': '0.2mm/(0.3/0.35mm)', 'min_hole': 0.20, 'min_diameter': 0.30, 'preferred_diameter': 0.35, 'standard': False, 'condition': _SMALL_VIA},
+    {'option': '0.15mm/(0.25/0.3mm)', 'min_hole': 0.15, 'min_diameter': 0.25, 'preferred_diameter': 0.30, 'standard': False, 'condition': _SMALL_VIA},
+    {'option': '0.1mm/(0.2/0.25mm)', 'min_hole': 0.10, 'min_diameter': 0.20, 'preferred_diameter': 0.25, 'standard': False,
+     'condition': 'priced; board thickness 1.0 mm or less and ENIG or OSP finish (the quote page greys the option out '
+                  'at 1.6 mm: "0.1mm Via is only supported for board thickness ≤ 1.0mm", and refuses it with HASL: '
+                  '"HASL is incompatible with 0.1mm (0.2/0.25mm) hole sizes. Please choose ENIG or OSP."); '
+                  'plugged vias and the 4-wire Kelvin test are added'},
+]
+
+# The smallest drilled hole, vias and PTH pads alike (the quote page has no separate PTH-drill option; the via
+# option covers both). Capabilities page: "2-layer: 0.15 – 6.3 mm", "Multilayer: 0.15 – 6.3 mm (0.1mm
+# microvias only available for board thickness ≤1mm; ENIG/OSP surface finish required)", "Min. drill diameter
+# for 2- or more-layer PCBs is 0.1 mm (more costly!)". So 0.1 mm is a priced option with conditions, not a
+# capability limit; 0.15 mm is the smallest standard drill (MINIMUMS_COMMON's floor today).
+HOLE_TIERS = [
+    {'min_drill': 0.15, 'standard': True, 'condition': 'the smallest drill without a surcharge on 2 and more layers'},
+    {'min_drill': 0.10, 'standard': False,
+     'condition': '"more costly!"; board thickness 1 mm or less and ENIG or OSP finish; ordered through the 0.1 mm via option'},
+]
+
+# Layer-count classes: the quote page prices 1-2 layers, 4 layers and "High Precision PCB" (6 layers and more)
+# as three classes, and the help centre's production-time classes are the same three (each "Size ≤ 100x100mm").
+# How much each class costs is the quote page's to say, never this table's.
+LAYER_TIERS = [
+    {'max_layers': 2, 'label': '1-2 layers', 'standard': True, 'condition': ''},
+    {'max_layers': 4, 'label': '4 layers', 'standard': False, 'condition': 'its own price class'},
+    {'max_layers': 32, 'label': 'High Precision PCB (6 layers and more)', 'standard': False,
+     'condition': 'the quote page\'s "High Precision PCB" class'},
+]
+
+# Board-size classes. The help centre prices and schedules "Size ≤ 100x100mm"; on the quote page that size shows
+# a "Special Offer" line, and a larger board is priced as an "Engineering fee" plus a "Board" line. Boundary
+# observed on 2026-10-18: 100 × 101 mm still the offer, 100 × 110 mm not; the exact edge was not pinned.
+SIZE_TIERS = [
+    {'max_x': 100.0, 'max_y': 100.0, 'label': '100 × 100 mm or smaller', 'standard': True, 'condition': ''},
+    {'max_x': None, 'max_y': None, 'label': 'larger than 100 × 100 mm', 'standard': False,
+     'condition': 'priced as "Engineering fee" plus a "Board" line that grows with area'},
+]
+
+# JLCPCB assembles as few as 2 of an order's boards (blog, PCBA capabilities: Economic "2 - 50 pcs").
+ASSEMBLY_MIN = 2
+
+# Assembly drivers the board or BOM files can show: what moves the order from Economic PCBA (single-sided,
+# 2/4/6 layers, 0.8-1.6 mm, 2-50 pieces, no castellated holes / edge plating / gold fingers) to Standard
+# PCBA, or adds a line inside a tier. Fees per the price article: setup and stencil are per side on Standard;
+# through-hole parts are "Manual Assembly" per joint plus a hand-soldering labour fee per order on both tiers
+# (FAQ: "wave soldering", "+ 1 more day"); Economic charges a feeder-loading fee per unique Extended part
+# (Basic and Preferred Extended parts exempt), Standard per unique part, Basic or Extended. Economic PCBA also
+# requires packages of 0402 and larger, IC pitch >= 0.4 mm and BGA pitch >= 0.5 mm; that is not a row here,
+# since the files do not state a package size and inferring one from pads is a guess, not a reading.
+ASSEMBLY_TIERS = [
+    {'driver': 'single-sided placement', 'tier': 'Economic PCBA', 'standard': True,
+     'detectable': 'yes: every placed footprint on one copper layer',
+     'condition': 'Economic PCBA: "Single sided placement (SMT/Thru-hole)"'},
+    {'driver': 'double-sided placement', 'tier': 'Standard PCBA', 'standard': False,
+     'detectable': 'yes: placed footprints on both F.Cu and B.Cu (a through-hole part on the back counts too)',
+     'condition': 'Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side'},
+    {'driver': 'through-hole parts', 'tier': 'either tier, wave soldering', 'standard': False,
+     'detectable': 'yes: (attr through_hole) footprints in the BOM',
+     'condition': 'priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; '
+                  '"available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day"'},
+    {'driver': 'Extended part', 'tier': 'per unique part type', 'standard': False,
+     'detectable': 'yes, online: the catalogue says Basic, Preferred Extended or Extended per LCSC code',
+     'condition': 'Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts '
+                  'exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended'},
+    {'driver': 'layer count other than 2, 4 or 6, or thickness outside 0.8-1.6 mm', 'tier': 'Standard PCBA', 'standard': False,
+     'detectable': 'yes: copper layers; thickness is (general (thickness)) in the board file, KiCad\'s 1.6 default unless set',
+     'condition': 'Economic PCBA: "2,4,6-layers", "0.8mm - 1.6mm"; Standard: "1 - 32 layers", thickness "No limit"'},
+    {'driver': 'castellated holes', 'tier': 'Standard PCBA', 'standard': False,
+     'detectable': 'yes: (castellated_pads yes) in the stackup',
+     'condition': 'Economic PCBA: "Not Support"; Standard: "Support"; help centre: made "with a special process and extra '
+                  'cost will be charged"; hole ≥ 0.5 mm, board ≥ 10 × 10 mm and ≥ 0.6 mm thick'},
+    {'driver': 'edge plating', 'tier': 'Standard PCBA', 'standard': False,
+     'detectable': 'yes: the stackup\'s edge_plating flag when set',
+     'condition': 'Economic PCBA: "Not Support"; quote page: "ENIG surface finish is required for edge plating"; '
+                  'board ≥ 10 × 10 mm and ≥ 0.6 mm thick'},
+    {'driver': 'impedance control', 'tier': 'Specify Stackup', 'standard': False,
+     'detectable': 'yes: (dielectric_constraints yes) in the stackup when the designer ticked impedance control',
+     'condition': 'a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, '
+                  'tolerance ±10%; no surcharge was observed or stated'},
+]
+
+# Copper weight: a priced "Outer Copper Weight" option the files cannot see. The capabilities page's track and
+# space minimums per weight, 2-layer and multilayer, are the note the report carries with the 1 oz assumption.
+COPPER_WEIGHT_TIERS = [
+    {'outer_oz': 1.0, 'standard': True, 'min_track_space': {2: (0.10, 0.10), 4: (0.09, 0.09)}, 'condition': ''},
+    {'outer_oz': 2.0, 'standard': False, 'min_track_space': {2: (0.16, 0.16), 4: (0.15, 0.15)},
+     'condition': 'priced "Outer Copper Weight" option; 2.5 / 3.5 / 4.5 oz exist for 2-layer boards only, at 0.2 / 0.25 / 0.3 mm track and space'},
+]
+
+# What the quote page prices that no board or BOM file states: the report names these once, as not checked.
+NOT_IN_FILES = ('copper weight', 'surface finish (HASL, ENIG, OSP)', 'board thickness beyond the stackup figure', 'colour',
+                'quantity', 'via covering and plating method', 'gold fingers', 'press-fit holes', 'blind slots', 'backdrill',
+                'outline tolerance', 'panelisation (mouse bites, V-cut)')
+
+TIERS = {
+    'via': {'unit': 'mm', 'source': ('quote', 'capabilities'), 'rows': VIA_TIERS},
+    'hole': {'unit': 'mm', 'source': ('capabilities', 'quote'), 'rows': HOLE_TIERS},
+    'layers': {'unit': 'copper layers', 'source': ('quote', 'production-time'), 'rows': LAYER_TIERS},
+    'size': {'unit': 'mm', 'source': ('quote', 'production-time', 'dimensions'), 'rows': SIZE_TIERS},
+    'assembly': {'unit': 'driver', 'source': ('pcba-capabilities', 'pcba-price', 'pcba-faqs', 'blog-pcba-cost', 'castellated'), 'rows': ASSEMBLY_TIERS},
+    'copper_weight': {'unit': 'oz', 'source': ('quote', 'capabilities'), 'rows': COPPER_WEIGHT_TIERS},
+}
+
+# What could not be read from a JLCPCB page on 2026-10-18 and is therefore not in the tables (never guessed).
+TIERS_NOT_SOURCED = (
+    'the exact board-size edge of the "Special Offer" class (between 100 × 101 and 100 × 110 mm)',
+    'the quote page\'s assembly options (they need a Gerber upload); the assembly rows come from the PCBA capabilities and price pages',
+    'a surcharge for impedance control (Specify Stackup)',
+    'the castellated-hole surcharge line (the quote page wants an edge count first; the help centre states the charge)',
+)
+
 
 def minimums(copper_layers):
     return dict(MINIMUMS_COMMON, **MINIMUMS_BY_LAYERS[2 if copper_layers <= 2 else 4])
