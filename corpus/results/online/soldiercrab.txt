@@ -169,25 +169,25 @@ FINDINGS
         C1550826 (IC1): stock 1 is under 10x the 1 needed (LFE5U-45F-7BG256I)
         C603501 (U4): stock 7 is under 10x the 1 needed (NCP115AMX180TCG)
         ok: C105884 (C6, C28, C29): CC0402MRX5R5BB106, 0402, Extended, stock 1,193
-        ok: C106224 (R2): RC0201FR-07100KL, 0201, Extended, stock 903,504
-        ok: C106225 (R1): RC0201FR-0710KL, 0201, Extended, stock 1,778,951
-        ok: C1525 (C7, C9, C10, C11, C12, C14, C15, C24, C26, C31, C32, C33, C35, C65): CL05B104KO5NNNC, 0402, Basic, stock 29,489,857
+        ok: C106224 (R2): RC0201FR-07100KL, 0201, Extended, stock 903,428
+        ok: C106225 (R1): RC0201FR-0710KL, 0201, Extended, stock 1,778,789
+        ok: C1525 (C7, C9, C10, C11, C12, C14, C15, C24, C26, C31, C32, C33, C35, C65): CL05B104KO5NNNC, 0402, Basic, stock 29,490,008
         ok: C1550826 (IC1): LFE5U-45F-7BG256I, CABGA-256, Extended, stock 1
-        ok: C190862 (U7): W25Q128JVPIQ, WSON-8-EP(5x6), Extended, stock 16,131
+        ok: C190862 (U7): W25Q128JVPIQ, WSON-8-EP(5x6), Extended, stock 16,076
         ok: C216156 (L1): SLM20122R2MIT, 0805, Extended, stock 39,844
-        ok: C23630 (C1, C2, C3, C4, C23): CL10A225KO8NNNC, 0603, Basic, stock 3,403,268
-        ok: C25104 (R11, R15, R12, R14): 0402WGF3300TCE, 0402, Basic, stock 2,250,188
-        ok: C25744 (R110): 0402WGF1002TCE, 0402, Basic, stock 21,232,689
-        ok: C25879 (R5): 0402WGF2201TCE, 0402, Basic, stock 4,386,907
-        ok: C25905 (R6, R13, R109): 0402WGF5101TCE, 0402, Basic, stock 5,087,610
+        ok: C23630 (C1, C2, C3, C4, C23): CL10A225KO8NNNC, 0603, Basic, stock 3,403,318
+        ok: C25104 (R11, R15, R12, R14): 0402WGF3300TCE, 0402, Basic, stock 2,250,446
+        ok: C25744 (R110): 0402WGF1002TCE, 0402, Basic, stock 21,200,011
+        ok: C25879 (R5): 0402WGF2201TCE, 0402, Basic, stock 4,384,068
+        ok: C25905 (R6, R13, R109): 0402WGF5101TCE, 0402, Basic, stock 5,087,673
         ok: C270320 (R9, R10): 0201WMJ0270TEE, 0201, Extended, stock 8,123
         ok: C274344 (R3): RC0201FR-07120KL, 0201, Extended, stock 132,303
         ok: C274872 (R108): RC0201FR-07330RL, 0201, Extended, stock 1,352,787
         ok: C326586 (C20, C27): CC0402KRX5R6BB475, 0402, Extended, stock 10,147
-        ok: C398367 (U1): TLV62569ADRLR, SOT-563, Extended, stock 11,961
+        ok: C398367 (U1): TLV62569ADRLR, SOT-563, Extended, stock 11,956
         ok: C516470 (R7): 0201WMF8061TEE, 0201, Extended, stock 0
         ok: C526922 (C25): CC0201DRNPO8BN100, 0201, Extended, stock 20,313
-        ok: C52923 (C5, C8, C13, C16, C17, C18, C19, C21, C22, C79, C80, C81, C82, C83): CL05A105KA5NQNC, 0402, Basic, stock 9,027,946
+        ok: C52923 (C5, C8, C13, C16, C17, C18, C19, C21, C22, C79, C80, C81, C82, C83): CL05A105KA5NQNC, 0402, Basic, stock 9,017,005
         ok: C5448342 (U10): APS256XXN-OBR-BG, BGA24_6X8, Extended, stock 0
         ... 7 more (--max-details)
   FAIL  Catalogue package fits the footprint (§1): 1 do not fit the footprint; 24 agree with their footprint, 3 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
@@ -196,11 +196,11 @@ FINDINGS
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (vias, layers, placement, parts)
+  COST  Order: what moves the price (§13): 3 hidden drivers (vias, placement, parts), 1 chosen (layers) off JLCPCB's standard tier
         vias: smallest via 0.15 mm hole, 0.41 mm diameter; 189 of 191 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.15mm/(0.25/0.3mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself (source: quote, capabilities, read 2026-10-18)
-        layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
         placement: parts to place on both sides (15 on F.Cu, 55 on B.Cu: C22, R5, R6, C9, C16, C8, C31, C12, +47 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         parts: 21 Extended part types (one loading fee each: C105884, C106224, C106225, C1550826, C190862, C216156, C270320, C274344, C274872, C326586, C398367, C516470, +9 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 6 (the quote page's "High Precision PCB" class)
         note: on the standard tier: smallest hole 0.15 mm (0.15 mm is the smallest standard drill); outline 22.2 × 22 mm (100 × 100 mm or smaller); no through-hole parts to assemble; 0.8464 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

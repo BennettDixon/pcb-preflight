@@ -64,7 +64,6 @@ FINDINGS
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
-        clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 7 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 92.15)]
@@ -73,6 +72,7 @@ FINDINGS
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
+        clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 1 [/Solar_module/VBAT] of F2 on B.Cu @ (170.97, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 2 [Net-(F2-Pad2)] of F2 on B.Cu @ (167.79, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [BAT-] on F.Cu, priority 5 @ (104.66, 72.87); Zone [BAT-] on F.Cu, priority 5 @ (107.16, 63.62)]
@@ -165,10 +165,10 @@ FINDINGS
         ... 44 more (--max-details)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 3 drivers off JLCPCB's standard tier (layers, placement, through-hole)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+  COST  Order: what moves the price (§13): 1 hidden driver (placement), 2 chosen (layers, through-hole) off JLCPCB's standard tier
         placement: parts to place on both sides (12 on F.Cu, 174 on B.Cu: C35, R24, C74, C65, C16, C9, C39, C38, +166 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        through-hole: 17 through-hole parts to assemble (I2C2, SW1, I2C1, LED2, PWR_SW1, C35, C38, L2, C3, L3, C33, C45, +5 more; 20 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        through-hole: 17 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 99.45 × 72 mm (100 × 100 mm or smaller); 1.2 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

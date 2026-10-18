@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "tinytapeout-demo",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/tiny-tapeout",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/tiny-tapeout",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -49,7 +49,7 @@
   },
   "copper_layers": 4,
   "footprints": 309,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/tiny-tapeout.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/tiny-tapeout.csv",
   "checks": [
     {
       "id": "erc",
@@ -115,7 +115,7 @@
         "warning: pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]",
         "warning: pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]",
         "warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U5 [W25Q32JVSS] @ (50.8, 180.34)]",
-        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (35.56, 71.12); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
+        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (43.18, 30.48); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -1051,7 +1051,7 @@
       "status": "fail",
       "summary": "1 connections still to route",
       "details": [
-        "unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]"
+        "unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -1294,9 +1294,9 @@
         "C72038 (D1, D2, D3, D4): bom.csv says MPN \"LTST-C190YKT\" but the catalogue says \"19-213/Y2C-CQ2R2L/3T(CY)\" (-40\u2103~+85\u2103 1.7V~2.3V 120\u00b0 20mA 585.5nm~591.5nm 591nm 60mW 90m)",
         "C86816 (C10): bom.csv says MPN \"CL21A226KOQNNNG\" but the catalogue says \"GRM21BR61E226ME44L\" (22uF 25V X5R \u00b120% 0805 Multilayer Ceramic Capacitors MLCC - )",
         "ok: C1884490 (F1): JK-SMD0805-035-12V, 0805, Extended, stock 1,754",
-        "ok: C237493 (C6, C7): GRM21BZ71E106KE15L, 0805, Extended, stock 148,594",
+        "ok: C237493 (C6, C7): GRM21BZ71E106KE15L, 0805, Extended, stock 148,641",
         "ok: C72038 (D1, D2, D3, D4): 19-213/Y2C-CQ2R2L/3T(CY), 0603, Extended, stock 0",
-        "ok: C86816 (C10): GRM21BR61E226ME44L, 0805, Extended, stock 143,642"
+        "ok: C86816 (C10): GRM21BR61E226ME44L, 0805, Extended, stock 143,628"
       ],
       "unchecked": [],
       "verified": [],
@@ -1342,13 +1342,13 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "5 drivers off JLCPCB's standard tier (layers, size, through-hole, parts, impedance control)",
+      "summary": "2 hidden drivers (parts, impedance control), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier",
       "details": [
-        "layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)",
-        "size: outline 104.5 \u00d7 81 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
-        "through-hole: 6 through-hole parts to assemble (J13, J12, J3, J5, J14, J6; 72 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
         "parts: 4 Extended part types (one loading fee each: C1884490, C237493, C72038, C86816); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance \u00b110%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance \u00b110%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
+        "layers: 4 (its own price class)",
+        "size: 104.5 \u00d7 81 mm (larger than 100 \u00d7 100 mm)",
+        "through-hole: 6 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -1356,6 +1356,28 @@
         "on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (120 parts on F.Cu); 1.56252 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "parts",
+          "kind": "hidden"
+        },
+        {
+          "name": "impedance control",
+          "kind": "hidden"
+        },
+        {
+          "name": "layers",
+          "kind": "chosen"
+        },
+        {
+          "name": "size",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "multichannel_mixer",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/multichannel-unrouted",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/multichannel-unrouted",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -218,12 +218,12 @@
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of IC4 @ (164.359, 84.1); Pad 2 [+12V] of C30 on B.Cu @ (163.5, 84.4)]",
         "warning: silk_over_copper: Silkscreen clipped by solder mask [Reference field of IC2 @ (142.359, 84.1); Pad 2 [+12V] of C12 on B.Cu @ (141.5, 84.4)]",
         "warning: nonmirrored_text_on_back_layer: Non-Mirrored text on back layer [Reference field of R3 @ (195.65, 111.06)]",
-        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]",
         "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2250 mm) [Pad 1 [Net-(C34-Pad1)] of C34 on B.Cu @ (104.0, 117.9); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]",
-        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]",
         "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]",
         "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [Pad 2 [Net-(C38-Pad2)] of C38 on B.Cu @ (106.4, 117.3); Track [Net-(IC5B-IN-)] on B.Cu, length 4.4592 mm @ (105.05, 115.040811)]",
-        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4); Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85)]"
+        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C35-Pad1)] of RV14 @ (103.5, 97.4); Track [Net-(IC5B-IN-)] on B.Cu, length 4.0000 mm @ (104.85, 94.85)]",
+        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2000 mm) [PTH pad 3 [Net-(C34-Pad1)] of RV13 @ (103.5, 115.4); Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811)]",
+        "warning (project's own rule): clearance: Clearance violation (board minimum clearance 0.3000 mm; actual 0.2296 mm) [Track [Net-(IC5B-IN-)] on B.Cu, length 3.1820 mm @ (102.8, 112.790811); Pad 1 [GND] of C38 on B.Cu @ (106.4, 114.3)]"
       ],
       "unchecked": [
         "missing_courtyard: Footprint has no courtyard defined [Footprint J5 @ (191.285, 87.385)]: no courtyard, so courtyards_overlap could not see this footprint",
@@ -278,7 +278,7 @@
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 19.0000 mm @ (18.675, 91.225); Pad 8 [+12V] of IC3 on B.Cu @ (37.675, 84.365)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (121.15, 86.75); Track [+12V] on F.Cu, length 6.0953 mm @ (99.15, 89.35)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 0.7778 mm @ (142.6, 86.2); Pad 2 [+12V] of C12 on B.Cu @ (141.5, 84.4)]",
-        "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 0.7778 mm @ (142.6, 86.2); Pad 8 [+12V] of IC2 on B.Cu @ (144.46, 86.8)]",
+        "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (143.15, 86.75); Pad 8 [+12V] of IC2 on B.Cu @ (144.46, 86.8)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 2.6000 mm @ (143.15, 86.75); Track [+12V] on F.Cu, length 6.0953 mm @ (121.15, 89.35)]",
         "unconnected_items: Missing connection between items [Track [+12V] on F.Cu, length 6.0953 mm @ (143.15, 89.35); Pad 2 [+12V] of C30 on B.Cu @ (163.5, 84.4)]",
         "unconnected_items: Missing connection between items [Pad 2 [+12V] of C30 on B.Cu @ (163.5, 84.4); Pad 8 [+12V] of IC4 on B.Cu @ (166.46, 86.8)]",
@@ -519,7 +519,7 @@
       "title": "bom.csv",
       "pitfall": "\u00a71",
       "status": "fail",
-      "summary": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/multichannel-unrouted.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
+      "summary": "/Users/bennett/projects/pcb-preflight/corpus/boms/multichannel-unrouted.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
       "details": [],
       "unchecked": [],
       "verified": [],
@@ -541,11 +541,11 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "3 drivers off JLCPCB's standard tier (size, placement, through-hole)",
+      "summary": "1 hidden driver (placement), 2 chosen (size, through-hole) off JLCPCB's standard tier",
       "details": [
-        "size: outline 110 \u00d7 111 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
         "placement: parts to place on both sides (33 on F.Cu, 81 on B.Cu: R39, R34, R14, R16, R41, IC1, R35, R44, +73 more on the back); the standard is Economic PCBA: \"Single sided placement (SMT/Thru-hole)\"; Standard PCBA: \"Single & double sided placement (SMT/Thru-hole)\"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "through-hole: 33 through-hole parts to assemble (J5, RV5, C1, J9, J6, RV13, RV14, RV10, C2, J7, RV16, C23, +21 more; 135 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "size: 110 \u00d7 111 mm (larger than 100 \u00d7 100 mm)",
+        "through-hole: 33 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -553,6 +553,20 @@
         "on the standard tier: vias smallest via 0.6 mm hole, 1.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.6 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); 1.6 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "placement",
+          "kind": "hidden"
+        },
+        {
+          "name": "size",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

@@ -97,8 +97,9 @@ What still blocks the built boards offline, and is the next set of decisions:
 * `drill_out_of_range` with figures under 0.15 mm: jetson x199 and royalblue x183 use 0.1 mm holes, which
   JLCPCB lists as available at extra cost; the preset's floor is the standard 0.15 mm. **Closed 2026-10-18**
   ("ORDER on the corpus" below): the floor is the smallest priced tier, 0.10 mm, so jetson's holes are an
-  ORDER line; royalblue's 183 items are blind vias with a 1e-05 mm drill in the file, below every tier,
-  and still block.
+  ORDER line; royalblue's 183 items are `(via blind ...)` with a 0.00001 mm `(drill)` in the file, a
+  sentinel for "no through drill" that the gate now reads by keyword and layers as a blind via (an HDI
+  ORDER line and a DRC warning with a note), never as a hole, so royalblue left the drill block too.
 * `starved_thermal` x16 on pocketpd: a zone-connection matter KiCad ships as error; not a fab limit.
 * The true findings the headline names (tiny-tapeout's shorts and unrouted connection, openair-max's DNP
   and net mismatches, BOMs not chosen from the JLCPCB catalogue on cm5-minima and bitaxegt).
@@ -410,9 +411,20 @@ MPN, package, library and stock; the category and description are in the catalog
 The ORDER section (DESIGN.md G15, `checks.order_check()`, status `cost`) lists what the files show that
 lands on a priced tier of JLCPCB's (`preset.TIERS`, read 2026-10-18); it never moves the verdict. Run on
 the 21 boards offline (`sh corpus/run.sh`) and on the 15 with LCSC codes online (`--online-only`), kicad-cli
-10.0.7; `results/*.txt` hold the lines, `tests/test_corpus.py` `ORDER` freezes the driver names. With the
-hole floor moved to 0.10 mm, jetson-thor-baseboard lost its DRC block (its only remaining block is the
-missing bom.csv) and royalblue54l-feather kept its own (see above); no other verdict or blocking set moved.
+10.0.7; `results/*.txt` hold the lines, `tests/test_corpus.py` `ORDER` freezes the driver names in print
+order. With the hole floor moved to 0.10 mm, jetson-thor-baseboard lost its DRC block (its only remaining
+block is the missing bom.csv). royalblue54l-feather kept its own at first: its 183 vias are written
+`(via blind ... (drill 0.00001) (layers "F.Cu" "B.Cu"))`, and the gate read the 0.00001 as a hole below
+every tier. That figure is KiCad's sentinel for a via with no through drill, not a measurement, so since
+the blind-via reading (same day) the gate classifies a via by its `blind`/`micro` keyword and its two
+layers, never by its drill: royalblue's 183 are blind vias, an HDI line in ORDER (a process JLCPCB prices,
+tier not yet sourced) and a DRC warning with a note instead of 183 `drill_out_of_range` blocks. Its DRC
+still has copper_edge_clearance, clearance and annular_width errors, so the board still fails on `drc`
+and `bom-lcsc`; the blocking set lost nothing else. No other verdict or blocking set moved.
+
+The lines print in two kinds, hidden first (a via or hole tier with its condition, HDI, parts on the back,
+Extended part types, the assembly class, the stackup flags) and the designer's chosen drivers after them,
+one short line each (layers, size, through-hole parts); the table below keeps the kinds in that order.
 
 **19 of 21 boards carry at least one priced option offline; online, every one of the 15 with LCSC codes
 does** (each has Extended part types). The two on the standard tier everywhere offline are the two
@@ -423,23 +435,23 @@ and online adds the one line the README leaves out (4 Extended part types, one l
 | Board | Layers | Outline (mm) | Smallest via hole / diameter | Drivers offline (tier) | Extended types online |
 |:--|:--|:--|:--|:--|:--|
 | beyondex-limiter, -prefix | 2 | 22.5 × 13 | 0.3 / 0.5 | none (standard tier everywhere) | 4 |
-| bitaxeaura | 4 | 65 × 122 | 0.3 / 0.5 | layers (4 layers); size (larger than 100 × 100); placement (40 parts on B.Cu: Standard PCBA); through-hole (6 parts, 36 holes) | 2 |
-| bitaxegt | 6 | 65 × 112 | 0.3 / 0.5 | layers (High Precision PCB); size; placement (130 on B.Cu); through-hole (4 parts) | 3 |
+| bitaxeaura | 4 | 65 × 122 | 0.3 / 0.5 | placement (40 parts on B.Cu: Standard PCBA); layers (4 layers); size (larger than 100 × 100); through-hole (6 parts) | 2 |
+| bitaxegt | 6 | 65 × 112 | 0.3 / 0.5 | placement (130 on B.Cu); layers (High Precision PCB); size; through-hole (4 parts) | 3 |
 | canfd-mc | 4 | 55 × 32 | 0.3 / 0.6 | layers (4 layers) | 16 |
-| cm5-minima | 6 | 59.64 × 62.69 | 0.3 / 0.45 | layers (High Precision); placement (14 on B.Cu); through-hole (2 parts); impedance control (`dielectric_constraints yes`: Specify Stackup) | 6 |
-| complex-hierarchy | 2 | 100.7 × 80.03 | none | size (100.7 mm: larger than 100 × 100 by the table; the quote page still showed the offer at 100 × 101 and the exact edge was not pinned); through-hole (68 parts, 165 holes) | not run |
-| jetson-thor-baseboard | 10 | 180 × 100 | 0.1 / 0.45 | vias (3235 of 3235 below the standard option: the 0.1mm/(0.2/0.25mm) option, thickness ≤ 1.0 mm and ENIG or OSP); holes (3258 of 3309 under 0.15 mm: the 0.1 mm tier, "more costly!"); layers (High Precision); size; placement (360 on B.Cu); through-hole (2 parts); assembly class (10 layers, 1.711 mm: Standard PCBA) | not run |
+| cm5-minima | 6 | 59.64 × 62.69 | 0.3 / 0.45 | placement (14 on B.Cu); impedance control (`dielectric_constraints yes`: Specify Stackup); layers (High Precision); through-hole (2 parts) | 6 |
+| complex-hierarchy | 2 | 100.7 × 80.03 | none | size (100.7 mm: larger than 100 × 100 by the table; the quote page still showed the offer at 100 × 101 and the exact edge was not pinned); through-hole (68 parts) | not run |
+| jetson-thor-baseboard | 10 | 180 × 100 | 0.1 / 0.45 | vias (3235 of 3235 below the standard option: the 0.1mm/(0.2/0.25mm) option, thickness ≤ 1.0 mm and ENIG or OSP); holes (3258 of 3309 under 0.15 mm: the 0.1 mm tier, "more costly!"); placement (360 on B.Cu); assembly class (10 layers, 1.711 mm: Standard PCBA); layers (High Precision); size; through-hole (2 parts) | not run |
 | jlcpcb-example | 2 | 107.3 × 82.8 | 0.2 / 0.4 | vias (30 of 101 at 0.2 mm: the 0.2mm/(0.3/0.35mm) option, plugged vias and the Kelvin test added); size; through-hole (4 parts) | 4 |
-| multichannel, -unrouted | 2 | 110 × 111 | 0.6 / 1.5 | size; placement (81 on B.Cu); through-hole (33 parts, 135 holes) | not run |
-| openair-max | 4 | 99.45 × 72 | 0.3 / 0.5 | layers (4 layers); placement (174 on B.Cu); through-hole (17 parts) | 78 |
-| openjbod-rp2040 | 4 | 72.61 × 170 | 0.3 / 0.5 | layers; size (170 mm); through-hole (14 parts, 84 holes) | 24 |
-| pocketpd | 2 | 50 × 50 | 0.3 / 0.5 | through-hole (3 parts, 6 holes) | 22 |
-| royalblue54l-feather | 8 | 58.42 × 22.86 | 1e-05 / 0.35 | vias and holes (183 blind vias at a 1e-05 mm drill: below every option, DRC blocks it); layers (High Precision); assembly class (8 layers: Standard PCBA); castellated holes (`castellated_pads yes`: Standard PCBA, "extra cost will be charged") | 15 |
-| sh-rpi | 4 | 65 × 56.5 | 0.2 / 0.5 | vias (295 of 364 at 0.2 mm: the 0.2 mm option); layers; placement (J501, J801 through-hole on the back); through-hole (9 parts, 70 holes) | 39 |
+| multichannel, -unrouted | 2 | 110 × 111 | 0.6 / 1.5 | placement (81 on B.Cu); size; through-hole (33 parts) | not run |
+| openair-max | 4 | 99.45 × 72 | 0.3 / 0.5 | placement (174 on B.Cu); layers (4 layers); through-hole (17 parts) | 78 |
+| openjbod-rp2040 | 4 | 72.61 × 170 | 0.3 / 0.5 | layers; size (170 mm); through-hole (14 parts) | 24 |
+| pocketpd | 2 | 50 × 50 | 0.3 / 0.5 | through-hole (3 parts) | 22 |
+| royalblue54l-feather | 8 | 58.42 × 22.86 | none through (183 blind, 0.35 mm diameter); smallest pad hole 0.2 | HDI (183 blind/buried vias: JLCPCB's own process, tier not yet sourced); assembly class (8 layers: Standard PCBA); castellated holes (`castellated_pads yes`: Standard PCBA, "extra cost will be charged"); layers (High Precision) | 15 |
+| sh-rpi | 4 | 65 × 56.5 | 0.2 / 0.5 | vias (295 of 364 at 0.2 mm: the 0.2 mm option); placement (J501, J801 through-hole on the back); layers; through-hole (9 parts) | 39 |
 | smarthome-metering, -prefix | 2 | 120.5 × 86.5 | none | size; through-hole (X1, X2) | not run |
-| soldiercrab | 6 | 22.2 × 22 | 0.15 / 0.41 | vias (189 of 191 at 0.15 mm: the 0.15mm/(0.25/0.3mm) option); layers (High Precision); placement (55 on B.Cu) | 21 |
+| soldiercrab | 6 | 22.2 × 22 | 0.15 / 0.41 | vias (189 of 191 at 0.15 mm: the 0.15mm/(0.25/0.3mm) option); placement (55 on B.Cu); layers (High Precision) | 21 |
 | sonatino | 4 | 65 × 30 | 0.25 / 0.45 | vias (209 of 292 at 0.25 mm: the 0.25mm/(0.35/0.4mm) option); layers; through-hole (J5) | 31 |
-| tiny-tapeout | 4 | 104.5 × 81 | 0.3 / 0.6 | layers; size (104.5 mm); through-hole (6 parts, 72 holes); impedance control (Specify Stackup) | 4 |
+| tiny-tapeout | 4 | 104.5 × 81 | 0.3 / 0.6 | impedance control (Specify Stackup); layers; size (104.5 mm); through-hole (6 parts) | 4 |
 
 The thickness driver read to the nearest 0.1 mm: openjbod-rp2040's stackup sums to 1.6062 mm and
 cm5-minima's to 1.5296, both 1.6 and 1.5 mm boards on the quote page's list, so neither is a driver;
@@ -465,9 +477,10 @@ anything, yes; most say nothing about the tier, and the files' stackup finish is
   High Precision class, the 0.15 mm via option and Standard PCBA; a BGA-256 board could not be built
   otherwise. Consistent; the repository does not state the options.
 * **royalblue54l-feather** (Crowd Supply campaign, photo of the built board): 8 layers, castellated
-  pads and `(copper_finish "ENIG")` in the stackup, blind vias. High Precision, Standard PCBA and the
-  castellated surcharge are what the file says; the 1e-05 mm drill on the 183 blind vias is the
-  KiCad-demo artefact the 2026-10-17 triage filed as unknown, not an order option.
+  pads and `(copper_finish "ENIG")` in the stackup, blind vias. High Precision, Standard PCBA, the
+  castellated surcharge and an HDI process are what the file says; the 0.00001 mm drill on the 183
+  `(via blind ...)` is KiCad's sentinel for a via without a through drill (the 2026-10-17 triage filed it
+  as unknown), not a hole and not an order option, and the gate reads it as the via's kind.
 * **sh-rpi** (sold at shop.hatlabs.fi; `assembly-panel/bom.csv` in JLCPCB's format): 4 layers, 295 vias
   at 0.2 mm, two through-hole connectors on the back, ENIG in the stackup. The 0.2 mm option and
   Standard PCBA (double-sided) are consistent with a JLCPCB assembly order; not stated in the repo.

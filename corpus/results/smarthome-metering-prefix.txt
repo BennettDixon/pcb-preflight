@@ -46,7 +46,7 @@ FINDINGS
         warning: pin_not_connected: Pin not connected [Symbol U3 Pin 21 [GPIO23, Bidirectional, Line] @ (97.79, 157.48)]
         warning: pin_not_connected: Pin not connected [Symbol R3 Pin 1 [Passive, Line] @ (119.38, 177.8)]
         warning: pin_not_connected: Pin not connected [Symbol R6 Pin 2 [Passive, Line] @ (132.08, 165.1)]
-        warning: multiple_net_names: Both +3.3V and DP_VDD are attached to the same items; +3.3V will be used in the netlist [Symbol #PWR026 Pin 1 [Power input, Line] @ (134.62, 142.24); Label 'DP_VDD' @ (237.49, 127.0)]
+        warning: multiple_net_names: Both +3.3V and DP_VDD are attached to the same items; +3.3V will be used in the netlist [Symbol #PWR019 Pin 1 [Power input, Line] @ (69.85, 105.41); Label 'DP_VDD' @ (237.49, 127.0)]
         note: 15 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_not_connected x15
   FAIL  Schematic / PCB parity (§5): 94 mismatches across 4 footprints
         missing_footprint: Missing footprint C1 (2.2u/50V) (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -96,12 +96,12 @@ FINDINGS
         DNP in the schematic but no footprint on the board: C6, C7, R17
   FAIL  Bought parts placed on the board (§5 §12): 117 of 119 bought references have no footprint on the board
         bought in the schematic but no footprint on the board: C1, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C2, C20, C3, C4, C5, C8, C9, D1, D10, +97 more
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/smarthome-metering-prefix.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 2 drivers off JLCPCB's standard tier (size, through-hole)
-        size: outline 120.5 × 86.5 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
-        through-hole: 2 through-hole parts to assemble (X1, X2; 18 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+  COST  Order: what moves the price (§13): 0 hidden drivers, 2 chosen (size, through-hole) off JLCPCB's standard tier
+        size: 120.5 × 86.5 mm (larger than 100 × 100 mm)
+        through-hole: 2 parts to assemble
         note: on the standard tier: smallest hole 1.3 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); single-sided placement (2 parts on F.Cu); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

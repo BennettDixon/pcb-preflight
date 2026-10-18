@@ -21,9 +21,14 @@ the project's own stricter rule and a warning; both beyondex boards left FAIL, a
 boards now is copper_edge_clearance (the fab's 0.2 mm figure), hole_clearance and annular_width (no floor
 in the preset yet), starved_thermal, and the true findings. Then the ORDER section (2026-10-18): the hole
 floor moved from the smallest standard drill (0.15 mm) to the smallest priced tier (0.10 mm), so
-jetson-thor-baseboard's 0.1 mm holes stopped blocking and became its ORDER lines; royalblue54l-feather
-keeps its drill_out_of_range block, since its 183 blind vias carry a 1e-05 mm drill, below every tier.
-ORDER freezes, per board, the drivers the order gate reads off the standard tier (never the verdict).
+jetson-thor-baseboard's 0.1 mm holes stopped blocking and became its ORDER lines. royalblue54l-feather kept
+its drill_out_of_range block until the blind-via reading (same day): its 183 vias are `(via blind ...)` with
+a 0.00001 mm drill, KiCad's sentinel for "no through drill", so the gate now classifies a via by its
+keyword and layers (board.via_kind) and the drill floor applies to through vias and pads only; royalblue's
+183 items became DRC warnings and an HDI ORDER line, and it still fails on drc (edge clearance, clearance,
+annular width) and bom-lcsc. ORDER freezes, per board, the drivers the order gate reads off the standard
+tier (never the verdict), in print order: hidden drivers first, the designer's chosen ones (layers, size,
+through-hole) after them.
 
   PREFLIGHT_CORPUS_BOARDS=canfd-mc,sh-rpi   run a subset
   PREFLIGHT_CORPUS_ONLINE=1                  also run the catalogue pass (network; stock moves daily,
@@ -87,7 +92,8 @@ BASELINE = {
     'pocketpd': ('FAIL', {'bom-lcsc', 'drc'},
                 {'bom-lcsc': '1 of 34 lines have no LCSC code', 'parity': '0 mismatches, 73 field/filter notes'}),
     'royalblue54l-feather': ('FAIL', {'bom-lcsc', 'drc'},
-                {'bom-lcsc': '2 of 29 lines have no LCSC code'}),
+                {'bom-lcsc': '2 of 29 lines have no LCSC code',
+                 'drc': '33 errors, 253 warnings'}),       # the 183 blind-via drill items are warnings now; edge clearance, clearance, annular width still block
     'sh-rpi': ('FAIL', {'bom-lcsc', 'drc'},
                 {'bom-lcsc': '3 of 77 lines have no LCSC code', 'parity': '0 mismatches, 33 warnings across 168 footprints'}),
     'smarthome-metering': ('FAIL', {'bom-file', 'dnp', 'parity', 'placement'},
@@ -107,31 +113,32 @@ BASELINE = {
                 {'bom-lcsc': '28 of 32 lines have no LCSC code', 'unrouted': '1 connections still to route'}),
 }
 
-# board -> the order gate's drivers off JLCPCB's standard tier, offline (the word before the colon on each ORDER line);
-# an empty list is a board on the standard tier everywhere (status pass). With --online the gate adds "parts"
-# (Extended part types) where the catalogue says so. corpus/RESULTS.md "ORDER on the corpus" reads these.
+# board -> the order gate's drivers off JLCPCB's standard tier, offline (the word before the colon on each ORDER line,
+# in print order: hidden drivers, then the chosen layers / size / through-hole); an empty list is a board on the
+# standard tier everywhere (status pass). With --online the gate adds "parts" (Extended part types) where the
+# catalogue says so. corpus/RESULTS.md "ORDER on the corpus" reads these.
 ORDER = {
     'beyondex-limiter': [],
     'beyondex-limiter-prefix': [],
-    'bitaxeaura': ['layers', 'size', 'placement', 'through-hole'],
-    'bitaxegt': ['layers', 'size', 'placement', 'through-hole'],
+    'bitaxeaura': ['placement', 'layers', 'size', 'through-hole'],
+    'bitaxegt': ['placement', 'layers', 'size', 'through-hole'],
     'canfd-mc': ['layers'],
-    'cm5-minima': ['layers', 'placement', 'through-hole', 'impedance control'],
+    'cm5-minima': ['placement', 'impedance control', 'layers', 'through-hole'],
     'complex-hierarchy': ['size', 'through-hole'],
-    'jetson-thor-baseboard': ['vias', 'holes', 'layers', 'size', 'placement', 'through-hole', 'assembly class'],
+    'jetson-thor-baseboard': ['vias', 'holes', 'placement', 'assembly class', 'layers', 'size', 'through-hole'],
     'jlcpcb-example': ['vias', 'size', 'through-hole'],
-    'multichannel': ['size', 'placement', 'through-hole'],
-    'multichannel-unrouted': ['size', 'placement', 'through-hole'],
-    'openair-max': ['layers', 'placement', 'through-hole'],
+    'multichannel': ['placement', 'size', 'through-hole'],
+    'multichannel-unrouted': ['placement', 'size', 'through-hole'],
+    'openair-max': ['placement', 'layers', 'through-hole'],
     'openjbod-rp2040': ['layers', 'size', 'through-hole'],
     'pocketpd': ['through-hole'],
-    'royalblue54l-feather': ['vias', 'holes', 'layers', 'assembly class', 'castellated holes'],
-    'sh-rpi': ['vias', 'layers', 'placement', 'through-hole'],
+    'royalblue54l-feather': ['HDI', 'assembly class', 'castellated holes', 'layers'],
+    'sh-rpi': ['vias', 'placement', 'layers', 'through-hole'],
     'smarthome-metering': ['size', 'through-hole'],
     'smarthome-metering-prefix': ['size', 'through-hole'],
-    'soldiercrab': ['vias', 'layers', 'placement'],
+    'soldiercrab': ['vias', 'placement', 'layers'],
     'sonatino': ['vias', 'layers', 'through-hole'],
-    'tiny-tapeout': ['layers', 'size', 'through-hole', 'impedance control'],
+    'tiny-tapeout': ['impedance control', 'layers', 'size', 'through-hole'],
 }
 
 
@@ -219,14 +226,19 @@ class CorpusBaseline(unittest.TestCase):
                 self.assertEqual(drivers(report), ORDER[name], name)
                 self.assertEqual(checks['order']['status'], 'cost' if ORDER[name] else 'pass', name)
                 self.assertEqual(report['result'], report_without_order(report), name)
+                # the kinds: hidden lines first, then the chosen ones, one kind per driver, parallel to the lines
+                kinds = [d['kind'] for d in checks['order'].get('drivers', [])]
+                self.assertEqual(len(kinds), len(ORDER[name]), name)
+                self.assertEqual(kinds, sorted(kinds, key=lambda k: k == 'chosen'), name)
+                self.assertEqual([k == 'chosen' for k in kinds], [d in ('layers', 'size', 'through-hole') for d in ORDER[name]], name)
 
     def test_order_drivers_match_the_boards_own_files(self):
         """Spot checks a reader can repeat with grep on the board file (corpus/RESULTS.md "ORDER on the corpus")."""
         wanted = {'jetson-thor-baseboard': ('vias', '0.1 mm hole', '3235 of 3235 vias'),
                   'jlcpcb-example': ('vias', '0.2 mm hole', '30 of 101 vias'),
-                  'royalblue54l-feather': ('castellated holes', 'set in the stackup', 'Standard PCBA'),
+                  'royalblue54l-feather': ('HDI', '183 blind/buried vias', 'tier not yet sourced'),
                   'soldiercrab': ('vias', '0.15 mm hole', '0.15mm/(0.25/0.3mm)'),
-                  'openjbod-rp2040': ('size', '72.61 × 170 mm', 'Engineering fee')}
+                  'openjbod-rp2040': ('size', '72.61 × 170 mm', 'larger than 100 × 100 mm')}      # a chosen driver: the class, no condition text
         for name, (driver, *texts) in wanted.items():
             if name not in _present():
                 continue

@@ -1,5 +1,6 @@
 """What the gate needs from a .kicad_pcb: footprints, layers, fiducials, origin, silkscreen text, and what
-the ORDER section reads (vias, drilled holes, the outline's size, thickness, the stackup's priced flags)."""
+the ORDER section reads (vias and their kind, drilled holes, the outline's size, thickness, the stackup's priced
+flags)."""
 import math
 import os
 import re
@@ -51,6 +52,36 @@ class Footprint:
         return self.lib_id.split(':', 1)[-1]
 
 
+OUTER = frozenset({'F.Cu', 'B.Cu'})       # the outer copper pair a through via joins
+
+
+@dataclass
+class Via:
+    size: float
+    drill: float          # as written; a blind, buried or micro via's drill is a sentinel, not a through hole (via_kind)
+    layers: tuple         # the two copper layers it joins, as written
+    kind: str             # 'through', 'blind', 'buried' or 'micro'
+
+    @property
+    def through(self):
+        return self.kind == 'through'
+
+
+def via_kind(keywords, layers):
+    """What kind of via ``(via [blind|micro] ... (layers A B))`` is, read from the keyword and the layers, never from
+    the drill: KiCad writes a blind, buried or micro via's ``(drill ...)`` as a sentinel (0.00001 mm on a corpus board
+    whose 183 blind vias are written with F.Cu and B.Cu as their layers), not as a measurement. A via with no keyword
+    is through when its two layers are the outer pair, blind when one of them is, buried when neither is."""
+    if 'micro' in keywords:
+        return 'micro'
+    if 'buried' in keywords:
+        return 'buried'
+    if 'blind' in keywords:
+        return 'blind'
+    outer = sum(1 for ly in layers if ly in OUTER)
+    return 'through' if outer == 2 else 'blind' if outer == 1 else 'buried'
+
+
 @dataclass
 class Board:
     path: str
@@ -61,7 +92,7 @@ class Board:
     silk_texts: list      # (text, x, y, layer)
     title_rev: str
     title_title: str
-    vias: list = field(default_factory=list)      # (diameter, drill) per (via ...), mm
+    vias: list = field(default_factory=list)      # Via per (via ...), mm
     outline: tuple = None                         # (width, height) of the Edge.Cuts bounding box, mm; None without one
     thickness: float = 1.6                        # (general (thickness t)); KiCad's default when absent
     castellated: bool = False                     # (setup (stackup (castellated_pads yes)))
@@ -69,9 +100,19 @@ class Board:
     impedance: bool = False                       # (setup (stackup (dielectric_constraints yes)))
 
     @property
+    def through_vias(self):
+        return [v for v in self.vias if v.through]
+
+    @property
+    def hdi_vias(self):
+        """Blind, buried and micro vias: a process of their own, and a drill figure that is not a hole."""
+        return [v for v in self.vias if not v.through]
+
+    @property
     def holes(self):
-        """Every drilled hole the fab plates: via drills and through-hole pad drills, mm."""
-        return [d for _, d in self.vias] + [d for fp in self.footprints for d in fp.drills]
+        """Every drilled hole the fab plates through: through-via drills and through-hole pad drills, mm. A blind,
+        buried or micro via's drill is not among them (via_kind)."""
+        return [v.drill for v in self.through_vias] + [d for fp in self.footprints for d in fp.drills]
 
 
 EDGE = 'Edge.Cuts'
@@ -203,7 +244,9 @@ def load(path):
     for v in sexpr.children(root, 'via'):
         size, drill = sexpr.child(v, 'size'), sexpr.child(v, 'drill')
         if size and drill and len(size) > 1 and len(drill) > 1:
-            vias.append((sexpr.number(size[1]), sexpr.number(drill[1])))
+            layers = tuple(a for a in sexpr.atoms(sexpr.child(v, 'layers') or ['layers']) if isinstance(a, str))
+            keywords = sexpr.atoms(v)                      # (via blind ...), (via micro ...)
+            vias.append(Via(size=sexpr.number(size[1]), drill=sexpr.number(drill[1]), layers=layers, kind=via_kind(keywords, layers)))
     box = _edge_box(root)
 
     texts = []

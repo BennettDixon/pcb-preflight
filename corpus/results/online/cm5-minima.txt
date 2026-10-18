@@ -209,12 +209,12 @@ FINDINGS
         ... 3 more (--max-details)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 5 drivers off JLCPCB's standard tier (layers, placement, through-hole, parts, impedance control)
-        layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
+  COST  Order: what moves the price (§13): 3 hidden drivers (placement, parts, impedance control), 2 chosen (layers, through-hole) off JLCPCB's standard tier
         placement: parts to place on both sides (56 on F.Cu, 14 on B.Cu: Module301, R108, U401, R102, U1, R403, CN1, D403, +6 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        through-hole: 2 through-hole parts to assemble (J1, J501; 4 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         parts: 6 Extended part types (one loading fee each: C135998, C160402, C381059, C478121, C5454943, C778185); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance ±10%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 6 (the quote page's "High Precision PCB" class)
+        through-hole: 2 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.45 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 59.64 × 62.69 mm (100 × 100 mm or smaller); 1.5296 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

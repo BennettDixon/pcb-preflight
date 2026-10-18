@@ -60,19 +60,17 @@ FINDINGS
         note: 160 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x138, pin_not_connected x16, power_pin_not_driven x6
   FAIL  DRC (§12): 60 errors, 335 warnings (lib_footprint_mismatch x127, clearance x80, via_dangling x78, lib_footprint_issues x31, track_dangling x25, shorting_items x23, hole_clearance x14, solder_mask_bridge x7, silk_overlap x6, items_not_allowed x1, courtyards_overlap x1, copper_sliver x1, mirrored_text_on_front_layer x1); 15 footprints without a courtyard
         items_not_allowed: Items not allowed (keepout area 'Antenna Keepout') [Footprint U6 @ (114.27, 46.75)]
-        shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.3500 mm @ (107.325, 124.775); Pad 7 [GND] of U7 on B.Cu @ (107.325, 123.425)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
-        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 2.8750 mm @ (103.425, 129.15); Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.0283 mm @ (102.9, 131.1); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.1750 mm @ (107.975, 123.425); Pad 8 [GND] of U7 on B.Cu @ (107.975, 123.425)]
+        shorting_items: Items shorting two nets (nets <no net> and GND) [Track [<no net>] on B.Cu, length 1.3500 mm @ (107.325, 124.775); Pad 7 [GND] of U7 on B.Cu @ (107.325, 123.425)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
+        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15); Track [<no net>] on B.Cu, length 1.3850 mm @ (103.425, 129.15)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
-        shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
-        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 1 [/ASIC/1V5] of C51 on B.Cu @ (101.8, 131.08); Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm) [Track [<no net>] on B.Cu, length 0.7707 mm @ (103.425, 130.535); Via [/ASIC/1V5] on F.Cu - B.Cu @ (102.88, 131.08)]
-        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 16 [/ASIC/1V5] of U7 on B.Cu @ (103.425, 129.15); Track [<no net>] on B.Cu, length 1.3850 mm @ (103.425, 129.15)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
-        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        shorting_items: Items shorting two nets (nets /ASIC/1V5 and <no net>) [Pad 1 [/ASIC/1V5] of C51 on B.Cu @ (101.8, 131.08); Track [<no net>] on B.Cu, length 1.0800 mm @ (101.8, 131.08)]
         shorting_items: Items shorting two nets (nets /Power/VSHARE and /12V) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Pad 5 [/12V] of U2 on B.Cu @ (149.9, 59.9)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0012 mm) [Pad 5 [/12V] of U2 on B.Cu @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
         shorting_items: Items shorting two nets (nets /Power/VSHARE and /Power/cur_sense) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Pad 6 [/Power/cur_sense] of U2 on B.Cu @ (149.9, 60.55)]
@@ -81,6 +79,8 @@ FINDINGS
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0250 mm) [Track [/Power/cur_sense] on B.Cu, length 0.9000 mm @ (150.825, 60.525); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0053 mm) [Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25); Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1053 mm) [Track [/Power/cur_sense] on B.Cu, length 0.0354 mm @ (149.925, 60.525); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1801 mm) [Track [/12V] on B.Cu, length 0.5500 mm @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1944 mm) [Pad B1 [GND] of J4 on B.Cu @ (125.55, 35.64); NPTH pad of J4 @ (125.24, 34.565)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1944 mm) [Pad A1 [GND] of J4 on B.Cu @ (119.15, 35.64); NPTH pad of J4 @ (119.46, 34.565)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0012 mm) [Pad 5 [/12V] of U2 on B.Cu @ (149.9, 59.9); Via [/Power/VSHARE] on F.Cu - B.Cu @ (150.15, 60.25)]
@@ -89,16 +89,16 @@ FINDINGS
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 1 [/ASIC/0V75-1] of U21 on F.Cu @ (83.796083, 50.862796); Polygon [<no net>] of U21 on F.Cu @ (83.671082, 50.707795)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 2 [/ASIC/GND0] of U14 on F.Cu @ (62.668583, 82.4353); Polygon [<no net>] of U14 on F.Cu @ (62.543582, 82.590299)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 2 [/ASIC/GND1] of U21 on F.Cu @ (83.796083, 51.5128); Polygon [<no net>] of U21 on F.Cu @ (83.671082, 51.667799)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0013 mm) [Polygon [<no net>] of NT1 on F.Cu @ (126.03, 64.4); PTH pad 41 [GND] of U1 @ (126.38, 64.42)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 1 [/ASIC/1V5] of U11 on F.Cu @ (62.668583, 79.215098); Polygon [<no net>] of U11 on F.Cu @ (62.543582, 79.060097)]
         shorting_items: Items shorting two nets (nets <no net> and /ASIC/1V5-2) [Polygon [<no net>] of U22 on F.Cu @ (83.671082, 53.277993); Pad 1 [/ASIC/1V5-2] of U22 on F.Cu @ (83.796083, 53.432994)]
-        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0013 mm) [Polygon [<no net>] of NT1 on F.Cu @ (126.03, 64.4); PTH pad 41 [GND] of U1 @ (126.38, 64.42)]
         shorting_items: Items shorting two nets (nets <no net> and /5V) [Polygon [<no net>] of U14 on F.Cu @ (63.86358, 81.630295); Pad 4 [/5V] of U14 on F.Cu @ (63.738579, 81.785294)]
-        shorting_items: Items shorting two nets (nets <no net> and /ASIC/GND2) [Polygon [<no net>] of U22 on F.Cu @ (83.671082, 54.237997); Pad 2 [/ASIC/GND2] of U22 on F.Cu @ (83.796083, 54.082998)]
         shorting_items: Items shorting two nets (nets <no net> and GND) [Polygon [<no net>] of U11 on F.Cu @ (62.543582, 80.020101); Pad 2 [GND] of U11 on F.Cu @ (62.668583, 79.865102)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 4 [/5V] of U21 on F.Cu @ (84.866079, 50.862794); Polygon [<no net>] of U21 on F.Cu @ (84.99108, 50.707795)]
-        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 1 [/ASIC/0V75-2] of U23 on F.Cu @ (83.796083, 56.003192); Polygon [<no net>] of U23 on F.Cu @ (83.671082, 55.848191)]
         clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 3 [/5V] of U14 on F.Cu @ (63.738579, 82.4353); Polygon [<no net>] of U14 on F.Cu @ (63.86358, 82.590299)]
+        shorting_items: Items shorting two nets (nets <no net> and /ASIC/GND2) [Polygon [<no net>] of U22 on F.Cu @ (83.671082, 54.237997); Pad 2 [/ASIC/GND2] of U22 on F.Cu @ (83.796083, 54.082998)]
         shorting_items: Items shorting two nets (nets <no net> and /5V) [Polygon [<no net>] of U21 on F.Cu @ (84.99108, 51.667799); Pad 3 [/5V] of U21 on F.Cu @ (84.866079, 51.5128)]
+        clearance: Clearance violation ( clearance 0.2000 mm; actual 0.0000 mm) [Pad 1 [/ASIC/0V75-2] of U23 on F.Cu @ (83.796083, 56.003192); Polygon [<no net>] of U23 on F.Cu @ (83.671082, 55.848191)]
         ... 355 more (--max-details)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): silk_over_copper
         note: 8 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x7, courtyards_overlap x1
@@ -120,14 +120,14 @@ FINDINGS
         unconnected_items: Missing connection between items [Pad 38 [/Vcore] of U6 on B.Cu @ (108.55, 55.5); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
         unconnected_items: Missing connection between items [Pad 2 [/Vcore] of L1 on F.Cu @ (122.61, 79.2688); Track [/Vcore] on In2.Cu, length 10.8541 mm @ (108.575, 67.625)]
         unconnected_items: Missing connection between items [Pad 2 [/Vcore] of C9 on F.Cu @ (128.03, 80.2); Track [/Vcore] on F.Cu, length 0.5900 mm @ (129.23, 62.18)]
-        unconnected_items: Missing connection between items [Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18); Track [/Vcore] on In2.Cu, length 10.8000 mm @ (133.325, 92.775)]
+        unconnected_items: Missing connection between items [Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18); Track [/Vcore] on In2.Cu, length 3.2173 mm @ (133.325, 103.575)]
         unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
         unconnected_items: Missing connection between items [Pad 33 [/Vcore] of U19 on F.Cu @ (146.02, 95.03); Pad 11 [/Vcore] of U19 on F.Cu @ (142.49, 98.18)]
         unconnected_items: Missing connection between items [Track [/Vcore] on In2.Cu, length 6.2000 mm @ (154.4, 102.8); Pad 22 [/Vcore] of U19 on F.Cu @ (149.55, 98.18)]
         unconnected_items: Missing connection between items [Via [/Vcore] on F.Cu - B.Cu @ (160.7, 102.7); Pad 1 [/Vcore] of TP15 on B.Cu @ (275.17, 98.65)]
         unconnected_items: Missing connection between items [Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64); Zone [/Vcore] on F.Cu and B.Cu, priority 6 @ (118.043361, 79.64)]
         unconnected_items: Missing connection between items [Via [/Power/VSHARE] on F.Cu - B.Cu @ (127.18, 62.37); Track [/Power/VSHARE] on F.Cu, length 1.7500 mm @ (149.96, 60.44)]
-        unconnected_items: Missing connection between items [Pad 1 [/Power/EN_UVLO] of R4 on F.Cu @ (133.12, 63.17); Pad 27 [/Power/EN_UVLO] of U4 on F.Cu @ (151.88, 66.56)]
+        unconnected_items: Missing connection between items [Track [/Power/EN_UVLO] on F.Cu, length 0.9100 mm @ (132.21, 63.17); Pad 27 [/Power/EN_UVLO] of U4 on F.Cu @ (151.88, 66.56)]
         unconnected_items: Missing connection between items [Pad 2 [/5V] of C38 on F.Cu @ (55.04, 79.24); Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18)]
         unconnected_items: Missing connection between items [Pad 2 [/5V] of C54 on F.Cu @ (55.04, 83.18); Pad 2 [/5V] of C56 on F.Cu @ (55.04, 87.12)]
         unconnected_items: Missing connection between items [Pad 2 [/5V] of C56 on F.Cu @ (55.04, 87.12); Pad 2 [/5V] of C58 on F.Cu @ (55.04, 91.06)]
@@ -244,11 +244,11 @@ FINDINGS
         ... 9 more (--max-details)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, placement, through-hole)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 65 × 122 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
+  COST  Order: what moves the price (§13): 1 hidden driver (placement), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
         placement: parts to place on both sides (105 on F.Cu, 40 on B.Cu: R22, C49, C14, U8, R20, C53, R21, R23, +32 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        through-hole: 6 through-hole parts to assemble (U4, J5, U1, J7, J3, U3; 36 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        size: 65 × 122 mm (larger than 100 × 100 mm)
+        through-hole: 6 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

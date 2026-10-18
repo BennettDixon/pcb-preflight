@@ -110,7 +110,7 @@ FINDINGS
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
         note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x8, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Unrouted connections (§11 §12): 1 connections still to route
-        unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
+        unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (90.37, 59.5)]
   WARN  Schematic / PCB parity (§5): 0 mismatches, 1 field/filter notes across 309 footprints
         warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '
 USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle
@@ -186,17 +186,17 @@ USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board E
         C72038 (D1, D2, D3, D4): bom.csv says MPN "LTST-C190YKT" but the catalogue says "19-213/Y2C-CQ2R2L/3T(CY)" (-40℃~+85℃ 1.7V~2.3V 120° 20mA 585.5nm~591.5nm 591nm 60mW 90m)
         C86816 (C10): bom.csv says MPN "CL21A226KOQNNNG" but the catalogue says "GRM21BR61E226ME44L" (22uF 25V X5R ±20% 0805 Multilayer Ceramic Capacitors MLCC - )
         ok: C1884490 (F1): JK-SMD0805-035-12V, 0805, Extended, stock 1,754
-        ok: C237493 (C6, C7): GRM21BZ71E106KE15L, 0805, Extended, stock 148,594
+        ok: C237493 (C6, C7): GRM21BZ71E106KE15L, 0805, Extended, stock 148,641
         ok: C72038 (D1, D2, D3, D4): 19-213/Y2C-CQ2R2L/3T(CY), 0603, Extended, stock 0
-        ok: C86816 (C10): GRM21BR61E226ME44L, 0805, Extended, stock 143,642
+        ok: C86816 (C10): GRM21BR61E226ME44L, 0805, Extended, stock 143,628
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 5 drivers off JLCPCB's standard tier (layers, size, through-hole, parts, impedance control)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 104.5 × 81 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
-        through-hole: 6 through-hole parts to assemble (J13, J12, J3, J5, J14, J6; 72 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+  COST  Order: what moves the price (§13): 2 hidden drivers (parts, impedance control), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
         parts: 4 Extended part types (one loading fee each: C1884490, C237493, C72038, C86816); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance ±10%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        size: 104.5 × 81 mm (larger than 100 × 100 mm)
+        through-hole: 6 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (120 parts on F.Cu); 1.56252 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

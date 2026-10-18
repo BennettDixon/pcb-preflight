@@ -68,14 +68,14 @@ FINDINGS
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
         clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 6 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 92.13); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 7 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 92.15)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 8 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 93.43)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 6 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 92.13); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 1 [/Solar_module/VBAT] of F2 on B.Cu @ (170.97, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 2 [Net-(F2-Pad2)] of F2 on B.Cu @ (167.79, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [BAT-] on F.Cu, priority 5 @ (104.66, 72.87); Zone [BAT-] on F.Cu, priority 5 @ (107.16, 63.62)]
@@ -175,27 +175,27 @@ FINDINGS
         C606168 (R10, R13, R36): stock 10 is under 10x the 3 needed (RC0402FR-7W100RL)
         C7433091 (L3): stock 3 is under 10x the 1 needed (YSMC0420V-1R0M)
         ok: C100044 (R26, R27, R33, R41, R51, R72): RC0603FR-070RL, 0603, Extended, stock 8,408,469
-        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,392
-        ok: C105580 (R17, R19): RC0603FR-075K1L, 0603, Extended, stock 6,082,884
-        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,309,468
-        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,762,034
+        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,292
+        ok: C105580 (R17, R19): RC0603FR-075K1L, 0603, Extended, stock 6,082,809
+        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,309,481
+        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,761,909
         ok: C107229 (R7): RC0402FR-0751KL, 0402, Extended, stock 2,760,655
         ok: C108304 (FB1): PBY201209T-601Y-N, 0805, Extended, stock 118,442
-        ok: C109447 (C6): CC0603MRX5R6BB226, 0603, Extended, stock 69,287
+        ok: C109447 (C6): CC0603MRX5R6BB226, 0603, Extended, stock 69,171
         ok: C109464 (C23, C27, C30, C33, C35, C38, C40, C43, C45): CC1206KKX7R7BB106, 1206, Extended, stock 5
         ok: C114606 (R18): RC0603FR-0710ML, 0603, Extended, stock 1,051,219
         ok: C114614 (R40): RC0603FR-0727KL, 0603, Extended, stock 236,960
         ok: C114622 (R24): RC0603FR-07470KL, 0603, Extended, stock 327,515
-        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,471,687
+        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,471,451
         ok: C126361 (R21): RC0603FR-073ML, 0603, Extended, stock 5,497
-        ok: C128404 (U13, U14, U15, U16, U17, U18): TPS27081ADDCR, SOT-23-6, Extended, stock 18,744
-        ok: C137745 (R38): RC0603FR-0730K1L, 0603, Extended, stock 459,465
+        ok: C128404 (U13, U14, U15, U16, U17, U18): TPS27081ADDCR, SOT-23-6, Extended, stock 18,743
+        ok: C137745 (R38): RC0603FR-0730K1L, 0603, Extended, stock 459,445
         ok: C137808 (R16): RC0603FR-0710K5L, 0603, Extended, stock 9,486
-        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,508,842
-        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,735,997
+        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,507,982
+        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,746,787
         ok: C151819 (D2): MMSZ5246BS-7-F, SOD-323, Extended, stock 27,396
-        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 29,473,943
-        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,913,341
+        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 29,490,028
+        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,913,393
         ok: C1624 (C67): 0603B501K500NT, 0603, Extended, stock 7,714
         ok: C163488 (R43): RC0402FR-0716K9L, 0402, Extended, stock 15
         ok: C185317 (R34): RC0603FR-075K23L, 0603, Extended, stock 6
@@ -204,7 +204,7 @@ FINDINGS
         ok: C20345985 (U6): TPS62903QRYTRQ1, VQFN-9(2.2x2), Extended, stock 41
         ok: C2076880 (R71): ERJ2RKF2100X, 0402, Extended, stock 15,024
         ok: C220680 (U12): AT24CM02-SSHD-B, SOIC-8, Extended, stock 65
-        ok: C22399629 (C36): CGA0603X7R475K160JT, 0603, Extended, stock 51,331
+        ok: C22399629 (C36): CGA0603X7R475K160JT, 0603, Extended, stock 51,325
         ok: C22399676 (U7): TPS2117DRLR, SOT-5X3, Extended, stock 2,290
         ok: C226371 (R56): AC0402FR-0724K9L, 0402, Extended, stock 23,250
         ... 48 more (--max-details)
@@ -212,11 +212,11 @@ FINDINGS
         C106200 CC0402JRNPO9BN101 (C53, C56; bom.csv row 19): bom.csv says 100nF but the catalogue description says 100pF (bom.csv value "0.1uF", description "100pF 50V NP0 ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, placement, through-hole, parts)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+  COST  Order: what moves the price (§13): 2 hidden drivers (placement, parts), 2 chosen (layers, through-hole) off JLCPCB's standard tier
         placement: parts to place on both sides (12 on F.Cu, 174 on B.Cu: C35, R24, C74, C65, C16, C9, C39, C38, +166 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        through-hole: 17 through-hole parts to assemble (I2C2, SW1, I2C1, LED2, PWR_SW1, C35, C38, L2, C3, L3, C33, C45, +5 more; 20 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         parts: 78 Extended part types (one loading fee each: C100044, C105578, C105580, C105872, C106200, C107229, C108304, C109447, C109464, C114606, C114614, C114622, +66 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        through-hole: 17 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 99.45 × 72 mm (100 × 100 mm or smaller); 1.2 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

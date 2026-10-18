@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "canfd-mc",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/canfd-mc",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/canfd-mc",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -44,7 +44,7 @@
   },
   "copper_layers": 4,
   "footprints": 51,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/canfd-mc.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/canfd-mc.csv",
   "checks": [
     {
       "id": "erc",
@@ -278,31 +278,31 @@
       "details": [
         "C191010 (U4): out of stock at JLCPCB (TCAN332GDR)",
         "ok: C123085 (L1): DLW43SH101XK2L, SMD-4P,4.5x3.2mm, Extended, stock 13,617",
-        "ok: C14663 (C14, C16, C18): CC0603KRX7R9BB104, 0603, Basic, stock 31,735,997",
+        "ok: C14663 (C14, C16, C18): CC0603KRX7R9BB104, 0603, Basic, stock 31,746,787",
         "ok: C151135 (F1): 0466001.NRHF, 1206, Extended, stock 55,592",
-        "ok: C15849 (C19): CL10A105KB8NNNC, 0603, Basic, stock 9,243,433",
-        "ok: C16015 (D1): SS36, SMA(DO-214AC), Extended, stock 417,844",
-        "ok: C1604 (C5, C6): 0603B222K500NT, 0603, Basic, stock 987,004",
-        "ok: C1653 (C10, C11): CL10C220JB8NNNC, 0603, Basic, stock 2,156,804",
+        "ok: C15849 (C19): CL10A105KB8NNNC, 0603, Basic, stock 9,246,396",
+        "ok: C16015 (D1): SS36, SMA(DO-214AC), Extended, stock 417,863",
+        "ok: C1604 (C5, C6): 0603B222K500NT, 0603, Basic, stock 987,292",
+        "ok: C1653 (C10, C11): CL10C220JB8NNNC, 0603, Basic, stock 2,152,480",
         "ok: C1657 (C7): CL10C271JB8NNNC, 0603, Extended, stock 6,177",
         "ok: C167971 (L2): FNR5040S220MT, SMD,5x5mm, Extended, stock 86,822",
         "ok: C191010 (U4): TCAN332GDR, SOIC-8, Extended, stock 0",
-        "ok: C19666 (C17): CL10A475KO8NNNC, 0603, Basic, stock 3,526,309",
-        "ok: C19702 (C15): CL10A106KP8NNNC, 0603, Basic, stock 11,139,675",
-        "ok: C22807 (R4): 0603WAF1503T5E, 0603, Basic, stock 1,056,349",
-        "ok: C22964 (R1): 0603WAF2742T5E, 0603, Extended, stock 12,847",
+        "ok: C19666 (C17): CL10A475KO8NNNC, 0603, Basic, stock 3,526,042",
+        "ok: C19702 (C15): CL10A106KP8NNNC, 0603, Basic, stock 11,094,760",
+        "ok: C22807 (R4): 0603WAF1503T5E, 0603, Basic, stock 1,058,070",
+        "ok: C22964 (R1): 0603WAF2742T5E, 0603, Extended, stock 12,827",
         "ok: C23031 (R5): 0603WAF3653T5E, 0603, Extended, stock 9,741",
-        "ok: C23082 (R3): 0603WAF5762T5E, 0603, Extended, stock 63,546",
-        "ok: C25803 (R2, R6): 0603WAF1003T5E, 0603, Basic, stock 19,334,680",
-        "ok: C25804 (R7, R8, R9): 0603WAF1002T5E, 0603, Basic, stock 39,947,655",
-        "ok: C3013946 (U1): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,163",
+        "ok: C23082 (R3): 0603WAF5762T5E, 0603, Extended, stock 63,526",
+        "ok: C25803 (R2, R6): 0603WAF1003T5E, 0603, Basic, stock 19,332,563",
+        "ok: C25804 (R7, R8, R9): 0603WAF1002T5E, 0603, Basic, stock 39,952,238",
+        "ok: C3013946 (U1): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,026",
         "ok: C385986 (C1, C2): HMK325C7475KMHPE, 1210, Extended, stock 98,320",
-        "ok: C45783 (C3, C4, C12, C13): CL21A226MAQNNNE, 0805, Basic, stock 3,755,428",
+        "ok: C45783 (C3, C4, C12, C13): CL21A226MAQNNNE, 0805, Basic, stock 3,755,693",
         "ok: C477928 (U3): LM5164DDAR, SO-8-EP, Extended, stock 10,913",
-        "ok: C626758 (U2): MCP2518FDT-E/SL, SOIC-14, Extended, stock 23,120",
-        "ok: C75176 (D3): PESD2CAN,215, SOT-23, Extended, stock 34,503",
+        "ok: C626758 (U2): MCP2518FDT-E/SL, SOIC-14, Extended, stock 23,125",
+        "ok: C75176 (D3): PESD2CAN,215, SOT-23, Extended, stock 34,494",
         "ok: C83268 (D2): SMBJ24CA, DO-214AA, Extended, stock 44,850",
-        "ok: C9010 (X1): X322540MPB4SI, SMD3225-4P, Extended, stock 44,212"
+        "ok: C9010 (X1): X322540MPB4SI, SMD3225-4P, Extended, stock 44,181"
       ],
       "unchecked": [
         "C123085 (L1): no MPN in bom.csv to compare with the catalogue's DLW43SH101XK2L; the code was not checked against a part",
@@ -387,10 +387,10 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "2 drivers off JLCPCB's standard tier (layers, parts)",
+      "summary": "1 hidden driver (parts), 1 chosen (layers) off JLCPCB's standard tier",
       "details": [
-        "layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)",
-        "parts: 16 Extended part types (one loading fee each: C123085, C151135, C16015, C1657, C167971, C191010, C22964, C23031, C23082, C3013946, C385986, C477928, +4 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "parts: 16 Extended part types (one loading fee each: C123085, C151135, C16015, C1657, C167971, C191010, C22964, C23031, C23082, C3013946, C385986, C477928, +4 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
+        "layers: 4 (its own price class)"
       ],
       "unchecked": [],
       "verified": [],
@@ -398,6 +398,16 @@
         "on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 55 \u00d7 32 mm (100 \u00d7 100 mm or smaller); single-sided placement (37 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "parts",
+          "kind": "hidden"
+        },
+        {
+          "name": "layers",
+          "kind": "chosen"
+        }
       ]
     }
   ],
