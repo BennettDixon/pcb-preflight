@@ -1,6 +1,6 @@
 One-Air-Max  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 210 footprints  -  bom.csv: openair-max.csv
-RESULT: FAIL  -  7 blocking, 4 warnings, 4 not checked  -  exit 1
-  7 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked, 4 cost drivers  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -18,66 +18,64 @@ CHECKED AND LEFT ALONE
   Catalogue category matches the reference prefix (§1 §2): 71 lines filed under the category their reference prefix means, 13 not checked
 
 FINDINGS
-  FAIL  ERC (§12): 49 errors, 794 warnings on 3 sheets
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR06 Pin 1 [Power input, Line] @ (62.23, 30.48)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R1 Pin 2 [2, Input, Line] @ (66.04, 52.07)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R2 Pin 2 [2, Input, Line] @ (74.93, 52.07)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (74.93, 64.77)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR0104 Pin 1 [Power input, Line] @ (82.55, 30.48)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR08 Pin 1 [Power input, Line] @ (95.25, 118.11)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R45 Pin 1 [1, Input, Line] @ (165.1, 85.09)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R4 Pin 1 [1, Input, Line] @ (200.66, 44.45)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C71 Pin 2 [2, Input, Line] @ (208.28, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C72 Pin 2 [2, Input, Line] @ (215.9, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R62 Pin 2 [2, Input, Line] @ (227.33, 60.96)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R63 Pin 2 [2, Input, Line] @ (227.33, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R8 Pin 1 [1, Input, Line] @ (236.22, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R74 Pin 1 [1, Input, Line] @ (243.84, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R75 Pin 1 [1, Input, Line] @ (251.46, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R76 Pin 1 [1, Input, Line] @ (259.08, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R77 Pin 1 [1, Input, Line] @ (266.7, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R78 Pin 1 [1, Input, Line] @ (274.32, 101.6)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R41 Pin 1 [1, Input, Line] @ (303.53, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R7 Pin 2 [2, Input, Line] @ (308.61, 134.62)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R25 Pin 1 [1, Input, Line] @ (312.42, 64.77)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C54 Pin 2 [2, Input, Line] @ (325.12, 31.75)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C55 Pin 2 [2, Input, Line] @ (325.12, 44.45)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol C56 Pin 2 [2, Input, Line] @ (342.9, 66.04)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R5 Pin 1 [1, Input, Line] @ (375.92, 130.81)]
-        wire_dangling: Wires not connected to anything [Vertical Wire, length 1.27 mm @ (506.73, 177.8)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR049 Pin 1 [Power input, Line] @ (91.44, 124.46)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R17 Pin 2 [2, Input, Line] @ (137.16, 115.57)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R19 Pin 2 [2, Input, Line] @ (173.99, 100.33)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R22 Pin 2 [2, Input, Line] @ (194.31, 67.31)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R22 Pin 1 [1, Input, Line] @ (194.31, 77.47)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R24 Pin 2 [2, Input, Line] @ (201.93, 114.3)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R23 Pin 1 [1, Input, Line] @ (203.2, 53.34)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R23 Pin 2 [2, Input, Line] @ (213.36, 53.34)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R26 Pin 1 [1, Input, Line] @ (226.06, 49.53)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R27 Pin 2 [2, Input, Line] @ (234.95, 49.53)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol R72 Pin 2 [2, Input, Line] @ (83.82, 96.52)]
-        pin_not_driven: Input pin not driven by any Output pins [Symbol LED3 Pin 2 [A, Input, Line] @ (160.02, 40.64)]
+  WARN  ERC (§12): 0 errors, 843 warnings on 3 sheets
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C12 Pin 2 [2, Unspecified, Line] @ (22.86, 204.47); Symbol CO2 Pin 1 [1, Unspecified, Line] @ (41.91, 204.47)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C12 [CC0402KRX7R6BB104] @ (22.86, 209.55)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C12 [CC0402KRX7R6BB104] @ (22.86, 209.55)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C12 Pin 1 [1, Unspecified, Line] @ (22.86, 214.63); Symbol #PWR036 Pin 1 [Power input, Line] @ (22.86, 215.9)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C63 Pin 2 [2, Unspecified, Line] @ (24.13, 133.35); Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C63 [CL05B104KO5NNNC] @ (24.13, 138.43)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C63 [CL05B104KO5NNNC] @ (24.13, 138.43)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C63 Pin 1 [1, Unspecified, Line] @ (24.13, 143.51); Symbol #PWR0130 Pin 1 [Power input, Line] @ (24.13, 146.05)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol R52 Pin 2 [2, Unspecified, Line] @ (25.4, 90.17); Symbol #PWR0135 Pin 1 [Power input, Line] @ (25.4, 86.36)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R52 [RC0402FR-07113KL] @ (25.4, 95.25)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R52 [RC0402FR-07113KL] @ (25.4, 95.25)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol R52 Pin 1 [1, Unspecified, Line] @ (25.4, 100.33); Symbol R56 Pin 2 [2, Unspecified, Line] @ (25.4, 102.87)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol R56 Pin 2 [2, Unspecified, Line] @ (25.4, 102.87); Symbol U2 Pin 9 [FB/VSET, Unspecified, Line] @ (87.63, 121.92)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R56 [AC0402FR-0724K9L] @ (25.4, 107.95)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R56 [AC0402FR-0724K9L] @ (25.4, 107.95)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol R56 Pin 1 [1, Unspecified, Line] @ (25.4, 113.03); Symbol #PWR067 Pin 1 [Power input, Line] @ (25.4, 114.3)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C1 Pin 2 [2, Unspecified, Line] @ (26.67, 60.96); Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C1 [CC0402KRX7R6BB104] @ (26.67, 66.04)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C1 [CC0402KRX7R6BB104] @ (26.67, 66.04)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C1 Pin 1 [1, Unspecified, Line] @ (26.67, 71.12); Symbol #PWR04 Pin 1 [Power input, Line] @ (26.67, 73.66)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C10 Pin 2 [2, Unspecified, Line] @ (26.67, 177.8); Symbol #PWR028 Pin 1 [Power input, Line] @ (38.1, 176.53)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol C10 [CC0402KRX7R6BB104] @ (26.67, 182.88)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol C10 [CC0402KRX7R6BB104] @ (26.67, 182.88)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C10 Pin 1 [1, Unspecified, Line] @ (26.67, 187.96); Symbol #PWR030 Pin 1 [Power input, Line] @ (26.67, 189.23)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 1 [SHELL, Unspecified, Line] @ (27.94, 29.21); Symbol USB1 Pin 2 [SHELL, Unspecified, Line] @ (27.94, 31.75)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 2 [SHELL, Unspecified, Line] @ (27.94, 31.75); Symbol USB1 Pin 3 [SHELL, Unspecified, Line] @ (27.94, 54.61)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol USB1 Pin 3 [SHELL, Unspecified, Line] @ (27.94, 54.61); Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15)]
+        warning: pin_to_pin: Pins of type Unspecified and Input are connected [Symbol USB1 Pin 4 [SHELL, Unspecified, Line] @ (27.94, 57.15); Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol C3 Pin 2 [2, Unspecified, Line] @ (33.02, 133.35); Symbol L3 Pin 1 [1, Unspecified, Line] @ (36.83, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol C3 Pin 1 [1, Unspecified, Line] @ (33.02, 143.51); Symbol #PWR012 Pin 1 [Power input, Line] @ (33.02, 146.05)]
+        warning: pin_not_driven: Input pin not driven by any Output pins [Symbol R3 Pin 2 [2, Input, Line] @ (35.56, 62.23)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol R3 [RC0402FR-07100KL] @ (35.56, 67.31)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol R3 [RC0402FR-07100KL] @ (35.56, 67.31)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol L3 Pin 1 [1, Unspecified, Line] @ (36.83, 127.0); Symbol #PWR013 Pin 1 [Power input, Line] @ (24.13, 127.0)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol USB1 [GT-USB-7010ASV] @ (38.1, 41.91)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol USB1 [GT-USB-7010ASV] @ (38.1, 41.91)]
+        warning: footprint_link_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Symbol L3 [YSMC0420V-1R0M] @ (41.91, 127.0)]
+        warning: lib_symbol_issues: The current configuration does not include the symbol library 'easyeda2kicad' [Symbol L3 [YSMC0420V-1R0M] @ (41.91, 127.0)]
+        warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol I2C1 Pin 1 [1, Unspecified, Line] @ (41.91, 177.8); Symbol #PWR028 Pin 1 [Power input, Line] @ (38.1, 176.53)]
         ... 803 more (--max-details)
-  FAIL  DRC (§12): 234 errors, 249 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
+        note: 439 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x390, pin_not_driven x41, power_pin_not_driven x7, wire_dangling x1
+  FAIL  DRC (§12): 21 errors, 462 warnings (lib_footprint_issues x199, drill_out_of_range x199, silk_overlap x21, silk_over_copper x16, clearance x14, solder_mask_bridge x11, silk_edge_clearance x8, annular_width x5, padstack x5, padstack_invalid x4, zones_intersect x1); 199 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of BAT1 @ (109.81, 59.97)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (131.43, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 8.0070 mm @ (169.84, 63.64705)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/VBAT] on PWR, length 4.9243 mm @ (169.181, 65.238064); Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0910 mm) [Track [/Solar_module/SYS] on PWR, length 2.8057 mm @ (171.82395, 65.631); Track [/Solar_module/VBAT] on PWR, length 1.5429 mm @ (169.181, 66.781)]
         clearance: Clearance violation (zone clearance 0.5000 mm; actual 0.0000 mm) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12); Zone [GND] on F.Cu, B.Cu and GND, priority 2 @ (178.76, 119.57)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 7 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 92.15)]
-        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 8 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 93.43)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 6 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 92.13); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 7 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 90.87); Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 5 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 93.4)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q2 on B.Cu @ (183.795, 91.5); Pad 8 [Net-(Q1-D)] of Q2 on B.Cu @ (181.615, 89.59)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 5 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 89.62)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 6 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 90.89)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 7 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 92.15)]
+        clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 9 [<no net>] of Q1 on B.Cu @ (176.815, 91.52); Pad 8 [Net-(Q1-D)] of Q1 on B.Cu @ (178.995, 93.43)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 1 [/Solar_module/VBAT] of F2 on B.Cu @ (170.97, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         clearance: Clearance violation ( clearance 0.1000 mm; actual 0.0000 mm) [Pad 2 [Net-(F2-Pad2)] of F2 on B.Cu @ (167.79, 71.425); Segment [<no net>] of F2 on B.Cu @ (168.535, 71.425)]
         zones_intersect: Copper zones intersect (intersecting zones must have distinct priorities) [Zone [BAT-] on F.Cu, priority 5 @ (104.66, 72.87); Zone [BAT-] on F.Cu, priority 5 @ (107.16, 63.62)]
@@ -85,26 +83,31 @@ FINDINGS
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 4 [PGND] of U6 on B.Cu @ (186.26, 81.12)]
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 7 [Net-(U6-MODE/S-CONF)] of U6 on B.Cu @ (186.26, 79.22)]
         padstack_invalid: Padstack is not valid (custom pad shape must resolve to a single polygon) [Pad 9 [/Solar_module/FB/VSET] of U6 on B.Cu @ (187.84, 79.22)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (167.96, 76.67)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (160.16, 109.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (119.56, 58.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (98.485, 111.845)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (122.76, 58.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (144.91, 80.32)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (169.135, 106.17)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (147.36, 107.82)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (109.66, 121.92)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (178.26, 85.07)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (152.56, 51.72)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (130.435, 92.02)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (124.26, 69.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (126.06, 89.42)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (110.56, 77.22)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.5080 mm; actual 0.4000 mm) [Via [GND] on F.Cu - B.Cu @ (129.56, 85.22)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Arc on Edge.Cuts @ (141.9131, 114.6445); Segment of BAT1 on F.Silkscreen @ (184.61, 114.22)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.98, 122.82); Segment of USB1 on F.Silkscreen @ (129.83, 124.05)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.98, 122.82); Segment of USB1 on F.Silkscreen @ (138.83, 124.05)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Segment of LED2 on F.Silkscreen @ (126.87, 120.54)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Segment of LED2 on F.Silkscreen @ (127.13, 120.29)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (128.18, 120.4); Arc of LED2 on F.Silkscreen @ (126.2, 119.13)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (145.113553, 57.22); Segment of U1 on B.Silkscreen @ (111.91, 57.84)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (145.113553, 57.22); Segment of U1 on B.Silkscreen @ (129.91, 57.84)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of BAT1 @ (109.81, 59.97)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB1 @ (131.43, 117.74)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of USB1 @ (137.22, 117.74)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of DC1 @ (189.01, 120.17)]
+        warning: padstack: Padstack is questionable (PTH pad hole leaves no copper) [PTH pad [<no net>] of DC1 @ (189.01, 116.17)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint Solarpower1 @ (181.28, 116.62)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint I2C2 @ (160.3, 118.22)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint BAT1 @ (145.81, 85.82)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint C13 @ (155.96, 115.52)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'easyeda2kicad' [Footprint SW1 @ (118.49, 118.175)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'clipboard' [Footprint <no reference designator> @ (193.26, 86.445)]
         ... 443 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered duplicate_footprints to ignore (KiCad default warning), extra_footprint to ignore (KiCad default warning), missing_footprint to ignore (KiCad default warning)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): via_dangling, track_dangling, lib_footprint_mismatch
+        note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x11
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_hole_to_hole 0.0 -> 0.2 mm, min_track_width 0.0 -> 0.09 mm, min_via_annular_width 0.0 -> 0.05 mm
+        note: 202 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.1 mm, clearance x3, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Schematic / PCB parity (§5): 3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted
         net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Battery1 @ (191.56, 61.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -163,7 +166,7 @@ FINDINGS
         row 40 NTC1: KNTC0805/10KF3950 (R0805): missing MPN, Basic/Extended, Stock, Datasheet
         row 41 PWR_SW1: TK-6580A8-1 (SW-TH_TK-6580A8-1): missing MPN, Basic/Extended, Stock, Datasheet
         ... 44 more (--max-details)
-  FAIL  Catalogue and stock (§1 §2 §13): 81 codes found, 2 blocking, 5 low-stock/mismatch, 81 not checked; 78 Extended part types (one loading fee each)
+  FAIL  Catalogue and stock (§1 §2 §13): 81 codes found, 2 blocking, 5 low-stock/mismatch, 81 not checked
         C273332 (R52): out of stock at JLCPCB (RC0402FR-07113KL)
         C309458 (C1, C7, C9, C10, C11, C12, C13, C50, C51, C52, C65, C70): out of stock at JLCPCB (CC0402KRX7R6BB104)
         C109464 (C23, C27, C30, C33, C35, C38, C40, C43, C45): stock 5 is under 10x the 9 needed (CC1206KKX7R7BB106)
@@ -171,42 +174,52 @@ FINDINGS
         C327799 (R46): stock 4 is under 10x the 1 needed (MR04X1004FTL)
         C606168 (R10, R13, R36): stock 10 is under 10x the 3 needed (RC0402FR-7W100RL)
         C7433091 (L3): stock 3 is under 10x the 1 needed (YSMC0420V-1R0M)
-        ok: C100044 (R26, R27, R33, R41, R51, R72): RC0603FR-070RL, 0603, Extended, stock 8,416,885
-        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,778
-        ok: C105580 (R17, R19): RC0603FR-075K1L, 0603, Extended, stock 6,083,297
-        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,310,088
-        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,101,120
-        ok: C107229 (R7): RC0402FR-0751KL, 0402, Extended, stock 2,764,465
-        ok: C108304 (FB1): PBY201209T-601Y-N, 0805, Extended, stock 119,440
-        ok: C109447 (C6): CC0603MRX5R6BB226, 0603, Extended, stock 69,945
+        ok: C100044 (R26, R27, R33, R41, R51, R72): RC0603FR-070RL, 0603, Extended, stock 8,408,469
+        ok: C105578 (R20): RC0603FR-071ML, 0603, Extended, stock 365,392
+        ok: C105580 (R17, R19): RC0603FR-075K1L, 0603, Extended, stock 6,082,884
+        ok: C105872 (R1, R2): RC0402FR-075K1L, 0402, Extended, stock 2,309,468
+        ok: C106200 (C53, C56): CC0402JRNPO9BN101, 0402, Extended, stock 1,762,034
+        ok: C107229 (R7): RC0402FR-0751KL, 0402, Extended, stock 2,760,655
+        ok: C108304 (FB1): PBY201209T-601Y-N, 0805, Extended, stock 118,442
+        ok: C109447 (C6): CC0603MRX5R6BB226, 0603, Extended, stock 69,287
         ok: C109464 (C23, C27, C30, C33, C35, C38, C40, C43, C45): CC1206KKX7R7BB106, 1206, Extended, stock 5
-        ok: C114606 (R18): RC0603FR-0710ML, 0603, Extended, stock 1,051,349
-        ok: C114614 (R40): RC0603FR-0727KL, 0603, Extended, stock 237,000
-        ok: C114622 (R24): RC0603FR-07470KL, 0603, Extended, stock 328,075
-        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,483,414
+        ok: C114606 (R18): RC0603FR-0710ML, 0603, Extended, stock 1,051,219
+        ok: C114614 (R40): RC0603FR-0727KL, 0603, Extended, stock 236,960
+        ok: C114622 (R24): RC0603FR-07470KL, 0603, Extended, stock 327,515
+        ok: C114765 (R62, R63): RC0402FR-0722RL, 0402, Extended, stock 3,471,687
         ok: C126361 (R21): RC0603FR-073ML, 0603, Extended, stock 5,497
         ok: C128404 (U13, U14, U15, U16, U17, U18): TPS27081ADDCR, SOT-23-6, Extended, stock 18,744
-        ok: C137745 (R38): RC0603FR-0730K1L, 0603, Extended, stock 459,742
-        ok: C137808 (R16): RC0603FR-0710K5L, 0603, Extended, stock 9,786
-        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,509,919
-        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,929,887
-        ok: C151819 (D2): MMSZ5246BS-7-F, SOD-323, Extended, stock 27,406
-        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 24,773,453
-        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,919,443
+        ok: C137745 (R38): RC0603FR-0730K1L, 0603, Extended, stock 459,465
+        ok: C137808 (R16): RC0603FR-0710K5L, 0603, Extended, stock 9,486
+        ok: C14445 (C66, C73): CL05A105KP5NNNC, 0402, Extended, stock 1,508,842
+        ok: C14663 (C15, C16, C17, C18, C19, C21, C24, C25): CC0603KRX7R9BB104, 0603, Basic, stock 31,735,997
+        ok: C151819 (D2): MMSZ5246BS-7-F, SOD-323, Extended, stock 27,396
+        ok: C1525 (C5, C26, C31, C34, C37, C39, C42, C44, C47, C63): CL05B104KO5NNNC, 0402, Basic, stock 29,473,943
+        ok: C1555 (C54, C55): 0402CG220J500NT, 0402, Basic, stock 1,913,341
         ok: C1624 (C67): 0603B501K500NT, 0603, Extended, stock 7,714
         ok: C163488 (R43): RC0402FR-0716K9L, 0402, Extended, stock 15
         ok: C185317 (R34): RC0603FR-075K23L, 0603, Extended, stock 6
-        ok: C189467 (C41): CC0402KRX7R7BB102, 0402, Extended, stock 409,699
+        ok: C189467 (C41): CC0402KRX7R7BB102, 0402, Extended, stock 409,639
         ok: C19184086 (BAT1): BH-18650-B5BA016, -, Extended, stock 44
         ok: C20345985 (U6): TPS62903QRYTRQ1, VQFN-9(2.2x2), Extended, stock 41
         ok: C2076880 (R71): ERJ2RKF2100X, 0402, Extended, stock 15,024
         ok: C220680 (U12): AT24CM02-SSHD-B, SOIC-8, Extended, stock 65
-        ok: C22399629 (C36): CGA0603X7R475K160JT, 0603, Extended, stock 51,451
-        ok: C22399676 (U7): TPS2117DRLR, SOT-5X3, Extended, stock 2,296
+        ok: C22399629 (C36): CGA0603X7R475K160JT, 0603, Extended, stock 51,331
+        ok: C22399676 (U7): TPS2117DRLR, SOT-5X3, Extended, stock 2,290
         ok: C226371 (R56): AC0402FR-0724K9L, 0402, Extended, stock 23,250
         ... 48 more (--max-details)
   FAIL  Catalogue description matches the BOM value (§1 §2): 43 lines agree on every figure their value states (F, H, Ω, V), 37 state no figure, 1 disagree
         C106200 CC0402JRNPO9BN101 (C53, C56; bom.csv row 19): bom.csv says 100nF but the catalogue description says 100pF (bom.csv value "0.1uF", description "100pF 50V NP0 ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
+
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, placement, through-hole, parts)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        placement: parts to place on both sides (12 on F.Cu, 174 on B.Cu: C35, R24, C74, C65, C16, C9, C39, C38, +166 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        through-hole: 17 through-hole parts to assemble (I2C2, SW1, I2C1, LED2, PWR_SW1, C35, C38, L2, C3, L3, C33, C45, +5 more; 20 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        parts: 78 Extended part types (one loading fee each: C100044, C105578, C105580, C105872, C106200, C107229, C108304, C109447, C109464, C114606, C114614, C114622, +66 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 99.45 × 72 mm (100 × 100 mm or smaller); 1.2 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
 NOT CHECKED
   DRC (§12): 199 not compared
@@ -328,7 +341,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  7 blocking, 4 warnings, 4 not checked  -  exit 1
-  7 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  6 blocking, 5 warnings, 4 not checked, 4 cost drivers  -  exit 1
+  6 findings block the order (FAIL lines under FINDINGS); fix them and run again

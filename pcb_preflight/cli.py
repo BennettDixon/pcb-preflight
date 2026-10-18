@@ -104,7 +104,7 @@ def run_check(a):
             results.append(checks.dnp_board_check(board, sch_rows))
             results.append(checks.placement_check(board, sch_rows, skip_prefixes))
 
-        lines = None
+        lines, records = None, None
         if not os.path.exists(bom_path):
             results.append(checks.Check('bom-file', 'bom.csv', '§1', 'fail',
                                         f'{bom_path} not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)'))
@@ -133,6 +133,7 @@ def run_check(a):
             else:
                 results.append(checks.Check('stock', 'Catalogue and stock', '§1 §2 §13', 'skip',
                                             'not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)'))
+        results.append(checks.order_check(board, lines, records))      # never the verdict: the ORDER section
 
         result = {
             'schema': SCHEMA, 'version': __version__, 'project': name, 'project_dir': project_dir,

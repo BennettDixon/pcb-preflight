@@ -1,6 +1,6 @@
 jetson-agx-thor-baseboard  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  10 copper layers, 1125 footprints  -  bom.csv: none
-RESULT: FAIL  -  2 blocking, 6 warnings, 1 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  1 blocking, 7 warnings, 1 not checked, 7 cost drivers  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -54,52 +54,51 @@ FINDINGS
         warning: footprint_link_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Symbol R164 [R_2k2_0402] @ (93.98, 151.13)]
         ... 2972 more (--max-details)
         note: 14 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x12, pin_not_connected x2
-  FAIL  DRC (§12): 199 errors, 221 warnings (drill_out_of_range x199, lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_5] of U30 @ (202.95, 80.807)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_3] of U30 @ (202.95, 79.93)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_7] of U30 @ (202.95, 79.056)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_8] of U30 @ (202.0, 80.807)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_6] of U30 @ (202.0, 79.93)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 57 [unconnected-(U30C-DRAIN2-Pad52)_9] of U30 @ (202.0, 79.057)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)] of U30 @ (202.95, 77.882)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_1] of U30 @ (202.95, 77.005)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_5] of U30 @ (202.95, 76.13)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_4] of U30 @ (202.0, 77.882)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_6] of U30 @ (202.0, 77.005)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 58 [unconnected-(U30B-DRAIN1-Pad15)_9] of U30 @ (202.0, 76.131)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.751, 77.158)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.749, 79.801)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (200.749, 78.48)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 80.984)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 79.807)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 77.158)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.551, 75.984)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (199.549, 78.48)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 79.807)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 78.481)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [PTH pad 59 [GND] of U30 @ (198.351, 77.158)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (142.0, 66.2)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (126.6, 151.2)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (214.25, 113.1)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (138.6, 65.7)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (80.855532, 97.995)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (70.695532, 91.645)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (80.855532, 113.235)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (213.8, 76.2)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (61.4, 107.5)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (102.15, 104.7)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (207.5, 128.0)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (229.0, 73.8)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (95.530532, 84.15)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (173.05, 143.92)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (121.530532, 73.65)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (170.9, 137.5)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.1500 mm; actual 0.1000 mm) [Via [GND] on F.Cu - B.Cu @ (230.1, 95.1)]
-        ... 380 more (--max-details)
+  WARN  DRC (§12): 0 errors, 221 warnings (lib_footprint_issues x199, silk_edge_clearance x10, silk_over_copper x5, courtyards_overlap x3, pth_inside_courtyard x2, npth_inside_courtyard x2)
+        warning: courtyards_overlap: Courtyards overlap [Footprint J7 @ (235.485532, 76.21); Footprint D24 @ (238.25, 71.6)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint D24 @ (238.25, 71.6); Footprint J2 @ (226.96, 59.49)]
+        warning: pth_inside_courtyard: PTH inside courtyard [PTH pad 4 [GND] of J2 @ (221.46, 59.49); Footprint J10 @ (205.908, 56.24)]
+        warning: pth_inside_courtyard: PTH inside courtyard [PTH pad 1 [GND] of H4 @ (222.430532, 143.71); Footprint J19 @ (198.6, 144.9)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint J19 @ (198.6, 144.9); Footprint J12 @ (198.6, 144.9)]
+        warning: npth_inside_courtyard: NPTH inside courtyard [NPTH pad of J12 @ (198.6, 149.7); Footprint J19 @ (198.6, 144.9)]
+        warning: npth_inside_courtyard: NPTH inside courtyard [NPTH pad of J12 @ (198.6, 140.1); Footprint J19 @ (198.6, 144.9)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (239.930532, 136.71); Segment of J2 on F.Silkscreen @ (227.96, 56.79)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (239.930532, 136.71); Segment of J2 on F.Silkscreen @ (240.86, 70.59)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (233.930532, 136.71); Segment of J19 on F.Silkscreen @ (234.001, 136.772)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (233.930532, 136.71); Segment of J19 on F.Silkscreen @ (234.001, 136.772)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (233.930532, 153.71); Segment of J19 on F.Silkscreen @ (234.001, 153.032)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (233.930532, 153.71); Segment of J19 on F.Silkscreen @ (234.001, 153.032)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (59.930532, 53.71); Segment of J11 on B.Silkscreen @ (59.74, 87.86)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (59.930532, 53.71); Segment of J11 on B.Silkscreen @ (59.74, 119.56)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (239.930532, 53.71); Segment of J10 on B.Silkscreen @ (190.058, 53.54)]
+        warning: silk_edge_clearance: Silkscreen clipped by board edge [Segment on Edge.Cuts @ (239.930532, 53.71); Segment of J10 on B.Silkscreen @ (221.758, 53.54)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C276 @ (171.35, 69.11)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C373 @ (123.16, 56.47)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R288 @ (94.0, 58.5)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C295 @ (165.88, 73.31)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R193 @ (91.5, 149.63)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C130 @ (213.544132, 84.292)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C335 @ (89.1, 94.1)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R166 @ (63.22, 85.93)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C255 @ (206.88, 134.8)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C370 @ (117.69, 56.47)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint Q18 @ (83.5, 57.5)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C384 @ (170.784468, 134.57)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C102 @ (218.8, 112.7)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint U71 @ (139.181999, 107.9)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint TP63 @ (168.5, 57.17)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C247 @ (162.2, 93.3)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R376 @ (156.72, 112.2)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C243 @ (176.63, 90.39)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R370 @ (161.734468, 98.145)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R52 @ (183.2, 107.98)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C93 @ (212.4, 135.2)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint C299 @ (165.91, 99.81)]
+        warning: lib_footprint_issues: The current configuration does not include the footprint library 'antmicro-footprints' [Footprint R54 @ (182.933525, 124.897019)]
+        ... 181 more (--max-details)
         note: severities: jlcpcb-assembly@2026.10; the project had lowered missing_courtyard to warning (KiCad default ignore)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): lib_footprint_mismatch
         note: 3 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x3
-        note: minimums: JLCPCB 1 oz copper, 10 layers; below the fab's in the project, raised in the copy: min_through_hole_diameter 0.1 -> 0.15 mm
         note: custom design rules jetson-agx-thor-baseboard.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)
   WARN  Schematic / PCB parity (§5): 0 mismatches, 113 field/filter notes across 1125 footprints
         warning: footprint_symbol_field_mismatch: Field 'Tolerance' differs (PCB: '~', Schematic: '') [Footprint R195 @ (92.98, 148.205736)]
@@ -154,7 +153,19 @@ FINDINGS
         J18 ASP-218650-01_mounting_holes at 77.6805, 103.71
         J11 Conn_FFC_WE_68715014522 at 62.44, 103.71
         J8 Plug_Samtec_UMPT_1x6_UMPT-06-06.5-G-V-S-TR at 93.9305, 134.21
-  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+  FAIL  bom.csv (§1): /Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/jetson-thor-baseboard.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)
+
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 7 drivers off JLCPCB's standard tier (vias, holes, layers, size, placement, through-hole, assembly class)
+        vias: smallest via 0.1 mm hole, 0.45 mm diameter; 3235 of 3235 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.1mm/(0.2/0.25mm) option: priced; board thickness 1.0 mm or less and ENIG or OSP finish (the quote page greys the option out at 1.6 mm: "0.1mm Via is only supported for board thickness ≤ 1.0mm", and refuses it with HASL: "HASL is incompatible with 0.1mm (0.2/0.25mm) hole sizes. Please choose ENIG or OSP."); plugged vias and the 4-wire Kelvin test are added (source: quote, capabilities, read 2026-10-18)
+        holes: smallest drilled hole 0.1 mm; 3258 of 3309 holes are below the standard 0.15 mm drill; lands in the 0.1 mm hole tier: "more costly!"; board thickness 1 mm or less and ENIG or OSP finish; ordered through the 0.1 mm via option (source: capabilities, quote, read 2026-10-18)
+        layers: 10 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
+        size: outline 180 × 100 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
+        placement: parts to place on both sides (507 on F.Cu, 360 on B.Cu: D34, R201, R2, R222, D57, R241, C80, R207, +352 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        through-hole: 2 through-hole parts to assemble (J2, J19; 14 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        assembly class: 10 copper layers, 1.711 mm thick; the standard is 2, 4 or 6 layers at 0.8-1.6 mm; lands in Standard PCBA: Economic PCBA: "2,4,6-layers", "0.8mm - 1.6mm"; Standard: "1 - 32 layers", thickness "No limit" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): no readable bom.csv
@@ -166,7 +177,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  2 blocking, 6 warnings, 1 not checked  -  exit 1
-  2 findings block the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: FAIL  -  1 blocking, 7 warnings, 1 not checked, 7 cost drivers  -  exit 1
+  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again

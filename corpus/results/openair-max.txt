@@ -1,5 +1,5 @@
 One-Air-Max  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 210 footprints  -  bom.csv: openair-max.csv
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked, 3 cost drivers  -  exit 1
   4 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -104,7 +104,7 @@ FINDINGS
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): via_dangling, track_dangling, lib_footprint_mismatch
         note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): solder_mask_bridge x11
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm, min_hole_to_hole 0.0 -> 0.2 mm, min_track_width 0.0 -> 0.09 mm, min_via_annular_width 0.0 -> 0.05 mm
-        note: 202 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.15 mm, clearance x3, floor 0.09 mm); reported as warnings, --strict blocks them
+        note: 202 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x199, floor 0.1 mm, clearance x3, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Schematic / PCB parity (§5): 3 mismatches, 1 field/filter notes across 210 footprints; 11 padless footprint items not counted
         net_conflict: Pad net (unconnected-(I2C3-Pad6)) doesn't match net given by schematic (GND) [Pad 6 [unconnected-(I2C3-Pad6)] of I2C3 on B.Cu @ (165.36, 109.12)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
         footprint_symbol_mismatch: Footprint attributes don't match symbol: 'Do not populate' settings differ [Footprint Battery1 @ (191.56, 61.79)] (blocks under jlcpcb-assembly@2026.10, whatever severity the project gives it)
@@ -164,6 +164,15 @@ FINDINGS
         row 41 PWR_SW1: TK-6580A8-1 (SW-TH_TK-6580A8-1): missing MPN, Basic/Extended, Stock, Datasheet
         ... 44 more (--max-details)
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 3 drivers off JLCPCB's standard tier (layers, placement, through-hole)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        placement: parts to place on both sides (12 on F.Cu, 174 on B.Cu: C35, R24, C74, C65, C16, C9, C39, C38, +166 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        through-hole: 17 through-hole parts to assemble (I2C2, SW1, I2C1, LED2, PWR_SW1, C35, C38, L2, C3, L3, C33, C45, +5 more; 20 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 99.45 × 72 mm (100 × 100 mm or smaller); 1.2 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
   DRC (§12): 199 not compared
@@ -216,7 +225,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  4 blocking, 5 warnings, 2 not checked, 3 cost drivers  -  exit 1
   4 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "metering",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/smarthome-metering",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/smarthome-metering",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -323,7 +323,7 @@
       "title": "bom.csv",
       "pitfall": "\u00a71",
       "status": "fail",
-      "summary": "/Users/bennett/projects/pcb-preflight/corpus/boms/smarthome-metering.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
+      "summary": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/smarthome-metering.csv not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)",
       "details": [],
       "unchecked": [],
       "verified": [],
@@ -339,6 +339,24 @@
       "unchecked": [],
       "verified": [],
       "notes": []
+    },
+    {
+      "id": "order",
+      "title": "Order: what moves the price",
+      "pitfall": "\u00a713",
+      "status": "cost",
+      "summary": "2 drivers off JLCPCB's standard tier (size, through-hole)",
+      "details": [
+        "size: outline 120.5 \u00d7 86.5 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
+        "through-hole: 2 through-hole parts to assemble (X1, X2; 18 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "on the standard tier: smallest hole 1.3 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); single-sided placement (2 parts on F.Cu); 1.6 mm thick",
+        "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
+        "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ]
     }
   ],
   "by_hand": [
@@ -348,7 +366,7 @@
     "Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (\u00a77)",
     "Enclosure: component heights, connector edges, mounting hole pattern (\u00a710)",
     "Hand-drawn power loops, a human look at every autorouted trace (\u00a711)",
-    "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
+    "Review doc for this revision with \"checked and left alone\" (\u00a76)"
   ],
   "work_dir": null,
   "result": "FAIL",

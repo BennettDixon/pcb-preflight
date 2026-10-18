@@ -1,5 +1,5 @@
 BeyondexLimiter  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  2 copper layers, 9 footprints  -  bom.csv: beyondex-limiter-prefix.csv
-RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked  -  exit 3
+RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked, 0 cost drivers  -  exit 3
   1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue
 
 CHECKED AND LEFT ALONE
@@ -15,6 +15,10 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 7 bought references, every one on exactly one BOM line
         note: not bought: TP1, TP2 (prefix FID/TP/H/MH)
   BOM value matches the schematic (§1): 7 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
+  Order: what moves the price (§13): every driver the files can show is on JLCPCB's standard tier
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 22.5 × 13 mm (100 × 100 mm or smaller); single-sided placement (7 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
 FINDINGS
   WARN  ERC (§12): 0 errors, 1 warnings on 1 sheet
@@ -63,7 +67,7 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5); PTH pad 1 [GND] of TP2
         warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 95.0375)]
         warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 95.0375)]
         note: custom design rules BeyondexLimiter.kicad_dru are in the project and were not applied: the gate checks the fab's limits, not the designer's own rules (run DRC in KiCad for those)
-        note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x6, floor 0.15 mm, clearance x2, floor 0.1 mm); reported as warnings, --strict blocks them
+        note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (drill_out_of_range x6, floor 0.1 mm, clearance x2, floor 0.1 mm); reported as warnings, --strict blocks them
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Placement origin (§4): no aux axis origin set; set it at a board corner so the position file and drills share one origin
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("BeyondexLimiter") on a silkscreen layer
@@ -76,6 +80,9 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5); PTH pad 1 [GND] of TP2
         row 6 U1: CN5711 (SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.514x3.2mm_ThermalVias): missing Basic/Extended, Stock, Datasheet
         row 7 USB1,USB2: TYPE-C-31-M-12 (HRO_TYPE-C-31-M-12): missing Basic/Extended, Stock, Datasheet
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  nothing: every driver the files can show is on the standard tier
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
 
@@ -86,7 +93,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked  -  exit 3
+RESULT: NOT VERIFIED  -  0 blocking, 6 warnings, 1 not checked, 0 cost drivers  -  exit 3
   1 gate could not check everything (see NOT CHECKED); not a pass  -  run with --online to ask the catalogue

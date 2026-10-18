@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "tinytapeout-demo",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/tiny-tapeout",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/tiny-tapeout",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -49,7 +49,7 @@
   },
   "copper_layers": 4,
   "footprints": 309,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/tiny-tapeout.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/tiny-tapeout.csv",
   "checks": [
     {
       "id": "erc",
@@ -115,7 +115,7 @@
         "warning: pin_not_connected: Pin not connected [Symbol J16 Pin 1 [1, Passive, Line] @ (281.94, 45.72)]",
         "warning: pin_not_connected: Pin not connected [Symbol J18 Pin 1 [1, Passive, Line] @ (281.94, 48.26)]",
         "warning: footprint_link_issues: Footprint 'SOIC-8_5.23x5.23mm_P1.27mm' not found in library 'Package_SO' [Symbol U5 [W25Q32JVSS] @ (50.8, 180.34)]",
-        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (35.56, 71.12); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
+        "warning: multiple_net_names: Both QSPI_SS and BOOT_MODE are attached to the same items; QSPI_SS will be used in the netlist [Label 'QSPI_SS' @ (43.18, 30.48); Hierarchical Label 'BOOT_MODE' @ (33.02, 30.48)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -130,8 +130,8 @@
       "status": "fail",
       "summary": "5 errors, 739 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard",
       "details": [
-        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
         "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]",
+        "shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]",
         "shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]",
         "clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]",
         "footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]",
@@ -1051,7 +1051,7 @@
       "status": "fail",
       "summary": "1 connections still to route",
       "details": [
-        "unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]"
+        "unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]"
       ],
       "unchecked": [],
       "verified": [],
@@ -1291,6 +1291,26 @@
       "unchecked": [],
       "verified": [],
       "notes": []
+    },
+    {
+      "id": "order",
+      "title": "Order: what moves the price",
+      "pitfall": "\u00a713",
+      "status": "cost",
+      "summary": "4 drivers off JLCPCB's standard tier (layers, size, through-hole, impedance control)",
+      "details": [
+        "layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)",
+        "size: outline 104.5 \u00d7 81 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
+        "through-hole: 6 through-hole parts to assemble (J13, J12, J3, J5, J14, J6; 72 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
+        "impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance \u00b110%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+      ],
+      "unchecked": [],
+      "verified": [],
+      "notes": [
+        "on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (120 parts on F.Cu); 1.56252 mm thick",
+        "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
+        "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ]
     }
   ],
   "by_hand": [
@@ -1300,7 +1320,7 @@
     "Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (\u00a77)",
     "Enclosure: component heights, connector edges, mounting hole pattern (\u00a710)",
     "Hand-drawn power loops, a human look at every autorouted trace (\u00a711)",
-    "Review doc for this revision with \"checked and left alone\" (\u00a76); spares in the order (\u00a713)"
+    "Review doc for this revision with \"checked and left alone\" (\u00a76)"
   ],
   "work_dir": null,
   "result": "FAIL",

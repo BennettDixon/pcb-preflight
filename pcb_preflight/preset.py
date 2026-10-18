@@ -133,15 +133,18 @@ DEFAULT_PIN_MAP = [
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ]
 
-# The fab's minimums, in mm, as KiCad board-setup constraint keys (board.design_settings.rules). Source:
-# JLCPCB PCB capabilities, https://jlcpcb.com/capabilities/pcb-capabilities, read 2026-10-16, for 1 oz
-# copper; the files do not say the copper weight, so the report names the assumption (2 oz needs
-# 0.16/0.16 mm on 1-2 layers and 0.15/0.15 mm on more). A project value above the floor is kept.
+# The fab's minimums, in mm, as KiCad board-setup constraint keys (board.design_settings.rules): the absolute
+# buildable floor, below which the DRC gate blocks. What the fab builds above the floor but prices as an
+# option is a tier (TIERS below) and an ORDER line, never a FAIL. Source: JLCPCB PCB capabilities,
+# https://jlcpcb.com/capabilities/pcb-capabilities, read 2026-10-16 and 2026-10-18, for 1 oz copper; the
+# files do not say the copper weight, so the report names the assumption (2 oz needs 0.16/0.16 mm on 1-2
+# layers and 0.15/0.15 mm on more). A project value above the floor is kept.
 MINIMUMS_COPPER_WEIGHT = '1 oz'
 MINIMUMS_COMMON = {
-    'min_through_hole_diameter': 0.15,    # via hole 0.15 mm (the smallest standard drill)
-    'min_via_diameter': 0.25,             # via diameter 0.25 mm
-    'min_via_annular_width': 0.05,        # (0.25 - 0.15) / 2 for that via
+    'min_through_hole_diameter': 0.10,    # the 0.1mm/(0.2/0.25mm) via option, VIA_TIERS' last row, and HOLE_TIERS' 0.10 row: "Min. drill
+                                          # diameter for 2- or more-layer PCBs is 0.1 mm (more costly!)"; priced and conditional, not unbuildable
+    'min_via_diameter': 0.20,             # the same row's minimum via diameter (hole + 0.1 mm)
+    'min_via_annular_width': 0.05,        # (0.20 - 0.10) / 2 for that via, as for every row (diameter = hole + 0.1 mm)
     'min_hole_to_hole': 0.20,             # via hole to via hole 0.2 mm (pad holes want 0.45)
     'min_copper_edge_clearance': 0.20,    # copper to routed board edge 0.2 mm
 }
@@ -157,8 +160,8 @@ MINIMUMS_BY_LAYERS = {
 # standard option downward; nothing here is read live. Every table names its sources in TIERS_SOURCES.
 # The quote page was probed on 2026-10-18 on its defaults (FR-4, 2 layers, 100 × 100 mm, 5 pieces, 1.6 mm,
 # green, HASL, 1 oz), one option changed at a time, reading the option list, the greyed-out options'
-# messages and the "Charge Details" panel after each change. The gate change that uses these tables is a
-# later task; MINIMUMS_COMMON above is still the floor until then.
+# messages and the "Charge Details" panel after each change. checks.order_check() reads the files against
+# these tables; MINIMUMS_COMMON above is the floor, the smallest row of each table.
 TIERS_READ = '2026-10-18'
 TIERS_SOURCES = {
     'quote': ('https://cart.jlcpcb.com/quote', '2026-10-18'),
@@ -195,7 +198,7 @@ VIA_TIERS = [
 # option covers both). Capabilities page: "2-layer: 0.15 – 6.3 mm", "Multilayer: 0.15 – 6.3 mm (0.1mm
 # microvias only available for board thickness ≤1mm; ENIG/OSP surface finish required)", "Min. drill diameter
 # for 2- or more-layer PCBs is 0.1 mm (more costly!)". So 0.1 mm is a priced option with conditions, not a
-# capability limit; 0.15 mm is the smallest standard drill (MINIMUMS_COMMON's floor today).
+# capability limit: it is MINIMUMS_COMMON's floor, and 0.15 mm is the smallest standard drill.
 HOLE_TIERS = [
     {'min_drill': 0.15, 'standard': True, 'condition': 'the smallest drill without a surcharge on 2 and more layers'},
     {'min_drill': 0.10, 'standard': False,

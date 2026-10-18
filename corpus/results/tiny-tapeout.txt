@@ -1,5 +1,5 @@
 tinytapeout-demo  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  4 copper layers, 309 footprints  -  bom.csv: tiny-tapeout.csv
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked, 4 cost drivers  -  exit 1
   3 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -61,8 +61,8 @@ FINDINGS
         ... 18 more (--max-details)
         note: 6 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): power_pin_not_driven x2, pin_to_pin x2, pin_not_connected x2
   FAIL  DRC (§12): 5 errors, 739 warnings (silk_overlap x199, silk_edge_clearance x169, lib_footprint_issues x158, lib_footprint_mismatch x120, silk_over_copper x59, text_height x12, clearance x9, courtyards_overlap x8, shorting_items x3, via_dangling x3, text_thickness x2, footprint_type_mismatch x1, track_dangling x1); 160 footprints without a courtyard
-        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
         shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.3450 mm @ (100.42, 86.6)]
+        shorting_items: Items shorting two nets (nets unconnected-(J16-Pad1) and out7) [Pad 1 [unconnected-(J16-Pad1)] of J16 on F.Cu @ (100.42, 86.6); Track [out7] on F.Cu, length 0.4950 mm @ (100.42, 86.6)]
         shorting_items: Items shorting two nets (nets GND and unconnected-(J18-Pad1)) [Track [GND] on F.Cu, length 0.5657 mm @ (136.02, 86.2); Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6)]
         clearance: Clearance violation (zone clearance 0.2500 mm; actual 0.0010 mm) [Pad 1 [unconnected-(J18-Pad1)] of J18 on F.Cu @ (136.42, 86.6); Zone [GND] on F.Cu and B.Cu, priority 1 @ (52.5, 50.5)]
         footprint_type_mismatch: Footprint component type doesn't match footprint pads (expected 'Through hole'; actual 'SMD') [Footprint J15 @ (84.75, 55.5)]
@@ -106,7 +106,7 @@ FINDINGS
         note: minimums: JLCPCB 1 oz copper, 4 layers; below the fab's in the project, raised in the copy: min_clearance 0.0 -> 0.09 mm
         note: 8 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x8, floor 0.09 mm); reported as warnings, --strict blocks them
   FAIL  Unrouted connections (§11 §12): 1 connections still to route
-        unconnected_items: Missing connection between items [PTH pad S2 [Net-(C3-Pad1)] of J15 @ (79.13, 59.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
+        unconnected_items: Missing connection between items [Track [Net-(C3-Pad1)] on F.Cu, length 4.0000 mm @ (79.13, 55.5); Track [Net-(C3-Pad1)] on F.Cu, length 1.7550 mm @ (90.37, 59.5)]
   WARN  Schematic / PCB parity (§5): 0 mismatches, 1 field/filter notes across 309 footprints
         warning: footprint_symbol_field_mismatch: Field 'Description' differs (PCB: '
 USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board Edge, Cutout; Surface Mount; Through Hole, Right Angle
@@ -176,6 +176,16 @@ USB-C (USB TYPE-C) USB 2.0 Receptacle Connector 24 (16+8 Dummy) Position Board E
         row 32 X1: 20MHz (Oscillator_SMD_ECS_2520MV-xxx-xx-4Pin_2.5x2.0mm): missing Basic/Extended, Stock
         row 33 Y1: 12.0MHz (Crystal_SMD_3225-4Pin_3.2x2.5mm): missing Basic/Extended, Stock
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, through-hole, impedance control)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        size: outline 104.5 × 81 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
+        through-hole: 6 through-hole parts to assemble (J13, J12, J3, J5, J14, J6; 72 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance ±10%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (120 parts on F.Cu); 1.56252 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue and stock (§1 §2 §13): not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)
   DRC (§12): 160 not compared
@@ -228,7 +238,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked  -  exit 1
+RESULT: FAIL  -  3 blocking, 4 warnings, 2 not checked, 4 cost drivers  -  exit 1
   3 findings block the order (FAIL lines under FINDINGS); fix them and run again

@@ -79,6 +79,23 @@ KiCad's own defaults, and says when a custom-rules file was present. Everything 
 choice. The preset is named in every report (`jlcpcb-assembly@2026.10`); its protected checks, the fab's
 minimums and their sources are in [pcb_preflight/preset.py](pcb_preflight/preset.py).
 
+### ORDER
+
+Below FINDINGS the report has an ORDER section: what the files show that lands on a priced tier of
+JLCPCB's, one line per driver with the figure read from the files, the fab's standard, the tier it lands
+in with the quote page's own condition, the source and the date it was read. The section never changes the
+verdict or the exit code, `--strict` does not promote it, and the RESULT line counts its lines ("3 cost
+drivers"). The floor the DRC gate blocks on is the fab's absolute buildable minimum (a 0.1 mm hole is
+buildable, priced and conditional, so it is an ORDER line, not a FAIL); everything above the floor that
+the fab prices is a tier in [pcb_preflight/preset.py](pcb_preflight/preset.py) (`TIERS`, read 2026-10-18).
+The drivers the files can show: via hole and diameter, the smallest drilled hole, copper layers, the
+outline's size, parts to place on both sides, through-hole parts to assemble, Extended part types
+(`--online`), a layer count or thickness outside Economic PCBA, and the stackup's castellated, edge-plating
+and impedance flags. Nothing is inferred: no package size or pitch is guessed from pads. What the quote
+page prices that no file states (copper weight, surface finish, colour, quantity, via covering, gold
+fingers, panelisation) is named once in the section and left to the quote page; the section never prints
+a price or a suggestion.
+
 ## What a run looks like
 
 Against the card-sorter power board (`sorter_pdb_v0`, 4 layers, 130 footprints, routed and clean, a
@@ -87,7 +104,7 @@ and `--online` (full output in [examples/sorter_pdb_v0/report.txt](examples/sort
 
 ```
 sorter_pdb_v0  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  4 copper layers, 130 footprints  -  bom.csv: bom.csv
-RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked, 4 cost drivers  -  exit 1
   1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -100,7 +117,7 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 110 bought references, every one on exactly one BOM line
         note: not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)
   BOM value matches the schematic (§1): 110 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
-  Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; 23 Extended part types (one loading fee each)
+  Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked
   Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 66 lines filed under the category their reference prefix means
@@ -114,6 +131,16 @@ FINDINGS
         row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A)
   WARN  BOM lines complete (§1 §2): 1 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, through-hole, parts)
+        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
+        size: outline 110 × 75 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: [...])
+        through-hole: 18 through-hole parts to assemble (J5, J16, J2, J15, J13, J11, J1, J12, J10, J14, J8, J3, +6 more; 83 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; [...]
+        parts: 23 Extended part types (one loading fee each: C107083, C134838, C144394, C144395, C144397, C151074, C158012, C190083, C2042471, C249591, C25805, C2620, +11 more); the standard is Basic and Preferred Extended parts; [...]
+        note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (110 parts on F.Cu); 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   Catalogue package fits the footprint (§1): 5 not compared
         C3819953 1935161 (J1, J2, J3, J4; bom.csv row 29, 30, 31, 32): Plugin,P=5mm on TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal:
@@ -124,7 +151,7 @@ BY HAND BEFORE ORDERING
   - Fab assembly preview: rotation of 45 polarized or asymmetric parts (D5, D2, J5, C2, J16, L1, J2, D9, J15, J13, J11, U2, +33 more) (§4)
   ...
 
-RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked  -  exit 1
+RESULT: FAIL  -  1 blocking, 2 warnings, 1 not checked, 4 cost drivers  -  exit 1
 ```
 
 L3's 15 µH SRP1245A-150M is not in JLCPCB's catalogue, so the line stays open rather than holding a part
@@ -174,6 +201,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 | Three fiducials on the front, placement origin set | warn | the board file |
 | Board name and revision on silkscreen, a name beside every connector | warn | the board file |
 | Two copper layers under a switching regulator | warn | the board file |
+| Order: what moves the price off JLCPCB's standard tier (via and hole sizes, layers, outline size, double-sided placement, through-hole parts, Extended part types with `--online`, thickness, castellated / edge plating / impedance flags), each line with the figure, the standard, the tier, its condition and the source date; never the verdict | no (`cost`) | the board file (vias, pads, Edge.Cuts, stackup), `bom.csv`, the catalogue records; `preset.TIERS` |
 
 `--strict` makes warnings block too. Everything the tool cannot see is listed under "by hand before ordering"
 rather than silently passed: pick-and-place rotation in the fab's preview, footprint pin maps against the
@@ -185,7 +213,7 @@ datasheet, transients, enclosure fit.
 python3 -m unittest discover -s tests -v
 ```
 
-105 tests cover the BOM reader, the s-expression reader, the board gates, the stock gate against a fake
+155 tests cover the BOM reader, the s-expression reader, the board reader (vias, holes, outline, stackup flags), the board gates, the order gate (every driver on an inline board, the verdict untouched, the ORDER section and count, the JSON), the stock gate against a fake
 catalogue, the contract (verdicts and exit codes, what the gate owns and what the project may not switch
 off, KiCad's `excluded` flag, parity, footprint identity across hierarchical sheets, placement, what is not
 bought, the limits of a `Package verified` note, tool failures as ERROR with a JSON written), package

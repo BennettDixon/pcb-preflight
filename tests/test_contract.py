@@ -119,7 +119,7 @@ class Report(unittest.TestCase):
         text = report.render(dict(self.base, checks=[chk('erc', 'pass'), chk('stock', 'skip')], options={'online': False}))
         lines = text.splitlines()
         self.assertTrue(lines[0].endswith('bom.csv: bom.csv'), lines[0])
-        self.assertTrue(lines[1].startswith('RESULT: NOT VERIFIED  -  0 blocking, 0 warnings, 1 not checked  -  exit 3'), lines[1])
+        self.assertTrue(lines[1].startswith('RESULT: NOT VERIFIED  -  0 blocking, 0 warnings, 1 not checked, 0 cost drivers  -  exit 3'), lines[1])
         self.assertIn('run with --online', lines[2])
         self.assertEqual(lines[1], lines[-2])
 
@@ -133,7 +133,7 @@ class Report(unittest.TestCase):
 
     def test_pass_and_json(self):
         text = report.render(dict(self.base, checks=[chk('erc', 'pass')], options={'online': True}))
-        self.assertIn('RESULT: PASS  -  0 blocking, 0 warnings, 0 not checked  -  exit 0', text)
+        self.assertIn('RESULT: PASS  -  0 blocking, 0 warnings, 0 not checked, 0 cost drivers  -  exit 0', text)
         self.assertIn(f'every gate ran under {preset.PRESET}', text)
         self.assertIn('online  -  2 copper layers', text)
         j = json.loads(report.to_json(dict(self.base, checks=[chk('erc', 'pass')])))

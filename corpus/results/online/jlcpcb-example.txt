@@ -1,6 +1,6 @@
 SMPS 12V-5V  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  online  -  2 copper layers, 19 footprints  -  bom.csv: jlcpcb-example.csv
-RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 3 not checked, 4 cost drivers  -  exit 3
+  3 gates could not check everything (see NOT CHECKED); not a pass
 
 CHECKED AND LEFT ALONE
   Unrouted connections (§11 §12): 0 connections still to route
@@ -14,17 +14,14 @@ CHECKED AND LEFT ALONE
   bom.csv matches the schematic (§1 §5 §12): 15 bought references, every one on exactly one BOM line
         note: not bought: H1, H2, H3, H4 (prefix FID/TP/H/MH)
   BOM value matches the schematic (§1): 15 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
-  Catalogue and stock (§1 §2 §13): 11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked; 4 Extended part types (one loading fee each)
+  Catalogue and stock (§1 §2 §13): 11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked
   Catalogue package fits the footprint (§1): 11 agree with their footprint
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 10 lines filed under the category their reference prefix means, 1 not checked
   Catalogue description matches the BOM value (§1 §2): 8 lines agree on every figure their value states (F, H, Ω, V), 3 state no figure
 
 FINDINGS
-  FAIL  ERC (§12): 3 errors, 50 warnings on 1 sheet
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
-        power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR04 Pin 1 [Power input, Line] @ (238.76, 52.07)]
+  WARN  ERC (§12): 0 errors, 53 warnings on 1 sheet
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H1 [Mounting Hole, 3mm, Via Stiched] @ (44.45, 119.38)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol CN1 Pin 1 [1, Unspecified, Line] @ (52.07, 54.61); Symbol #PWR05 Pin 1 [Power input, Line] @ (52.07, 54.61)]
@@ -37,6 +34,7 @@ FINDINGS
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H3 [Mounting Hole, 3mm, Via Stiched] @ (71.12, 119.38)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Manufacturing' [Symbol H4 [Mounting Hole, 3mm, Via Stiched] @ (82.55, 119.38)]
+        warning: power_pin_not_driven: Input Power pin not driven by any Output Power pins [Symbol #PWR03 Pin 1 [Power input, Line] @ (123.19, 52.07)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
         warning: lib_symbol_issues: The current configuration does not include the symbol library 'PCM_JLCPCB-Capacitors' [Symbol C1 [0805,22uF] @ (123.19, 71.12)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'PCM_JLCPCB' [Symbol C2 [0805,22uF] @ (129.54, 71.12)]
@@ -62,7 +60,10 @@ FINDINGS
         warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 6 [FB2, Unspecified, Line] @ (186.69, 64.77); Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93)]
         warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U1 Pin 2 [PG, Unspecified, Line] @ (186.69, 69.85); Symbol R2 Pin 2 [Passive, Line] @ (212.09, 59.69)]
         warning: pin_to_pin: Pins of type Unspecified and Power input are connected [Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93); Symbol #PWR01 Pin 1 [Power input, Line] @ (199.39, 72.39)]
+        warning: pin_to_pin: Pins of type Unspecified and Unspecified are connected [Symbol U1 Pin 4 [GND, Unspecified, Line] @ (186.69, 78.74); Symbol U1 Pin 10 [PGND, Unspecified, Line] @ (186.69, 74.93)]
+        warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol R4 Pin 2 [2, Unspecified, Line] @ (199.39, 52.07); Symbol R2 Pin 1 [Passive, Line] @ (212.09, 52.07)]
         ... 13 more (--max-details)
+        note: 24 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x21, power_pin_not_driven x3
   WARN  DRC (§12): 0 errors, 58 warnings (via_dangling x28, hole_to_hole x15, lib_footprint_issues x14, copper_sliver x1); 5 footprints without a courtyard
         warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (161.25, 75.65)]
         warning: via_dangling: Via is not connected or connected on only one layer [Via [+12V] on F.Cu - B.Cu @ (127.25, 90.0)]
@@ -124,6 +125,16 @@ FINDINGS
         row 11 R4: 523kΩ (R0805): missing MPN, Basic/Extended, Stock, Datasheet
         row 12 U1: TPS63070RNMR (VQFN-HR-15_L3.0-W2.5-P0.50-BL_TPS63070RNMR): missing MPN, Basic/Extended, Stock
 
+ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
+  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (vias, size, through-hole, parts)
+        vias: smallest via 0.2 mm hole, 0.4 mm diameter; 30 of 101 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.2mm/(0.3/0.35mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself (source: quote, capabilities, read 2026-10-18)
+        size: outline 107.3 × 82.8 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
+        through-hole: 4 through-hole parts to assemble (L1, CN2, CN1, R4; 4 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        parts: 4 Extended part types (one loading fee each: C109322, C2683107, C2885888, C395930); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        note: on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); single-sided placement (15 parts on F.Cu); 1.6 mm thick
+        note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
+        note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
+
 NOT CHECKED
   DRC (§12): 5 not compared
         missing_courtyard: Footprint has no courtyard defined [Footprint L1 @ (186.4, 96.43)]: no courtyard, so courtyards_overlap could not see this footprint
@@ -146,7 +157,7 @@ BY HAND BEFORE ORDERING
   - Transients: plug-in, switch-on, brown-out, adjacent-pin shorts on every connector (§7)
   - Enclosure: component heights, connector edges, mounting hole pattern (§10)
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
-  - Review doc for this revision with "checked and left alone" (§6); spares in the order (§13)
+  - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  1 blocking, 6 warnings, 3 not checked  -  exit 1
-  1 finding blocks the order (FAIL lines under FINDINGS); fix them and run again
+RESULT: NOT VERIFIED  -  0 blocking, 7 warnings, 3 not checked, 4 cost drivers  -  exit 3
+  3 gates could not check everything (see NOT CHECKED); not a pass
