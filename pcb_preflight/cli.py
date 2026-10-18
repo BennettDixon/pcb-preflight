@@ -1,7 +1,7 @@
 """preflight: refuse a KiCad board that is not ready to order.
 
   preflight check <project dir> [--bom bom.csv] [--online] [--strict] [--json out.json]
-  preflight bom-template <project dir> [-o bom.csv]
+  preflight bom <project dir> [--bom bom.csv] [--catalogue parts.csv] [--refresh] [--offline] [--json out.json]
 
 Exit codes (preset.py): 0 PASS, 1 FAIL, 2 ERROR (a core gate did not run, or the tool itself failed),
 3 NOT VERIFIED (something could not be checked: no --online, catalogue unreachable, a package or an MPN
@@ -11,6 +11,12 @@ nobody compared).
 beside a board that has none, and the gate sets what it owns (severities, pin matrix, the fab's minimums)
 in the copy's .kicad_pro before kicad-cli runs. Custom design rules (<name>.kicad_dru) are left out of the
 copy; the report says so.
+
+`bom` (alias `init` for one release; init.py) writes the one file beside the project, bom.csv, from the
+LCSC code each symbol names in a field and the catalogue record of that code: exit 0 complete, 3
+incomplete (a line without a code or a record), 2 error. Catalogue facts go through a cache
+(catalogue.py: ~/.cache/pcb-preflight/catalogue.json or $PCB_PREFLIGHT_CACHE) that `check` reads too:
+--online refreshes it; offline, cached facts are used, labelled, and make the result NOT VERIFIED.
 """
 import argparse
 import csv
@@ -21,7 +27,7 @@ import sys
 import tempfile
 import traceback
 
-from . import __version__, board as boardlib, bom as bomlib, checks, footprints, kicad, packages, preset, report, schematic
+from . import __version__, board as boardlib, bom as bomlib, catalogue, checks, footprints, init, kicad, packages, preset, report, schematic
 
 SCHEMA = 1     # of the JSON report; bumped when a field changes meaning or goes away
 
@@ -89,8 +95,10 @@ def run_check(a):
             results.append(checks.Check('identity', 'Board footprints belong to this schematic', '§5', 'skip',
                                         f'could not read the schematic: {e}'))
 
+        field_codes = {}
         try:
-            sch_rows = kicad.bom(cli, sch, os.path.join(work, 'sch_bom.csv'))
+            sch_rows = kicad.bom(cli, sch, os.path.join(work, 'sch_bom.csv'), fields=init.field_names())
+            field_codes = init.codes_from_fields(sch_rows)
         except kicad.KicadError as e:
             sch_rows = None
             results.append(checks.Check('sch-bom', 'Schematic BOM export', '§1', 'skip', str(e)))
@@ -104,10 +112,12 @@ def run_check(a):
             results.append(checks.dnp_board_check(board, sch_rows))
             results.append(checks.placement_check(board, sch_rows, skip_prefixes))
 
-        lines, records = None, None
+        lines, records, catalogue_opts = None, None, None
         if not os.path.exists(bom_path):
+            how = (f'{len(field_codes)} symbols carry an LCSC code in a field: run preflight bom to write it from them and the catalogue'
+                   if field_codes else 'run preflight bom to write it from the symbol fields and the catalogue (without LCSC fields it writes the skeleton to fill)')
             results.append(checks.Check('bom-file', 'bom.csv', '§1', 'fail',
-                                        f'{bom_path} not found: every part is chosen from the fab catalogue before layout (preflight bom-template writes the skeleton)'))
+                                        f'{bom_path} not found: every part is chosen from the fab catalogue before layout; {how}'))
         else:
             try:
                 lines, missing_cols = bomlib.load(bom_path)
@@ -123,16 +133,28 @@ def run_check(a):
             results.append(checks.bom_fields_check(lines))
             if sch_rows is not None:
                 results.append(checks.bom_refs_check(lines, sch_rows, skip_prefixes, board))
+                results.append(checks.bom_source_check(lines, field_codes, checks.purchasable(sch_rows, skip_prefixes)))
                 results.append(checks.bom_value_check(lines, sch_rows))
-            if a.online:
+            # The catalogue, through the cache (catalogue.py): --online always refreshes stock and writes the cache;
+            # offline, cached facts up to IDENTITY_DAYS old are read and labelled, and their items are not checked.
+            cat = catalogue.Catalogue(parts=a.catalogue, refresh=a.online, offline=not a.online)
+            cached = {ln.lcsc for ln in lines if ln.lcsc in cat.records} | {ln.lcsc for ln in lines if ln.lcsc in cat.parts}
+            if a.online or cached:
                 records = {}
-                results.append(checks.stock_check(lines, multiple=a.stock_multiple, records=records))
+                with cat:
+                    s = checks.stock_check(lines, multiple=a.stock_multiple, lookup=cat.lookup, records=records)
+                if not a.online:
+                    s.summary = f'offline, from the cache at {cat.path}: ' + s.summary
+                    s.notes.append('facts from the cache are not current (stock moves daily) and pass nothing: run with --online to refresh them')
+                results.append(s)
                 results.append(checks.catalogue_package_check(lines, records, sch_rows, library))
                 results.append(checks.catalogue_category_check(lines, records))
                 results.append(checks.catalogue_value_check(lines, records))
             else:
                 results.append(checks.Check('stock', 'Catalogue and stock', '§1 §2 §13', 'skip',
-                                            'not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)'))
+                                            'not asked: pass --online to look every LCSC code up at JLCPCB (stock, MPN, package, Basic/Extended)'
+                                            + (f'; nothing for these codes in the cache at {cat.path}' if lines else '')))
+            catalogue_opts = {'cache': cat.path, 'parts': a.catalogue, 'counts': cat.counts}
         results.append(checks.order_check(board, lines, records))      # never the verdict: the ORDER section
 
         result = {
@@ -140,7 +162,7 @@ def run_check(a):
             'kicad_version': kver, 'kicad_cli': cli, 'preset': preset.PRESET,
             'options': {'online': a.online, 'strict': a.strict, 'skip_prefixes': list(skip_prefixes),
                         'stock_multiple': a.stock_multiple, 'custom_rules_present': bool(custom_rules),
-                        'footprints': library.root if library else None},
+                        'footprints': library.root if library else None, 'catalogue': catalogue_opts},
             'owned': {k: ({kk: list(vv) if isinstance(vv, tuple) else vv for kk, vv in v.items()} if isinstance(v, dict) else v) for k, v in owned.items()},
             'copper_layers': board.copper_layers, 'footprints': len(board.footprints),
             'bom_path': bom_path if os.path.exists(bom_path) else None,
@@ -157,29 +179,11 @@ def run_check(a):
 
 
 def run_template(a):
-    project_dir = os.path.abspath(a.project_dir)
-    name = boardlib.project_name(project_dir, a.project)
-    cli = kicad.find_cli(a.kicad_cli)
-    out = os.path.abspath(a.output or os.path.join(project_dir, 'bom.csv'))
-    if os.path.exists(out) and not a.force:
-        raise ValueError(f'{out} exists; pass --force to overwrite it')
-    skip_prefixes = tuple(p.strip().upper() for p in a.skip_prefix.split(',') if p.strip())
-    work = tempfile.mkdtemp(prefix='pcb-preflight-')
-    try:
-        src = snapshot(project_dir, work)
-        rows = kicad.bom(cli, os.path.join(src, name + '.kicad_sch'), os.path.join(work, 'sch_bom.csv'))
-    finally:
-        shutil.rmtree(work, ignore_errors=True)
-    groups = {}
-    for r in checks.purchasable(rows, skip_prefixes).values():
-        groups.setdefault((r['Value'], r['Footprint']), []).append(r['Ref'])
-    with open(out, 'w', newline='', encoding='utf-8') as f:
-        w = csv.writer(f)
-        w.writerow(bomlib.REQUIRED)
-        for (value, fp), refs in groups.items():
-            w.writerow([','.join(refs), value, fp.split(':', 1)[-1], '', '', '', '', ''])
-    print(f'wrote {out}: {len(groups)} lines to fill from the fab catalogue (LCSC, MPN, Basic/Extended, Stock, Datasheet)')
-    return 0
+    """Deprecated alias (one release): `preflight bom --offline` without reading the symbol fields writes the
+    skeleton the template wrote, one open line per value and footprint, merged into an existing bom.csv."""
+    print('preflight bom-template is deprecated: use preflight bom (it reads the LCSC fields and the catalogue)', file=sys.stderr)
+    a.bom, a.offline, a.quiet, a.json, a.catalogue, a.refresh = a.output, True, False, None, None, False
+    return init.run(a, read=False)
 
 
 def _positive(s):
@@ -204,6 +208,7 @@ def build_parser():
     c = sub.add_parser('check', help='run every gate and print the report (exit 0 PASS, 1 FAIL, 2 ERROR, 3 NOT VERIFIED)')
     common(c)
     c.add_argument('--bom', help='bom.csv path (default: <project dir>/bom.csv)')
+    c.add_argument('--catalogue', metavar='FILE', help='a parts.csv consulted before the cache and JLCPCB (columns lcsc, mpn, manufacturer, package, library, stock, description, datasheet, fetched_at)')
     c.add_argument('--footprints', metavar='DIR', help='KiCad footprint library directory for pad geometry (default: $KICAD_FOOTPRINT_DIR, '
                    'then the kicad-cli install); without one, package names alone are compared')
     c.add_argument('--online', action='store_true', help='look every LCSC code up at JLCPCB: stock, MPN, package, Basic/Extended (without it the result is at best NOT VERIFIED)')
@@ -215,17 +220,29 @@ def build_parser():
     c.add_argument('--quiet', action='store_true', help='no progress line on stderr')
     c.set_defaults(fn=run_check)
 
-    t = sub.add_parser('bom-template', help='write a bom.csv skeleton from the schematic, one line per value and footprint')
+    b = sub.add_parser('bom', aliases=['init'], help='write bom.csv from the LCSC code in each symbol\'s field and the catalogue record of that code '
+                       '(exit 0 complete, 3 a line without a code or a record, 2 error); `init` is an alias for one release')
+    common(b)
+    b.add_argument('--bom', help='where to write it (default: <project dir>/bom.csv); an existing file is merged: human columns and notes are kept, changes printed')
+    b.add_argument('--catalogue', metavar='FILE', help='a parts.csv consulted before the cache and JLCPCB (columns lcsc, mpn, manufacturer, package, library, stock, description, datasheet, fetched_at)')
+    b.add_argument('--refresh', action='store_true', help=f'ignore cached records (the cache keeps a stock figure {catalogue.STOCK_DAYS} days)')
+    b.add_argument('--offline', action='store_true', help=f'ask no network: write from the cache (records up to {catalogue.IDENTITY_DAYS} days old, labelled) and the fields only')
+    b.add_argument('--json', help='also write the lines and the report as JSON to this path')
+    b.add_argument('--quiet', action='store_true', help='print the RESULT line only')
+    b.set_defaults(fn=init.run)
+
+    t = sub.add_parser('bom-template', help='deprecated (kept for one release): runs `preflight bom --offline` without reading the symbol fields, '
+                       'so every line is open with the footprint name as Package; an existing bom.csv is merged, not refused')
     common(t)
     t.add_argument('-o', '--output', help='where to write it (default: <project dir>/bom.csv)')
-    t.add_argument('--force', action='store_true', help='overwrite an existing file')
+    t.add_argument('--force', action='store_true', help='accepted and ignored: bom always merges into an existing file and prints what changed')
     t.set_defaults(fn=run_template)
     return p
 
 
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and argv[0] not in ('check', 'bom-template', '-h', '--help', '--version') and not argv[0].startswith('-'):
+    if argv and argv[0] not in ('check', 'bom', 'init', 'bom-template', '-h', '--help', '--version') and not argv[0].startswith('-'):
         argv.insert(0, 'check')
     p = build_parser()
     a = p.parse_args(argv)

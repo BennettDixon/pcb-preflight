@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 
 from . import bom as bomlib
 from . import board as boardlib
-from . import kicad, packages, preset, stock, values
+from . import catalogue, kicad, packages, preset, stock, values
 
 SIGN_OFF = 'to clear it, compare the drawing and add a "Package verified" note (date, initials, what was compared) on that bom.csv line'
 
@@ -541,6 +541,55 @@ def bom_refs_check(lines, sch_rows, skip_prefixes, board=None):
                  f'{len(wanted)} bought references, every one on exactly one BOM line', notes=notes)
 
 
+def bom_source_check(lines, field_codes, bought):
+    """G16 (§1 §12): for every bought reference, the LCSC code in the symbol field and the one on its bom.csv
+    line agree where both exist. The schematic is the design and bom.csv is written from it by `preflight bom`,
+    so a disagreement means the file is stale or the field was edited: the fix is to run bom (or fix the
+    field). A field with a code whose line has none is the same finding. The catalogue record's code is the
+    code it was asked for, so it agrees by construction. With no symbol field at all, bom.csv is the only
+    source and there is nothing to disagree: the gate passes and says so.
+    """
+    line_of = {ref: ln for ln in lines for ref in ln.refs}
+    det, agree, line_only, field_only = [], 0, 0, 0
+    for ref in sorted(bought, key=natural_key):
+        f = field_codes.get(ref, '')
+        ln = line_of.get(ref)
+        l = ln.lcsc if ln else ''
+        if f and l:
+            if f == l:
+                agree += 1
+            else:
+                det.append(f'{ref}: the schematic field says {f}, bom.csv (row {ln.row}) says {l}: run preflight bom, or fix the field')
+        elif f and ln is not None:
+            det.append(f'{ref}: the schematic field says {f}, its bom.csv line (row {ln.row}) has no code: run preflight bom')
+        elif f:
+            field_only += 1                       # no bom.csv line at all: the bom-refs gate's finding
+        elif l:
+            line_only += 1
+    title = 'LCSC code: symbol field and bom.csv agree'
+    if det:
+        return Check('bom-source', title, '§1 §12', 'fail', f'{len(det)} references name a different part in the schematic field and in bom.csv', det)
+    if not field_codes:
+        return Check('bom-source', title, '§1 §12', 'pass', 'no symbol carries an LCSC code in a field; bom.csv alone names the parts',
+                     notes=['fields read: ' + ', '.join(f for f, c, _ in _lcsc_fields())])
+    parts = [f'{agree} references carry the same code in the symbol field and in bom.csv']
+    if line_only:
+        parts.append(f'{line_only} have a code only in bom.csv (hand-entered; no symbol field)')
+    if field_only:
+        parts.append(f'{field_only} have a code only in a field (no bom.csv line: see bom.csv matches the schematic)')
+    return Check('bom-source', title, '§1 §12', 'pass', ', '.join(parts))
+
+
+def _lcsc_fields():
+    from . import init
+    return [(f, c, w) for f, c, w in init.FIELDS if c == 'LCSC']
+
+
+def natural_key(ref):
+    m = re.match(r'^([^\d]*)(\d*)(.*)$', ref)
+    return (m.group(1), int(m.group(2) or 0), m.group(3))
+
+
 def _library_note(library):
     if library is None:
         return ('pad geometry: no KiCad footprint library found, so package names alone were compared '
@@ -726,6 +775,11 @@ def stock_check(lines, multiple=10, lookup=stock.lookup, records=None):
     ``records``, when given, is filled with code -> catalogue record for catalogue_package_check(), and
     code -> None for a code no catalogue could be asked about. Those codes, and lines with no MPN to
     compare with the catalogue's, are listed under NOT CHECKED (``unchecked``), never counted as a pass.
+    A record served from the cache, or fetched more than catalogue.STOCK_DAYS ago, is not today's stock:
+    its items are unchecked too (any disagreement it shows is said in the same line), and the summary says
+    where the facts came from and when (the record's source and fetched_at, as `preflight bom` prints them
+    in the Fetched column). Manufacturer, when bom.csv has it, is compared like the MPN: a different maker
+    behind the same code blocks (a clone's MPN can equal the original's).
     """
     by_code = defaultdict(list)
     for ln in lines:
@@ -734,6 +788,7 @@ def stock_check(lines, multiple=10, lookup=stock.lookup, records=None):
     if not by_code:
         return Check('stock', 'Catalogue and stock', '§1 §2 §13', 'skip', 'no line has an LCSC code to look up')
     fails, warns, skips, ok = [], [], [], []
+    sources = Counter()
     for code, lns in sorted(by_code.items()):
         qty = sum(len(ln.refs) for ln in lns)
         label = f'{code} ({", ".join(r for ln in lns for r in ln.refs)})'
@@ -749,26 +804,45 @@ def stock_check(lines, multiple=10, lookup=stock.lookup, records=None):
         if rec is None:
             fails.append(f'{label}: not in the JLCPCB catalogue; the code is wrong or the part was retired')
             continue
+        sources[catalogue.fetched_label(rec, via=True) or 'live, undated'] += 1
         n = rec.get('stock')
+        f_, w_, s_ = [], [], []                  # this code's findings, filed below by the record's currency
         if n is None:
-            skips.append(f'{label}: catalogue gave no stock figure')
+            s_.append(f'{label}: catalogue gave no stock figure')
         elif n == 0:
-            fails.append(f'{label}: out of stock at JLCPCB ({rec["mpn"]})')
+            f_.append(f'{label}: out of stock at JLCPCB ({rec["mpn"]})')
         elif n < multiple * qty:
-            warns.append(f'{label}: stock {n} is under {multiple}x the {qty} needed ({rec["mpn"]})')
+            w_.append(f'{label}: stock {n} is under {multiple}x the {qty} needed ({rec["mpn"]})')
         for ln in lns:
             mine, theirs = _norm_mpn(ln.mpn), _norm_mpn(rec.get('mpn'))
             if not mine:
-                skips.append(f'{label}: no MPN in bom.csv to compare with the catalogue\'s {rec.get("mpn") or "(none)"}; the code was not checked against a part')
+                s_.append(f'{label}: no MPN in bom.csv to compare with the catalogue\'s {rec.get("mpn") or "(none)"}; the code was not checked against a part')
             elif theirs and mine not in theirs and theirs not in mine:
-                fails.append(f'{label}: bom.csv says MPN "{ln.mpn}" but the catalogue says "{rec["mpn"]}" ({rec.get("description", "")[:60]})')
+                f_.append(f'{label}: bom.csv says MPN "{ln.mpn}" but the catalogue says "{rec["mpn"]}" ({rec.get("description", "")[:60]})')
+            mk, theirs_mk = _norm_mpn(ln.manufacturer), _norm_mpn(rec.get('manufacturer'))
+            if mk and theirs_mk and mk not in theirs_mk and theirs_mk not in mk:
+                f_.append(f'{label}: bom.csv says Manufacturer "{ln.manufacturer}" but the catalogue says "{rec["manufacturer"]}" (same MPN from another maker is another part)')
             lib = bomlib.library_type(ln.library)
             if lib and rec.get('library') and lib != rec['library'] and not (lib == 'Basic' and rec['library'] == 'Preferred'):
-                warns.append(f'{label}: bom.csv says {lib} but the catalogue says {rec["library"]}')
-        ok.append(f'{label}: {rec["mpn"]}, {rec.get("package", "?")}, {rec.get("library", "?")}, stock {n:,}' if isinstance(n, int) else f'{label}: {rec["mpn"]}')
+                w_.append(f'{label}: bom.csv says {lib} but the catalogue says {rec["library"]}')
+        if catalogue.is_current(rec):
+            fails += f_
+            warns += w_
+            skips += s_
+            ok.append(f'{label}: {rec["mpn"]}, {rec.get("package", "?")}, {rec.get("library", "?")}, stock {n:,}' if isinstance(n, int) else f'{label}: {rec["mpn"]}')
+        else:                                    # cached or old facts: nothing here is today's stock, so nothing here passes
+            said = [x.split(': ', 1)[1] for x in f_ + w_ + s_]
+            skips.append(f'{label}: facts from {catalogue.fetched_label(rec, via=True) or "an undated record"}, not current (stock moves daily; '
+                         f'run check --online to refresh)' + (f'; the cached record says: {"; ".join(said)}' if said else ''))
     status = 'fail' if fails else ('warn' if warns else ('skip' if skips and not ok else 'pass'))
-    summary = f'{len(ok)} codes found, {len(fails)} blocking, {len(warns)} low-stock/mismatch, {len(skips)} not checked'
-    return Check('stock', 'Catalogue and stock', '§1 §2 §13', status, summary, fails + warns + [f'ok: {o}' for o in ok], unchecked=skips)
+    summary = (f'{len(ok)} codes found, {len(fails)} blocking, {len(warns)} low-stock/mismatch, {len(skips)} not checked; facts from '
+               + ', '.join(f'{src} ({n} code{"s" if n != 1 else ""})' for src, n in sorted(sources.items())) if sources else
+               f'{len(ok)} codes found, {len(fails)} blocking, {len(warns)} low-stock/mismatch, {len(skips)} not checked')
+    notes = []
+    fetched = Counter(ln.fetched or '(no Fetched column or empty)' for ln in lines if bomlib.LCSC_RE.match(ln.lcsc))
+    if any(ln.fetched for ln in lines):
+        notes.append('bom.csv Fetched: ' + ', '.join(f'{k} ({n} line{"s" if n != 1 else ""})' for k, n in sorted(fetched.items())))
+    return Check('stock', 'Catalogue and stock', '§1 §2 §13', status, summary, fails + warns + [f'ok: {o}' for o in ok], unchecked=skips, notes=notes)
 
 
 # ---------------------------------------------------------------- the order (what moves the price)

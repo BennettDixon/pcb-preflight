@@ -31,6 +31,7 @@ tier (never the verdict), in print order: hidden drivers first, the designer's c
 through-hole) after them.
 
   PREFLIGHT_CORPUS_BOARDS=canfd-mc,sh-rpi   run a subset
+  PREFLIGHT_CORPUS_DIR=/path/to/boards       the fetched boards, when not under corpus/boards (a worktree)
   PREFLIGHT_CORPUS_ONLINE=1                  also run the catalogue pass (network; stock moves daily,
                                              only the package-fit counts are asserted)
 """
@@ -40,11 +41,12 @@ import json
 import os
 import tempfile
 import unittest
+from unittest import mock
 
-from pcb_preflight import cli, kicad
+from pcb_preflight import bom, cli, kicad
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BOARDS = os.path.join(ROOT, 'corpus', 'boards')
+BOARDS = os.environ.get('PREFLIGHT_CORPUS_DIR') or os.path.join(ROOT, 'corpus', 'boards')
 BOMS = os.path.join(ROOT, 'corpus', 'boms')
 
 # board -> (result, blocking gates, {gate: substring of its summary})
@@ -196,7 +198,8 @@ def run(name, online=False):
     argv = ['check', os.path.join(BOARDS, name), '--bom', os.path.join(BOMS, name + '.csv'), '--quiet', '--json', out]
     if online:
         argv.append('--online')
-    with contextlib.redirect_stdout(io.StringIO()):          # the report goes to the JSON; the test reads that
+    env = {'PCB_PREFLIGHT_CACHE': os.path.join(os.path.dirname(out), 'empty-cache.json')}   # file-only: the machine's cache stays out
+    with contextlib.redirect_stdout(io.StringIO()), mock.patch.dict(os.environ, env):   # the report goes to the JSON; the test reads that
         code = cli.main(argv)
     with open(out, encoding='utf-8') as f:
         return code, json.load(f)
@@ -256,6 +259,58 @@ class CorpusBaseline(unittest.TestCase):
             self.skipTest('both BeyondexLimiter states are needed')
         before, after = (run(n)[1] for n in pair)
         self.assertEqual([(c['id'], c['status']) for c in before['checks']], [(c['id'], c['status']) for c in after['checks']])
+
+
+# board -> (bom.csv lines `preflight bom` writes, lines without a code, {field spelling: references it supplied a code for});
+# the deterministic part of corpus/RESULTS.md "preflight bom on the corpus" (2026-10-18). Run offline with an empty cache, so
+# every coded line is "without a record" and the exit is 3 on every board; what the catalogue answered is in RESULTS.md only.
+BOM = {
+    'beyondex-limiter': (6, 0, {'LCSC': 7}),
+    'beyondex-limiter-prefix': (6, 0, {'LCSC': 7}),
+    'bitaxeaura': (48, 47, {'LCSC': 1}),
+    'bitaxegt': (38, 34, {'LCSC': 5}),
+    'canfd-mc': (26, 0, {'LCSC': 37}),
+    'cm5-minima': (39, 33, {'LCSC Part': 8}),
+    'jlcpcb-example': (11, 0, {'LCSC': 10, 'LCSC Part': 5}),
+    'openair-max': (84, 3, {'LCSC Part': 180}),
+    'openjbod-rp2040': (49, 0, {'LCSC Part #': 121}),
+    'pocketpd': (34, 0, {'LCSC': 81}),
+    'royalblue54l-feather': (29, 1, {'LCSC': 47}),
+    'sh-rpi': (77, 3, {'LCSC': 147}),
+    'soldiercrab': (29, 0, {'lcsc#': 70}),
+    'sonatino': (57, 0, {'LCSC': 116}),
+    'tiny-tapeout': (32, 28, {'JLC': 8}),
+}
+
+
+@unittest.skipUnless(_cli_present(), 'kicad-cli not installed')
+@unittest.skipUnless(os.path.isdir(BOARDS) and _present(), 'corpus not fetched (sh corpus/fetch.sh)')
+class CorpusBom(unittest.TestCase):
+    """`preflight bom --offline` with an empty cache on every board with LCSC data: the lines, the open lines and the
+    field spellings are read from the files alone; the file reloads as a bom.csv and a second run writes the same bytes."""
+
+    def test_lines_open_lines_and_field_spellings(self):
+        for name, (n_lines, n_open, fields) in BOM.items():
+            if name not in _present():
+                continue
+            with self.subTest(name):
+                work = tempfile.mkdtemp(prefix='corpus-bom-')
+                out, js = os.path.join(work, 'bom.csv'), os.path.join(work, 'bom.json')
+                env = {'PCB_PREFLIGHT_CACHE': os.path.join(work, 'empty-cache.json')}
+                with contextlib.redirect_stdout(io.StringIO()), mock.patch.dict(os.environ, env):
+                    code = cli.main(['bom', os.path.join(BOARDS, name), '--bom', out, '--offline', '--json', js])
+                    with open(out, 'rb') as f:
+                        first = f.read()
+                    code2 = cli.main(['bom', os.path.join(BOARDS, name), '--bom', out, '--offline', '--quiet'])
+                with open(js, encoding='utf-8') as f:
+                    j = json.load(f)
+                self.assertEqual((code, code2), (3, 3), 'offline with nothing cached, every code is without a record')
+                self.assertEqual((len(j['lines']), len(j['open']), j['fields']), (n_lines, n_open, fields))
+                self.assertEqual(len(j['open_codes']), n_lines - n_open)
+                lines, missing = bom.load(out)
+                self.assertEqual((missing, len(lines)), ([], n_lines))
+                with open(out, 'rb') as f:
+                    self.assertEqual(f.read(), first, 'same inputs, same bytes')
 
 
 @unittest.skipUnless(os.environ.get('PREFLIGHT_CORPUS_ONLINE') == '1', 'set PREFLIGHT_CORPUS_ONLINE=1 to ask the catalogue')

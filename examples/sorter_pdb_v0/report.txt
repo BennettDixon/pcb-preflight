@@ -17,8 +17,10 @@ CHECKED AND LEFT ALONE
   bom.csv columns (§1): all 8 columns present
   bom.csv matches the schematic (§1 §5 §12): 110 bought references, every one on exactly one BOM line
         note: not bought: FID1, FID2, FID3, H1, H2, H3, H4, TP1, TP2, TP3, TP4, TP5, +2 more (prefix FID/TP/H/MH); D11, D12, D13, D14, D15, D16 (DNP)
+  LCSC code: symbol field and bom.csv agree (§1 §12): no symbol carries an LCSC code in a field; bom.csv alone names the parts
+        note: fields read: LCSC, LCSC Part #, LCSC Part, LCSC_PART, JLCPCB Part #, JLCPCB, JLCPCB_PN, lcsc#, JLC
   BOM value matches the schematic (§1): 110 references, bom.csv Value equals the schematic Value on each (µ/u, Ω/ohm, spaces and case aside)
-  Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked
+  Catalogue and stock (§1 §2 §13): 45 codes found, 0 blocking, 0 low-stock/mismatch, 0 not checked; facts from jlcpcb 2026-10-18 (45 codes)
   Catalogue package fits the footprint (§1): 40 agree with their footprint, 5 not compared (sign each under NOT CHECKED with a "Package verified" note on its bom.csv line, or fix the string it names)
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
   Catalogue category matches the reference prefix (§1 §2): 66 lines filed under the category their reference prefix means

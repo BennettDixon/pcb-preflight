@@ -22,8 +22,9 @@ for name in $names; do
     bom="$here/boms/$name.csv"
     if [ -f "$bom" ]; then bomarg="--bom $bom"; else bomarg="--bom $here/boms/$name.csv"; fi
     if [ "$online" != 2 ]; then
+        # the offline pass reads the files alone: an empty cache keeps this machine's catalogue cache out of the results
         # shellcheck disable=SC2086
-        python3 -m pcb_preflight check "$dir" $bomarg --quiet --max-details 40 --json "$here/results/$name.json" > "$here/results/$name.txt" 2>&1
+        PCB_PREFLIGHT_CACHE="$here/results/.empty-cache.json" python3 -m pcb_preflight check "$dir" $bomarg --quiet --max-details 40 --json "$here/results/$name.json" > "$here/results/$name.txt" 2>&1
         echo "$name: offline exit $? ($(sed -n 2p "$here/results/$name.txt" | sed 's/.*RESULT: //'))"
     fi
     if [ "$online" != 0 ] && [ -f "$bom" ] && grep -q ',C[0-9][0-9]*,' "$bom"; then

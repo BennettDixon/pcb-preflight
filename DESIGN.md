@@ -60,6 +60,7 @@ then the catalogue. "Blocks" means exit 1; "warns" means reported, and blocking 
 | G13 | Board name and a revision on a silkscreen layer; a name beside every connector (visible Value on silk, or silk text within 15 mm) | §8 §10 | the board file: `gr_text` on `F.SilkS`/`B.SilkS`, the `Value` property's layer and `hide` flag | warns |
 | G14 | Two copper layers with an inductor on the board | §9 | the board file: `(layers ...)` entries ending `.Cu`, references `L*` | warns |
 | G15 | Order: what moves the price off JLCPCB's standard tier, one line per driver with the figure read from the files, the fab's standard, the sourced tier it lands in and its condition (`preset.TIERS`, read 2026-10-18). Drivers: the smallest through-via hole and diameter against the quote page's via options (how many vias are below the standard one); the smallest drilled hole, through vias and pads alike; blind, buried and micro vias as their own driver (HDI, 1st to 3rd order: JLCPCB's HDI process, sourced 2026-10-18 in `preset.TIERS['hdi']`; the price is "higher" with no figure published), read from the `blind`/`micro` keyword and the two layers and never from the `(drill)`, which KiCad writes as a sentinel (0.00001 mm on royalblue54l-feather's 183 blind vias), so it is never a via or hole figure and the DRC gate's hole floor (G2) leaves it as a warning; copper layers (1-2, 4, "High Precision" 6+); the outline's bounding box against the 100 × 100 mm class; parts to place on both sides (paste pads front and back, or a through-hole part on the back); through-hole parts to assemble (on a BOM line when bom.csv is read); Extended part types (`--online`; Preferred exempt); a layer count other than 2/4/6 or a thickness outside 0.8-1.6 mm; the stackup's castellated, edge-plating and impedance flags. Nothing inferred: no package or pitch from pads. The lines come in two kinds, ordered by surprise (`checks.CHOSEN`; `kind` per driver in the JSON): **hidden** first, with the condition text (via and hole tiers, HDI, double-sided placement, Extended part types, the assembly class, the stackup flags), then **chosen**, one short line each without it (layers, size, through-hole parts). A line that teaches nothing on a 4-layer board the designer chose is read once; a 0.25 mm via that flips a tier is the surprise, so it comes first. Every driver prints either way; the summary and the RESULT line count both kinds. Two fixed notes name what the quote page prices that no file states (`preset.NOT_IN_FILES`) and the assembly minimum (`ASSEMBLY_MIN`) | §13 | the board file: `(via [blind|micro] (size) (drill) (layers))`, pads' `(drill)` (an oval's smaller figure), Edge.Cuts graphics, `(general (thickness))`, `(setup (stackup ...))` flags; `bom.csv`; the catalogue records | no: status `cost`, the ORDER section, counted on the RESULT line, never the verdict or exit code, not promoted by `--strict` |
+| G16 | LCSC code: symbol field and bom.csv agree (`bom-source`). For every bought reference, the code in the symbol's field (any spelling in `init.FIELDS`: `LCSC`, `LCSC Part #`, `LCSC Part`, `LCSC_PART`, `JLCPCB Part #`, `JLCPCB`, and the corpus spellings `JLCPCB_PN`, `lcsc#`, `JLC`, each with its source) and the code on its bom.csv line must be the same where both exist; a field with a code whose line has none is the same finding. The fix is printed: run `preflight bom`, or fix the field. The catalogue record's code is the code it was asked for, so it agrees by construction. A project with no LCSC field has one source, bom.csv, and the gate passes saying so | §1 §12 | the schematic BOM export with the field spellings + `bom.csv` | yes |
 
 Every run ends with a fixed "by hand before ordering" list with the §4 rotation preview (naming the
 polarized and asymmetric parts on this board), the §3 pin maps, §2 datasheet checks, §7 transients, §10
@@ -105,9 +106,22 @@ the order gate's note, beside the fab's assembly minimum.
   backups, `fab/`, lock files and `<name>.kicad_dru`, see the next bullets) and runs there; there is no
   in-place mode. The run against `sorter_pdb_v0` was checked with a
   before/after `stat` of every file: unchanged.
-* **The BOM is a file beside the project, not symbol fields.** §1 step 5 asks for `<board>/bom.csv` so the
-  parts list is reviewed and diffed like code. The tool therefore reconciles that file against the
-  schematic (G9) rather than reading LCSC fields off symbols; a later version can accept both.
+* **The BOM is a file beside the project, written by `bom` from the symbol fields.** §1 step 5 asks for
+  `<board>/bom.csv` so the parts list is reviewed and diffed like code. Since 2026-10-18 `preflight bom`
+  (alias `init` for one release; `init.py`) writes it: it reads the LCSC code each symbol already names in a
+  field, asks the catalogue for that code's record (by code only, through `catalogue.py`), and writes one
+  line per (code, value, footprint) with the record's facts plus `Manufacturer` and `Fetched`
+  (`jlcpcb 2026-10-18`: which catalogue answered and when; a record read back from the cache keeps the
+  label of the day it was fetched, so two runs in the same week write the same bytes). It never chooses a
+  part (a symbol without a code is an open line with the footprint name as `Package`, the MPN and maker the
+  symbol itself names when it has those fields, and nothing from the catalogue, listed with the fix),
+  never edits the schematic, writes exactly one file, and merges an existing bom.csv: hand-entered codes
+  on lines whose symbols carry no field are kept, a field code wins over a differing line code and the
+  change is printed, extra columns stay, and a `Package verified` note is carried over by (references,
+  code, catalogue package string), otherwise dropped and printed. Exit 0 when every line has a code and a
+  record, 3 when any lacks one, 2 on a tool error; `--offline` writes from the cache and the fields.
+  `check` then reconciles the three sources (G16) and still reconciles the file against the schematic (G9).
+  A hand-made bom.csv still works: `Manufacturer` and `Fetched` are optional and used when present.
 * **Standard library only.** Parsing `.kicad_pcb` is a 40-line s-expression reader; `pcbnew` Python is not
   required, so the tool runs under any Python, in CI, without KiCad's bundled interpreter.
 * **Short, stable check ids** (`erc`, `bom-lcsc`, `stock`, `catalogue-package`, ...) in the JSON output,
@@ -191,7 +205,7 @@ with `pcb_preflight/footprints.py`:
    (`JST_XH_B6B-XH-A_...`, `L_Bourns_SRP1245A`). When the package strings are *unknown* and the catalogue
    MPN starts with such a name token, the verdict is *same*, with that reason. It never overrides
    *different*, and a token must hold letters and digits and be five characters or more.
-7. **A copied name is not a comparison.** `bom-template` writes the footprint name into the `Package`
+7. **A copied name is not a comparison.** `bom-template` (now `preflight bom`, for a line without a code) writes the footprint name into the `Package`
    column as a placeholder, and the first cut compared that column with the footprint it came from
    ("110 of 110 same name"). An offline gate on the column cannot tell a copied name from a catalogue
    string that happens to equal it (Q2's `SOT-23`), and teaching it to guess would be exactly the kind of
@@ -317,7 +331,11 @@ one-function change and the unit test exercises the gate with a fake catalogue.
 
 ## 7. Roadmap (not done)
 
-* Accept LCSC/MPN symbol fields as an alternative BOM source, with G9 still reconciling.
+* ~~Accept LCSC/MPN symbol fields as an alternative BOM source, with G9 still reconciling.~~ Done 2026-10-18:
+  `preflight bom` reads the LCSC fields and writes bom.csv from the catalogue record; G9 reconciles the file
+  against the schematic and G16 the field against the file. Left out on purpose, pending corpus evidence: an
+  MPN in a field without a code stays an open line (no MPN-to-code resolution; JLCPCB's keyword search is
+  unreliable, §6, and a clone's MPN equals the original's).
 * A rotation table (KiBot's and Bouni's corrections are both public) so G12 can also say which parts the
   fab's preview will turn; the preview itself stays by hand.
 * Pin-map evidence: a per-footprint "checked against datasheet on <date>" column in bom.csv that G8 can
