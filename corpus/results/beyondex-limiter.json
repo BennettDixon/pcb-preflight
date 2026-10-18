@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BeyondexLimiter",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/beyondex-limiter",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/beyondex-limiter",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -44,7 +44,7 @@
   },
   "copper_layers": 2,
   "footprints": 9,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/beyondex-limiter.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/beyondex-limiter.csv",
   "checks": [
     {
       "id": "erc",

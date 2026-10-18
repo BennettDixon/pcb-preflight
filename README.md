@@ -88,13 +88,22 @@ verdict or the exit code, `--strict` does not promote it, and the RESULT line co
 drivers"). The floor the DRC gate blocks on is the fab's absolute buildable minimum (a 0.1 mm hole is
 buildable, priced and conditional, so it is an ORDER line, not a FAIL); everything above the floor that
 the fab prices is a tier in [pcb_preflight/preset.py](pcb_preflight/preset.py) (`TIERS`, read 2026-10-18).
-The drivers the files can show: via hole and diameter, the smallest drilled hole, copper layers, the
-outline's size, parts to place on both sides, through-hole parts to assemble, Extended part types
-(`--online`), a layer count or thickness outside Economic PCBA, and the stackup's castellated, edge-plating
-and impedance flags. Nothing is inferred: no package size or pitch is guessed from pads. What the quote
-page prices that no file states (copper weight, surface finish, colour, quantity, via covering, gold
-fingers, panelisation) is named once in the section and left to the quote page; the section never prints
-a price or a suggestion.
+The drivers the files can show: via hole and diameter, the smallest drilled hole, blind and buried vias
+(HDI), copper layers, the outline's size, parts to place on both sides, through-hole parts to assemble,
+Extended part types (`--online`), a layer count or thickness outside Economic PCBA, and the stackup's
+castellated, edge-plating and impedance flags. Nothing is inferred: no package size or pitch is guessed
+from pads, and a blind, buried or micro via is read from its `blind`/`micro` keyword and its two layers,
+never from its `(drill)`, which KiCad writes as a sentinel (0.00001 mm) rather than a hole; the DRC gate's
+hole floor applies to through vias and pads only. The section prints its drivers in two kinds, by how
+likely the designer already knows: **hidden** drivers first, each with the figure, the standard, the tier
+and the quote page's condition (a 0.25 mm via that flips the via option, a 0.1 mm hole with its
+thickness-and-finish condition, parts on the back, Extended part types, the assembly class, the stackup
+flags, HDI), then **chosen** drivers, one short line each (the layer count, the outline's size, the
+through-hole parts: a line that teaches nothing on a 4-layer board the designer chose is read once). The
+summary counts both ("2 hidden drivers, 3 chosen"), the RESULT line counts both, the JSON carries a
+`kind` per driver, and nothing is hidden or thresholded. What the quote page prices that no file states
+(copper weight, surface finish, colour, quantity, via covering, gold fingers, panelisation) is named once
+in the section and left to the quote page; the section never prints a price or a suggestion.
 
 ## What a run looks like
 
@@ -132,11 +141,11 @@ FINDINGS
   WARN  BOM lines complete (§1 §2): 1 of 67 lines are not "done" (MPN, package, Basic/Extended, stock, datasheet)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, through-hole, parts)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 110 × 75 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: [...])
-        through-hole: 18 through-hole parts to assemble (J5, J16, J2, J15, J13, J11, J1, J12, J10, J14, J8, J3, +6 more; 83 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; [...]
-        parts: 23 Extended part types (one loading fee each: C107083, C134838, C144394, C144395, C144397, C151074, C158012, C190083, C2042471, C249591, C25805, C2620, +11 more); the standard is Basic and Preferred Extended parts; [...]
+  COST  Order: what moves the price (§13): 1 hidden driver (parts), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
+        parts: 23 Extended part types (one loading fee each: C107083, C134838, C144394, C144395, C144397, C151074, C158012, C190083, C2042471, C249591, C25805, C2620, +11 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; [...]
+        layers: 4 (its own price class)
+        size: 110 × 75 mm (larger than 100 × 100 mm)
+        through-hole: 18 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (110 parts on F.Cu); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
@@ -201,7 +210,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 | Three fiducials on the front, placement origin set | warn | the board file |
 | Board name and revision on silkscreen, a name beside every connector | warn | the board file |
 | Two copper layers under a switching regulator | warn | the board file |
-| Order: what moves the price off JLCPCB's standard tier (via and hole sizes, layers, outline size, double-sided placement, through-hole parts, Extended part types with `--online`, thickness, castellated / edge plating / impedance flags), each line with the figure, the standard, the tier, its condition and the source date; never the verdict | no (`cost`) | the board file (vias, pads, Edge.Cuts, stackup), `bom.csv`, the catalogue records; `preset.TIERS` |
+| Order: what moves the price off JLCPCB's standard tier (via and hole sizes, blind/buried vias, layers, outline size, double-sided placement, through-hole parts, Extended part types with `--online`, thickness, castellated / edge plating / impedance flags), hidden drivers first with the figure, the standard, the tier, its condition and the source date, the designer's chosen drivers (layers, size, through-hole parts) after them as one short line each; never the verdict | no (`cost`) | the board file (vias and their kind, pads, Edge.Cuts, stackup), `bom.csv`, the catalogue records; `preset.TIERS` |
 
 `--strict` makes warnings block too. Everything the tool cannot see is listed under "by hand before ordering"
 rather than silently passed: pick-and-place rotation in the fab's preview, footprint pin maps against the
@@ -213,7 +222,7 @@ datasheet, transients, enclosure fit.
 python3 -m unittest discover -s tests -v
 ```
 
-155 tests cover the BOM reader, the s-expression reader, the board reader (vias, holes, outline, stackup flags), the board gates, the order gate (every driver on an inline board, the verdict untouched, the ORDER section and count, the JSON), the stock gate against a fake
+161 tests cover the BOM reader, the s-expression reader, the board reader (vias and their kind, holes, outline, stackup flags), the board gates, the order gate (every driver on an inline board, blind and buried vias by keyword and layers rather than by their sentinel drill, hidden drivers before chosen ones, the verdict untouched, the ORDER section and count, the JSON), the stock gate against a fake
 catalogue, the contract (verdicts and exit codes, what the gate owns and what the project may not switch
 off, KiCad's `excluded` flag, parity, footprint identity across hierarchical sheets, placement, what is not
 bought, the limits of a `Package verified` note, tool failures as ERROR with a JSON written), package

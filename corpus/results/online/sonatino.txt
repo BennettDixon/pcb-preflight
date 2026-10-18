@@ -158,53 +158,53 @@ FINDINGS
         C323842 (U15): out of stock at JLCPCB (WM8782SEDS/RV)
         C146242 (U13): stock 3 is under 10x the 1 needed (WM8524CGEDT/R)
         C892227 (U6, U7): stock 6 is under 10x the 2 needed (NCP167BMX330TBG)
-        ok: C1002 (FB1, FB2): GZ1608D601TF, 0603, Basic, stock 660,880
+        ok: C1002 (FB1, FB2): GZ1608D601TF, 0603, Basic, stock 660,772
         ok: C102813 (R34): RTT021503FTH, 0402, Extended, stock 10
-        ok: C11702 (R13, R18, R23, R24): 0402WGF1001TCE, 0402, Basic, stock 21,695,151
-        ok: C12530 (C23, C34, C35): CL05A225MQ5NSNC, 0402, Basic, stock 4,357,453
-        ok: C12624 (PWR1): KT-0603G, 0603, Extended, stock 500,602
+        ok: C11702 (R13, R18, R23, R24): 0402WGF1001TCE, 0402, Basic, stock 21,694,116
+        ok: C12530 (C23, C34, C35): CL05A225MQ5NSNC, 0402, Basic, stock 4,357,404
+        ok: C12624 (PWR1): KT-0603G, 0603, Extended, stock 500,530
         ok: C128123 (R28): G32AT-B104, SMD, Extended, stock 360
         ok: C146242 (U13): WM8524CGEDT/R, TSSOP-16, Extended, stock 3
-        ok: C15008 (C1): CL31A107MQHNNNE, 1206, Basic, stock 1,302,108
-        ok: C15195 (C28): CL05B103KB5NNNC, 0402, Basic, stock 6,122,189
-        ok: C1525 (C15): CL05B104KO5NNNC, 0402, Basic, stock 29,489,857
-        ok: C1530 (C18, C19): 0402B221K500NT, 0402, Basic, stock 983,322
-        ok: C1531 (C25, C26): 0402B222K500NT, 0402, Extended, stock 852,973
-        ok: C1546 (C30): 0402CG101J500NT, 0402, Basic, stock 3,772,949
-        ok: C15525 (C8, C27, C31, C33, C36, C40, C41): CL05A106MQ5NUNC, 0402, Basic, stock 10,726,976
-        ok: C15849 (C24): CL10A105KB8NNNC, 0603, Basic, stock 9,244,899
-        ok: C15850 (C14): CL21A106KAYNNNE, 0805, Basic, stock 6,485,737
-        ok: C16581 (U4): TP4056-42-ESOP8, ESOP-8, Extended, stock 52,071
-        ok: C165948 (J3): TYPE-C-31-M-12, SMD, Extended, stock 362,146
-        ok: C19702 (C2, C13): CL10A106KP8NNNC, 0603, Basic, stock 11,139,513
-        ok: C21189 (R33): 0603WAF0000T5E, 0603, Basic, stock 23,628,122
+        ok: C15008 (C1): CL31A107MQHNNNE, 1206, Basic, stock 1,301,250
+        ok: C15195 (C28): CL05B103KB5NNNC, 0402, Basic, stock 6,119,571
+        ok: C1525 (C15): CL05B104KO5NNNC, 0402, Basic, stock 29,490,008
+        ok: C1530 (C18, C19): 0402B221K500NT, 0402, Basic, stock 983,187
+        ok: C1531 (C25, C26): 0402B222K500NT, 0402, Extended, stock 852,953
+        ok: C1546 (C30): 0402CG101J500NT, 0402, Basic, stock 3,773,015
+        ok: C15525 (C8, C27, C31, C33, C36, C40, C41): CL05A106MQ5NUNC, 0402, Basic, stock 10,726,438
+        ok: C15849 (C24): CL10A105KB8NNNC, 0603, Basic, stock 9,246,318
+        ok: C15850 (C14): CL21A106KAYNNNE, 0805, Basic, stock 6,485,499
+        ok: C16581 (U4): TP4056-42-ESOP8, ESOP-8, Extended, stock 52,061
+        ok: C165948 (J3): TYPE-C-31-M-12, SMD, Extended, stock 362,091
+        ok: C19702 (C2, C13): CL10A106KP8NNNC, 0603, Basic, stock 11,094,733
+        ok: C21189 (R33): 0603WAF0000T5E, 0603, Basic, stock 23,616,859
         ok: C224995 (SW3): DHN-02-V-T/R, SMD,P=1.27mm, Extended, stock 1,465
-        ok: C2286 (LED1): KT-0603R, 0603, Basic, stock 8,551,554
-        ok: C23733 (C20, C21): CL05A475MP5NRNC, 0402, Basic, stock 2,101,917
-        ok: C25117 (R14, R20, R21): 0402WGF4700TCE, 0402, Basic, stock 1,344,089
-        ok: C25741 (R12, R15, R37): 0402WGF1003TCE, 0402, Basic, stock 9,369,637
-        ok: C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): 0402WGF1002TCE, 0402, Basic, stock 21,232,689
-        ok: C25768 (R25): 0402WGF2202TCE, 0402, Basic, stock 1,520,107
-        ok: C25790 (R35): 0402WGF4703TCE, 0402, Extended, stock 264,724
-        ok: C25822 (R19): 0603WAF6803T5E, 0603, Extended, stock 1,125,915
+        ok: C2286 (LED1): KT-0603R, 0603, Basic, stock 8,548,863
+        ok: C23733 (C20, C21): CL05A475MP5NRNC, 0402, Basic, stock 2,101,602
+        ok: C25117 (R14, R20, R21): 0402WGF4700TCE, 0402, Basic, stock 1,343,904
+        ok: C25741 (R12, R15, R37): 0402WGF1003TCE, 0402, Basic, stock 9,368,675
+        ok: C25744 (R2, R3, R4, R5, R6, R7, R8, R17, R22, R29, R32, R36): 0402WGF1002TCE, 0402, Basic, stock 21,200,011
+        ok: C25768 (R25): 0402WGF2202TCE, 0402, Basic, stock 1,519,997
+        ok: C25790 (R35): 0402WGF4703TCE, 0402, Extended, stock 264,624
+        ok: C25822 (R19): 0603WAF6803T5E, 0603, Extended, stock 1,125,945
         ok: C25882 (R16): 0402WGF2401TCE, 0402, Extended, stock 454,152
-        ok: C25890 (R31): 0402WGF3301TCE, 0402, Basic, stock 1,882,453
-        ok: C25905 (R10, R11, R30): 0402WGF5101TCE, 0402, Basic, stock 5,087,610
-        ok: C26083 (R9, R26, R27): 0402WGF1004TCE, 0402, Basic, stock 2,880,582
+        ok: C25890 (R31): 0402WGF3301TCE, 0402, Basic, stock 1,882,264
+        ok: C25905 (R10, R11, R30): 0402WGF5101TCE, 0402, Basic, stock 5,087,673
+        ok: C26083 (R9, R26, R27): 0402WGF1004TCE, 0402, Basic, stock 2,880,770
         ok: C260933 (Q1, Q2, Q5): DMP2104LP-7, DFN1411-3, Extended, stock 863
         ok: C2880449 (U11): TC7WH08FK,LJ(CT, US-8, Extended, stock 2,030
         ok: C2976657 (U8): SN74LVC1G14DCKR(UMW), SC-70-5, Extended, stock 15,462
-        ok: C3013946 (U2): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,163
+        ok: C3013946 (U2): ESP32-S3-WROOM-1U-N16R8, SMD,19.2x18mm, Extended, stock 19,086
         ... 20 more (--max-details)
   FAIL  Catalogue category matches the reference prefix (§1 §2): 54 lines filed under the category their reference prefix means, 1 under another, 2 not checked
         C85364 SRV05-4-P-T7 (U3; bom.csv row 48): U is an IC reference but the catalogue files this part under "Circuit Protection / ESD and Surge Protection (TVS/ESD)" (diode)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (vias, layers, through-hole, parts)
+  COST  Order: what moves the price (§13): 2 hidden drivers (vias, parts), 2 chosen (layers, through-hole) off JLCPCB's standard tier
         vias: smallest via 0.25 mm hole, 0.45 mm diameter; 209 of 292 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.25mm/(0.35/0.4mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself (source: quote, capabilities, read 2026-10-18)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        through-hole: 1 through-hole part to assemble (J5; 5 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         parts: 31 Extended part types (one loading fee each: C102813, C12624, C128123, C146242, C1531, C16581, C165948, C224995, C25790, C25822, C25882, C260933, +19 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        through-hole: 1 part to assemble
         note: on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); outline 65 × 30 mm (100 × 100 mm or smaller); single-sided placement (116 parts on F.Cu); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

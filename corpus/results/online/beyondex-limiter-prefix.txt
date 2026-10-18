@@ -86,7 +86,7 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5); PTH pad 1 [GND] of TP2
         note: pad geometry: KiCad footprint library at /Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints; where both sides are library footprints the pads decide and the names only pick the candidates
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 1 driver off JLCPCB's standard tier (parts)
+  COST  Order: what moves the price (§13): 1 hidden driver (parts), 0 chosen off JLCPCB's standard tier
         parts: 4 Extended part types (one loading fee each: C1607, C165948, C35634, C720648); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 22.5 × 13 mm (100 × 100 mm or smaller); single-sided placement (7 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those

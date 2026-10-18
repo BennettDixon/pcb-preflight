@@ -31,10 +31,14 @@ class Check:
     unchecked: list = field(default_factory=list)    # items the gate ran on but could not judge
     verified: list = field(default_factory=list)     # items a human vouched for
     notes: list = field(default_factory=list)        # what the gate did, under which settings; never a finding
+    drivers: list = field(default_factory=list)      # the order gate only: {'name', 'kind': 'hidden' | 'chosen'} per detail line
 
     def as_dict(self):
-        return {'id': self.id, 'title': self.title, 'pitfall': self.pitfall, 'status': self.status, 'summary': self.summary,
-                'details': self.details, 'unchecked': self.unchecked, 'verified': self.verified, 'notes': self.notes}
+        d = {'id': self.id, 'title': self.title, 'pitfall': self.pitfall, 'status': self.status, 'summary': self.summary,
+             'details': self.details, 'unchecked': self.unchecked, 'verified': self.verified, 'notes': self.notes}
+        if self.drivers:
+            d['drivers'] = self.drivers
+        return d
 
 
 DEFAULT_SKIP_PREFIXES = ('FID', 'TP', 'H', 'MH', '#')
@@ -103,21 +107,37 @@ FLOORED = {'track_width': 'min_track_width', 'clearance': 'min_clearance', 'copp
            'drill_out_of_range': 'min_through_hole_diameter', 'annular_width': 'min_via_annular_width', 'hole_to_hole': 'min_hole_to_hole'}
 ACTUAL = re.compile(r'actual\s+([0-9]+(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?)\s*mm')
 
+# A blind, buried or micro via's (drill ...) is not a through hole: KiCad writes a sentinel there (0.00001 mm on
+# the 183 blind vias of a corpus board), so a drill_out_of_range item on one is KiCad reading that sentinel, never
+# a hole under the fab's floor (board.via_kind). kicad-cli 10.0.7 names the item "Blind via ...", "Buried via ..."
+# or "Micro via ..."; KiCad 9 wrote "Blind/Buried Via ...".
+HDI_ITEM = re.compile(r'^(blind|buried|micro)', re.I)
+
 
 def _actual_mm(v):
     m = ACTUAL.search(v.get('description', ''))
     return float(m.group(1)) if m else None
 
 
+def _hdi_via(v):
+    """A drill_out_of_range violation whose every item is a blind, buried or micro via."""
+    items = v.get('items') or []
+    return v.get('type') == 'drill_out_of_range' and bool(items) and all(HDI_ITEM.match(i.get('description', '')) for i in items)
+
+
 def _whose_rule(errors, copper_layers):
-    """Split floored-type errors into the fab's (figure below the floor, or unreadable) and the project's own."""
+    """Split floored-type errors three ways: the fab's (figure below the floor, or unreadable), the project's own
+    (the figure clears the floor), and drill items on blind, buried or micro vias (no through hole to measure)."""
     floors = preset.minimums(copper_layers)
-    fabs, own = [], []
+    fabs, own, hdi = [], [], []
     for v in errors:
         key = FLOORED.get(v.get('type'))
+        if key and _hdi_via(v):
+            hdi.append(v)
+            continue
         a = _actual_mm(v) if key else None
         (own if a is not None and a >= floors[key] - 1e-9 else fabs).append(v)
-    return fabs, own
+    return fabs, own, hdi
 
 
 def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
@@ -125,8 +145,8 @@ def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
     no_courtyard = [v for v in errors if v.get('type') == 'missing_courtyard']
     errors = [v for v in errors if v.get('type') != 'missing_courtyard']
     unchecked = [f'{kicad.describe(v)}: no courtyard, so courtyards_overlap could not see this footprint' for v in no_courtyard]
-    errors, own_rule = _whose_rule(errors, copper_layers)
-    warnings = warnings + own_rule
+    errors, own_rule, hdi_vias = _whose_rule(errors, copper_layers)
+    warnings = warnings + own_rule + hdi_vias
     types = Counter(v.get('type') for v in errors + warnings)
     kinds = ', '.join(f'{t} x{c}' for t, c in types.most_common())
     blocked, notes = _owned_notes(report, 'drc', owned, excluded, warnings)
@@ -143,8 +163,18 @@ def drc_check(report, owned=None, custom_rules=None, copper_layers=2):
         notes.append(f"{len(own_rule)} errors are the project's own constraints, stricter than JLCPCB's floor "
                      f"({', '.join(f'{t} x{c}, floor {floors[FLOORED[t]]} mm' for t, c in kinds_own.most_common())}); "
                      f'reported as warnings, --strict blocks them')
-    det = ([kicad.describe(v) for v in errors] + blocked
-           + [f"warning (project's own rule): {kicad.describe(v)}" if v in own_rule else f'warning: {kicad.describe(v)}' for v in warnings])
+    if hdi_vias:
+        notes.append(f'{len(hdi_vias)} drill_out_of_range errors are on blind, buried or micro vias: the (drill) KiCad writes for those is '
+                     f'not a through hole (a 0.00001 mm sentinel on a corpus board), so the fab\'s hole floor does not apply and no figure is '
+                     f'read; reported as warnings, --strict blocks them; the ORDER section lists the vias (HDI)')
+
+    def warning(v):
+        if v in own_rule:
+            return f"warning (project's own rule): {kicad.describe(v)}"
+        if v in hdi_vias:
+            return f'warning (blind/buried via: no through drill to measure): {kicad.describe(v)}'
+        return f'warning: {kicad.describe(v)}'
+    det = [kicad.describe(v) for v in errors] + blocked + [warning(v) for v in warnings]
     status = 'fail' if errors or blocked else ('warn' if warnings else 'pass')
     summary = (f'{len(errors)} errors, {len(warnings)} warnings' + (f', {len(excluded)} excluded by the project' if excluded else '')
                + (f' ({kinds})' if kinds else '') + (f'; {len(unchecked)} footprints without a courtyard' if unchecked else ''))
@@ -765,36 +795,57 @@ def _n(n, word):
     return f'{n} {word}{"s" if n != 1 else ""}'
 
 
+# How likely the designer already knows a driver is there. A chosen driver is a decision made on purpose and
+# seen every day in the editor: the layer count, the outline's size, the through-hole parts. Its line teaches
+# nothing on a 4-layer board the designer chose, so it is one short line, printed last. A hidden driver moves
+# the price without the designer having picked a tier: a 0.25 mm via that flips the via option, a 0.1 mm hole
+# with its thickness-and-finish condition, parts on the back, Extended part types, a layer count or thickness
+# outside Economic PCBA, the stackup's castellated / edge-plating / impedance flags, blind or buried vias. Its
+# line carries the figure, the standard, the tier and the condition, and is printed first. Every driver prints
+# either way: the split orders the section by surprise, it hides and thresholds nothing.
+CHOSEN = ('layers', 'size', 'through-hole')
+
+
 def order_check(board, lines=None, records=None):
     """G15: what the files show that lands on a priced tier of JLCPCB's (preset.TIERS), as one line per driver
-    with the figure found, the fab's standard, the tier and its condition, the source and the read date (§13).
+    (§13). Status ``cost`` when a driver is off the standard tier, ``pass`` otherwise; neither moves the verdict.
 
-    Status ``cost`` when a driver is off the standard tier, ``pass`` otherwise; neither moves the verdict.
-    Every figure is read, never inferred: via and hole sizes, copper layers, the outline's bounding box,
-    which sides carry placed parts, through-hole parts in the BOM (``lines``, when given), the catalogue's
-    Basic/Extended per code (``records``, when the catalogue was asked), thickness and the stackup's
-    castellated, edge-plating and impedance flags. Package sizes and pitches are not guessed from pads.
+    Drivers come in two kinds (CHOSEN above; ``kind`` per line in ``drivers``, parallel to ``details``). Hidden
+    drivers print first, each with the figure found, the fab's standard, the tier and its condition, the source and
+    the read date: via and hole tiers, blind/buried vias (HDI), double-sided placement, Extended part types, the
+    assembly class, the stackup flags. Chosen drivers print after them as one short line each (the figure and the
+    tier's name): copper layers, the outline's size, through-hole parts to assemble. The summary counts both.
+
+    Every figure is read, never inferred: through vias' hole and diameter (a blind, buried or micro via's drill
+    is a sentinel, so those count as HDI and never as a hole), pad drills, copper layers, the outline's bounding
+    box, which sides carry placed parts, through-hole parts in the BOM (``lines``, when given), the catalogue's
+    Basic/Extended per code (``records``, when the catalogue was asked), thickness and the stackup's castellated,
+    edge-plating and impedance flags. Package sizes and pitches are not guessed from pads.
     """
-    det, on_standard = [], []
+    found, on_standard = [], []            # found: (driver name, kind, line)
     tiers = preset.TIERS
 
-    # vias: the quote page's "Min via hole size/diameter" option, picked by the smallest hole
+    def driver(name, text):
+        found.append((name, 'chosen' if name in CHOSEN else 'hidden', text))
+
+    # vias: the quote page's "Min via hole size/diameter" option, picked by the smallest through-via hole
     rows = tiers['via']['rows']
     std = rows[0]
-    if board.vias:
-        drill = min(d for _, d in board.vias)
-        size = min(s for s, _ in board.vias)
-        below = sum(1 for s, d in board.vias if d < std['min_hole'] - 1e-9 or s < std['min_diameter'] - 1e-9)
+    through = board.through_vias
+    if through:
+        drill = min(v.drill for v in through)
+        size = min(v.size for v in through)
+        below = sum(1 for v in through if v.drill < std['min_hole'] - 1e-9 or v.size < std['min_diameter'] - 1e-9)
         row = next((r for r in rows if drill >= r['min_hole'] - 1e-9), None)
         figure = f'smallest via {_mm(drill)} hole, {_mm(size)} diameter'
         if below:
             where = (f'lands in the {row["option"]} option: {row["condition"]}' if row
                      else f'below every option (the smallest is {rows[-1]["option"]}); DRC blocks it')
-            det.append(f'vias: {figure}; {below} of {len(board.vias)} vias are below the standard {std["option"]} option; {where} ({_tier_source("via")})')
+            driver('vias', f'vias: {figure}; {below} of {len(through)} vias are below the standard {std["option"]} option; {where} ({_tier_source("via")})')
         else:
             on_standard.append(f'vias {figure} ({std["option"]})')
 
-    # the smallest drilled hole, vias and pads alike
+    # the smallest drilled hole, through vias and pads alike (board.holes leaves blind/buried vias out)
     rows = tiers['hole']['rows']
     std = rows[0]
     holes = board.holes
@@ -805,9 +856,17 @@ def order_check(board, lines=None, records=None):
         if low:
             where = (f'lands in the {_mm(row["min_drill"])} hole tier: {row["condition"]}' if row
                      else f'below every tier (the smallest is {_mm(rows[-1]["min_drill"])}); DRC blocks it')
-            det.append(f'holes: smallest drilled hole {_mm(hole)}; {low} of {len(holes)} holes are below the standard {_mm(std["min_drill"])} drill; {where} ({_tier_source("hole")})')
+            driver('holes', f'holes: smallest drilled hole {_mm(hole)}; {low} of {len(holes)} holes are below the standard {_mm(std["min_drill"])} drill; {where} ({_tier_source("hole")})')
         else:
             on_standard.append(f'smallest hole {_mm(hole)} ({_mm(std["min_drill"])} is the smallest standard drill)')
+
+    # blind, buried and micro vias: a process of their own (board.via_kind reads the keyword and the layers, never the drill)
+    hdi = board.hdi_vias
+    if hdi:
+        kinds = Counter(v.kind for v in hdi)
+        mix = f' ({", ".join(f"{c} {k}" for k, c in kinds.most_common())})' if len(kinds) > 1 else ''
+        driver('HDI', f'HDI: {_n(len(hdi), "blind/buried via")}{mix}; not on the standard tier; JLCPCB prices blind and buried vias as its own '
+                      f'process; tier not yet sourced (preset.TIERS_NOT_SOURCED)')
 
     # copper layers
     rows = tiers['layers']['rows']
@@ -816,7 +875,7 @@ def order_check(board, lines=None, records=None):
     if row['standard']:
         on_standard.append(f'{n} copper layers ({row["label"]})')
     else:
-        det.append(f'layers: {n} copper layers; the standard class is {rows[0]["label"]}; lands in {row["label"]}: {row["condition"]} ({_tier_source("layers")})')
+        driver('layers', f'layers: {n} ({row["condition"]})')
 
     # outline size
     rows = tiers['size']['rows']
@@ -827,8 +886,7 @@ def order_check(board, lines=None, records=None):
         if fits:
             on_standard.append(f'outline {w:g} × {h:g} mm ({std["label"]})')
         else:
-            row = rows[-1]
-            det.append(f'size: outline {w:g} × {h:g} mm; the standard class is {std["label"]}; lands in {row["label"]}: {row["condition"]} ({_tier_source("size")})')
+            driver('size', f'size: {w:g} × {h:g} mm ({rows[-1]["label"]})')
     else:
         on_standard.append('outline: no Edge.Cuts graphics, so the size was not read')
 
@@ -838,8 +896,8 @@ def order_check(board, lines=None, records=None):
     back = [fp for fp in placed if fp.layer == 'B.Cu' and (fp.paste or 'through_hole' in fp.attrs)]
     if front and back:
         row = _assembly_row('double-sided placement')
-        det.append(f'placement: parts to place on both sides ({len(front)} on F.Cu, {len(back)} on B.Cu: {_refs([fp.ref for fp in back], 8)} on the back); '
-                   f'the standard is {_assembly_row("single-sided placement")["condition"]}; {_lands(row)} ({_tier_source("assembly")})')
+        driver('placement', f'placement: parts to place on both sides ({len(front)} on F.Cu, {len(back)} on B.Cu: {_refs([fp.ref for fp in back], 8)} on the back); '
+                            f'the standard is {_assembly_row("single-sided placement")["condition"]}; {_lands(row)} ({_tier_source("assembly")})')
     else:
         on_standard.append(f'single-sided placement ({len(front) + len(back)} parts on {"B.Cu" if back else "F.Cu"})' if front or back else 'no parts to place')
 
@@ -847,10 +905,7 @@ def order_check(board, lines=None, records=None):
     in_bom = {ref for ln in lines for ref in ln.refs} if lines is not None else None
     tht = [fp for fp in placed if 'through_hole' in fp.attrs and (in_bom is None or fp.ref in in_bom)]
     if tht:
-        row = _assembly_row('through-hole parts')
-        joints = sum(len(fp.drills) for fp in tht)
-        det.append(f'through-hole: {_n(len(tht), "through-hole part")} to assemble ({_refs([fp.ref for fp in tht], 12)}; {_n(joints, "plated hole")}); '
-                   f'the standard is surface mount only; {row["tier"]}: {row["condition"]} ({_tier_source("assembly")})')
+        driver('through-hole', f'through-hole: {_n(len(tht), "part")} to assemble')
     else:
         on_standard.append('no through-hole parts to assemble')
 
@@ -859,8 +914,8 @@ def order_check(board, lines=None, records=None):
         ext = sorted(code for code, rec in records.items() if rec and rec.get('library') == 'Extended')
         if ext:
             row = _assembly_row('Extended part')
-            det.append(f'parts: {_n(len(ext), "Extended part type")} (one loading fee each: {_refs(ext, 12)}); the standard is Basic and Preferred Extended parts; '
-                       f'{row["tier"]}: {row["condition"]} ({_tier_source("assembly")})')
+            driver('parts', f'parts: {_n(len(ext), "Extended part type")} (one loading fee each: {_refs(ext, 12)}); the standard is Basic and Preferred Extended parts; '
+                            f'{row["tier"]}: {row["condition"]} ({_tier_source("assembly")})')
         else:
             on_standard.append('every catalogue part is Basic or Preferred Extended')
 
@@ -869,22 +924,27 @@ def order_check(board, lines=None, records=None):
     t = board.thickness
     if n not in (2, 4, 6) or not 0.8 <= round(t, 1) <= 1.6:
         row = _assembly_row('layer count other than 2, 4 or 6, or thickness outside 0.8-1.6 mm')
-        det.append(f'assembly class: {n} copper layers, {_mm(t)} thick; the standard is 2, 4 or 6 layers at 0.8-1.6 mm; {_lands(row)} ({_tier_source("assembly")})')
+        driver('assembly class', f'assembly class: {n} copper layers, {_mm(t)} thick; the standard is 2, 4 or 6 layers at 0.8-1.6 mm; {_lands(row)} ({_tier_source("assembly")})')
     else:
         on_standard.append(f'{_mm(t)} thick')
 
-    for flag, driver in ((board.castellated, 'castellated holes'), (board.edge_plating, 'edge plating'), (board.impedance, 'impedance control')):
+    for flag, name in ((board.castellated, 'castellated holes'), (board.edge_plating, 'edge plating'), (board.impedance, 'impedance control')):
         if flag:
-            row = _assembly_row(driver)
-            det.append(f'{driver}: set in the stackup; the standard is without; {_lands(row)} ({_tier_source("assembly")})')
+            row = _assembly_row(name)
+            driver(name, f'{name}: set in the stackup; the standard is without; {_lands(row)} ({_tier_source("assembly")})')
 
+    found.sort(key=lambda f: f[1] == 'chosen')                 # hidden first, each kind in reading order
     notes = [f'on the standard tier: {"; ".join(on_standard)}'] if on_standard else []
     notes += [f'not in the files: {", ".join(preset.NOT_IN_FILES)}; the quote page prices those',
               f'JLCPCB assembles a minimum of {preset.ASSEMBLY_MIN} boards; order spares (§13)']
     title = 'Order: what moves the price'
-    if det:
-        names = ', '.join(d.split(':', 1)[0] for d in det)
-        return Check('order', title, '§13', 'cost', f'{_n(len(det), "driver")} off JLCPCB\'s standard tier ({names})', det, notes=notes)
+    if found:
+        hid = [name for name, k, _ in found if k == 'hidden']
+        cho = [name for name, k, _ in found if k == 'chosen']
+        summary = (f'{_n(len(hid), "hidden driver")}' + (f' ({", ".join(hid)})' if hid else '')
+                   + f', {len(cho)} chosen' + (f' ({", ".join(cho)})' if cho else '') + " off JLCPCB's standard tier")
+        return Check('order', title, '§13', 'cost', summary, [text for _, _, text in found], notes=notes,
+                     drivers=[{'name': name, 'kind': k} for name, k, _ in found])
     return Check('order', title, '§13', 'pass', 'every driver the files can show is on JLCPCB\'s standard tier', notes=notes)
 
 

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "SH-RPi",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/sh-rpi",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/sh-rpi",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -53,7 +53,7 @@
   },
   "copper_layers": 4,
   "footprints": 168,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/sh-rpi.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/sh-rpi.csv",
   "checks": [
     {
       "id": "erc",
@@ -767,12 +767,12 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "4 drivers off JLCPCB's standard tier (vias, layers, placement, through-hole)",
+      "summary": "2 hidden drivers (vias, placement), 2 chosen (layers, through-hole) off JLCPCB's standard tier",
       "details": [
         "vias: smallest via 0.2 mm hole, 0.5 mm diameter; 295 of 364 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.2mm/(0.3/0.35mm) option: priced; the quote page adds \"Plugged Via\" and the \"4-Wire Kelvin Test\" itself (source: quote, capabilities, read 2026-10-18)",
-        "layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)",
         "placement: parts to place on both sides (148 on F.Cu, 2 on B.Cu: J501, J801 on the back); the standard is Economic PCBA: \"Single sided placement (SMT/Thru-hole)\"; Standard PCBA: \"Single & double sided placement (SMT/Thru-hole)\"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "through-hole: 9 through-hole parts to assemble (C1006, J402, J502, J301, J401, C1004, J101, C1005, J501; 70 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "layers: 4 (its own price class)",
+        "through-hole: 9 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -780,6 +780,24 @@
         "on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); outline 65 \u00d7 56.5 mm (100 \u00d7 100 mm or smaller); 1.5896 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "vias",
+          "kind": "hidden"
+        },
+        {
+          "name": "placement",
+          "kind": "hidden"
+        },
+        {
+          "name": "layers",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

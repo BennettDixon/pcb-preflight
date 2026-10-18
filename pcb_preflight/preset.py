@@ -295,6 +295,7 @@ TIERS_NOT_SOURCED = (
     'the quote page\'s assembly options (they need a Gerber upload); the assembly rows come from the PCBA capabilities and price pages',
     'a surcharge for impedance control (Specify Stackup)',
     'the castellated-hole surcharge line (the quote page wants an edge count first; the help centre states the charge)',
+    'blind and buried vias (HDI): the process is priced but its tiers were not read',
 )
 
 

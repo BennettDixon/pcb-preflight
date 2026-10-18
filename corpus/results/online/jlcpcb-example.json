@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "SMPS 12V-5V",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/jlcpcb-example",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/jlcpcb-example",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -53,7 +53,7 @@
   },
   "copper_layers": 2,
   "footprints": 19,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/jlcpcb-example.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/jlcpcb-example.csv",
   "checks": [
     {
       "id": "erc",
@@ -389,16 +389,16 @@
       "summary": "11 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked",
       "details": [
         "ok: C109322 (U1): TPS63070RNMR, VQFN-15-HR(2.5x3), Extended, stock 33,241",
-        "ok: C1525 (C7): CL05B104KO5NNNC, 0402, Basic, stock 29,473,943",
-        "ok: C16780 (C6): CL21A476MQYNNNE, 0805, Basic, stock 1,539,104",
-        "ok: C25803 (R2, R3): 0603WAF1003T5E, 0603, Basic, stock 19,334,680",
-        "ok: C25804 (R1): 0603WAF1002T5E, 0603, Basic, stock 39,947,655",
+        "ok: C1525 (C7): CL05B104KO5NNNC, 0402, Basic, stock 29,490,028",
+        "ok: C16780 (C6): CL21A476MQYNNNE, 0805, Basic, stock 1,541,306",
+        "ok: C25803 (R2, R3): 0603WAF1003T5E, 0603, Basic, stock 19,332,563",
+        "ok: C25804 (R1): 0603WAF1002T5E, 0603, Basic, stock 39,952,238",
         "ok: C2683107 (R4): ARG05BTC5233, 0805, Extended, stock 245",
         "ok: C2885888 (L1): MLI2012F-1R5KT, 0805, Extended, stock 4,257",
         "ok: C395930 (CN1, CN2): DBT10-7.62-2P-GN-P, Plugin,P=7.62mm, Extended, stock 31,347",
-        "ok: C440198 (C5): GRM21BR61H106KE43L, 0805, Basic, stock 1,185,275",
-        "ok: C45783 (C1, C2): CL21A226MAQNNNE, 0805, Basic, stock 3,755,428",
-        "ok: C96446 (C3, C4): CL10A106MA8NRNC, 0603, Basic, stock 4,574,199"
+        "ok: C440198 (C5): GRM21BR61H106KE43L, 0805, Basic, stock 1,186,218",
+        "ok: C45783 (C1, C2): CL21A226MAQNNNE, 0805, Basic, stock 3,755,693",
+        "ok: C96446 (C3, C4): CL10A106MA8NRNC, 0603, Basic, stock 4,542,958"
       ],
       "unchecked": [
         "C109322 (U1): no MPN in bom.csv to compare with the catalogue's TPS63070RNMR; the code was not checked against a part",
@@ -456,12 +456,12 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "4 drivers off JLCPCB's standard tier (vias, size, through-hole, parts)",
+      "summary": "2 hidden drivers (vias, parts), 2 chosen (size, through-hole) off JLCPCB's standard tier",
       "details": [
         "vias: smallest via 0.2 mm hole, 0.4 mm diameter; 30 of 101 vias are below the standard 0.3mm/(0.4/0.45mm) option; lands in the 0.2mm/(0.3/0.35mm) option: priced; the quote page adds \"Plugged Via\" and the \"4-Wire Kelvin Test\" itself (source: quote, capabilities, read 2026-10-18)",
-        "size: outline 107.3 \u00d7 82.8 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
-        "through-hole: 4 through-hole parts to assemble (L1, CN2, CN1, R4; 4 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "parts: 4 Extended part types (one loading fee each: C109322, C2683107, C2885888, C395930); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "parts: 4 Extended part types (one loading fee each: C109322, C2683107, C2885888, C395930); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
+        "size: 107.3 \u00d7 82.8 mm (larger than 100 \u00d7 100 mm)",
+        "through-hole: 4 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -469,6 +469,24 @@
         "on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); single-sided placement (15 parts on F.Cu); 1.6 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "vias",
+          "kind": "hidden"
+        },
+        {
+          "name": "parts",
+          "kind": "hidden"
+        },
+        {
+          "name": "size",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

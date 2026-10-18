@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BitaxeGT",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/bitaxegt",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/bitaxegt",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -53,7 +53,7 @@
   },
   "copper_layers": 6,
   "footprints": 187,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/bitaxegt.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/bitaxegt.csv",
   "checks": [
     {
       "id": "erc",
@@ -155,7 +155,7 @@
         "warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C92 [C_Small] @ (111.76, 69.85)]",
         "warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C41 [C_Small] @ (228.6, 113.03)]",
         "warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C94 [C_Small] @ (231.14, 93.98)]",
-        "warning: multiple_net_names: Both VIN and 12V are attached to the same items; VIN will be used in the netlist [Label 'VIN' @ (22.86, 224.79); Hierarchical Label '12V' @ (83.82, 44.45)]",
+        "warning: multiple_net_names: Both VIN and 12V are attached to the same items; VIN will be used in the netlist [Label 'VIN' @ (180.34, 134.62); Hierarchical Label '12V' @ (83.82, 44.45)]",
         "warning: pin_to_pin: Pins of type Output and Output are connected [Symbol U1 Pin 8 [SW, Output, Line] @ (266.7, 38.1); Symbol U1 Pin 11 [SW, Output, Line] @ (266.7, 45.72)]",
         "warning: pin_to_pin: Pins of type Output and Power output are connected [Symbol U1 Pin 11 [SW, Output, Line] @ (266.7, 45.72); Symbol U1 Pin 12 [SW, Power output, Line] @ (266.7, 48.26)]",
         "warning: pin_to_pin: Pins of type Output and Output are connected [Symbol U1 Pin 13 [PGND, Output, Line] @ (266.7, 54.61); Symbol U1 Pin 14 [PGND, Output, Line] @ (266.7, 57.15)]",
@@ -729,12 +729,12 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "4 drivers off JLCPCB's standard tier (layers, size, placement, through-hole)",
+      "summary": "1 hidden driver (placement), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier",
       "details": [
-        "layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's \"High Precision PCB\" class (source: quote, production-time, read 2026-10-18)",
-        "size: outline 65 \u00d7 112 mm; the standard class is 100 \u00d7 100 mm or smaller; lands in larger than 100 \u00d7 100 mm: priced as \"Engineering fee\" plus a \"Board\" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)",
         "placement: parts to place on both sides (3 on F.Cu, 130 on B.Cu: R29, C17, C37, R22, C7, C84, R25, C12, +122 more on the back); the standard is Economic PCBA: \"Single sided placement (SMT/Thru-hole)\"; Standard PCBA: \"Single & double sided placement (SMT/Thru-hole)\"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "through-hole: 4 through-hole parts to assemble (J7, U4, U3, U1; 27 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "layers: 6 (the quote page's \"High Precision PCB\" class)",
+        "size: 65 \u00d7 112 mm (larger than 100 \u00d7 100 mm)",
+        "through-hole: 4 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -742,6 +742,24 @@
         "on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); 1.6 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "placement",
+          "kind": "hidden"
+        },
+        {
+          "name": "layers",
+          "kind": "chosen"
+        },
+        {
+          "name": "size",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

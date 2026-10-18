@@ -1,5 +1,5 @@
 RoyalBlue54L-Feather  -  KiCad 10.0.7  -  jlcpcb-assembly@2026.10  -  offline  -  8 copper layers, 71 footprints  -  bom.csv: royalblue54l-feather.csv
-RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked, 5 cost drivers  -  exit 1
+RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked, 4 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again
 
 CHECKED AND LEFT ALONE
@@ -28,9 +28,9 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C25 [C_Small] @ (101.6, 99.06)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C18 [C_Small] @ (135.89, 60.96)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C20 [C_Small] @ (135.89, 66.04)]
-        warning: lib_symbol_issues: The symbol library 'hlord2000-Device' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-h68i5biu/project/lib/hlord2000-kicad-libraries/symbols/hlord2000-Device.kicad_sym' [Symbol Y2 [Crystal_GND24_Small_EZRoute] @ (144.78, 63.5)]
+        warning: lib_symbol_issues: The symbol library 'hlord2000-Device' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-3xmvbgfx/project/lib/hlord2000-kicad-libraries/symbols/hlord2000-Device.kicad_sym' [Symbol Y2 [Crystal_GND24_Small_EZRoute] @ (144.78, 63.5)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C7 [C_Small] @ (175.26, 26.67)]
-        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf52' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-h68i5biu/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf52.kicad_sym' [Symbol U5 [nRF52833-QDXX] @ (185.42, 93.98)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf52' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-3xmvbgfx/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf52.kicad_sym' [Symbol U5 [nRF52833-QDXX] @ (185.42, 93.98)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C10 [C_Small] @ (198.12, 26.67)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C15 [C_Small] @ (208.28, 26.67)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C23 [C_Small] @ (210.82, 76.2)]
@@ -41,7 +41,7 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C19 [C_Small] @ (238.76, 63.5)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C5 [C_Small] @ (101.6, 68.58)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C1 [C_Small] @ (140.97, 49.53)]
-        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-npm' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-h68i5biu/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-npm.kicad_sym' [Symbol U2 [nPM1300-QEXX] @ (148.59, 99.06)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-npm' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-3xmvbgfx/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-npm.kicad_sym' [Symbol U2 [nPM1300-QEXX] @ (148.59, 99.06)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C2 [C_Small] @ (158.75, 49.53)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C3 [C_Small] @ (168.91, 49.53)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C4 [C_Small] @ (179.07, 49.53)]
@@ -55,12 +55,12 @@ FINDINGS
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C14 [C_Small] @ (96.52, 64.77)]
         warning: lib_symbol_mismatch: Symbol 'C_Small' doesn't match copy in library 'Device' [Symbol C9 [C_Small] @ (132.08, 45.72)]
         warning: footprint_link_issues: The current configuration does not include the footprint library 'nordic-lib-kicad-nrf54-modules' [Symbol U1 [BM15x] @ (137.16, 90.17)]
-        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf54-modules' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-h68i5biu/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf54-modules.kicad_sym' [Symbol U1 [BM15x] @ (137.16, 90.17)]
+        warning: lib_symbol_issues: The symbol library 'nordic-lib-kicad-nrf54-modules' was not found at '/var/folders/b4/3fyt9sgd687fzzb2f6t72mrc0000gn/T/pcb-preflight-3xmvbgfx/project/lib/nordic-lib-kicad/symbols/nordic-lib-kicad-nrf54-modules.kicad_sym' [Symbol U1 [BM15x] @ (137.16, 90.17)]
         warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U5 Pin 13 [D+, Unspecified, Line] @ (160.02, 48.26); Symbol U3 Pin 4 [IO3, Passive, Line] @ (101.6, 41.91)]
         warning: pin_to_pin: Pins of type Unspecified and Passive are connected [Symbol U5 Pin 12 [D-, Unspecified, Line] @ (160.02, 50.8); Symbol U3 Pin 2 [IO2, Passive, Line] @ (101.6, 39.37)]
         ... 31 more (--max-details)
         note: 32 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about whether the circuit is what you meant; --strict blocks them): pin_to_pin x27, power_pin_not_driven x5
-  FAIL  DRC (§12): 216 errors, 70 warnings (drill_out_of_range x183, lib_footprint_mismatch x43, copper_edge_clearance x31, clearance x13, courtyards_overlap x11, annular_width x2, lib_footprint_issues x2, holes_co_located x1); 1 footprints without a courtyard
+  FAIL  DRC (§12): 33 errors, 253 warnings (drill_out_of_range x183, lib_footprint_mismatch x43, copper_edge_clearance x31, clearance x13, courtyards_overlap x11, annular_width x2, lib_footprint_issues x2, holes_co_located x1); 1 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
         annular_width: Annular width (board setup constraints min annular width 0.0500 mm; actual 0.0000 mm) [PTH pad 1 [+BATT] of J2 @ (143.23, 94.82)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.1275 mm) [Arc on Edge.Cuts @ (121.64, 96.09); Zone [GND] on F.Cu, B.Cu and 4 more, priority 1 @ (118.06, 91.53)]
@@ -94,18 +94,19 @@ FINDINGS
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 14 [/Connectors/UART.RX] of J1 @ (166.09, 116.41)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 15 [/Connectors/UART.TX] of J1 @ (168.63, 116.41)]
         copper_edge_clearance: Board edge clearance violation (board setup constraints edge clearance 0.2000 mm; actual 0.0000 mm) [Segment on Edge.Cuts @ (174.98, 116.41); PTH pad 16 [/Connectors/SHPHLD] of J1 @ (171.17, 116.41)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (158.66, 105.105)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (164.105, 109.76)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (139.55, 111.69)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (154.19, 101.81)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (144.085, 102.03)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (140.44, 111.01)]
-        drill_out_of_range: Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - B.Cu @ (151.2, 101.78)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint J4 @ (136.88, 98.458); Footprint J2 @ (143.23, 94.82)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP11 @ (139.1, 102.38)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint TP12 @ (136.7, 102.38); Footprint TP10 @ (136.7, 99.98)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP11 @ (139.1, 102.38)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint TP9 @ (139.1, 99.98); Footprint TP10 @ (136.7, 99.98)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint H2 @ (174.98, 96.09); Footprint J2 @ (143.23, 94.82)]
+        warning: courtyards_overlap: Courtyards overlap [Footprint J3 @ (121.36, 104.98); Footprint J5 @ (127.99, 96.633)]
         ... 246 more (--max-details)
         note: ignored by the project beyond KiCad's defaults (not required by jlcpcb-assembly@2026.10): text_thickness
         note: 11 warnings are checks jlcpcb-assembly@2026.10 runs as warnings instead of KiCad's errors (about assembly fit, not whether the fab can build it; --strict blocks them): courtyards_overlap x11
         note: minimums: JLCPCB 1 oz copper, 8 layers; below the fab's in the project, raised in the copy: min_clearance 0.0762 -> 0.09 mm, min_copper_edge_clearance 0.127 -> 0.2 mm, min_track_width 0.0762 -> 0.09 mm
         note: 13 errors are the project's own constraints, stricter than JLCPCB's floor (clearance x13, floor 0.09 mm); reported as warnings, --strict blocks them
+        note: 183 drill_out_of_range errors are on blind, buried or micro vias: the (drill) KiCad writes for those is not a through hole (a 0.00001 mm sentinel on a corpus board), so the fab's hole floor does not apply and no figure is read; reported as warnings, --strict blocks them; the ORDER section lists the vias (HDI)
   WARN  Fiducials (§4): 0 on the front, the fab's placement preview wants 3
   WARN  Board name and revision on silk (§10): no revision text (like "v0.6") on a silkscreen layer; no board name ("RoyalBlue54L-Feather") on a silkscreen layer
         silk texts: Debugger, SCL, SCK, A1, GND, TX, 5, SDI, 13, RoyalBlue54L, A3, 6
@@ -144,13 +145,12 @@ FINDINGS
         row 30 Y2: 32MHz (Crystal_SMD_2016-4Pin_2.0x1.6mm): missing MPN, Basic/Extended, Stock, Datasheet
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 5 drivers off JLCPCB's standard tier (vias, holes, layers, assembly class, castellated holes)
-        vias: smallest via 1e-05 mm hole, 0.35 mm diameter; 183 of 183 vias are below the standard 0.3mm/(0.4/0.45mm) option; below every option (the smallest is 0.1mm/(0.2/0.25mm)); DRC blocks it (source: quote, capabilities, read 2026-10-18)
-        holes: smallest drilled hole 1e-05 mm; 183 of 269 holes are below the standard 0.15 mm drill; below every tier (the smallest is 0.1 mm); DRC blocks it (source: capabilities, quote, read 2026-10-18)
-        layers: 8 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
+  COST  Order: what moves the price (§13): 3 hidden drivers (HDI, assembly class, castellated holes), 1 chosen (layers) off JLCPCB's standard tier
+        HDI: 183 blind/buried vias; not on the standard tier; JLCPCB prices blind and buried vias as its own process; tier not yet sourced (preset.TIERS_NOT_SOURCED)
         assembly class: 8 copper layers, 1.6 mm thick; the standard is 2, 4 or 6 layers at 0.8-1.6 mm; lands in Standard PCBA: Economic PCBA: "2,4,6-layers", "0.8mm - 1.6mm"; Standard: "1 - 32 layers", thickness "No limit" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         castellated holes: set in the stackup; the standard is without; lands in Standard PCBA: Economic PCBA: "Not Support"; Standard: "Support"; help centre: made "with a special process and extra cost will be charged"; hole ≥ 0.5 mm, board ≥ 10 × 10 mm and ≥ 0.6 mm thick (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        note: on the standard tier: outline 58.42 × 22.86 mm (100 × 100 mm or smaller); single-sided placement (48 parts on F.Cu); no through-hole parts to assemble
+        layers: 8 (the quote page's "High Precision PCB" class)
+        note: on the standard tier: smallest hole 0.2 mm (0.15 mm is the smallest standard drill); outline 58.42 × 22.86 mm (100 × 100 mm or smaller); single-sided placement (48 parts on F.Cu); no through-hole parts to assemble
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
 
@@ -168,5 +168,5 @@ BY HAND BEFORE ORDERING
   - Hand-drawn power loops, a human look at every autorouted trace (§11)
   - Review doc for this revision with "checked and left alone" (§6)
 
-RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked, 5 cost drivers  -  exit 1
+RESULT: FAIL  -  2 blocking, 4 warnings, 2 not checked, 4 cost drivers  -  exit 1
   2 findings block the order (FAIL lines under FINDINGS); fix them and run again

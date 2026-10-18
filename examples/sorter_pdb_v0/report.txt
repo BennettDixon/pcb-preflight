@@ -35,11 +35,11 @@ FINDINGS
         row 47 L3: 15uH SRP1245A-150M (L_Bourns_SRP1245A): missing MPN, Basic/Extended, Stock, Datasheet
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, through-hole, parts)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 110 × 75 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
-        through-hole: 18 through-hole parts to assemble (J5, J16, J2, J15, J13, J11, J1, J12, J10, J14, J8, J3, +6 more; 83 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+  COST  Order: what moves the price (§13): 1 hidden driver (parts), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
         parts: 23 Extended part types (one loading fee each: C107083, C134838, C144394, C144395, C144397, C151074, C158012, C190083, C2042471, C249591, C25805, C2620, +11 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        size: 110 × 75 mm (larger than 100 × 100 mm)
+        through-hole: 18 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.6 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (110 parts on F.Cu); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "CM5_MINIMA_3",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/cm5-minima",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/cm5-minima",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -53,7 +53,7 @@
   },
   "copper_layers": 6,
   "footprints": 112,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/cm5-minima.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/cm5-minima.csv",
   "checks": [
     {
       "id": "erc",
@@ -722,7 +722,7 @@
       "summary": "6 codes found, 0 blocking, 0 low-stock/mismatch, 6 not checked",
       "details": [
         "ok: C135998 (U405): STMPS2151STR, SOT-23-5, Extended, stock 21,767",
-        "ok: C160402 (CN1): SM02B-SRSS-TB(LF)(SN), SMD,P=1mm,Surface Mount\uff0cRight Angle, Extended, stock 63,510",
+        "ok: C160402 (CN1): SM02B-SRSS-TB(LF)(SN), SMD,P=1mm,Surface Mount\uff0cRight Angle, Extended, stock 63,478",
         "ok: C381059 (SW501): TS-1010A-B, SMD,4.5x3.5mm, Extended, stock 7,529",
         "ok: C478121 (D401, D402, D403): PUSB3F96X, DFN2510-10, Extended, stock 12,657",
         "ok: C5454943 (USB701): TYPEC-305-ACP16H458, SMD, Extended, stock 6,374",
@@ -789,13 +789,13 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "5 drivers off JLCPCB's standard tier (layers, placement, through-hole, parts, impedance control)",
+      "summary": "3 hidden drivers (placement, parts, impedance control), 2 chosen (layers, through-hole) off JLCPCB's standard tier",
       "details": [
-        "layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's \"High Precision PCB\" class (source: quote, production-time, read 2026-10-18)",
         "placement: parts to place on both sides (56 on F.Cu, 14 on B.Cu: Module301, R108, U401, R102, U1, R403, CN1, D403, +6 more on the back); the standard is Economic PCBA: \"Single sided placement (SMT/Thru-hole)\"; Standard PCBA: \"Single & double sided placement (SMT/Thru-hole)\"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "through-hole: 2 through-hole parts to assemble (J1, J501; 4 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint (\"Manual Assembly\") plus a hand-soldering labour fee per order; \"available under both the Economic and Standard PCBA\"; no feeder-loading fee; \"+ 1 more day\" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
         "parts: 6 Extended part types (one loading fee each: C135998, C160402, C381059, C478121, C5454943, C778185); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
-        "impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance \u00b110%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
+        "impedance control: set in the stackup; the standard is without; lands in Specify Stackup: a quote-page option at 4 layers and more; capabilities: controlled impedance on 4-32 layers, tolerance \u00b110%; no surcharge was observed or stated (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)",
+        "layers: 6 (the quote page's \"High Precision PCB\" class)",
+        "through-hole: 2 parts to assemble"
       ],
       "unchecked": [],
       "verified": [],
@@ -803,6 +803,28 @@
         "on the standard tier: vias smallest via 0.3 mm hole, 0.45 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); outline 59.64 \u00d7 62.69 mm (100 \u00d7 100 mm or smaller); 1.5296 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "placement",
+          "kind": "hidden"
+        },
+        {
+          "name": "parts",
+          "kind": "hidden"
+        },
+        {
+          "name": "impedance control",
+          "kind": "hidden"
+        },
+        {
+          "name": "layers",
+          "kind": "chosen"
+        },
+        {
+          "name": "through-hole",
+          "kind": "chosen"
+        }
       ]
     }
   ],

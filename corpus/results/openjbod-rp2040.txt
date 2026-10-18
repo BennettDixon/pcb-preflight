@@ -104,7 +104,7 @@ FINDINGS
   FAIL  Unrouted connections (§11 §12): 5 connections still to route
         unconnected_items: Missing connection between items [PTH pad 2 [/+3.3v] of J1 @ (149.67, 131.29); PTH pad 12 [/+3.3v] of J1 @ (149.67, 89.29)]
         unconnected_items: Missing connection between items [PTH pad 6 [/+5v] of J1 @ (149.67, 114.49); PTH pad 21 [/+5v] of J1 @ (153.87, 101.89)]
-        unconnected_items: Missing connection between items [PTH pad 4 [/+5v] of J1 @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
+        unconnected_items: Missing connection between items [Track [/+5v] on Front, length 4.6245 mm @ (149.67, 122.89); PTH pad 6 [/+5v] of J1 @ (149.67, 114.49)]
         unconnected_items: Missing connection between items [PTH pad 22 [/+5v] of J1 @ (153.87, 97.69); PTH pad 23 [/+5v] of J1 @ (153.87, 93.49)]
         unconnected_items: Missing connection between items [PTH pad 21 [/+5v] of J1 @ (153.87, 101.89); PTH pad 22 [/+5v] of J1 @ (153.87, 97.69)]
   FAIL  Schematic / PCB parity (§5): 1 mismatches, 2 warnings across 129 footprints; 3 padless footprint items not counted
@@ -164,10 +164,10 @@ FINDINGS
         ... 9 more (--max-details)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 3 drivers off JLCPCB's standard tier (layers, size, through-hole)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 72.61 × 170 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
-        through-hole: 14 through-hole parts to assemble (FAN3, SW1, J6, FAN1, SW2, J1, J3, J4, SW3, FAN2, FAN5, D1, +2 more; 84 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+  COST  Order: what moves the price (§13): 0 hidden drivers, 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
+        layers: 4 (its own price class)
+        size: 72.61 × 170 mm (larger than 100 × 100 mm)
+        through-hole: 14 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (121 parts on F.Cu); 1.6062 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

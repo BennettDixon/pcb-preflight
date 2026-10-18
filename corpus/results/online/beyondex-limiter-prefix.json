@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.2.0",
   "project": "BeyondexLimiter",
-  "project_dir": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boards/beyondex-limiter-prefix",
+  "project_dir": "/Users/bennett/projects/pcb-preflight/corpus/boards/beyondex-limiter-prefix",
   "kicad_version": "10.0.7",
   "kicad_cli": "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
   "preset": "jlcpcb-assembly@2026.10",
@@ -44,7 +44,7 @@
   },
   "copper_layers": 2,
   "footprints": 9,
-  "bom_path": "/Users/bennett/projects/pcb-preflight/.claude/worktrees/practical-nobel-61d435/corpus/boms/beyondex-limiter-prefix.csv",
+  "bom_path": "/Users/bennett/projects/pcb-preflight/corpus/boms/beyondex-limiter-prefix.csv",
   "checks": [
     {
       "id": "erc",
@@ -296,11 +296,11 @@
       "status": "pass",
       "summary": "6 codes found, 0 blocking, 0 low-stock/mismatch, 4 not checked",
       "details": [
-        "ok: C15525 (C1): CL05A106MQ5NUNC, 0402, Basic, stock 10,727,206",
+        "ok: C15525 (C1): CL05A106MQ5NUNC, 0402, Basic, stock 10,726,438",
         "ok: C1607 (C2): CL10A225KP8NNNC, 0603, Extended, stock 165,908",
-        "ok: C165948 (USB1, USB2): TYPE-C-31-M-12, SMD, Extended, stock 362,148",
-        "ok: C22980 (R1): 0603WAF3601T5E, 0603, Basic, stock 847,978",
-        "ok: C35634 (U1): CN5711, ESOP-8, Extended, stock 9,148",
+        "ok: C165948 (USB1, USB2): TYPE-C-31-M-12, SMD, Extended, stock 362,091",
+        "ok: C22980 (R1): 0603WAF3601T5E, 0603, Basic, stock 847,974",
+        "ok: C35634 (U1): CN5711, ESOP-8, Extended, stock 9,143",
         "ok: C720648 (RV1): TC33X-2-203E, SMD-3P,3.8x3.6mm, Extended, stock 7,886"
       ],
       "unchecked": [
@@ -360,7 +360,7 @@
       "title": "Order: what moves the price",
       "pitfall": "\u00a713",
       "status": "cost",
-      "summary": "1 driver off JLCPCB's standard tier (parts)",
+      "summary": "1 hidden driver (parts), 0 chosen off JLCPCB's standard tier",
       "details": [
         "parts: 4 Extended part types (one loading fee each: C1607, C165948, C35634, C720648); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)"
       ],
@@ -370,6 +370,12 @@
         "on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 22.5 \u00d7 13 mm (100 \u00d7 100 mm or smaller); single-sided placement (7 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick",
         "not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those",
         "JLCPCB assembles a minimum of 2 boards; order spares (\u00a713)"
+      ],
+      "drivers": [
+        {
+          "name": "parts",
+          "kind": "hidden"
+        }
       ]
     }
   ],

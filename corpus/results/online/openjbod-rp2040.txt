@@ -65,9 +65,9 @@ FINDINGS
   FAIL  DRC (§12): 11 errors, 121 warnings (lib_footprint_mismatch x112, hole_clearance x9, silk_edge_clearance x6, annular_width x2, padstack x2, lib_footprint_issues x1); 8 footprints without a courtyard
         annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 103.51)]
         annular_width: Annular width (board setup constraints min annular width 0.1000 mm; actual 0.0000 mm) [PTH pad [<no net>] of J5 @ (91.785, 109.29)]
-        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm) [Pad [<no net>] of J2 on Front @ (153.6956, 242.4); NPTH pad of J2 @ (152.1956, 242.4)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad A1 [GND] of J5 on Front @ (92.855, 103.2); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad A4 [/Power/USB_PWR] of J5 on Front @ (92.855, 104.0); PTH pad [<no net>] of J5 @ (91.785, 103.51)]
+        hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.0000 mm) [Pad [<no net>] of J2 on Front @ (153.6956, 242.4); NPTH pad of J2 @ (152.1956, 242.4)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2052 mm) [Pad A9 [/Power/USB_PWR] of J5 on Front @ (92.855, 108.8); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad A12 [GND] of J5 on Front @ (92.855, 109.6); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
         hole_clearance: Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.1701 mm) [Pad B1 [GND] of J5 on Front @ (92.855, 109.6); PTH pad [<no net>] of J5 @ (91.785, 109.29)]
@@ -170,11 +170,11 @@ FINDINGS
         C1658 0603CG300J500NT (C15, C16; bom.csv row 6): bom.csv says 34pF but the catalogue description says 30pF (bom.csv value "34pF", description "30pF 50V C0G ±5% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS")
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 4 drivers off JLCPCB's standard tier (layers, size, through-hole, parts)
-        layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read 2026-10-18)
-        size: outline 72.61 × 170 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
-        through-hole: 14 through-hole parts to assemble (FAN3, SW1, J6, FAN1, SW2, J1, J3, J4, SW3, FAN2, FAN5, D1, +2 more; 84 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+  COST  Order: what moves the price (§13): 1 hidden driver (parts), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
         parts: 24 Extended part types (one loading fee each: C11366, C11692, C12074, C129895, C139440, C148036, C1542, C2040, C240840, C2764899, C2836440, C284479, +12 more); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 4 (its own price class)
+        size: 72.61 × 170 mm (larger than 100 × 100 mm)
+        through-hole: 14 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); single-sided placement (121 parts on F.Cu); 1.6062 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)

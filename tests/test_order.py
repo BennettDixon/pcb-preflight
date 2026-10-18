@@ -1,5 +1,6 @@
 """The ORDER section (checks.order_check, status ``cost``): every driver read from an inline board against
-preset.TIERS, the verdict and exit code untouched by it, the report section and count, and the JSON."""
+preset.TIERS, hidden drivers before chosen ones, blind and buried vias read by keyword and layers rather than
+by their sentinel drill, the verdict and exit code untouched by it, the report section and count, and the JSON."""
 import json
 import os
 import sys
@@ -26,8 +27,8 @@ def pcb(body, layers='(0 "F.Cu" signal) (31 "B.Cu" signal)', general='(general (
     return board.load(f.name)
 
 
-def via(size, drill):
-    return f'(via (at 1 1) (size {size}) (drill {drill}) (layers "F.Cu" "B.Cu"))'
+def via(size, drill, layers='"F.Cu" "B.Cu"', keyword=''):
+    return f'(via {keyword} (at 1 1) (size {size}) (drill {drill}) (layers {layers}))'
 
 
 def smd(ref, layer='F.Cu', paste=True, attrs='smd'):
@@ -93,7 +94,8 @@ class Vias(unittest.TestCase):
                                      'lands in the 0.2mm/(0.3/0.35mm) option: priced; the quote page adds "Plugged Via" and the "4-Wire Kelvin Test" itself'), d)
         self.assertIn(f'(source: quote, capabilities, read {READ})', d)
         self.assertIn('2 copper layers (1-2 layers)', c.notes[0])
-        self.assertEqual(c.summary, "1 driver off JLCPCB's standard tier (vias)")
+        self.assertEqual(c.summary, "1 hidden driver (vias), 0 chosen off JLCPCB's standard tier")
+        self.assertEqual(c.drivers, [{'name': 'vias', 'kind': 'hidden'}])
 
     def test_a_tenth_millimetre_via_quotes_the_quote_pages_conditions_and_is_a_hole_driver_too(self):
         b = pcb(via('0.2', '0.1') + smd('R1'), general='(general (thickness 1.0))')
@@ -121,6 +123,113 @@ class Vias(unittest.TestCase):
         self.assertEqual(c.status, 'warn', 'a 0.1 mm hole clears the floor: the project\'s own rule, and an ORDER line')
 
 
+class ViaKinds(unittest.TestCase):
+    """A blind, buried or micro via's (drill ...) is a sentinel, not a hole: the kind is read from the keyword and the
+    layers (board.via_kind), the drill floor applies to through vias and pads only, and the vias are an HDI driver."""
+
+    def drc(self, item, actual='1.000e-05'):
+        return checks.drc_check({'violations': [{'type': 'drill_out_of_range', 'severity': 'error', 'excluded': False,
+                                                 'description': f'Hole size out of range (board setup constraints min hole 0.2000 mm; actual {actual} mm)',
+                                                 'items': [{'description': item, 'pos': {'x': 1, 'y': 1}}]}],
+                                 'ignored_checks': []}, owned={}, copper_layers=4)
+
+    def test_a_through_via_at_0_3(self):
+        b = pcb(via('0.45', '0.3') + smd('R1'))
+        self.assertEqual([(v.kind, v.through, v.layers) for v in b.vias], [('through', True, ('F.Cu', 'B.Cu'))])
+        self.assertEqual((b.through_vias, b.hdi_vias, b.holes), (b.vias, [], [0.3]))
+        c = checks.order_check(b)
+        self.assertEqual(c.status, 'pass')
+        self.assertIn('vias smallest via 0.3 mm hole, 0.45 mm diameter', c.notes[0])
+
+    def test_a_blind_via_with_the_sentinel_drill_between_f_cu_and_in1_cu(self):
+        b = pcb(via('0.45', '0.00001', layers='"F.Cu" "In1.Cu"') + via('0.45', '0.3') + smd('R1'),
+                layers='(0 "F.Cu" signal) (1 "In1.Cu" signal) (2 "In2.Cu" signal) (31 "B.Cu" signal)')
+        self.assertEqual([v.kind for v in b.vias], ['blind', 'through'], 'one outer layer: blind, whatever the drill says')
+        self.assertEqual(b.holes, [0.3], 'the sentinel is not a hole')
+        c = checks.order_check(b)
+        self.assertEqual([d['name'] for d in c.drivers], ['HDI', 'layers'])
+        self.assertEqual(c.details[0], 'HDI: 1 blind/buried via; not on the standard tier; JLCPCB prices blind and buried vias as its own process; '
+                                       'tier not yet sourced (preset.TIERS_NOT_SOURCED)')
+        self.assertIn('vias smallest via 0.3 mm hole, 0.45 mm diameter (0.3mm/(0.4/0.45mm))', c.notes[0], 'the via figure is the through vias\'')
+        self.assertIn('smallest hole 0.3 mm', c.notes[0])
+        self.assertNotRegex('\n'.join(c.details), r'1e-05|0\.00001', 'the sentinel is never printed as a figure')
+        self.assertIn('blind and buried vias (HDI): the process is priced but its tiers were not read', preset.TIERS_NOT_SOURCED)
+        # KiCad's own drill_out_of_range item on it is a warning with a note, never a block
+        c = self.drc('Blind via [GND] on F.Cu - In1.Cu')
+        self.assertEqual(c.status, 'warn', c.details)
+        self.assertEqual(c.details, ['warning (blind/buried via: no through drill to measure): drill_out_of_range: Hole size out of range '
+                                     '(board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm) [Blind via [GND] on F.Cu - In1.Cu @ (1, 1)]'])
+        self.assertTrue(any(n.startswith('1 drill_out_of_range errors are on blind, buried or micro vias: the (drill) KiCad writes for those is not a through hole')
+                            and 'the ORDER section lists the vias (HDI)' in n for n in c.notes), c.notes)
+        for item in ('Buried via [GND] on In1.Cu - In2.Cu', 'Micro via [GND] on F.Cu - In1.Cu', 'Blind/Buried Via [GND] on F.Cu - In1.Cu'):
+            self.assertEqual(self.drc(item).status, 'warn', item)
+
+    def test_a_via_blind_keyword_with_a_normal_drill(self):
+        b = pcb(via('0.45', '0.3', keyword='blind') + via('0.3', '0.2', keyword='micro') + via('0.45', '0.3', layers='"In1.Cu" "In2.Cu"') + smd('R1'),
+                layers='(0 "F.Cu" signal) (1 "In1.Cu" signal) (2 "In2.Cu" signal) (31 "B.Cu" signal)')
+        self.assertEqual([v.kind for v in b.vias], ['blind', 'micro', 'buried'], 'the keyword wins over the outer layer pair; no outer layer is buried')
+        self.assertEqual((b.through_vias, b.holes), ([], []))
+        c = checks.order_check(b)
+        self.assertEqual([d['name'] for d in c.drivers], ['HDI', 'layers'])
+        self.assertTrue(c.details[0].startswith('HDI: 3 blind/buried vias (1 blind, 1 micro, 1 buried); not on the standard tier'), c.details[0])
+        self.assertNotIn('vias', c.notes[0], 'no through via, so no via figure')
+        self.assertNotIn('smallest hole', c.notes[0])
+
+    def test_a_through_via_at_the_sentinel_drill_still_blocks(self):
+        b = pcb(via('0.45', '0.00001') + smd('R1'))
+        self.assertEqual([v.kind for v in b.vias], ['through'])
+        c = checks.order_check(b)
+        self.assertIn('below every option (the smallest is 0.1mm/(0.2/0.25mm)); DRC blocks it', c.details[0])
+        self.assertIn('below every tier (the smallest is 0.1 mm); DRC blocks it', c.details[1])
+        c = self.drc('Through via [GND] on F.Cu - B.Cu')
+        self.assertEqual(c.status, 'fail', 'an unreadable figure on a through via is the fab\'s floor')
+        self.assertEqual(self.drc('Through via [GND] on F.Cu - B.Cu', actual='0.0400').status, 'fail', 'a 0.04 mm through drill too')
+        self.assertEqual(self.drc('PTH pad 1 [GND] of J1', actual='0.0400').status, 'fail', 'and a pad')
+        c = checks.drc_check({'violations': [{'type': 'drill_out_of_range', 'severity': 'error', 'excluded': False, 'description': 'Hole size out of range (board setup constraints min hole 0.2000 mm; actual 1.000e-05 mm)',
+                                              'items': [{'description': 'Blind via [GND] on F.Cu - In1.Cu', 'pos': {'x': 1, 'y': 1}},
+                                                        {'description': 'Through via [GND] on F.Cu - B.Cu', 'pos': {'x': 2, 'y': 2}}]}],
+                              'ignored_checks': []}, owned={}, copper_layers=4)
+        self.assertEqual(c.status, 'fail', 'a violation that also names a through via is not a blind-via item')
+
+
+class HiddenAndChosen(unittest.TestCase):
+    """Hidden drivers (the surprises, with their conditions) print before chosen ones (the designer's own decisions,
+    one short line each); every driver prints, and the JSON carries the kind per line."""
+    four = '(0 "F.Cu" signal) (1 "In1.Cu" power) (2 "In2.Cu" signal) (31 "B.Cu" signal)'
+
+    def test_hidden_first_then_chosen_and_nothing_dropped(self):
+        b = pcb(via('0.35', '0.25') + smd('R1') + smd('R2', 'B.Cu') + tht('J1'), layers=self.four, outline='(gr_rect (start 0 0) (end 110 75) (layer "Edge.Cuts"))')
+        c = checks.order_check(b, records={'C1': {'library': 'Extended'}})
+        self.assertEqual([(d['name'], d['kind']) for d in c.drivers],
+                         [('vias', 'hidden'), ('placement', 'hidden'), ('parts', 'hidden'), ('layers', 'chosen'), ('size', 'chosen'), ('through-hole', 'chosen')])
+        self.assertEqual(len(c.details), len(c.drivers), 'drivers is parallel to details')
+        self.assertEqual([d.split(':', 1)[0] for d in c.details], [d['name'] for d in c.drivers])
+        self.assertEqual(c.summary, "3 hidden drivers (vias, placement, parts), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier")
+        self.assertEqual(c.details[3:], ['layers: 4 (its own price class)', 'size: 110 × 75 mm (larger than 100 × 100 mm)', 'through-hole: 1 part to assemble'])
+        for d in c.details[:3]:
+            self.assertIn(f'read {READ}', d, 'a hidden line keeps its condition, source and date')
+        for d in c.details[3:]:
+            self.assertNotIn('source', d, 'a chosen line is short')
+        self.assertEqual(set(d['kind'] for d in c.drivers), {'hidden', 'chosen'})
+        self.assertEqual(set(checks.CHOSEN), {'layers', 'size', 'through-hole'})
+
+    def test_the_count_on_the_result_line_is_both_kinds_and_the_verdict_is_untouched(self):
+        b = pcb(via('0.35', '0.25') + smd('R1') + tht('J1'), layers=self.four)
+        c = checks.order_check(b)
+        result = dict(VerdictAndReport.base, checks=[chk('erc', 'pass'), c], options={'online': False})
+        text = report.render(result)
+        self.assertIn('0 not checked, 3 cost drivers  -  exit 0', text.splitlines()[1])
+        self.assertEqual(report.verdict([chk('erc', 'pass'), c]), 'PASS')
+        self.assertEqual(report.verdict([chk('erc', 'pass'), c], strict=True), 'PASS')
+        j = json.loads(report.to_json(result))
+        order = next(x for x in j['checks'] if x['id'] == 'order')
+        self.assertEqual(order['drivers'], [{'name': 'vias', 'kind': 'hidden'}, {'name': 'layers', 'kind': 'chosen'}, {'name': 'through-hole', 'kind': 'chosen'}])
+        self.assertEqual(len(order['details']), 3)
+        self.assertNotIn('drivers', next(x for x in j['checks'] if x['id'] == 'erc'), 'only the order gate carries the field')
+        passing = json.loads(report.to_json(dict(VerdictAndReport.base, checks=[checks.order_check(STANDARD_2L)])))
+        self.assertNotIn('drivers', passing['checks'][0], 'nothing off the standard tier: no drivers')
+
+
 class Holes(unittest.TestCase):
     def test_a_pad_drill_counts_as_a_hole_and_an_oval_by_its_smaller_figure(self):
         b = pcb(tht('J1', drill='oval 0.12 1.0') + smd('R1'))
@@ -140,18 +249,20 @@ class LayersSizeThickness(unittest.TestCase):
         four = pcb(smd('R1'), layers='(0 "F.Cu" signal) (1 "In1.Cu" power) (2 "In2.Cu" signal) (31 "B.Cu" signal)')
         c = checks.order_check(four)
         self.assertEqual(c.status, 'cost')
-        self.assertEqual(c.details, [f'layers: 4 copper layers; the standard class is 1-2 layers; lands in 4 layers: its own price class (source: quote, production-time, read {READ})'])
+        self.assertEqual(c.details, ['layers: 4 (its own price class)'], 'a chosen driver: one short line, no condition text')
+        self.assertEqual(c.drivers, [{'name': 'layers', 'kind': 'chosen'}])
+        self.assertEqual(c.summary, "0 hidden drivers, 1 chosen (layers) off JLCPCB's standard tier")
         six = pcb(smd('R1'), layers='(0 "F.Cu" signal) (1 "In1.Cu" power) (2 "In2.Cu" signal) (3 "In3.Cu" signal) (4 "In4.Cu" signal) (31 "B.Cu" signal)')
         c = checks.order_check(six)
-        self.assertIn('lands in High Precision PCB (6 layers and more): the quote page\'s "High Precision PCB" class', c.details[0])
+        self.assertEqual(c.details[0], 'layers: 6 (the quote page\'s "High Precision PCB" class)')
         self.assertEqual(len(c.details), 1, '6 layers at 1.6 mm is still Economic PCBA')
 
     def test_a_large_outline(self):
         b = pcb(smd('R1'), outline='(gr_line (start 0 0) (end 120 0) (layer "Edge.Cuts")) (gr_line (start 120 0) (end 120 80) (layer "Edge.Cuts")) '
                                    '(gr_line (start 120 80) (end 0 80) (layer "Edge.Cuts")) (gr_line (start 0 80) (end 0 0) (layer "Edge.Cuts"))')
         c = checks.order_check(b)
-        self.assertEqual(c.details, ['size: outline 120 × 80 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: '
-                                     f'priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read {READ})'])
+        self.assertEqual(c.details, ['size: 120 × 80 mm (larger than 100 × 100 mm)'], 'a chosen driver: the figure and the class, nothing more')
+        self.assertEqual(c.drivers, [{'name': 'size', 'kind': 'chosen'}])
 
     def test_a_tall_board_fits_the_class_either_way_round(self):
         c = checks.order_check(pcb(smd('R1'), outline='(gr_rect (start 0 0) (end 50 100) (layer "Edge.Cuts"))'))
@@ -179,7 +290,7 @@ class LayersSizeThickness(unittest.TestCase):
         self.assertIn('1.6 mm thick', c.notes[0])
         eight = pcb(smd('R1'), layers=' '.join(f'({i} "In{i}.Cu" signal)' for i in range(1, 7)) + ' (0 "F.Cu" signal) (31 "B.Cu" signal)')
         c = checks.order_check(eight)
-        self.assertEqual([d.split(':', 1)[0] for d in c.details], ['layers', 'assembly class'])
+        self.assertEqual([d.split(':', 1)[0] for d in c.details], ['assembly class', 'layers'], 'the hidden assembly class before the chosen layer count')
 
 
 class Assembly(unittest.TestCase):
@@ -202,12 +313,10 @@ class Assembly(unittest.TestCase):
     def test_through_hole_parts_to_assemble(self):
         b = pcb(tht('J1') + tht('J2', pads=3) + tht('H1', net=False) + tht('J9', attrs='through_hole dnp') + smd('R1'))
         c = checks.order_check(b)
-        self.assertEqual(len(c.details), 1)
-        self.assertTrue(c.details[0].startswith('through-hole: 2 through-hole parts to assemble (J1, J2; 5 plated holes); the standard is surface mount only; '
-                                                'either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order'), c.details[0])
-        self.assertIn('"+ 1 more day"', c.details[0])
+        self.assertEqual(c.details, ['through-hole: 2 parts to assemble'], 'a chosen driver: the designer placed those parts')
+        self.assertEqual(c.drivers, [{'name': 'through-hole', 'kind': 'chosen'}])
         c = checks.order_check(b, lines=[line(['J2', 'R1'])])
-        self.assertIn('1 through-hole part to assemble (J2; 3 plated holes)', c.details[0], 'with a BOM, only parts on a BOM line are assembled')
+        self.assertEqual(c.details, ['through-hole: 1 part to assemble'], 'with a BOM, only parts on a BOM line are assembled')
         c = checks.order_check(b, lines=[line(['R1'])])
         self.assertEqual(c.status, 'pass')
         self.assertIn('no through-hole parts to assemble', c.notes[0])
@@ -233,7 +342,7 @@ class Assembly(unittest.TestCase):
         self.assertIn('lands in Specify Stackup', c.details[2])
         b = pcb(smd('R1'), setup='(setup (stackup (layer "F.Cu" (type copper)) (castellated_pads no)))')
         self.assertEqual(checks.order_check(b).status, 'pass', 'absent or "no" means no')
-        self.assertEqual(c.summary, "3 drivers off JLCPCB's standard tier (castellated holes, edge plating, impedance control)")
+        self.assertEqual(c.summary, "3 hidden drivers (castellated holes, edge plating, impedance control), 0 chosen off JLCPCB's standard tier")
 
 
 def chk(cid, status, details=()):

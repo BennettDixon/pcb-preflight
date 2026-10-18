@@ -56,8 +56,8 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5)]
         warning: text_thickness: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0650 mm) [Reference field of U1 @ (165.025, 92.425)]
         warning: text_height: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5000 mm) [Reference field of U1 @ (165.025, 92.425)]
         warning: silk_overlap: Silkscreen clearance [Segment of U1 on F.Silkscreen @ (165.445, 97.7975); Circle of USB2 on F.Silkscreen @ (165.4, 94.3)]
-        warning (project's own rule): clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]
         warning (project's own rule): clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1099 mm) [Track [/VIN] on F.Cu, length 2.1213 mm @ (173.6, 95.1); Pad B5 [unconnected-(USB1-CC2-PadB5)] of USB1 on F.Cu @ (173.1625, 95.75)]
+        warning (project's own rule): clearance: Clearance violation ( clearance 0.1270 mm; actual 0.1187 mm) [Track [/VOUT] on F.Cu, length 1.9799 mm @ (163.9, 95.1); Pad B8 [unconnected-(USB2-SBU2-PadB8)] of USB2 on F.Cu @ (164.35, 95.75)]
         warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (167.005, 96.4375)]
         warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (168.005, 96.4375)]
         warning (project's own rule): drill_out_of_range: Hole size out of range (board setup constraints min hole 0.3000 mm; actual 0.2000 mm) [PTH pad 9 [GND] of U1 @ (169.005, 96.4375)]
@@ -79,7 +79,7 @@ v0.6 Designed by Kibbie' on B.Silkscreen @ (168.8, 97.5)]
         row 7 USB1,USB2: TYPE-C-31-M-12 (HRO_TYPE-C-31-M-12): missing Basic/Extended, Stock, Datasheet
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 1 driver off JLCPCB's standard tier (parts)
+  COST  Order: what moves the price (§13): 1 hidden driver (parts), 0 chosen off JLCPCB's standard tier
         parts: 4 Extended part types (one loading fee each: C1607, C165948, C35634, C720648); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.2 mm (0.15 mm is the smallest standard drill); 2 copper layers (1-2 layers); outline 22.5 × 13 mm (100 × 100 mm or smaller); single-sided placement (7 parts on F.Cu); no through-hole parts to assemble; 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those

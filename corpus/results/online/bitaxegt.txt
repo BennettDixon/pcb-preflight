@@ -233,20 +233,20 @@ FINDINGS
   FAIL  Catalogue and stock (§1 §2 §13): 4 codes found, 2 blocking, 0 low-stock/mismatch, 0 not checked
         C25905 (R14, R25): bom.csv says MPN "RMCF0402JT5K10" but the catalogue says "0402WGF5101TCE" (-55℃~+155℃ 5.1kΩ 50V 62.5mW Thick Film Resistor ±1% ±100ppm/)
         C262657 (J2): bom.csv says MPN "FFC2B35-08-T" but the catalogue says "AFC01-S08FCA-00" (-45℃~+85℃ 0.3mm 0.5mm 2mm 500mA 50V 8P Bottom Contact Copper)
-        ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,087,650
+        ok: C25905 (R14, R25): 0402WGF5101TCE, 0402, Basic, stock 5,087,673
         ok: C262657 (J2): AFC01-S08FCA-00, SMD,P=0.5mm,Surface Mount，Right Angle, Extended, stock 52,761
-        ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 62,616
+        ok: C431092 (J1): XT30PW-M30.G.Y, -, Extended, stock 62,627
         ok: C5137262 (U8): SX3M25.000E20F30THN, SMD3225-4P, Extended, stock 11,439
   FAIL  Catalogue category matches the reference prefix (§1 §2): 3 lines filed under the category their reference prefix means, 1 under another
         C5137262 SX3M25.000E20F30THN (U8; bom.csv row 37): U is an IC reference but the catalogue files this part under "Crystals, Oscillators, Resonators / Crystal Oscillators" (crystal)
 
 ORDER (what moves the price off JLCPCB's standard tier; the quote page prices it)
-  COST  Order: what moves the price (§13): 5 drivers off JLCPCB's standard tier (layers, size, placement, through-hole, parts)
-        layers: 6 copper layers; the standard class is 1-2 layers; lands in High Precision PCB (6 layers and more): the quote page's "High Precision PCB" class (source: quote, production-time, read 2026-10-18)
-        size: outline 65 × 112 mm; the standard class is 100 × 100 mm or smaller; lands in larger than 100 × 100 mm: priced as "Engineering fee" plus a "Board" line that grows with area (source: quote, production-time, dimensions, read 2026-10-18)
+  COST  Order: what moves the price (§13): 2 hidden drivers (placement, parts), 3 chosen (layers, size, through-hole) off JLCPCB's standard tier
         placement: parts to place on both sides (3 on F.Cu, 130 on B.Cu: R29, C17, C37, R22, C7, C84, R25, C12, +122 more on the back); the standard is Economic PCBA: "Single sided placement (SMT/Thru-hole)"; Standard PCBA: "Single & double sided placement (SMT/Thru-hole)"; setup and stencil are priced per side (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
-        through-hole: 4 through-hole parts to assemble (J7, U4, U3, U1; 27 plated holes); the standard is surface mount only; either tier, wave soldering: priced per solder joint ("Manual Assembly") plus a hand-soldering labour fee per order; "available under both the Economic and Standard PCBA"; no feeder-loading fee; "+ 1 more day" (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
         parts: 3 Extended part types (one loading fee each: C262657, C431092, C5137262); the standard is Basic and Preferred Extended parts; per unique part type: Economic PCBA: a feeder-loading fee per unique Extended part, Basic and Preferred Extended parts exempt; Standard PCBA: a feeder-loading fee per unique part, Basic or Extended (source: pcba-capabilities, pcba-price, pcba-faqs, blog-pcba-cost, castellated, read 2026-10-18)
+        layers: 6 (the quote page's "High Precision PCB" class)
+        size: 65 × 112 mm (larger than 100 × 100 mm)
+        through-hole: 4 parts to assemble
         note: on the standard tier: vias smallest via 0.3 mm hole, 0.5 mm diameter (0.3mm/(0.4/0.45mm)); smallest hole 0.3 mm (0.15 mm is the smallest standard drill); 1.6 mm thick
         note: not in the files: copper weight, surface finish (HASL, ENIG, OSP), board thickness beyond the stackup figure, colour, quantity, via covering and plating method, gold fingers, press-fit holes, blind slots, backdrill, outline tolerance, panelisation (mouse bites, V-cut); the quote page prices those
         note: JLCPCB assembles a minimum of 2 boards; order spares (§13)
