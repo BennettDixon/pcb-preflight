@@ -9,7 +9,8 @@ Three layers, each a few dozen lines (internal design note of 2026-10-18):
    move, its stock figure is not current, so `check` lists such items as not checked, never as a pass.
 2. A user source, ``--catalogue parts.csv``: a record-shaped CSV (lcsc, mpn, manufacturer, package,
    library, stock, description, datasheet, fetched_at) consulted first. A team can pin one in the repo; a
-   fab that publishes a parts list drops in. Its records are labelled with the file's name.
+   fab that publishes a parts list drops in. Its records are labelled with the file's name and are never
+   current: the stock gate lists their items as not checked, so a parts file alone never carries a PASS.
 3. The live client, stock.lookup (JLCPCB's cart endpoint, the jlcsearch mirror): one request per code,
    a pause between; the cache makes a 67-line board cost 67 requests once, not per run.
 
@@ -18,7 +19,8 @@ or the parts file's name), ``fetched_at`` (the date it answered) and ``cached`` 
 cache rather than fetched on this run). ``fetched_label()`` is the Fetched column's text, ``jlcpcb 2026-10-18``:
 the catalogue and the date, the same whether the record was fetched now or read back within the stock
 limit, so two runs in the same week write the same bytes. ``is_current()`` is the stock gate's question:
-fetched on this run, within STOCK_DAYS; a cached record never is, whatever its age.
+fetched from a LIVE source on this run, within STOCK_DAYS; a cached record never is, whatever its age, and
+a parts-file record never is, whatever its date.
 Nothing here chooses a part: the only question asked is "what is C14663".
 """
 import csv
@@ -58,8 +60,11 @@ def age_days(fetched_at, on=None):
 
 
 def is_current(rec, on=None):
-    """True when the record's stock figure may be taken as today's: fetched on this run, within STOCK_DAYS."""
-    if not rec or rec.get('cached'):
+    """True when the record's stock figure may be taken as today's: fetched from the fab's catalogue (a source
+    in LIVE) on this run, within STOCK_DAYS. A record from the cache is not, whatever its age; a record from a
+    parts file never is, whatever its date: the project under review wrote that file, and a copied MPN must
+    not pass the gate that compares MPNs (its identity facts still serve the package and value gates)."""
+    if not rec or rec.get('cached') or rec.get('source', 'jlcpcb') not in LIVE:
         return False
     if not rec.get('fetched_at'):
         return True                              # a record straight from stock.lookup (no cache in the path)

@@ -27,8 +27,8 @@ ALIASES = {
     'stock': 'Stock', 'stock-at-selection': 'Stock', 'stock at selection': 'Stock',
     'datasheet': 'Datasheet', 'datasheet url': 'Datasheet',
     'package verified': 'Package verified', 'package checked': 'Package verified', 'footprint verified': 'Package verified',
-    'manufacturer': 'Manufacturer', 'mfr': 'Manufacturer', 'maker': 'Manufacturer', 'brand': 'Manufacturer',
-    'fetched': 'Fetched', 'fetched at': 'Fetched', 'catalogue source': 'Fetched', 'catalog source': 'Fetched',
+    'manufacturer': 'Manufacturer', 'mfr': 'Manufacturer',
+    'fetched': 'Fetched', 'fetched at': 'Fetched',
 }
 
 LCSC_RE = re.compile(r'^C\d{1,9}$')

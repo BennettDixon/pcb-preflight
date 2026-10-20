@@ -558,7 +558,8 @@ What the run shows:
   are in `init.FIELDS` with the board as their source; without them 33 lines on two sold boards would be
   open. `JLCPCB_PN` (openjbod, beside `LCSC Part #`) and pocketpd's `LCSC2` supplied nothing: the first
   spelling in table order already had the code on every symbol, and no symbol carried two spellings with
-  different codes. The design note's `LCSC_PART`, `JLCPCB Part #` and `JLCPCB` did not occur in the corpus.
+  different codes. The design note's `LCSC_PART`, `JLCPCB Part #` and `JLCPCB` did not occur in the corpus and were dropped
+  from the table on 2026-10-20 (with `Mfr. Part #` and `Mfr`): a spelling needs a board or a tool behind it.
 * **Time and the cache.** The first pass took 373 s for 340 distinct codes (one request per code with the
   client's 0.2 s pause: about 0.9 s a code; openair-max's 79 codes 87 s). The second run of every board was
   served entirely from the cache in 0.5 to 0.9 s (kicad-cli's export is most of that) and wrote the same

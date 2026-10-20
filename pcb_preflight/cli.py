@@ -208,7 +208,7 @@ def build_parser():
     c = sub.add_parser('check', help='run every gate and print the report (exit 0 PASS, 1 FAIL, 2 ERROR, 3 NOT VERIFIED)')
     common(c)
     c.add_argument('--bom', help='bom.csv path (default: <project dir>/bom.csv)')
-    c.add_argument('--catalogue', metavar='FILE', help='a parts.csv consulted before the cache and JLCPCB (columns lcsc, mpn, manufacturer, package, library, stock, description, datasheet, fetched_at)')
+    c.add_argument('--catalogue', metavar='FILE', help='a parts.csv consulted before the cache and JLCPCB (columns lcsc, mpn, manufacturer, package, library, stock, description, datasheet, fetched_at); its records are never today\'s stock, so the stock gate lists their items as not checked')
     c.add_argument('--footprints', metavar='DIR', help='KiCad footprint library directory for pad geometry (default: $KICAD_FOOTPRINT_DIR, '
                    'then the kicad-cli install); without one, package names alone are compared')
     c.add_argument('--online', action='store_true', help='look every LCSC code up at JLCPCB: stock, MPN, package, Basic/Extended (without it the result is at best NOT VERIFIED)')

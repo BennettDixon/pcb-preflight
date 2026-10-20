@@ -146,6 +146,9 @@ class PartsFile(unittest.TestCase):
         self.assertEqual((rec['source'], rec['library'], rec['stock'], rec['fetched_at']), ('parts.csv', 'Extended', 20, '2026-10-01'))
         self.assertEqual(catalogue.fetched_label(rec), 'parts.csv 2026-10-01')
         self.assertFalse(catalogue.is_current(rec, on='2026-10-18'), 'a figure dated 17 days ago is not today\'s stock')
+        self.assertFalse(catalogue.is_current(dict(rec, fetched_at='2026-10-18'), on='2026-10-18'), 'a parts-file record dated today is not today\'s stock either')
+        self.assertFalse(catalogue.is_current(dict(rec, fetched_at='')), 'nor one without a date: only a LIVE source is ever current')
+        self.assertTrue(catalogue.is_current({'source': 'jlcpcb', 'fetched_at': ''}), 'a record straight from the live client is')
         other = cat.lookup('C14663')
         self.assertEqual(f.calls, ['C14663'], 'codes the file does not have go to the catalogue')
         self.assertEqual(other['source'], 'jlcpcb')
@@ -153,6 +156,19 @@ class PartsFile(unittest.TestCase):
 
     def test_parts_file_rows_without_a_code_are_skipped(self):
         self.assertEqual(list(catalogue.load_parts(self.parts)), ['C2042471'])
+
+    def test_a_parts_file_never_passes_the_stock_gate(self):
+        """The project under review may supply parts.csv; a copied MPN in it must not pass the gate that compares
+        MPNs. Its items are unchecked, with the file named, even with a date of today and even with no date."""
+        with open(self.parts, 'a', encoding='utf-8') as fh:
+            fh.write('C14663,CC0603KRX7R9BB104,YAGEO,0603,basic,100000,100nF,https://x/c.pdf,\n')
+        cat = catalogue.Catalogue(path=self.path, parts=self.parts, fetch=Fetch(), offline=True, on='2026-10-18')
+        ln = Line(row=2, refs=['C1'], package='0603', lcsc='C14663', mpn='CC0603KRX7R9BB104')
+        c = checks.stock_check([ln], lookup=cat.lookup, records={})
+        self.assertEqual(c.status, 'skip')
+        self.assertEqual(c.details, [])
+        self.assertIn('C14663 (C1): facts from parts.csv, not current', c.unchecked[0])
+        self.assertIn('facts from parts.csv (1 code)', c.summary)
 
 
 class CheckWithCachedFacts(unittest.TestCase):

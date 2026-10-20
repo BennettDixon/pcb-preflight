@@ -21,23 +21,20 @@ from . import board as boardlib, bom as bomlib, catalogue, checks, kicad, stock
 
 # Symbol field spellings, in priority order, each with the column it feeds and where the spelling is seen.
 # kicad-cli matches field names exactly (case included, 10.0.7), so every spelling is listed as written.
-# A spelling is added with its source, like a package synonym; a field a symbol lacks exports empty.
+# A spelling is added with its source, a corpus board or the tool that writes it, like a package synonym (DESIGN.md
+# §9); a field a symbol lacks exports empty. The design note's guesses (LCSC_PART, JLCPCB Part #, JLCPCB, Mfr. Part #,
+# Mfr) occurred on no corpus board and were dropped 2026-10-20; add one back with the board or tool that needs it.
 FIELDS = [
     ('LCSC',          'LCSC', "kicad-jlcpcb-tools writes it; KiCad's JLCPCB symbol templates; corpus: canfd-mc, sonatino, sh-rpi, pocketpd, royalblue54l-feather, beyondex-limiter, bitaxegt"),
     ('LCSC Part #',   'LCSC', 'Fabrication Toolkit reads it; corpus: openjbod-rp2040'),
     ('LCSC Part',     'LCSC', 'JLCPCB KiCad Library symbols; corpus: jlcpcb-example, openair-max, cm5-minima'),
-    ('LCSC_PART',     'LCSC', 'design note 2026-10-18 (JLCPCB tool conventions)'),
-    ('JLCPCB Part #', 'LCSC', 'design note 2026-10-18 (JLCPCB tool conventions)'),
-    ('JLCPCB',        'LCSC', 'design note 2026-10-18 (JLCPCB tool conventions)'),
     ('JLCPCB_PN',     'LCSC', 'corpus: openjbod-rp2040 (beside LCSC Part #)'),
     ('lcsc#',         'LCSC', 'corpus: soldiercrab'),
     ('JLC',           'LCSC', 'corpus: tiny-tapeout'),
     ('MPN',           'MPN', 'KiCad convention; corpus: tiny-tapeout'),
-    ('Mfr. Part #',   'MPN', 'design note 2026-10-18'),
     ('Manufacturer_Part_Number', 'MPN', 'corpus: cm5-minima'),
     ('Part Number',   'MPN', 'corpus: soldiercrab'),
     ('Manufacturer',  'Manufacturer', 'KiCad convention'),
-    ('Mfr',           'Manufacturer', 'design note 2026-10-18'),
 ]
 
 OPEN_FIX = "put its C-number in the symbol's LCSC field, then run preflight bom again"

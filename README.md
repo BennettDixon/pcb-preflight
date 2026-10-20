@@ -44,8 +44,8 @@ preflight bom path/to/board --offline    # the same from the cache and the field
 
 The project directory holds `<name>.kicad_pro`, `<name>.kicad_sch` and `<name>.kicad_pcb`, plus `bom.csv`.
 bom.csv is written by `preflight bom` from the symbol fields and the catalogue; a hand-made one still works.
-`bom` reads the LCSC code each symbol names in a field (`LCSC`, `LCSC Part #`, `LCSC Part`, `JLCPCB Part #`
-and the other spellings in `init.FIELDS`, each with the tool it comes from), asks JLCPCB for that code's
+`bom` reads the LCSC code each symbol names in a field (`LCSC`, `LCSC Part #`, `LCSC Part` and the other
+spellings in `init.FIELDS`, each with the corpus board or the tool it comes from), asks JLCPCB for that code's
 record, and writes one line per code, value and footprint with the columns `Ref, Value, Package, MPN,
 Manufacturer, LCSC, Basic/Extended, Stock, Datasheet, Fetched, Package verified`. It never chooses a part:
 a symbol without a code becomes a line with the footprint name as `Package` and empty catalogue columns,
@@ -69,8 +69,11 @@ tool cannot ("2026-10-16 BD: 1935161 drawing against the PT 1,5/2 footprint"); t
 Catalogue facts go through a cache, `~/.cache/pcb-preflight/catalogue.json` (or `$PCB_PREFLIGHT_CACHE`):
 `bom` reads a stock figure back for 7 days and the identity facts (MPN, package, library type) for 90;
 `check --online` always refreshes stock and writes the cache; `check` without `--online` reads the cache,
-says so, and lists every cached item as not checked, so the result is NOT VERIFIED, never PASS. One request
-per code, so a 67-line board costs 67 requests once, not per run.
+says so, and lists every cached item as not checked, so the result is NOT VERIFIED, never PASS. A
+`--catalogue parts.csv` file is consulted before the cache and JLCPCB, and its records are never current
+either: the project under review may have written that file, so a copied MPN in it cannot pass the gate
+that compares MPNs. Its identity facts (MPN, package, library type) still serve the package and value
+gates. One request per code, so a 67-line board costs 67 requests once, not per run.
 
 `check` never writes into the project (`bom` writes the one file you ask it for). It copies the
 project to a temporary directory and runs `kicad-cli` there, because `kicad-cli` itself drops a
@@ -235,7 +238,7 @@ The `§` numbers refer to the sections of the pitfalls guide the gates were draw
 | LCSC code: symbol field and bom.csv agree for every bought reference where both carry one; a field with a code whose line has none is the same finding (fix: run `preflight bom`); with no field at all, bom.csv is the only source and the gate says so | yes | schematic BOM export with the `init.FIELDS` spellings + `bom.csv` |
 | bom.csv Value equals the schematic Value of every reference, spelling aside (`10uF` = `10 µF` = `10µF`, `100R` = `100Ω`, `4k7` = `4.7k`) | yes | `bom.csv` + schematic BOM export |
 | Package fits the footprint (`--online`): the catalogue's package for each code against the footprint on the board. The bom.csv `Package` column records the chosen part's package but is not compared: offline it is a copy of the footprint name or of the catalogue string, and a column compared with its own source proves nothing. Names pick the candidates (0805 vs 1210, SOIC-8 vs SOIC-8 with exposed pad, SMD vs through-hole can, a stated pitch against SOIC's 1.27 mm) and, where both sides are footprints in KiCad's library, pad geometry decides (TSOT-23-6 fits SOT-23-6, VSSOP-8 fits MSOP-8 3x3, a 2.1 mm exposed pad on a 2.6 mm one is unknown, `TSSOP-14` alone is unknown because the library has it at two pitches). Same / different / unknown; unknown is listed as not checked and makes the result NOT VERIFIED unless a person signed for it; a `Package` that repeats the footprint name compares nothing | yes | `bom.csv` + schematic BOM export + catalogue record + KiCad's footprint library |
-| Catalogue cross-check (`--online`): code exists, MPN matches, Manufacturer matches when bom.csv has it (a clone's MPN can equal the original's), stock ≥ 10× quantity, Basic/Extended as recorded; the summary says where the facts came from and when (`jlcpcb 2026-10-18`, `via the cache`); a code the catalogue could not be asked about, a line with no MPN to compare, or a record from the cache or older than the 7-day stock limit is not checked, never passed | yes / warn | JLCPCB cart endpoint, jlcsearch fallback, through the cache (`--catalogue parts.csv` first) |
+| Catalogue cross-check (`--online`): code exists, MPN matches, Manufacturer matches when bom.csv has it (a clone's MPN can equal the original's), stock ≥ 10× quantity, Basic/Extended as recorded; the summary says where the facts came from and when (`jlcpcb 2026-10-18`, `via the cache`); a code the catalogue could not be asked about, a line with no MPN to compare, or a record from the cache, from a `--catalogue parts.csv` file, or older than the 7-day stock limit is not checked, never passed | yes / warn | JLCPCB cart endpoint, jlcsearch fallback, through the cache (`--catalogue parts.csv` first) |
 | Catalogue category matches the reference prefix (`--online`): C capacitor, R resistor, D diode/TVS/LED, L inductor or ferrite, FB ferrite, Q transistor, J connector, F fuse, Y crystal, SW switch, U none of those; a capacitor's code on an LED line blocks; a prefix without a rule is not checked | yes | the record's category (JLCPCB), else its description |
 | Catalogue description matches the BOM value (`--online`): every capacitance, inductance and resistance figure the value states within 1 % of the description's, and the part's voltage rating at least the value's (a 25 V part on a `100uF 16V` line fits); a figure the description lacks is not checked | yes | the record's description |
 | Three fiducials on the front, placement origin set | warn | the board file |

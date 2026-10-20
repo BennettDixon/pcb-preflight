@@ -64,8 +64,13 @@ class Fields(unittest.TestCase):
             self.assertIn(column, ('LCSC', 'MPN', 'Manufacturer'), spelling)
             self.assertTrue(source, spelling)
         self.assertEqual(len(set(init.field_names())), len(init.FIELDS))
-        for s in ('LCSC', 'LCSC Part #', 'LCSC Part', 'LCSC_PART', 'JLCPCB Part #', 'JLCPCB'):
-            self.assertIn(s, init.field_names(), 'the design note\'s spellings')
+        for s in ('LCSC', 'LCSC Part #', 'LCSC Part', 'lcsc#', 'JLC'):
+            self.assertIn(s, init.field_names(), 'the corpus spellings')
+        for spelling, _, source in init.FIELDS:
+            self.assertTrue(source.startswith(('corpus:', 'KiCad', 'kicad-jlcpcb-tools', 'Fabrication Toolkit', 'JLCPCB KiCad Library')) or 'corpus:' in source,
+                            f'{spelling}: a spelling needs a corpus board or the tool that writes it, not a guess ({source})')
+        for s in ('LCSC_PART', 'JLCPCB Part #', 'JLCPCB', 'Mfr. Part #', 'Mfr'):
+            self.assertNotIn(s, init.field_names(), 'dropped 2026-10-20: no corpus board, no tool')
 
     def test_first_spelling_wins_and_a_conflict_is_reported(self):
         fields, conflicts = init.read_fields({'LCSC': 'c14663 ', 'LCSC Part': 'C1588', 'MPN': 'X'})
