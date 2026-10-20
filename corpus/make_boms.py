@@ -2,7 +2,7 @@
 
 The lines are built the way the README describes: one line per (value, footprint, part), Ref listing every
 reference, Package = the symbol's own Package field when it has one, else the footprint name (what
-`preflight bom-template` writes), MPN from the board's own part-number field, LCSC from its LCSC field,
+`preflight bom` writes for a line without a code), MPN from the board's own part-number field, LCSC from its LCSC field,
 Datasheet from the symbol. Basic/Extended and Stock are left blank (the catalogue fills them with --online).
 kicad-cli runs on a copy of each project; nothing is written into corpus/boards.
 """

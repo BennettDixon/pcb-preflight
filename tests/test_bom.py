@@ -107,5 +107,41 @@ class Gates(unittest.TestCase):
         self.assertNotIn('Extended part types', c.summary, 'the loading fee is the order gate\'s line now')
 
 
+class BomSource(unittest.TestCase):
+    """G16: the symbol field's code and the bom.csv line's code agree where both exist."""
+
+    def lines(self, text):
+        return bom.load(write('Ref,Value,Package,MPN,LCSC,Basic/Extended,Stock,Datasheet\n' + text))[0]
+
+    def test_agreement_passes_and_counts_the_hand_entered_lines(self):
+        lines = self.lines('"C1,C7",100nF,0603,M,C14663,Basic,1,u\nC2,10uF,1210,M,C1588,Basic,1,u\n')
+        c = checks.bom_source_check(lines, {'C1': 'C14663', 'C7': 'C14663'}, ['C1', 'C2', 'C7'])
+        self.assertEqual(c.status, 'pass')
+        self.assertEqual(c.summary, '2 references carry the same code in the symbol field and in bom.csv, 1 have a code only in bom.csv (hand-entered; no symbol field)')
+
+    def test_a_disagreement_blocks_with_the_fix(self):
+        lines = self.lines('C1,100nF,0603,M,C1588,Basic,1,u\nC2,10uF,1210,M,,Basic,1,u\n')
+        c = checks.bom_source_check(lines, {'C1': 'C14663', 'C2': 'C96446', 'C9': 'C1'}, ['C1', 'C2', 'C9'])
+        self.assertEqual(c.status, 'fail')
+        self.assertEqual(c.details, ['C1: the schematic field says C14663, bom.csv (row 2) says C1588: run preflight bom, or fix the field',
+                                     'C2: the schematic field says C96446, its bom.csv line (row 3) has no code: run preflight bom'])
+        self.assertIn('2 references name a different part', c.summary)
+
+    def test_no_field_at_all_is_a_pass_that_says_so(self):
+        c = checks.bom_source_check(self.lines('C1,100nF,0603,M,C14663,Basic,1,u\n'), {}, ['C1'])
+        self.assertEqual(c.status, 'pass')
+        self.assertIn('no symbol carries an LCSC code in a field', c.summary)
+        self.assertIn('LCSC Part #', c.notes[0])
+
+    def test_manufacturer_and_fetched_columns_load_with_aliases(self):
+        p = write('Ref,Value,Package,MPN,Mfr,LCSC,Basic/Extended,Stock,Datasheet,Fetched at\n'
+                  'C1,100nF,0603,CC0603KRX7R9BB104,YAGEO,C14663,Basic,1,u,jlcpcb 2026-10-18\n')
+        lines, missing = bom.load(p)
+        self.assertEqual(missing, [])
+        self.assertEqual((lines[0].manufacturer, lines[0].fetched), ('YAGEO', 'jlcpcb 2026-10-18'))
+        self.assertEqual(bom.COLUMNS[4], 'Manufacturer')
+        self.assertEqual(bom.COLUMNS[-2:], ['Fetched', 'Package verified'])
+
+
 if __name__ == '__main__':
     unittest.main()

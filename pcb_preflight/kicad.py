@@ -84,12 +84,17 @@ def drc(cli, pcb, out_json, parity=True):
         return json.load(f), out
 
 
-def bom(cli, sch, out_csv):
-    """One row per symbol: Ref, Value, Footprint, DNP, ExcludeFromBOM, ExcludeFromBoard. Empty flags mean false."""
-    rc, out = run(cli, 'sch', 'export', 'bom', '--output', out_csv,
-                  '--fields', 'Reference,Value,Footprint,${DNP},${EXCLUDE_FROM_BOM},${EXCLUDE_FROM_BOARD}',
-                  '--labels', 'Ref,Value,Footprint,DNP,ExcludeFromBOM,ExcludeFromBoard',
-                  '--ref-range-delimiter', '', sch)
+def bom(cli, sch, out_csv, fields=()):
+    """One row per symbol: Ref, Value, Footprint, DNP, ExcludeFromBOM, ExcludeFromBoard. Empty flags mean false.
+
+    ``fields`` names extra symbol fields to export under their own names (an LCSC code, an MPN); kicad-cli
+    matches field names exactly, case included (10.0.7), and leaves a field a symbol lacks empty.
+    """
+    fields = list(fields)
+    names = ['Reference', 'Value', 'Footprint', '${DNP}', '${EXCLUDE_FROM_BOM}', '${EXCLUDE_FROM_BOARD}'] + fields
+    labels = ['Ref', 'Value', 'Footprint', 'DNP', 'ExcludeFromBOM', 'ExcludeFromBoard'] + [f'F{i}' for i in range(len(fields))]
+    rc, out = run(cli, 'sch', 'export', 'bom', '--output', out_csv, '--fields', ','.join(names),
+                  '--labels', ','.join(labels), '--ref-range-delimiter', '', sch)
     if not os.path.exists(out_csv):
         raise KicadError(f'BOM export produced no file: {_cause(out)}')
     with open(out_csv, newline='', encoding='utf-8-sig') as f:
@@ -97,6 +102,8 @@ def bom(cli, sch, out_csv):
     for r in rows:
         for flag in ('DNP', 'ExcludeFromBOM', 'ExcludeFromBoard'):
             r[flag] = bool((r.get(flag) or '').strip())
+        for i, name in enumerate(fields):
+            r[name] = (r.pop(f'F{i}', '') or '').strip()
     return rows
 
 

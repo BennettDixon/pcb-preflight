@@ -342,7 +342,9 @@ decisions about what the preset owns, not bugs.
 9. **Report:** when the schematic has only LCSC codes (the common Fabrication Toolkit workflow: 8 of the
    15 online boards carry no MPN field), every stock line is "no MPN in bom.csv to compare" and the board
    is NOT VERIFIED at best; `bom-template --online` could fill MPN, package, library and stock from the
-   catalogue so the comparison has something to compare.
+   catalogue so the comparison has something to compare. **Closed 2026-10-18:** `preflight bom` does
+   exactly that ("preflight bom on the corpus" below): 416 of the 565 lines on the 15 boards now carry the
+   record's MPN, manufacturer, package, library type, stock and datasheet.
 
 ## Fixture rows the corpus justifies
 
@@ -500,6 +502,75 @@ What the section cannot say, and says so on every report: copper weight, surface
 colour, quantity, via covering, gold fingers, panelisation. No package size is inferred from pads, so the
 Economic PCBA 0402-and-finer rule is not a driver (soldiercrab's BGA-256, say, is not
 reported).
+
+## preflight bom on the corpus (2026-10-18)
+
+`preflight bom` reads the LCSC code each symbol names in a field, asks the catalogue for that code's record
+and writes bom.csv from it (`pcb_preflight/init.py`; design note of 2026-10-18). Run on the 15 boards with
+LCSC data, each into a scratch `--bom` path outside the corpus, with a fresh cache (`$PCB_PREFLIGHT_CACHE`
+pointed at an empty file), on 2026-10-18 with kicad-cli 10.0.7; then a second time into the same path. The
+hand-made column is `boms/<name>.csv`, which `make_boms.py` built from the same symbol fields on 2026-10-17
+(its CONFIG table names each board's fields by hand).
+
+| Board | lines | filled | open: no code | open: no record | field spellings (references) | hand-made lines / with code | refs whose code differs | first run | second run |
+|:--|--:|--:|--:|--:|:--|:--|--:|:--|:--|
+| beyondex-limiter | 6 | 6 | 0 | 0 | LCSC (7) | 6 / 6 | 0 | 8.1 s, exit 0 | 0.5 s, cache, same bytes |
+| beyondex-limiter-prefix | 6 | 6 | 0 | 0 | LCSC (7) | 6 / 6 | 0 | 0.5 s (all 6 codes already cached by the other commit), exit 0 | 0.5 s, same bytes |
+| bitaxeaura | 48 | 1 | 47 | 0 | LCSC (1) | 49 / 2 | 8 | 1.7 s, exit 3 | 0.7 s, same bytes |
+| bitaxegt | 38 | 4 | 34 | 0 | LCSC (5) | 39 / 4 | 0 | 3.5 s, exit 3 | 0.9 s, same bytes |
+| canfd-mc | 26 | 26 | 0 | 0 | LCSC (37) | 26 / 26 | 0 | 23.2 s, exit 0 | 0.6 s, same bytes |
+| cm5-minima | 39 | 6 | 33 | 0 | LCSC Part (8) | 43 / 6 | 0 | 6.3 s, exit 3 | 0.8 s, same bytes |
+| jlcpcb-example | 11 | 11 | 0 | 0 | LCSC (10), LCSC Part (5) | 11 / 11 | 0 | 7.6 s, exit 0 | 0.5 s, same bytes |
+| openair-max | 84 | 81 | 3 | 0 | LCSC Part (180) | 84 / 81 | 0 | 87.2 s, exit 3 | 0.6 s, same bytes |
+| openjbod-rp2040 | 49 | 49 | 0 | 0 | LCSC Part # (121) | 49 / 49 | 0 | 62.4 s, exit 0 | 0.7 s, same bytes |
+| pocketpd | 34 | 34 | 0 | 0 | LCSC (81) | 34 / 34 | 0 | 25.3 s, exit 0 | 0.6 s, same bytes |
+| royalblue54l-feather | 29 | 28 | 1 | 0 | LCSC (47) | 29 / 28 | 0 | 19.4 s, exit 3 | 0.7 s, same bytes |
+| sh-rpi | 77 | 74 | 3 | 0 | LCSC (147) | 77 / 74 | 0 | 64.0 s, exit 3 | 0.9 s, same bytes |
+| soldiercrab | 29 | 29 | 0 | 0 | lcsc# (70) | 29 / 29 | 0 | 22.5 s, exit 0 | 0.8 s, same bytes |
+| sonatino | 57 | 57 | 0 | 0 | LCSC (116) | 57 / 57 | 0 | 36.5 s, exit 0 | 0.6 s, same bytes |
+| tiny-tapeout | 32 | 4 | 28 | 0 | JLC (8) | 32 / 4 | 0 | 4.7 s, exit 3 | 0.6 s, same bytes |
+| **15 boards** | **565** | **416** | **149** | **0** | 5 spellings | 571 / 417 | 8 | 373 s, 340 codes fetched | 10 s, 0 fetched |
+
+What the run shows:
+
+* **Every code in the fields is in the catalogue.** 416 lines filled from a record, 0 codes the catalogue
+  did not know, 0 lookups failed; 339 of the 340 distinct codes answered at JLCPCB's cart endpoint and one
+  (C25120, openjbod-rp2040's R19-R22, `0402WGF499JTCE`) only at the jlcsearch mirror, so that line has no
+  manufacturer and no datasheet URL. Six more records carry no datasheet URL (openair-max C6119813 and
+  C5357696, sh-rpi C306602, soldiercrab C5448342, and the two consigned "JLCPCB Assembly" parts
+  C9900176956 on pocketpd and C9900148376 on royalblue, which also have no stock and which `bom-lcsc`
+  still rejects as 10-digit codes, rule-changes item 7). 415 of 416 lines carry a manufacturer. Library
+  type: 277 Extended, 139 Basic.
+* **Every open line is a symbol without a code, as designed.** 149 lines on 8 boards; the 7 boards whose
+  symbols all carry a code exit 0 (COMPLETE). bitaxeaura's 47, bitaxegt's 34, cm5-minima's 33 and
+  tiny-tapeout's 28 are the Digi-Key/MPN-field boards the corpus triage already named; openair-max's 3
+  (J6 FPC connector, D1 BAS16J, F2 PCB fuse), royalblue's 1 and sh-rpi's 3 are the lines the hand-made BOMs
+  also left without a code. The open lines carry the MPN and manufacturer the symbol itself names where it
+  has those fields (bitaxegt's PARTNO is not in the spelling table, so its 34 open lines carry none).
+* **The 8 differing references are the MPN-to-code resolution the hand-made BOM did by hand** (bitaxeaura
+  C4, C15, C19, C25, C36, C42, C46, C47: `TMK107B7105KA-T` → C92827 in make_boms.py's CONFIG). `bom` leaves
+  them open: decision 2 of the design note (no MPN-to-code resolution in the first version). Every other
+  code on every other board equals the hand-made one; the line counts differ on three boards (bitaxeaura
+  48/49, bitaxegt 38/39, cm5-minima 39/43) only because make_boms.py also split lines by the symbol's own
+  Package and MPN fields and `bom` splits by (code, value, footprint).
+* **Field spellings seen:** `LCSC` (9 boards), `LCSC Part` (3: jlcpcb-example beside `LCSC`, openair-max,
+  cm5-minima), `LCSC Part #` (openjbod-rp2040), `lcsc#` (soldiercrab), `JLC` (tiny-tapeout). The last two
+  are in `init.FIELDS` with the board as their source; without them 33 lines on two sold boards would be
+  open. `JLCPCB_PN` (openjbod, beside `LCSC Part #`) and pocketpd's `LCSC2` supplied nothing: the first
+  spelling in table order already had the code on every symbol, and no symbol carried two spellings with
+  different codes. The design note's `LCSC_PART`, `JLCPCB Part #` and `JLCPCB` did not occur in the corpus and were dropped
+  from the table on 2026-10-20 (with `Mfr. Part #` and `Mfr`): a spelling needs a board or a tool behind it.
+* **Time and the cache.** The first pass took 373 s for 340 distinct codes (one request per code with the
+  client's 0.2 s pause: about 0.9 s a code; openair-max's 79 codes 87 s). The second run of every board was
+  served entirely from the cache in 0.5 to 0.9 s (kicad-cli's export is most of that) and wrote the same
+  bytes as the first, which is what makes the file diff cleanly in review. Codes shared between boards were
+  fetched once (beyondex-limiter-prefix cost nothing after beyondex-limiter; sonatino found 22 of its 57
+  in the cache).
+* **What `check` then says** is unchanged on these boards: `boms/<name>.csv` was built from the same fields,
+  so the new `bom-source` gate passes on all 15 (and on the 6 boards without LCSC fields it passes saying
+  bom.csv is the only source); `tests/test_corpus.py` freezes the offline verdicts with an empty cache, so
+  this machine's catalogue cache stays out of the baseline, and `CorpusBom` freezes the lines, open lines
+  and field spellings above (the deterministic part; what the catalogue answered is this table only).
 
 ## Per-board tables
 
